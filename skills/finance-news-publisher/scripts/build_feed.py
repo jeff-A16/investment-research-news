@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime
 import hashlib
 import html
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -20,7 +21,7 @@ PUBLIC_FIELDS = ('id','layer','source_id','source_name','source_role','original_
  'updated_at','event_at','data_period','observed_at','retrieved_at','feed_published_at',
  'publication_time_note','fact_summary','analysis','confidence','investment_impact','impact_degree',
  'verification_status','gaps','is_background','event_key','revision_id','dedup_keep_separate','account_id',
- 'source_record_id','record_kind','window_basis')
+ 'source_record_id','record_kind','window_basis','fact_values','source_content_sha256','material_update','source_links')
 SECRET_PARAMS = re.compile(r'^(?:api[_-]?key|api[_-]?token|access_token|refresh_token|authorization|password|passwd|jsc_token|qsid)$', re.I)
 TRACKING = {'fbclid','gclid','msclkid','spm','utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id'}
 ET.register_namespace('atom','http://www.w3.org/2005/Atom')
@@ -93,6 +94,9 @@ def validate(m):
     if not m['source_name'] or not m['title']:raise ValueError('Empty source/title')
     if not (m.get('original_url') or m.get('available_url')):raise ValueError('Neither original nor reading URL available')
     for k in ('original_url','available_url'):safe_url(m.get(k))
+    for ref in m.get('source_links',[]):
+        if not isinstance(ref,dict) or not ref.get('source') or ref.get('kind','original') not in ('original','available'):raise ValueError('Malformed attributed source link')
+        safe_url(ref.get('url'))
     confidence=m['confidence'];impact=m['impact_degree'];analysis=m['investment_impact']
     if not isinstance(confidence,dict) or not confidence.get('reason') or not confidence.get('scope'):raise ValueError('Confidence needs reason and scope')
     score=confidence.get('score')
@@ -110,6 +114,16 @@ def window_status(m,start,end,cfg,as_of=None):
         if published<start and not (m.get('material_update') and dt(m.get('updated_at')) and start<=dt(m['updated_at'])<=end):return False,'outside_window'
         return True,'first_publication'
     date_value=m.get('published_at') or m.get('data_period')
+    updated=dt(m.get('updated_at'))
+    if not m.get('published_at') and m.get('material_update') and updated and start<=updated<=(as_of or end):
+        return True,'verified_material_update_not_first_publication'
+    feed_time=dt(m.get('feed_published_at'))
+    if not m.get('published_at') and not (feed_time and start<=feed_time<=end) and isinstance(date_value,str) and re.fullmatch(r'\d{4}-\d{2}',date_value):
+        try:
+            month=datetime.fromisoformat(date_value+'-01').replace(tzinfo=ZoneInfo(cfg.get('timezone','Asia/Shanghai')))
+            next_month=month.replace(year=month.year+1,month=1) if month.month==12 else month.replace(month=month.month+1)
+            if next_month.astimezone(timezone.utc)<=start:return False,'outside_month_window'
+        except ValueError:pass
     # A known old calendar date must not become current merely because we fetched it now.
     if isinstance(date_value,str) and re.match(r'^\d{4}-\d{2}-\d{2}',date_value):
         try:
@@ -119,18 +133,20 @@ def window_status(m,start,end,cfg,as_of=None):
     for field in ('feed_published_at','updated_at'):
         value=dt(m.get(field))
         if value:
-            if value>end+timedelta(minutes=5):return False,'future_'+field
-            if start<=value<=end:return True,field+'_not_first_publication'
+            snapshot=field=='updated_at' and role_kind(m) in ('data','market-implied','sentiment') and bool(dt(m.get('observed_at')))
+            limit=(as_of or end) if snapshot else end
+            if value>limit+timedelta(minutes=5):return False,'future_'+field
+            if start<=value<=limit:return True,field+'_not_first_publication'
     observed=dt(m.get('observed_at'))
     if observed:
         # Observation occurs during the run, after the fixed news-window boundary.
         # It is never substituted for first publication in RSS.
         if observed>(as_of or end)+timedelta(minutes=5):return False,'future_observation'
         if start<=observed<=(as_of or end):return True,'observation_during_run_not_first_publication'
-    if isinstance(date_value,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',date_value):
+    if isinstance(date_value,str) and re.match(r'^\d{4}-\d{2}-\d{2}(?:T|$)',date_value):
         try:
-            day=datetime.fromisoformat(date_value).replace(tzinfo=ZoneInfo(cfg.get('timezone','Asia/Shanghai')))
-            if day.astimezone(timezone.utc)<=end and (day+timedelta(days=1)).astimezone(timezone.utc)>start:return True,'date_precision_window_overlap'
+            day=datetime.fromisoformat(date_value[:10]).replace(tzinfo=ZoneInfo(cfg.get('timezone','Asia/Shanghai')))
+            if day.astimezone(timezone.utc)<=end and (day+timedelta(days=1)).astimezone(timezone.utc)>start:return True,'date_precision_window_overlap' if len(date_value)==10 else 'date_window_overlap_timezone_unknown'
         except ValueError:pass
         return False,'outside_date_window'
     # Retrieval alone never makes an undated or old source a current message.
@@ -142,11 +158,46 @@ def public_message(m):
     result['audit_refs']={k:deepcopy(audit[k]) for k in ('run_id','call_ids','event_seqs') if k in audit}
     return result
 
+def content_fingerprint(m):
+    fields=('source_id','source_name','source_role','title','published_at','data_period','event_key','source_record_id','revision_id','record_kind','confidence','investment_impact','impact_degree','verification_status','gaps','source_links')
+    payload={k:m.get(k) for k in fields}
+    payload['original_url']=canonical_url(m.get('original_url'));payload['available_url']=canonical_url(m.get('available_url'))
+    if re.fullmatch(r'[0-9a-f]{64}',str(m.get('source_content_sha256',''))):payload['source_content_sha256']=m['source_content_sha256']
+    elif m.get('fact_values') is not None:payload['fact_values']=m['fact_values']
+    else:payload.update(fact_summary=m.get('fact_summary'),analysis=m.get('analysis'))
+    if m.get('valuation_members'):payload['valuation_members']=[(r['guid'],content_fingerprint(r)) for r in m['valuation_members']]
+    if m.get('provenance'):payload['provenance']=sorted({json.dumps({k:p.get(k) for k in ('source_id','source_name','original_url','available_url','title','published_at','data_period','fact_summary')},ensure_ascii=False,sort_keys=True) for p in m['provenance']})
+    return hashlib.sha256(json.dumps(payload,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+
+def incremental_records(messages,previous):
+    records=deepcopy(previous.get('source_records',{}));changed=[];stats={'new_source_records':0,'updated_source_records':0,'duplicate_source_records':0}
+    for m in messages:
+        keys=[m['source_id']+'|'+a for a in identity_aliases(m)];fingerprint=content_fingerprint(m);seen=[records[k] for k in keys if k in records]
+        if any(r.get('fingerprint')==fingerprint for r in seen):stats['duplicate_source_records']+=1
+        else:
+            changed.append(m);stats['updated_source_records' if seen else 'new_source_records']+=1
+        for key in keys:records[key]={'fingerprint':fingerprint,'source_id':m['source_id']}
+    return changed,records,stats
+
+def advance_cursors(previous,coverage,window_end):
+    cursors=deepcopy(previous.get('source_cursors',{}));success={'content_collected','no_new_verified'}
+    for layer in coverage:
+        for row in layer['coverage']['sources']:
+            cursor=cursors.setdefault(row['source_id'],{})
+            cursor.update(last_completed_check_at=row.get('checked_at'),last_status=row.get('status'))
+            components=row.get('components',[])
+            for component in components:
+                child=cursor.setdefault('components',{}).setdefault(component['component'],{})
+                child.update(last_completed_check_at=component.get('checked_at'),last_status=component.get('status'))
+                if component.get('status') in success:child['resume_from']=window_end
+            if row.get('status') in success and all(c.get('status') in success for c in components):cursor['resume_from']=window_end
+    return cursors
+
 def rank(m):
     return (m.get('layer',9), {'verified':0,'partial':1,'unverified':2}.get(m.get('verification_status'),3), -(m.get('confidence',{}).get('score') or 0), normalized(m.get('source_name')), normalized(m.get('title')))
 
 def provenance(m):
-    return {k:deepcopy(m.get(k)) for k in ('layer','source_id','source_name','source_role','title','fact_summary','original_url','available_url','published_at','feed_published_at','data_period','retrieved_at','audit_refs') if m.get(k) is not None}
+    return {k:deepcopy(m.get(k)) for k in ('layer','source_id','source_name','source_role','title','fact_summary','original_url','available_url','source_links','published_at','feed_published_at','data_period','retrieved_at','audit_refs') if m.get(k) is not None}
 
 def merge_members(members):
     # A correction/re-observation from the same owner replaces that owner's older text,
@@ -239,7 +290,7 @@ def source_links(m):
         source=p.get('source_name','来源');add(p.get('original_url'),source,'原始出处')
         if p.get('available_url') and p['available_url']!=p.get('original_url'):
             add(p['available_url'],source,'完整明细' if p.get('valuation_members') else '实际读取/转载')
-    for p in m.get('source_links',[]):add(p['url'],p['source'],'实际读取/转载' if p.get('kind')=='available' else '原始出处')
+        for ref in p.get('source_links',[]):add(ref['url'],ref['source'],'实际读取/转载' if ref.get('kind')=='available' else '原始出处')
     return list(links.values())
 
 def description(m):
@@ -315,7 +366,66 @@ def rss(items,cfg,as_of):
     ET.indent(root,space='  ')
     return ET.tostring(root,encoding='utf-8',xml_declaration=True).decode()+'\n'
 
+class PublicationBlocked(ValueError):
+    pass
+
+def required_sources(skill):
+    path=Path(__file__).resolve().parents[2]/skill/'references/sources.json'
+    return {r['id']:r.get('required_components',[]) for r in json.loads(path.read_text())['sources']}
+
+def collection_log(run):
+    spec=importlib.util.spec_from_file_location('publication_run_logger',Path(__file__).with_name('run_logger.py'));module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module.check(run),module.read_events(run)
+
+def publication_gate(manifest,cfg):
+    """Fail closed before merging unless every collection task has finished."""
+    issues=[];outcomes={};source_count=component_count=0
+    layers=manifest.get('layers',[]);as_of=dt(manifest.get('as_of'));started=dt(manifest.get('started_at'))
+    if len(layers)!=3 or {l.get('layer') for l in layers}!=set(DEPENDENCIES):issues.append('Exactly three executed layers are required')
+    if not started or not as_of or started>as_of:issues.append('Missing/invalid collection started_at/as_of')
+    terminal={'content_collected','no_new_verified','access_limited_verified'};disabled=set(cfg.get('excluded_source_ids',[]))
+    for layer in layers:
+        skill=DEPENDENCIES.get(layer.get('layer'))
+        if skill!=layer.get('skill'):issues.append('Layer/skill mismatch');continue
+        try:
+            messages_path=Path(layer['messages']);run=messages_path.parent.parent;coverage_path=Path(layer['coverage'])
+            if messages_path.resolve()!=(run/'outputs/messages.json').resolve() or coverage_path.resolve()!=(run/'outputs/coverage.json').resolve():raise ValueError('Outputs must be in the finalized layer log')
+            coverage=json.loads(coverage_path.read_text());messages=json.loads(messages_path.read_text());check,events=collection_log(run)
+            if not check['integrity_ok'] or check['status'] not in ('completed','partial') or check['pending_call_ids'] or check['missing_outputs']:issues.append(skill+': collection log not finalized/integral')
+            if coverage.get('run_id')!=manifest.get('run_id') or coverage.get('collection_complete') is not True:issues.append(skill+': collection_complete is not true for this run')
+            catalog=required_sources(skill);rows=coverage.get('sources',[]);ids=[r.get('source_id') for r in rows]
+            if len(ids)!=len(set(ids)) or set(ids)!=set(catalog):issues.append(skill+': missing/duplicate/unexpected catalog entries')
+            starts={e['data']['call_id']:e['data'] for e in events if e['type']=='tool_start'};ends={e['data']['call_id'] for e in events if e['type']=='tool_end'}
+            def evidence(row,label):
+                when=dt(row.get('checked_at'));calls=row.get('evidence_call_ids',[]);paths=row.get('evidence_paths',[])
+                if row.get('status') not in terminal or not row.get('checked_scope') or not row.get('reason'):issues.append(label+': no content-level terminal result/scope/reason')
+                if not when or not started or not as_of or when<started or when>as_of+timedelta(minutes=5):issues.append(label+': invalid current-run check time')
+                if not calls or any(c not in starts or c not in ends or row['source_id'] not in starts[c].get('source_ids',[]) for c in calls):issues.append(label+': missing/unmatched source evidence calls')
+                if not paths or any(Path(p).is_absolute() or '..' in Path(p).parts or not (run/p).is_file() for p in paths):issues.append(label+': missing source evidence artifacts')
+            qualified={}
+            for m in messages:
+                try:
+                    validate(m);allowed,_=window_status(m,dt(manifest['window_start']),dt(manifest['window_end']),cfg,as_of)
+                    if allowed:qualified[m['source_id']]=qualified.get(m['source_id'],0)+1
+                except (ValueError,KeyError,TypeError):pass
+            for row in rows:
+                sid=row.get('source_id');status=row.get('status');label=skill+'/'+str(sid)
+                if sid in disabled:
+                    if status!='out_of_scope':issues.append(label+': disabled source not marked out_of_scope')
+                    continue
+                source_count+=1;outcomes[status]=outcomes.get(status,0)+1;evidence(row,label)
+                if status=='content_collected' and not qualified.get(sid):issues.append(label+': content_collected without qualified messages')
+                if status=='no_new_verified' and qualified.get(sid):issues.append(label+': no_new contradicts qualified messages')
+                components=row.get('components',[]);names=[c.get('component') for c in components]
+                if len(names)!=len(set(names)) or set(names)!=set(catalog.get(sid,[])):issues.append(label+': required subcomponents unfinished/missing')
+                for component in components:
+                    component_count+=1;evidence(dict(component,source_id=sid),label+'/'+str(component.get('component')))
+        except (OSError,ValueError,KeyError,TypeError) as exc:issues.append(str(skill)+': '+str(exc))
+    if issues:raise PublicationBlocked('Publication blocked ('+str(len(issues))+' issues): '+'; '.join(issues[:20]))
+    return {'passed':True,'run_id':manifest['run_id'],'completed_sources':source_count,'completed_components':component_count,'outcomes':outcomes}
+
 def build(manifest,previous,cfg):
+    gate=publication_gate(manifest,cfg)
     end=dt(manifest['window_end']);start=dt(manifest['window_start']);as_of=dt(manifest['as_of'])
     if not end or not start or not as_of or start>end:raise ValueError('Window/as_of must be timezone-aware ISO times')
     if set(x['layer'] for x in manifest['layers'])!=set(DEPENDENCIES) or len(manifest['layers'])!=3:raise ValueError('Manifest must contain exactly the three executed layers')
@@ -339,29 +449,39 @@ def build(manifest,previous,cfg):
             if reason:rejected.append({'id':m.get('id'),'source_id':m.get('source_id'),'reason':reason})
             else:accepted.append(public_message(m))
     old=deepcopy(previous or {'items':[]});old['items']=[m for m in old.get('items',[]) if m.get('source_id') not in cfg.get('excluded_source_ids',[])]
-    items,mapping=merge(accepted,old,manifest['as_of'])
-    state={'version':1,'run_id':manifest['run_id'],'updated_at':manifest['as_of'],'items':items}
+    changes,source_records,incremental=incremental_records(accepted,old)
+    items,mapping=merge(changes,old,manifest['as_of'])
+    cursors=advance_cursors(old,coverage,manifest['window_end'])
+    state={'version':2,'run_id':manifest['run_id'],'updated_at':manifest['as_of'],'items':items,'source_records':source_records,'source_cursors':cursors,'publication_gate':gate}
     public=[{k:v for k,v in m.items() if not k.startswith('_')} for m in items]
     entries=rss_entries(items,cfg)
-    summary={'run_id':manifest['run_id'],'as_of':manifest['as_of'],'window_start':manifest['window_start'],'window_end':manifest['window_end'],'layer_count':3,'input_messages':sum(x['candidate_count'] for x in coverage),'accepted_messages':len(accepted),'published_items':len(entries),'stored_records':len(items),'rejected':rejected,'dedup_groups':len(mapping),'scope':'Current collected messages only; no exhaustive all-source/current-content claim. Source failures retained in coverage.','layers':coverage}
+    prior_entries={m['guid']:m for m in rss_entries(old.get('items',[]),cfg)}
+    incremental.update(new_feed_items=sum(m['guid'] not in prior_entries for m in entries),updated_feed_items=sum(m['guid'] in prior_entries and content_fingerprint(m)!=content_fingerprint(prior_entries[m['guid']]) for m in entries))
+    summary={'run_id':manifest['run_id'],'as_of':manifest['as_of'],'window_start':manifest['window_start'],'window_end':manifest['window_end'],'layer_count':3,'publication_gate':gate,'incremental':incremental,'input_messages':sum(x['candidate_count'] for x in coverage),'accepted_messages':len(accepted),'published_items':len(entries),'stored_records':len(items),'rejected':rejected,'dedup_groups':len(mapping),'scope':'All configured tasks finalized in their stated checked scope; content/access limitations retained. No exhaustive whole-site claim.','layers':coverage}
     xml=rss(items,cfg,manifest['as_of']);parsed=ET.fromstring(xml)
     assert len(parsed.findall('./channel/item'))==len(entries)
     assert len({m['guid'] for m in items})==len(items)
     return {'feed.xml':xml,'data/items.json':json.dumps(public,ensure_ascii=False,indent=2)+'\n','data/feed-state.json':json.dumps(state,ensure_ascii=False,indent=2)+'\n','summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','dedup-map.json':json.dumps(mapping,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(rss_group_map(entries),ensure_ascii=False,indent=2)+'\n'}
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);mode=p.add_mutually_exclusive_group(required=True);mode.add_argument('--manifest');mode.add_argument('--render-state');p.add_argument('--previous');p.add_argument('--as-of');p.add_argument('--config',required=True);p.add_argument('--output',required=True);a=p.parse_args();cfg=json.loads(Path(a.config).read_text())
+    p=argparse.ArgumentParser(description=__doc__);mode=p.add_mutually_exclusive_group(required=True);mode.add_argument('--manifest');mode.add_argument('--render-state');p.add_argument('--previous');p.add_argument('--as-of');p.add_argument('--completion-manifest');p.add_argument('--preview-only',action='store_true');p.add_argument('--config',required=True);p.add_argument('--output',required=True);a=p.parse_args();cfg=json.loads(Path(a.config).read_text())
     if a.render_state:
+        if not a.preview_only:
+            if not a.completion_manifest:p.error('--render-state publication requires --completion-manifest; use --preview-only for a local preview')
+            publication_gate(json.loads(Path(a.completion_manifest).read_text()),cfg)
         state=json.loads(Path(a.render_state).read_text());items=state['items'];as_of=a.as_of or datetime.now(timezone.utc).isoformat()
         if not dt(as_of):p.error('--as-of must have a timezone')
         for m in items:validate(m)
         if len({m['guid'] for m in items})!=len(items):raise ValueError('Duplicate state GUID')
         entries=rss_entries(items,cfg);groups=rss_group_map(entries)
         summary={'mode':'presentation_only','source_run_id':state.get('run_id'),'source_state_updated_at':state.get('updated_at'),'rendered_at':as_of,'stored_records':len(items),'published_items':len(entries),'valuation_records':sum(len(g['member_guids']) for g in groups),'valuation_digest_count':len(groups),'new_collection':False}
-        outputs={'feed.xml':rss(items,cfg,as_of),'summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(groups,ensure_ascii=False,indent=2)+'\n'}
+        summary['publication_allowed']=not a.preview_only
+        outputs={'preview.xml' if a.preview_only else 'feed.xml':rss(items,cfg,as_of),'summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(groups,ensure_ascii=False,indent=2)+'\n'}
     else:
         if not a.previous:p.error('--previous is required with --manifest')
-        manifest=json.loads(Path(a.manifest).read_text());previous=json.loads(Path(a.previous).read_text()) if Path(a.previous).exists() else {'items':[]};outputs=build(manifest,previous,cfg)
+        manifest=json.loads(Path(a.manifest).read_text());previous=json.loads(Path(a.previous).read_text()) if Path(a.previous).exists() else {'items':[]}
+        try:outputs=build(manifest,previous,cfg)
+        except PublicationBlocked as exc:p.exit(2,str(exc)+'\n')
     root=Path(a.output);root.mkdir(parents=True,exist_ok=True)
     for relative,value in outputs.items():
         target=root/relative;target.parent.mkdir(parents=True,exist_ok=True);tmp=target.with_suffix(target.suffix+'.tmp');tmp.write_text(value);tmp.replace(target)

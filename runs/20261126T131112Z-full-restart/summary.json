@@ -1,0 +1,84 @@
+{
+  "run_id": "20261126T131112Z-full-restart",
+  "as_of": "2026-11-26T14:22:45.055031+00:00",
+  "window_start": "2026-11-25T13:14:32.249404+00:00",
+  "window_end": "2026-11-26T13:14:32.249404+00:00",
+  "layer_count": 3,
+  "publication_gate": {
+    "passed": true,
+    "run_id": "20261126T131112Z-full-restart",
+    "completed_sources": 101,
+    "completed_components": 72,
+    "outcomes": {
+      "no_new_verified": 14,
+      "content_collected": 48,
+      "access_limited_verified": 39
+    }
+  },
+  "incremental": {
+    "new_source_records": 200,
+    "updated_source_records": 1,
+    "duplicate_source_records": 0,
+    "new_feed_items": 124,
+    "updated_feed_items": 0
+  },
+  "input_messages": 238,
+  "accepted_messages": 201,
+  "published_items": 124,
+  "stored_records": 198,
+  "scope": "All configured tasks finalized in their stated checked scope; content/access limitations retained. No exhaustive whole-site claim.",
+  "rejected_count": 37,
+  "rejected_reasons": {
+    "no_reliable_window_timestamp": 1,
+    "outside_date_window": 36
+  },
+  "valuation_records": 76,
+  "valuation_digest_count": 2,
+  "all_tasks_finalized": true,
+  "all_sources_have_new_messages": false,
+  "full_current_window_coverage": false,
+  "historically_readable_samples": 98,
+  "historical_sample_current_outcomes": {
+    "no_new_verified": 14,
+    "content_collected": 48,
+    "access_limited_verified": 36
+  },
+  "schedule_timezone": "Asia/Shanghai",
+  "schedule_hours": [
+    8,
+    14,
+    23
+  ],
+  "log_completeness": "partial; available events/artifacts retained locally, unavailable platform internals not claimed",
+  "validation": {
+    "run_id": "20261126T131112Z-full-restart",
+    "publication_gate": {
+      "passed": true,
+      "run_id": "20261126T131112Z-full-restart",
+      "completed_sources": 101,
+      "completed_components": 72,
+      "outcomes": {
+        "no_new_verified": 14,
+        "content_collected": 48,
+        "access_limited_verified": 39
+      }
+    },
+    "rss_items": 124,
+    "stored_records": 198,
+    "valuation_records": 76,
+    "valuation_days": 2,
+    "all_merged_source_links_present": true,
+    "xml_seven_fields_and_unique_guids": true,
+    "repeat_same_collection": {
+      "new_source_records": 0,
+      "updated_source_records": 0,
+      "duplicate_source_records": 201,
+      "new_feed_items": 0,
+      "updated_feed_items": 0
+    },
+    "same_input_byte_identical": true,
+    "old_incomplete_manifest_blocked": true,
+    "unit_test_result": "----------------------------------------------------------------------\nRan 27 tests in 0.025s\n\nOK",
+    "private_artifact_paths_excluded": true
+  }
+}

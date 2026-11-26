@@ -1,0 +1,4274 @@
+{
+  "run_id": "20261126T131112Z-full-restart",
+  "all_tasks_finalized": true,
+  "whole_site_exhaustive": false,
+  "status_meaning": {
+    "content_collected": "取得所述范围可输出内容，含明确标注的元数据/公开摘录",
+    "no_new_verified": "仅在所述已检查公开范围未取得合格新增",
+    "access_limited_verified": "按实际错误/数据缺口结束，不能宣称无新增或已得全文",
+    "out_of_scope": "用户停用"
+  },
+  "sources": [
+    {
+      "source_id": "P01",
+      "source_name": "中国证监会",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.csrc.gov.cn/csrc/c100028/c7670135/content.shtml",
+          "https://www.csrc.gov.cn/csrc/c100028/c7668092/content.shtml",
+          "https://www.csrc.gov.cn/csrc/c100028/c7658236/content.shtml",
+          "https://www.csrc.gov.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "所检证监会答问正文为11月11日或更早；未在限定公开检索及栏目样本取得本时窗合格新增。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P01",
+        "host-95bc288da10e",
+        "0461a6173325-P01",
+        "eda0199b30b3-P01",
+        "afef54ed9068-P01"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P02",
+      "source_name": "中国人民银行",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.pbc.gov.cn/zhengwugongkai/attachDir/2025/12/2025122910541412031.pdf",
+          "https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/2025092212550684242/2020050922062289404.pdf",
+          "https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125431/125475/2026112608535053011/index.html",
+          "https://m.nbd.com.cn/articles/2026-11-25/4658893.html",
+          "https://www.chinamoney.com.cn/chinese/rdgz/20261120/3453464.html",
+          "https://tv.cctv.com/2026/11/25/VIDEh4JRpnfXEcHpAWs1vYwJ261125.shtml",
+          "https://tv.cctv.com/2026/11/25/VIDEr4AxdVm5O1yNEumZwu9I261125.shtml",
+          "https://www.pbc.gov.cn/"
+        ],
+        "required_components": [
+          "公开市场操作",
+          "MLF",
+          "LPR"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P02",
+        "host-95bc288da10e",
+        "1caff1f12055-P02",
+        "f08a1aa1b644-P02",
+        "1caff1f12055-P02-pdf",
+        "e0ab81cb34be-P02",
+        "f08a1aa1b644-P02-pdf",
+        "969f89b51488-P02",
+        "97b364f71682-P02",
+        "99bd1b25efe5-P02",
+        "c82cff37064e-P02"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "公开市场操作",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "原公告5715亿元、隔夜1.25%已核对。"
+        },
+        {
+          "component": "MLF",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "公开路径未返回本时窗MLF原始操作量价表；相关媒体转述未升级为央行操作数据。"
+        },
+        {
+          "component": "LPR",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "已读11月20日LPR授权公告早于窗口，仅就已检查公开路径无合格新增。"
+        }
+      ]
+    },
+    {
+      "source_id": "P03",
+      "source_name": "国家统计局",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.stats.gov.cn/sj/",
+          "https://www.stats.gov.cn/zs/tjws/zytjzbqs/",
+          "https://www.stats.gov.cn/sj/zxfb/202610/t20261019_1965618.html",
+          "https://www.news.cn/politics/leaders/20261125/0b429f3662ae427cb3df80c556237c63/c.html",
+          "https://www.stats.gov.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "最新数据栏目及所读经济指标样本早于窗口；11月25日政治/行政转载未建立具体投资事实，排除。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P03",
+        "host-ae20ee3ced35",
+        "3e7ae909ad30-P03",
+        "38bdc7cd8da0-P03",
+        "a8c017297d46-P03",
+        "253c915c6791-P03"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P04",
+      "source_name": "财政部",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/?aisiteOutPageId=247d747834434f9c8751dd156427ff00",
+          "https://www.mof.gov.cn/zhengwuxinxi/",
+          "https://gks.mof.gov.cn/tongjishuju/202611/t20261119_4004986.htm",
+          "https://nys.mof.gov.cn/czpjZhengCeFaBu_2_2/202611/t20261124_4005326.htm",
+          "https://www.mof.gov.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P04",
+        "host-ae20ee3ced35",
+        "3b0aa0baf363-P04",
+        "4d80e5fc9663-P04",
+        "bf4577cded59-P04",
+        "host-9f77e837af74",
+        "6983534c554b-P04"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P05",
+      "source_name": "国家发展和改革委员会",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+          "https://www.ndrc.gov.cn/?ddtab=true",
+          "https://www.ndrc.gov.cn/fggz/fzzlgh/gjjzxgh/202609/t20260928_1407864_ext.html",
+          "https://www.ndrc.gov.cn/xwdt/xwfb/202611/t20261126_1409082.html",
+          "https://www.ndrc.gov.cn/xwdt/xwfb/202611/t20261125_1409066.html",
+          "https://www.ndrc.gov.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P05",
+        "host-ae20ee3ced35",
+        "448edf9e594a-P05",
+        "3bc334dc3a55-P05",
+        "2296292b4ce9-P05",
+        "73ac7c38ed70-P05",
+        "a1f87b8f39f7-P05"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P06",
+      "source_name": "国家外汇管理局",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.safe.gov.cn/safe/whxw/",
+          "https://www.safe.gov.cn/safe/sjjd/",
+          "https://www.safe.gov.cn/safe/2026/0814/27784.html",
+          "https://www.safe.gov.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "外汇新闻及数据解读公开列表最新相关统计为11月16日或更早，历史统计不作为本轮新增。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P06",
+        "host-ae20ee3ced35",
+        "aec0297a6544-P06",
+        "b33f0cf1b71f-P06",
+        "f736d4351abb-P06"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P07",
+      "source_name": "中国证券投资基金业协会",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.amac.org.cn/sjtj/tjbg/smjj/202611/P020261125628020755586.pdf",
+          "https://www.amac.org.cn/xwfb/tzgg/",
+          "https://www.amac.org.cn/sjtj/tjbg/gmjj/202606/P020260617606470583907.pdf",
+          "https://www.amac.org.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P07",
+        "host-36c0dea574b2",
+        "6a0f0a1615a5-P07",
+        "84cdc5108441-P07",
+        "dd9d43bfd632-P07",
+        "6a0f0a1615a5-P07-pdf",
+        "dd9d43bfd632-P07-pdf",
+        "host-9c6d0ae997ee"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P08",
+      "source_name": "海关总署",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://fec.mofcom.gov.cn/article/xwdt/xwdtqtzx/xwfwydyl/202611/9296.html",
+          "https://www.customs.gov.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "海关原站本轮上游连接失败；已读商务部转载样本未给出可核验本时窗新统计，未用替代来源冒充海关成功。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P08",
+        "host-36c0dea574b2",
+        "9def55265ddf-P08",
+        "host-444efb128767"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "P09",
+      "source_name": "上海证券交易所",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.sse.com.cn/disclosure/fund/etflist/detail.shtml?fundid=513100",
+          "https://www.sse.com.cn/disclosure/fund/etflist/detail.shtml?fundid=588360",
+          "https://static.sse.com.cn/disclosure/bond/announcement/company/c/new/2026-09-07/246011_20260907_YY7Y.pdf",
+          "https://www.sse.com.cn/assortment/options/disclo/update/c/c_20261125_10838992.shtml",
+          "https://www.sse.com.cn/"
+        ],
+        "required_components": [
+          "ETF申赎清单"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P09",
+        "host-36c0dea574b2",
+        "9d09d91806e8-P09",
+        "03adbdf52434-P09",
+        "0dfca5cd59e4-P09",
+        "0dfca5cd59e4-P09-pdf",
+        "e7395b3d2f3e-P09",
+        "host-9c6d0ae997ee",
+        "firecrawl-d88f6082a3ef",
+        "firecrawl-cffa6fe8775f",
+        "firecrawl-37121465fa86",
+        "firecrawl-b26dd299ed83"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "ETF申赎清单",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "ETF513100页经HTTP、网页阅读及Firecrawl仍为PCF空表；没有取得真实清单。"
+        }
+      ]
+    },
+    {
+      "source_id": "P10",
+      "source_name": "深圳证券交易所",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.szse.cn/www/disclosure/notice/index.html",
+          "https://www.szse.cn/www/disclosure/notice/general/",
+          "https://disc.static.szse.cn/disc/disk03/finalpage/2026-09-30/560e23c8-9d0f-43e5-b510-9a9b76831fbc.PDF",
+          "https://www.szse.cn/www/disclosure/notice/t20261126_624085.html",
+          "https://www.szse.cn/",
+          "https://www.szse.cn/www/disclosure/notice/t20261126_624084.html"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 2,
+      "message_candidates": 2,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P10",
+        "host-36c0dea574b2",
+        "f5656d684d23-P10",
+        "09db57dd9ac1-P10",
+        "31c231f89cce-P10",
+        "31c231f89cce-P10-pdf",
+        "host-9f77e837af74",
+        "0098b533526f-P10",
+        "23ea51aca073-P10"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P11",
+      "source_name": "北京证券交易所",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.bse.cn/uploads/6/file/public/202604/20260424210610_3lvk6oirgc.pdf",
+          "https://www.bse.cn/disclosure/2026/2026-07-20/1784542810_719222.pdf",
+          "https://www.bse.cn/disclosure/2026/2026-06-05/1780649773_009528.pdf",
+          "https://www.bse.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "北交所入口本轮技术错误；可下载规则/公司PDF为4—7月历史文件，当前新披露流未返回。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P11",
+        "host-1ef091c0dae3",
+        "14db14ff3b8f-P11",
+        "61d743777a9e-P11",
+        "14db14ff3b8f-P11-pdf",
+        "61d743777a9e-P11-pdf",
+        "df9bf858724b-P11",
+        "df9bf858724b-P11-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P12",
+      "source_name": "中国金融期货交易所",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "http://www.cffex.com.cn/cn/jystz/20261120/48842.html",
+          "https://www.cffex.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "中金所原站连接失败；重新读取的11月20日通知已过期，当前内容路径受限。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P12",
+        "host-1ef091c0dae3",
+        "bb4c2a2a43cf-P12",
+        "host-6508d17a8a52"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P13",
+      "source_name": "中证指数有限公司",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://oss-ch.csindex.com.cn/static/html/csindex/public/uploads/indices/detail/files/zh_CN/931078factsheet.pdf",
+          "https://www.csindex.com.cn/"
+        ],
+        "required_components": [
+          "中证转债指数"
+        ]
+      },
+      "reason": "中证动态入口没有返回当前行情；公开转债相关指数事实表止于10月30日，且931078含可交换债，不代表全部可转债指数。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P13",
+        "host-1ef091c0dae3",
+        "220cb75661fe-P13",
+        "220cb75661fe-P13-pdf",
+        "host-6508d17a8a52"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "中证转债指数",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "动态当前指数数据未返回，10月30日事实表不作为当前报价。"
+        }
+      ]
+    },
+    {
+      "source_id": "P14",
+      "source_name": "中央国债登记结算有限责任公司／中国债券信息网",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://yield.chinabond.com.cn/cbweb-pbc-web/pbc/more?locale=cn_zh",
+          "https://www.chinabond.com.cn/xxwsy/sy_zdgz_ath/202611/t20261126_855602777.html",
+          "https://www.chinabond.com.cn/xxwsy/sy_zdgz_ath/202611/t20261126_855605079.html",
+          "https://www.chinabond.com.cn/"
+        ],
+        "required_components": [
+          "中债收益率曲线",
+          "中债指数"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P14",
+        "host-1ef091c0dae3",
+        "host-cf78dd7c8c8e",
+        "077ad3560e8b-P14",
+        "32e1ac05a73c-P14",
+        "2d3ecb3fe789-P14"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "中债收益率曲线",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "11月26日曲线八个期限及百分比单位已核对。"
+        },
+        {
+          "component": "中债指数",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "当前日评/绿债报告路由返回upstream连接错误，收益率曲线不能替代指数表现。"
+        }
+      ]
+    },
+    {
+      "source_id": "P15",
+      "source_name": "上海黄金交易所",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.sge.com.cn/sjzx/yshqbg?ad_check=1",
+          "https://www.sge.com.cn/sjzx/yshqbg?type=history",
+          "https://www.sge.com.cn/upload/file/202611/16/4899b5bcea5447fa83dfd2799112d0bf.pdf",
+          "https://www.sge.com.cn/sjzx/goldEtf?start_date=2026-11-25&end_date=2026-11-25",
+          "https://www.sge.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P15",
+        "host-cf78dd7c8c8e",
+        "8552d40ba125-P15",
+        "43a39a95cbfc-P15",
+        "d19ac85d0fd5-P15",
+        "d19ac85d0fd5-P15-pdf",
+        "host-6649496dc6e3",
+        "6b1f1d2f33df-P15"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P16",
+      "source_name": "中国黄金协会",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cngold.org.cn/news/show-9673.html",
+          "https://www.cngold.org.cn/news/show-9672.html",
+          "https://cngold.org.cn/news/show-9624.html",
+          "https://www.cngold.org.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "11月25日所见为会议宣传/党务材料，未取得本时窗可核验黄金产销统计或投资相关新增。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P16",
+        "host-cf78dd7c8c8e",
+        "37e2ed1e6797-P16",
+        "dca046ff4d2f-P16",
+        "192c2731a5d1-P16"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P17",
+      "source_name": "巨潮资讯网",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cninfo.com.cn/new/commonUrl?url=disclosure%2Flist%2Fnotice",
+          "https://www.cninfo.com.cn/new/commonUrl?location=relation&url=disclosure%2Flist%2Fnotice",
+          "https://static.cninfo.com.cn/finalpage/2026-11-25/1225685897.PDF",
+          "https://www.cninfo.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P17",
+        "host-cf78dd7c8c8e",
+        "c0a447d47b07-P17",
+        "22e063b9ddd1-P17",
+        "d07371240a08-P17",
+        "d07371240a08-P17-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P18",
+      "source_name": "华夏基金",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.chinaamc.com/c/2026-11-26/1018800.shtml",
+          "https://www.chinaamc.com/c/2026-11-26/1018791.shtml",
+          "https://fund.chinaamc.com/front/front/file/preview/ad6364260958bc46e5ae200921e071b2/%E5%8D%8E%E5%A4%8F%E9%BB%84%E9%87%91%E4%BA%A4%E6%98%93%E5%9E%8B%E5%BC%80%E6%94%BE%E5%BC%8F%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912026%E5%B9%B4%E7%AC%AC3%E5%AD%A3%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
+          "https://static.cninfo.com.cn/finalpage/2026-10-31/1225648955.PDF",
+          "https://www.chinaamc.com/front/front/file/preview/776bdcd696859211bf0c894160ff4e9c/华夏纳斯达克100交易型开放式指数证券投资基金（QDII）二级市场交易价格溢价风险提示及临时停牌公告.pdf",
+          "https://www.chinaamc.com/front/front/file/preview/783baea355644d4f90fed690caee8cf0/华夏基金管理有限公司关于华夏中证畜牧养殖产业交易型开放式指数证券投资基金上市交易公告书提示性公告.pdf",
+          "https://www.chinaamc.com/c/2026-11-26/1018871.shtml",
+          "https://www.chinaamc.com/c/2026-11-26/1018786.shtml",
+          "https://www.chinaamc.com/front/front/file/preview/66fc73274e262e17e3a7e79a6272b037/华夏基金管理有限公司关于以通讯方式召开华夏债券增强六个月持有期债券型证券投资基金基金份额持有人大会的的第一次提示性公告.pdf",
+          "https://www.chinaamc.com/front/front/file/preview/091c3d92555e72a57464fa75ab00c8be/华夏纳斯达克100交易型开放式指数证券投资基金（QDII）午间收盘二级市场交易价格溢价风险提示公告.pdf",
+          "https://www.chinaamc.com/"
+        ],
+        "required_components": [
+          "临时公告",
+          "定期报告",
+          "基金经理/管理人观点"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 4,
+      "message_candidates": 4,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P18",
+        "host-c5f8bba35706",
+        "80e51e0430f0-P18",
+        "57bfb6c59931-P18",
+        "0ed59cd4f051-P18",
+        "68832ceb55ea-P18",
+        "68832ceb55ea-P18-pdf",
+        "f61640727482-P18",
+        "60a0126496f7-P18",
+        "60a0126496f7-P18-pdf",
+        "f61640727482-P18-pdf",
+        "699f0a2711e5-P18",
+        "404b670fbfaa-P18",
+        "ad98313c0482-P18",
+        "b3f2101e3cb3-P18",
+        "ad98313c0482-P18-pdf",
+        "b3f2101e3cb3-P18-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "临时公告",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "当日所选原始公告PDF及有效日期已核对，具体基金见消息。"
+        },
+        {
+          "component": "定期报告",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "本轮所检三季报等定期材料已在10月披露，不因重新获取升级为当日新报告。"
+        },
+        {
+          "component": "基金经理/管理人观点",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "仅就所列公开观点栏目、检索及重新读取样本，未核得本时窗合格新观点；非全经理、全渠道穷尽。"
+        }
+      ]
+    },
+    {
+      "source_id": "P19",
+      "source_name": "广发基金",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.gffunds.com.cn/jjgg/zdsj/index.shtml",
+          "https://www.gffunds.com.cn/jjgg/zdsj/",
+          "https://www.gffunds.com.cn/jjgg/dqgg/202610/P020261027328487587149.pdf",
+          "https://www.gffunds.com.cn/jjgg/jjtggg/202611/t20261106_433712.shtml",
+          "https://www.gffunds.com.cn/jjgg/zdsj/202611/P020261126307969866311.pdf",
+          "https://www.gffunds.com.cn/jjgg/zdsj/202611/P020261126307971290302.pdf",
+          "https://www.gffunds.com.cn/jjgg/zdsj/202611/P020261126307972891465.pdf",
+          "http://www.gffunds.com.cn/jjgg/zdsj/202611/P020261126307967730268.pdf",
+          "http://www.gffunds.com.cn/jjgg/zdsj/202611/P020261126307969866311.pdf",
+          "https://www.gffunds.com.cn/"
+        ],
+        "required_components": [
+          "临时公告",
+          "定期报告",
+          "基金经理/管理人观点"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 3,
+      "message_candidates": 3,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P19",
+        "host-c5f8bba35706",
+        "host-8dd4b8fb8123",
+        "35fdeda9a997-P19",
+        "ddec6ffc6102-P19",
+        "26bb09d3ab1a-P19",
+        "26bb09d3ab1a-P19-pdf",
+        "e3782a02ecf2-P19",
+        "c45a21ff4deb-P19",
+        "52840a10b6c7-P19",
+        "c45a21ff4deb-P19-pdf",
+        "388f56371472-P19",
+        "52840a10b6c7-P19-pdf",
+        "388f56371472-P19-pdf",
+        "f614817f3706-P19",
+        "150a37e1f935-P19",
+        "150a37e1f935-P19-pdf",
+        "f614817f3706-P19-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "临时公告",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "当日所选原始公告PDF及有效日期已核对，具体基金见消息。"
+        },
+        {
+          "component": "定期报告",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "本轮所检三季报等定期材料已在10月披露，不因重新获取升级为当日新报告。"
+        },
+        {
+          "component": "基金经理/管理人观点",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "仅就所列公开观点栏目、检索及重新读取样本，未核得本时窗合格新观点；非全经理、全渠道穷尽。"
+        }
+      ]
+    },
+    {
+      "source_id": "P20",
+      "source_name": "华安基金",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.huaan.com.cn/list/630/4.shtml",
+          "https://www.huaan.com.cn/list/630/1.shtml",
+          "https://www.huaan.com.cn/upload2010/2026/10/27/005643953_0caec1a4-85b5-3bad-aee1-2445af3c1ffc.pdf",
+          "https://www.huaan.com.cn/upload2010/2026/01/14/004714576_2880e3a7-c268-337d-bf0b-2e720c8f19b7.pdf",
+          "https://www.huaan.com.cn/list/626/1.shtml",
+          "https://www.huaan.com.cn/list/624/1.shtml",
+          "https://www.huaan.com.cn/upload2010/2026/11/26/005054324_0_2f04a45a-d28d-38d3-8cd5-7932e9f71e17.pdf",
+          "https://www.huaan.com.cn/upload2010/2026/11/26/045954007_0_0ea0991d-b992-3f22-9291-722302c860e2.pdf",
+          "https://www.huaan.com.cn/upload2010/2026/11/26/004823106_0_ad26ac6c-f9c2-362f-9be8-c8103cf5603f.pdf",
+          "https://www.huaan.com.cn/"
+        ],
+        "required_components": [
+          "临时公告",
+          "定期报告",
+          "基金经理/管理人观点"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 3,
+      "message_candidates": 3,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P20",
+        "host-8dd4b8fb8123",
+        "host-589fb9d85045",
+        "478527496620-P20",
+        "6a2f6f76abef-P20",
+        "462536fd38b8-P20",
+        "462536fd38b8-P20-pdf",
+        "de1321bc5ecf-P20",
+        "de1321bc5ecf-P20-pdf",
+        "df80520a4526-P20",
+        "46a187483a7e-P20",
+        "host-9f77e837af74",
+        "afedf10c6f73-P20",
+        "6fad1efd2b64-P20",
+        "afedf10c6f73-P20-pdf",
+        "9f66c7407090-P20",
+        "6fad1efd2b64-P20-pdf",
+        "9f66c7407090-P20-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "临时公告",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "当日所选原始公告PDF及有效日期已核对，具体基金见消息。"
+        },
+        {
+          "component": "定期报告",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "本轮所检三季报等定期材料已在10月披露，不因重新获取升级为当日新报告。"
+        },
+        {
+          "component": "基金经理/管理人观点",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "仅就所列公开观点栏目、检索及重新读取样本，未核得本时窗合格新观点；非全经理、全渠道穷尽。"
+        }
+      ]
+    },
+    {
+      "source_id": "P21",
+      "source_name": "其他相关基金公司与ETF发行人",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://cdn.efunds.com.cn/owch/data/bulletin/20261123/%E5%85%B3%E4%BA%8E%E6%97%97%E4%B8%8B%E9%83%A8%E5%88%86%E5%9F%BA%E9%87%912026%E5%B9%B411%E6%9C%8826%E6%97%A5%E6%9A%82%E5%81%9C%E7%94%B3%E8%B4%AD%E3%80%81%E8%B5%8E%E5%9B%9E%E3%80%81%E8%BD%AC%E6%8D%A2%E3%80%81%E5%AE%9A%E6%9C%9F%E5%AE%9A%E9%A2%9D%E6%8A%95%E8%B5%84%E4%B8%9A%E5%8A%A1%E7%9A%84%E6%8F%90%E7%A4%BA%E6%80%A7%E5%85%AC%E5%91%8A.pdf"
+        ],
+        "required_components": []
+      },
+      "reason": "本轮实体样本为易方达及公开检索的南方基金；易方达所读公告11月23日，26日生效不等于26日首发。非全基金公司穷尽。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "host-589fb9d85045",
+        "60fc0000aacb-P21",
+        "60fc0000aacb-P21-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P22",
+      "source_name": "上市公司与债券发行人投资者关系网站",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.apple.com/newsroom/pdfs/fy2026q4/FY26_Q4_Consolidated_Financial_Statements.pdf",
+          "https://investor.nvidia.com/news-and-events/press-releases/default.aspx"
+        ],
+        "required_components": []
+      },
+      "reason": "苹果财报样本为既有季度材料，NVIDIA投资者新闻入口本轮404；公开检索未取到可核验本时窗原件，非全发行人穷尽。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "host-589fb9d85045",
+        "db339cf04170-P22",
+        "db339cf04170-P22-pdf",
+        "f4f71064f872-P22"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P23",
+      "source_name": "美国证券交易委员会 EDGAR",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.sec.gov/submit-filings/edgar-news-announcements",
+          "https://www.sec.gov/edgar/browse/?CIK=0001045810",
+          "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+          "https://www.sec.gov/edgar/search/"
+        ],
+        "required_components": []
+      },
+      "reason": "EDGAR实体页仅返回未加载的模板占位，不能据No Filings占位断言无披露；苹果11月3日旧文件不当新消息。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P23",
+        "host-589fb9d85045",
+        "a2c8c593f42c-P23",
+        "3a425c2f9822-P23",
+        "0a5c95b91a6f-P23"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P24",
+      "source_name": "香港交易所",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.hkex.com.hk/News/HKEX-Calendar?acttype=%7BF4C40F45-DA56-41A7-A740-F86B26DA5349%7D&currenttab=search-result&datefrom=2026%E5%B9%B411%E6%9C%8826%E6%97%A5&dateto=2027%E5%B9%B45%E6%9C%8825%E6%97%A5&defaultdate=2026-11-26&order=asc&sc_lang=zh-HK",
+          "https://www.hkex.com.hk/News/News-Release?sc_lang=zh-hk",
+          "https://www.hkex.com.hk/-/media/HKEX-Market/News/News-Release/2026/261106news/261106news_c.pdf",
+          "https://www.hkex.com.hk/"
+        ],
+        "required_components": []
+      },
+      "reason": "港交所新闻与日历本轮只返回标题/动态壳；11月6日原始PDF可读但已过期，未取到当前新闻正文。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P24",
+        "host-4a2b6f1923b4",
+        "b40dadea132f-P24",
+        "c5111b7f3c0f-P24",
+        "a0240b380851-P24",
+        "a0240b380851-P24-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P25",
+      "source_name": "港交所披露易",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.hkexnews.hk/search/titlesearch.xhtml?category=0&lang=EN&market=SEHK&stockId=1000015694",
+          "https://www.hkexnews.hk/search/titlesearch.xhtml",
+          "https://www.hkexnews.hk/listedco/listconews/sehk/2026/1103/2026110300014_c.pdf",
+          "https://www.hkexnews.hk/"
+        ],
+        "required_components": []
+      },
+      "reason": "披露易搜索返回动态模板，最新标题/文件流未展开；旧11月3日PDF可读但不能代表本时窗披露。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P25",
+        "host-4a2b6f1923b4",
+        "ec647c4b3282-P25",
+        "80fe7bd4db8a-P25",
+        "08547bb80d7c-P25",
+        "08547bb80d7c-P25-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P26",
+      "source_name": "中国外汇交易中心／中国货币网",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.chinamoney.com.cn/chinese/scggwhscggzxhygg/20261125/3456502.html",
+          "https://www.chinamoney.com.cn/chinese/ltss1/20261125/3455964.html",
+          "https://www.chinamoney.com.cn/chinese/rdgz/20261120/3453464.html",
+          "https://www.chinamoney.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "中国货币网动态入口未返回完整新披露流；已读两份11月25日通知，其钟点/时区不足以确认本时窗新增，LPR旧文亦排除。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P26",
+        "host-4a2b6f1923b4",
+        "1d14c6f351c3-P26",
+        "3ba5403d81f2-P26",
+        "7c422b0ed84d-P26"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P27",
+      "source_name": "上海清算所",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.shclearing.com.cn/xxpl/zdsxjqt/202611/t20261126_1912206.html",
+          "https://www.shclearing.com.cn/xxpl/fxqkbg/scp01/202611/t20261126_1911884.html",
+          "https://www.shclearing.com.cn/wcm/shch/pages/client/download/download.jsp?DownName=1.pdf&FileName=P020250424337842287153.pdf",
+          "https://www.shclearing.com.cn/xwgg/xwdt/202611/t20261125_1911503.html",
+          "https://www.shclearing.com.cn/xxpl/fxqkbg/scp01/202611/P020261126505284223211.pdf",
+          "https://www.shclearing.com.cn/",
+          "https://www.shclearing.com.cn/xxpl/zdsxjqt/202611/P020261126628019621235.pdf"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P27",
+        "host-4a2b6f1923b4",
+        "343c1a7b1c58-P27",
+        "091c0debc66d-P27",
+        "0cdcb72bf1b1-P27",
+        "0cdcb72bf1b1-P27-pdf",
+        "1d6a4977fcfd-P27",
+        "12146abe13e0-P27",
+        "412e29955687-P27"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P28",
+      "source_name": "中国银行间市场交易商协会",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.nafmii.org.cn/xhdt/index.html",
+          "https://www.nafmii.org.cn/ggtz/",
+          "https://www.nafmii.org.cn/zlgl/pjytb/pjyw/tb/202606/P020260612565269843181.pdf",
+          "https://www.nafmii.org.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "公告/工作动态列表及所读评级自律原件均早于窗口；仅就这些公开路径未见合格新增。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P28",
+        "host-a491e6563ea3",
+        "e722fb82c812-P28",
+        "800e391a8abe-P28",
+        "bc9057328ad5-P28",
+        "bc9057328ad5-P28-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P29",
+      "source_name": "上海期货交易所",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.shfe.com.cn/reports/tradedata/dailyandweeklydata/?query_options=1&query_params=kx",
+          "https://www.shfe.com.cn/publicnotice/newsrelease/202611/t20261125_834224.html",
+          "https://www.shfe.com.cn/upload/20180718/1531907108928.pdf",
+          "https://www.shfe.com.cn/publicnotice/notice/202611/t20261126_834240.html",
+          "https://www.shfe.com.cn/publicnotice/notice/202611/t20261126_834231.html",
+          "https://www.shfe.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P29",
+        "host-a491e6563ea3",
+        "48625b1a83c0-P29",
+        "41ca8cc0aa96-P29",
+        "5697bcd9652c-P29",
+        "5697bcd9652c-P29-pdf",
+        "cd7d94533868-P29",
+        "339d347a1767-P29"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P30",
+      "source_name": "大连商品交易所",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://chinaexchangecirculars.com/zh/notices/dce-19b6445371b172bb726b/",
+          "https://www.dce.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "大商所原站连接失败；可追溯公开转载为11月24日征求意见，已过窗口，未取到本时窗新原件。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P30",
+        "host-a491e6563ea3",
+        "d70e7ea0026f-P30",
+        "host-6508d17a8a52"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "P31",
+      "source_name": "郑州商品交易所",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.czce.com.cn/cn/content_file/flfg/zcjywgz/pzxz/2026/11/dc5ca295ad8e44d9b28c44a055675142.pdf",
+          "https://www.czce.com.cn/cn/content_file/jysj/ydscbg/2026/11/2f641b105c0846fdae4b7ab8051ed1b1.pdf",
+          "https://finance.sina.com.cn/money/future/roll/2026-11-24/doc-inizvuzi4784832.shtml",
+          "https://www.czce.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "郑商所入口HTTP错误，读到的结算征求意见为11月24日、月度报告及品种细则未核得本时窗首发，不冒充新发布。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P31",
+        "host-a491e6563ea3",
+        "a38af805b741-P31",
+        "25d6124d1f8c-P31",
+        "2f0bbf8d29ed-P31",
+        "25d6124d1f8c-P31-pdf",
+        "a38af805b741-P31-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "P32",
+      "source_name": "广州期货交易所",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.gfex.com.cn/gfex/mtjj/202611/4ac9202ed8c34f38b7fd84f0d064c232.shtml",
+          "https://www.gfex.com.cn/gfex/sspzli/sspz.shtml",
+          "https://www.gfex.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "氢氧化锂合约产品规格可读，未核得本时窗新规则或确切上市公告；媒体页请求错误另记，不以在即标题当正式上市。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P32",
+        "host-20236ad7e78e",
+        "1037dd841114-P32",
+        "68183f4883d7-P32"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "P33",
+      "source_name": "相关行业协会与企业产销公告",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://static.cninfo.com.cn/finalpage/2026-11-02/1225651111.PDF"
+        ],
+        "required_components": [
+          "行业协会统计",
+          "企业产销"
+        ]
+      },
+      "reason": "协会及企业样本公开检索/产销原件为既有月报，未核得本时窗新发布日期；仅覆盖所列协会及企业样本。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "host-20236ad7e78e",
+        "effef4cdf7bc-P33",
+        "effef4cdf7bc-P33-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "行业协会统计",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "协会及企业样本公开检索/产销原件为既有月报，未核得本时窗新发布日期；仅覆盖所列协会及企业样本。"
+        },
+        {
+          "component": "企业产销",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "协会及企业样本公开检索/产销原件为既有月报，未核得本时窗新发布日期；仅覆盖所列协会及企业样本。"
+        }
+      ]
+    },
+    {
+      "source_id": "P34",
+      "source_name": "美联储",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.federalreserve.gov/newsevents.htm?mod=article_inline",
+          "https://www.federalreserve.gov/newsevents.htm?_sp=d278d4f4-3910-4621-a8cc-f06c95431533",
+          "https://www.federalreserve.gov/monetarypolicy/fomcminutes20261028.htm",
+          "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+          "https://www.federalreserve.gov/newsevents/speech/jefferson20261119a.htm",
+          "https://www.federalreserve.gov/monetarypolicy/beigebook202611-summary.htm",
+          "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125a.htm",
+          "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125b.htm",
+          "https://www.federalreserve.gov/"
+        ],
+        "required_components": [
+          "FOMC声明",
+          "FOMC完整会议纪要",
+          "官员讲话"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P34",
+        "collect-a5a8d021cd",
+        "api-31ed38457622",
+        "collect-b9872e30a3",
+        "api-87f85e1d6cc3",
+        "host-20236ad7e78e",
+        "host-911a548a45d3",
+        "8f13a5b732f6-P34",
+        "967d01ec77fa-P34",
+        "4b707615b7dc-P34",
+        "e9645a9a04a7-P34",
+        "c674c09ac02a-P34",
+        "7a64e0d2375e-P34",
+        "00177e12f1f8-P34",
+        "40980ab00b15-P34"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "FOMC声明",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "官方声明10月28日、完整纪要11月18日或更早；最新Bowman讲话RSS为25日12:25 GMT，早于本轮13:14 UTC起点。褐皮书另作统计观察。"
+        },
+        {
+          "component": "FOMC完整会议纪要",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "官方声明10月28日、完整纪要11月18日或更早；最新Bowman讲话RSS为25日12:25 GMT，早于本轮13:14 UTC起点。褐皮书另作统计观察。"
+        },
+        {
+          "component": "官员讲话",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "官方声明10月28日、完整纪要11月18日或更早；最新Bowman讲话RSS为25日12:25 GMT，早于本轮13:14 UTC起点。褐皮书另作统计观察。"
+        }
+      ]
+    },
+    {
+      "source_id": "P35",
+      "source_name": "美国劳工统计局",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.bls.gov/schedule/2026/11_sched_list.htm",
+          "https://blsmon1.bls.gov/schedule/2026/11_sched_list.htm",
+          "https://www.bls.gov/news.release/eci.htm",
+          "https://www.bls.gov/"
+        ],
+        "required_components": []
+      },
+      "reason": "核对BLS11月实际发布日历和ECI原文样本，未取得本时窗新统计发布；计划时刻不当实际首发。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P35",
+        "host-911a548a45d3",
+        "df22eb5b3d9b-P35",
+        "be44ee9761f8-P35",
+        "3d98cb5731b4-P35"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P36",
+      "source_name": "美国经济分析局",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://bea.gov/news/2026/personal-income-and-outlays-october-2026",
+          "https://www.bea.gov/data/income-saving/personal-income",
+          "https://bea.gov/sites/default/files/2026-11/pi1026.pdf",
+          "https://www.bea.gov/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P36",
+        "host-911a548a45d3",
+        "9a74bdc1233e-P36",
+        "93fd210599e0-P36",
+        "4bc344eb0a26-P36",
+        "4bc344eb0a26-P36-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P37",
+      "source_name": "美国财政部",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?data=daily_treasury_yield_curve&page=20",
+          "https://home.treasury.gov/system/files/136/TIC-press-notice-Nov-2026.pdf",
+          "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026",
+          "https://home.treasury.gov/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P37",
+        "host-7779f29cdcda",
+        "733d80e0617a-P37",
+        "37e16f44220f-P37",
+        "37e16f44220f-P37-pdf",
+        "5ca778fd9296-P37"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P38",
+      "source_name": "美国财政部 FiscalData",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/",
+          "https://fiscaldata.treasury.gov/release-calendar/",
+          "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?sort=-record_date&page[size]=5",
+          "https://fiscaldata.treasury.gov/"
+        ],
+        "required_components": []
+      },
+      "reason": "DTS公开API最新有效观测为11月24日，实际更新钟点未核得；旧观测不因本次获取升级为新发布。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P38",
+        "collect-a81f440108",
+        "api-ac90b79cb281",
+        "host-7779f29cdcda",
+        "55c9b831106b-P38",
+        "36f1eaedc50f-P38",
+        "d891a0c9399b-P38"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P39",
+      "source_name": "欧洲中央银行",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.ecb.europa.eu/press/stats/md/html/index.en.html",
+          "https://www.ecb.europa.eu/press/stats/md/html/ecb.md2610~4bad1d63b5.el.html",
+          "https://www.ecb.europa.eu/pub/pdf/ecbu/eb202607.en.pdf",
+          "https://www.ecb.europa.eu/press/stats/md/html/ecb.md2610~4bad1d63b5.en.html",
+          "https://www.ecb.europa.eu/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P39",
+        "host-7779f29cdcda",
+        "54964ee16af1-P39",
+        "56e58bcabc8a-P39",
+        "e949273fd63f-P39",
+        "e949273fd63f-P39-pdf",
+        "1bbffc1d748e-P39"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P40",
+      "source_name": "世界黄金协会",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.gold.org///////////////////goldhub/data/gold-prices",
+          "https://www.gold.org/goldhub/data/gold-futures-curves",
+          "https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/11",
+          "https://www.gold.org/"
+        ],
+        "required_components": []
+      },
+      "reason": "WGC价格/期货曲线页可读但未返回可核验的本时窗数值表，历史LBMA价格分发许可有限；ETF月报为窗口前材料。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P40",
+        "host-7779f29cdcda",
+        "9e70000f070b-P40",
+        "f5a3095e0159-P40",
+        "36bee81605c2-P40"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P41",
+      "source_name": "伦敦金银市场协会",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.lbma.org.uk/articles/lbma-precious-metals-market-report-q3-2026",
+          "https://www.lbma.org.uk/prices-and-data/lbma-daily-trade-reporting-data",
+          "https://www.lbma.org.uk/"
+        ],
+        "required_components": [
+          "LBMA市场报告",
+          "LBMA许可基准序列"
+        ]
+      },
+      "reason": "市场报告为既有Q3报告；公开交易数据说明未提供本轮所需许可基准完整序列，不能以报告页面代替授权数据。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P41",
+        "host-74ac51fa6860",
+        "ad32b367978e-P41",
+        "61c90bcb083f-P41"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "LBMA市场报告",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "公开Q3报告为既有材料，未核得本时窗新报告。"
+        },
+        {
+          "component": "LBMA许可基准序列",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "公开路径仅说明/有限数据，未取得所需许可基准完整序列。"
+        }
+      ]
+    },
+    {
+      "source_id": "P42",
+      "source_name": "美国商品期货交易委员会",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm",
+          "https://www.cftc.gov/PressRoom/PressReleases/9316-26",
+          "https://www.cftc.gov/dea/futures/other_lf.htm",
+          "https://www.cftc.gov/"
+        ],
+        "required_components": [
+          "CFTC黄金COT"
+        ]
+      },
+      "reason": "黄金COT正文观测11月17日、发布11月20日，均早于窗口；发布日历及半周公告不当作新持仓值。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P42",
+        "host-74ac51fa6860",
+        "918568d877e5-P42",
+        "0d696b8d542f-P42",
+        "21d94175742c-P42"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "CFTC黄金COT",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "黄金COT正文观测11月17日、发布11月20日，均早于窗口；发布日历及半周公告不当作新持仓值。"
+        }
+      ]
+    },
+    {
+      "source_id": "P43",
+      "source_name": "CME FedWatch及利率期货",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cmegroup.com/videos/2026/11/17/why-bond-yields-keep-climbing-despite-falling-oil.html",
+          "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html"
+        ],
+        "required_components": [
+          "当前FedWatch概率矩阵"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P43",
+        "host-74ac51fa6860",
+        "4a40898051bc-P43",
+        "8c7449d2e002-P43",
+        "firecrawl-a449e8f1aa4e",
+        "firecrawl-eb65cffd03c0",
+        "firecrawl-74058e75bfab",
+        "firecrawl-e773da39e8dd"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "当前FedWatch概率矩阵",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "当前12月会议矩阵及07:00:37 CT报价时间已核对。"
+        }
+      ]
+    },
+    {
+      "source_id": "P44",
+      "source_name": "纽约联邦储备银行",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.newyorkfed.org/markets/reference-rates/additional-information-about-reference-rates",
+          "https://www.newyorkfed.org/markets",
+          "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
+          "https://www.newyorkfed.org/"
+        ],
+        "required_components": []
+      },
+      "reason": "SOFR公开API最新有效日11月24日；没有可靠本时窗实际发布/修订时刻，未把惯例发布时间当证据。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P44",
+        "collect-a5f3a564bf",
+        "api-06ba8046a5c7",
+        "host-33e9cadd3abd",
+        "05fd39de4133-P44",
+        "dad2255cf58e-P44",
+        "75a5a3297dc0-P44"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P45",
+      "source_name": "美国投资公司协会",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.ici.org/research/stats/mmf",
+          "https://www.ici.org/node/55486/printable/pdf",
+          "https://www.ici.org/research/stats/flows",
+          "https://www.ici.org/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P45",
+        "host-33e9cadd3abd",
+        "c5ff8072a6e2-P45",
+        "9260db1739f0-P45",
+        "898d2d6ba208-P45",
+        "9260db1739f0-P45-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P46",
+      "source_name": "美国能源信息署",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.eia.gov/todayinenergy/prices.php",
+          "https://www.eia.gov/TodayinEnergy/prices.php",
+          "https://www.eia.gov/petroleum/supply/weekly/pdf/table14.pdf",
+          "https://www.eia.gov/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P46",
+        "host-33e9cadd3abd",
+        "fa885e69e821-P46",
+        "4b7e4634d435-P46",
+        "99691bc8bffa-P46",
+        "99691bc8bffa-P46-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P47",
+      "source_name": "美国农业部",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.ers.usda.gov/media/30437/aes-138.pdf?v=12806",
+          "https://ers.usda.gov/media/30364/ocs-26k.pdf",
+          "https://esmis.nal.usda.gov/sites/default/release-files/796142/wasde1126.pdf",
+          "https://www.usda.gov/about-usda/news/press-releases/2026/11/25/secretary-agriculture-brooke-rollins-statement-following-successful-controlled-detonation-iowa-army",
+          "https://www.usda.gov/"
+        ],
+        "required_components": []
+      },
+      "reason": "已读USDA贸易展望11月24日、油籽报告11月13日及WASDE既有文件，均早于窗口，排除无关行政新闻。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P47",
+        "host-33e9cadd3abd",
+        "1f67681429ab-P47",
+        "5c3106947778-P47",
+        "9e8da814e4fb-P47",
+        "1f67681429ab-P47-pdf",
+        "5c3106947778-P47-pdf",
+        "9e8da814e4fb-P47-pdf",
+        "cfd5b4aba3c2-P47"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "P48",
+      "source_name": "FRED／ALFRED",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://fred.stlouisfed.org/graph/?g=mZEv",
+          "https://fred.stlouisfed.org/series/DGS10/object_type/chart",
+          "https://fred.stlouisfed.org/series/dgS10",
+          "https://alfred.stlouisfed.org/series?seid=DGS10",
+          "https://fred.stlouisfed.org/"
+        ],
+        "required_components": [
+          "FRED当前序列",
+          "ALFRED历史版本"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "51611595ac4d-P48",
+        "host-4a7be360bce1",
+        "e2197b3cc85e-P48",
+        "8a0a90bcc80d-P48",
+        "27530a943147-P48",
+        "41558f6e324c-P48"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "FRED当前序列",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "DGS10的最新观测、单位及11月25日实际更新时刻已核对。"
+        },
+        {
+          "component": "ALFRED历史版本",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "公开页可读版本说明，但本轮路径未返回指定历史vintage数值；没有完成历史版本回放或将当前值冒充当时可得值。"
+        }
+      ]
+    },
+    {
+      "source_id": "P49",
+      "source_name": "指数编制方案、历史成分与调整公告",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://oss-ch.csindex.com.cn/static/html/csindex/public/uploads/indices/detail/files/zh_CN/931236_Index_Methodology_cn.pdf",
+          "https://www.guandian.cn/article/20261126/633700.html"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-90cc3d895b",
+        "host-4a7be360bce1",
+        "77fe1ef5864c-P49",
+        "77fe1ef5864c-P49-pdf",
+        "host-6508d17a8a52",
+        "host-9f77e837af74",
+        "64eee495bc3a-P49"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M01",
+      "source_name": "财新",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.caixin.com/2026-11-26/102508793.html",
+          "https://www.caixin.com/2026-11-26/102508784.html",
+          "https://www.caixin.com/2026-06-11/102453057.html",
+          "https://www.caixin.com/2026-11-26/102509010.html",
+          "https://companies.caixin.com/2026-11-26/102508999.html",
+          "https://www.caixin.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M01",
+        "host-4a7be360bce1",
+        "16c49ead8d3c-M01",
+        "8f2df1452d7f-M01",
+        "f03ac8e75d4b-M01",
+        "d6b29fea6938-M01",
+        "b13a8b80a874-M01"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M02",
+      "source_name": "第一财经",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.yicai.com/epaper/pc/202611/26/node_A01.html",
+          "https://www.yicai.com/video/103455789.html",
+          "https://www.yicai.com/news/103454523.html",
+          "https://www.yicai.com/epaper/pc/202611/26/content_55502.html",
+          "https://www.yicai.com/epaper/pc/202611/26/content_55504.html",
+          "https://www.yicai.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M02",
+        "host-42b7b9f58444",
+        "9065beb246e5-M02",
+        "f0de01cbd39f-M02",
+        "f14964bed66a-M02",
+        "bef21a6ef75f-M02",
+        "76a09d673b6d-M02"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M03",
+      "source_name": "证券时报",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.stcn.com/article/detail/3615392.html",
+          "https://epaper.stcn.com/col/index.html",
+          "https://www.stcn.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M03",
+        "host-42b7b9f58444",
+        "961a9da20bec-M03",
+        "host-a0010ba57fe1",
+        "f45475071069-M03"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M04",
+      "source_name": "中国证券报",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cs.com.cn/ssgs/01/2026/11/26/detail_2026112610054723.html",
+          "https://www.cs.com.cn/ssgs/01/2026/11/25/detail_2026112510054589.html",
+          "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+          "https://www.cs.com.cn/xwzx/01/2026/11/26/detail_2026112610054898.html",
+          "https://www.cs.com.cn/ssgs/cj2020/2026/11/26/detail_2026112610054897.html",
+          "https://www.cs.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M04",
+        "host-42b7b9f58444",
+        "454cddc38674-M04",
+        "e5e61eceece2-M04",
+        "3fa0375c9334-M04",
+        "565b2a1167e0-M04",
+        "7375b76463a6-M04"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M05",
+      "source_name": "上海证券报",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cnstock.com/commonDetail/833868",
+          "https://www.cnstock.com/commonDetail/833804",
+          "https://www.cnstock.com/commonDetail/832760",
+          "https://www.cnstock.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M05",
+        "host-42b7b9f58444",
+        "3f2d3f77a523-M05",
+        "bc76486a2b06-M05",
+        "70a5d3390e9d-M05",
+        "firecrawl-c9037035018f",
+        "firecrawl-9c17e2ef5405",
+        "firecrawl-657bb8f4b54f",
+        "firecrawl-24a3ba6623af"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M06",
+      "source_name": "21世纪经济报道",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://m.21jingji.com/article/20261126/herald/d3e5a6cd6285987d06bb5f78a9ac31be.html",
+          "https://m.21jingji.com/article/20261126/herald/a6da5d76dd27ceff9203696aada05a61.html",
+          "https://m.21jingji.com/article/20261126/herald/0eef694733665eb95389624299fd1905.html",
+          "https://www.21jingji.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M06",
+        "host-8e36afd3cecf",
+        "14448dafaca2-M06",
+        "88a30085935d-M06",
+        "7c4332cc981c-M06"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "M07",
+      "source_name": "经济观察报",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.eeo.com.cn/2026/1126/1103426.shtml",
+          "https://www.eeo.com.cn/2026/1126/1104283.shtml",
+          "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+          "http://www.eeo.com.cn/2026/1125/1103018.shtml",
+          "http://www.eeo.com.cn/2026/1125/1101746.shtml",
+          "https://www.eeo.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M07",
+        "host-8e36afd3cecf",
+        "db47f0f083dc-M07",
+        "9c2b0b5726d4-M07",
+        "ad0a429eb97c-M07",
+        "9b56b4574c8d-M07",
+        "5386d438d62f-M07"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M08",
+      "source_name": "华尔街见闻",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://wallstreetcn.com/master-course-chat",
+          "https://wdl.wallstreetcn.com/Trade%20report%20-%20CHN%20A4%202M.pdf",
+          "https://wallstreetcn.com/articles/3786760",
+          "https://wallstreetcn.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 59,
+      "message_candidates": 60,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M08",
+        "collect-8fb09ef41e",
+        "api-97661d5d675f",
+        "host-8e36afd3cecf",
+        "472015f4a53b-M08",
+        "6adb299d0d08-M08",
+        "5478f904b8f5-M08",
+        "6adb299d0d08-M08-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M09",
+      "source_name": "金十数据",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://flash.jin10.com/detail/20261125033837958800",
+          "https://www.jin10.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "金十最新快讯动态入口只返回空壳；可读样本11月25日03:38早于窗口，索引回退未取得合格新条目。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M09",
+        "host-8e36afd3cecf",
+        "484f9cdcd2bc-M09",
+        "host-444efb128767"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M10",
+      "source_name": "格隆汇",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.gelonghui.com/live/2779660",
+          "https://www.gelonghui.com/live/2780548",
+          "https://www.gelonghui.com/news/5301998",
+          "https://www.gelonghui.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M10",
+        "host-c5ae31bbbfab",
+        "557612f5fc16-M10",
+        "43e9c21d6dd8-M10",
+        "14c8a6aa1be6-M10"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M11",
+      "source_name": "智通财经",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.zhitongcaijing.com/content/detail/1341404.html",
+          "https://beta.zhitongcaijing.com/content/detail/1529036.html",
+          "https://www.zhitongcaijing.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M11",
+        "host-c5ae31bbbfab",
+        "e442211a0ce8-M11",
+        "host-a0010ba57fe1",
+        "955cabe2d693-M11",
+        "host-9c6d0ae997ee"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M12",
+      "source_name": "新浪财经",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://finance.sina.com.cn/roll/original/listpage.shtml",
+          "https://finance.sina.com.cn/?trk=article-ssr-frontend-pulse_little-text-block",
+          "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml",
+          "https://finance.sina.com.cn/stock/usstock/c/2026-11-26/doc-inkaaiex8934247.shtml",
+          "https://finance.sina.com.cn/money/fund/etf/2026-11-26/doc-inkaaifa8185623.shtml",
+          "http://finance.sina.com.cn/roll/index.d.html?cid=57084&page=1",
+          "http://vip.stock.finance.sina.com.cn/fund_center/index.html#jzkfall",
+          "https://finance.sina.com.cn/jjxw/2026-11-26/doc-inizyqvz4080143.shtml",
+          "https://finance.sina.com.cn/money/future/fmnews/2026-11-26/doc-inizzftm9063994.shtml",
+          "https://finance.sina.com.cn/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M12",
+        "host-c5ae31bbbfab",
+        "09955043f052-M12",
+        "c054e252244c-M12",
+        "59fd99f51c48-M12",
+        "af0aa6e53d45-M12",
+        "0ecd28f03c2e-M12",
+        "2942aea64dbb-M12",
+        "203fed1074f2-M12",
+        "e77007ef8ebc-M12",
+        "7dc56fe1b7d7-M12"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "M13",
+      "source_name": "界面新闻",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.jiemian.com/?cojgu=22641",
+          "https://www.jiemian.com/?l64bu=o8uln.html",
+          "https://www.jiemian.com/article/15108963.html",
+          "https://www.jiemian.com/article/15378261.html",
+          "https://www.jiemian.com/article/15377503.html",
+          "https://www.jiemian.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M13",
+        "host-c5ae31bbbfab",
+        "ddbb72e6f24c-M13",
+        "ddbb9f7a9af8-M13",
+        "320762b667dc-M13",
+        "host-a0010ba57fe1",
+        "335d8220aabd-M13",
+        "3ba271e92fa1-M13"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "M14",
+      "source_name": "路透",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.reuters.com/business/view-nasdaq-plunges-5-day-after-anthropic-debut-investors-still-believe-ai-2026-11-20/",
+          "https://www.reuters.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "Reuters原站返回认证限制；回退公开索引未取得可验证本时窗全文/带可靠日期摘录，旧样本不充新。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M14",
+        "host-689bf0849864",
+        "bf9b76527114-M14",
+        "host-1d506dd241e2"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M15",
+      "source_name": "彭博",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.bloomberg.com/jp",
+          "https://www.bloomberg.com/uk",
+          "https://finance.yahoo.com/markets/commodities/articles/gold-holds-decline-us-tariff-003358772.html",
+          "https://www.bloomberg.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "Bloomberg原站拒绝访问；Yahoo可追溯转载实际11月24日，早于窗口，不通过翻译或旧转载冒充新原文。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M15",
+        "host-689bf0849864",
+        "61dc4388d09e-M15",
+        "1bb46e75d2d8-M15",
+        "526816885dc0-M15"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "M16",
+      "source_name": "华尔街日报",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.wsj.com/public/resources/documents/s0cNgmELRiY0bUeogOiD-WSJNewsPaper-3-25-2026.pdf",
+          "https://www.wsj.com/public/resources/documents/qVhQXhLL0IukENUD46Ar-WSJNewsPaper-3-23-2026.pdf",
+          "https://www.wsj.com/finance/commodities-futures/gold-edges-lower-amid-rate-hike-bets-1d4057c0",
+          "https://www.wsj.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "WSJ原站/公开PDF路径被代理拒绝；检索中的3月报纸不是本时窗内容，未取得订阅授权。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M16",
+        "host-689bf0849864",
+        "ff7793bb471a-M16",
+        "74f3c34472f2-M16",
+        "e3971c2d1bc2-M16",
+        "host-1d506dd241e2"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M17",
+      "source_name": "金融时报",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+          "https://www.ft.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "FT原文路径拒绝访问，公开回退未返回可验证本时窗新正文，未取得订阅授权。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M17",
+        "host-689bf0849864",
+        "90c029bf4267-M17",
+        "host-1d506dd241e2"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M18",
+      "source_name": "CNBC",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cnbc.com/select/",
+          "https://www.cnbc.com/select/latest/",
+          "https://live.tpehub.com/knowledge-and-research/news/gold-slips-on-stronger-dollar-us-inflation-data-in-focus",
+          "https://www.cnbc.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "CNBC原站拒绝访问；已读公开转载未核得本时窗原始发布时间，不将日期不明旧文当新消息。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M18",
+        "host-809319205c99",
+        "050531402330-M18",
+        "a3add71e1435-M18",
+        "b9a99c78ea4e-M18",
+        "host-1d506dd241e2"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": []
+    },
+    {
+      "source_id": "M19",
+      "source_name": "MarketWatch",
+      "status": "no_new_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.marketwatch.com/document/vse-sample-course-material.pdf",
+          "https://www.marketwatch.com/document/vse-sample-classroom-handout.pdf",
+          "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+          "https://www.marketwatch.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "可追溯MarketWatch黄金报道元数据实际日期11月6日，已排除；检索中的课程PDF不属于财经新消息。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M19",
+        "host-809319205c99",
+        "c38d56ca6cac-M19",
+        "c1b59405b664-M19",
+        "c1b59405b664-M19-pdf",
+        "c38d56ca6cac-M19-pdf",
+        "682dd77dfd90-M19",
+        "host-6649496dc6e3"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M20",
+      "source_name": "Barron's",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.barrons.com/static_html_files/barrons/barrons-guide-to-wealth.pdf",
+          "https://www.barrons.com/articles/gold-price-dollar-bond-yields-midterm-elections-25a81dad",
+          "https://www.barrons.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "Barrons原文及公开PDF被代理拒绝，公开索引回退未取得合格新内容。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M20",
+        "host-809319205c99",
+        "bb08ab538236-M20",
+        "da6ba0880b16-M20",
+        "host-6649496dc6e3"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M21",
+      "source_name": "日经亚洲",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://asia.nikkei.com/announcements",
+          "https://asia.nikkei.com/business/companies/press-release",
+          "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+          "https://asia.nikkei.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "可读公告/付费新闻稿栏目并非编辑新闻流，所见新闻稿最新11月18日；历史编辑文章有订阅墙，未取得本时窗正文。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M21",
+        "host-809319205c99",
+        "f8eb892629d8-M21",
+        "a85c57e65da4-M21",
+        "150b9eb2a6d9-M21",
+        "host-6649496dc6e3"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "B",
+      "components": []
+    },
+    {
+      "source_id": "M22",
+      "source_name": "天天基金／东方财富",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://fund.eastmoney.com/fund.HTML",
+          "https://fund.eastmoney.com/fund.html",
+          "https://reportapi.eastmoney.com/report/jg?qType=2",
+          "https://fund.eastmoney.com/a/202611263940572011.html",
+          "https://fund.eastmoney.com/a/202611263939924678.html",
+          "https://fund.eastmoney.com/"
+        ],
+        "required_components": [
+          "研报元数据",
+          "基金净值/公告/持仓"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 14,
+      "message_candidates": 50,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M22",
+        "collect-723fee6348",
+        "api-256334675768",
+        "host-e6514dca3da6",
+        "3ca1ec6bf01b-M22",
+        "6df82a5a65fd-M22",
+        "b7652bd8756a-M22",
+        "1a961cdfc93c-M22",
+        "cc437de520af-M22"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "研报元数据",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "公开API50条索引，机构/作者/日期可读；不等于完整研报。"
+        },
+        {
+          "component": "基金净值/公告/持仓",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "本轮公开基金净值表可读；基金公告另由基金公司核验，最新全量持仓并未取得。"
+        }
+      ]
+    },
+    {
+      "source_id": "M23",
+      "source_name": "晨星",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/blt48ceb4298be93f35/6966f1b85ba7a50008f2f5e6/NISALandscape_Report_2025_Q4_JP.pdf",
+          "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/blt385b14bbac12afec/Starting-the-Year-on-the-Right-Foot-2026-Australia.pdf",
+          "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/bltc2c16850a0481bfe/Not_All_That_Glitters_is_Gold.pdf",
+          "https://www.morningstar.com/"
+        ],
+        "required_components": []
+      },
+      "reason": "Morningstar当前入口拒绝；公开研究PDF为既有样本，不能据此宣称当前完整基金评级/数据已取得。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M23",
+        "host-e6514dca3da6",
+        "ff6cc3fb2638-M23",
+        "41367b1798de-M23",
+        "ff6cc3fb2638-M23-pdf",
+        "41367b1798de-M23-pdf",
+        "db7677c6328f-M23",
+        "db7677c6328f-M23-pdf"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M24",
+      "source_name": "同花顺",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.10jqka.com.cn/",
+          "https://www.10jqka.com.cn//",
+          "https://news.10jqka.com.cn/20261111/c681717329.shtml",
+          "https://news.10jqka.com.cn/20261126/c682244457.shtml",
+          "https://news.10jqka.com.cn/20261126/c682263218.shtml"
+        ],
+        "required_components": [
+          "财经报道",
+          "估值/盈利预测数据"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M24",
+        "host-e6514dca3da6",
+        "host-123673baefcc",
+        "a873f98447ff-M24",
+        "d5194df15238-M24",
+        "56f3fa99f8e3-M24",
+        "host-a0010ba57fe1",
+        "aa09ebf65475-M24",
+        "d8767378b18b-M24"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "财经报道",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "所选11月26日财经报道正文已读，转载与原件区分。"
+        },
+        {
+          "component": "估值/盈利预测数据",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "本轮公开网页及检索未返回可核对的完整当前估值/预测表，不能以财经新闻代替iFinD等数据库。"
+        }
+      ]
+    },
+    {
+      "source_id": "M25",
+      "source_name": "集思录",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.jisilu.cn/web/data/cb/list",
+          "https://www.jisilu.cn/"
+        ],
+        "required_components": [
+          "当前转债中位价/溢价率"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M25",
+        "host-123673baefcc",
+        "0f50b654ee80-M25",
+        "firecrawl-a565e1d64519",
+        "firecrawl-283d75d5af62",
+        "firecrawl-474288cbd45d",
+        "firecrawl-ba8a840b1a1f"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "当前转债中位价/溢价率",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "实际仪表给出价格中位数119.440、溢价率中位数71.74%；截至时刻/完整样本未知。"
+        }
+      ]
+    },
+    {
+      "source_id": "M26",
+      "source_name": "蛋卷基金",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://danjuanfunds.com/article/337.html",
+          "https://danjuanfunds.com/topic/191",
+          "https://danjuanfunds.com/djapi/index_eva/dj",
+          "https://danjuanfunds.com/"
+        ],
+        "required_components": [
+          "估值分位"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 63,
+      "message_candidates": 63,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M26",
+        "collect-6dfb0fe6ef",
+        "api-d960283a89bc",
+        "host-123673baefcc",
+        "965bdde16947-M26",
+        "68ee7649db1c-M26",
+        "70e0d1535217-M26"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "估值分位",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "63条原值，分位0—1，保留时间戳和PE=0限制。"
+        }
+      ]
+    },
+    {
+      "source_id": "M27",
+      "source_name": "韭圈儿",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://ai2.jiucaishuo.com/api/index-valuation?category=jx",
+          "https://www.funddb.cn/"
+        ],
+        "required_components": [
+          "估值分位"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 13,
+      "message_candidates": 13,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M27",
+        "collect-00929fae0d",
+        "api-0b8d739e4070",
+        "host-123673baefcc",
+        "dd977a9aab68-M27"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "估值分位",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "jx分类13条，分位0—100及过期/不足/不适用标志保留。"
+        }
+      ]
+    },
+    {
+      "source_id": "M28",
+      "source_name": "中信证券研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://research.citics.com/",
+          "https://finance.sina.com.cn/stock/marketresearch/2026-11-01/doc-inixfrfw7821527.shtml",
+          "https://finance.sina.com.cn/wm/2026-06-09/doc-iniaueey6625115.shtml",
+          "https://finance.sina.com.cn/stock/marketresearch/2026-02-02/doc-inhkkqum4374315.shtml"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "中信研究门户动态壳；本轮三团队公开检索和可读转载均为旧研报，当前完整研究流未返回，未混同中信期货/香港经纪。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M28",
+        "host-55af3334ba91",
+        "cc724c3df326-M28",
+        "9daa1765295f-M28",
+        "cf2909c749e2-M28",
+        "92707221d5c1-M28"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "中信研究门户动态壳；本轮三团队公开检索和可读转载均为旧研报，当前完整研究流未返回，未混同中信期货/香港经纪。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "中信研究门户动态壳；本轮三团队公开检索和可读转载均为旧研报，当前完整研究流未返回，未混同中信期货/香港经纪。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "中信研究门户动态壳；本轮三团队公开检索和可读转载均为旧研报，当前完整研究流未返回，未混同中信期货/香港经纪。"
+        }
+      ]
+    },
+    {
+      "source_id": "M29",
+      "source_name": "中金公司研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cicc.com/insights",
+          "https://www.cicc.com/upload/file/2026/06/08/9dfc8394-74f3-484c-8bd1-d1ccddc1805a.pdf",
+          "https://finance.sina.com.cn/wm/2026-05-31/doc-inhzuris4839782.shtml",
+          "https://finance.sina.com.cn/stock/stockzmt/2025-11-08/doc-infwrwyz1761283.shtml",
+          "https://www.cicc.com/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "中金公开insights显示新题名，但本轮所需策略/固收/有色完整正文未返回；读到的相关报告样本较旧，不以题名当报告结论。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M29",
+        "host-55af3334ba91",
+        "host-e7ba8414f514",
+        "bad6fc5f6b8d-M29",
+        "01607dbd5133-M29",
+        "01607dbd5133-M29-pdf",
+        "235b5971c1cf-M29",
+        "c7698b26a862-M29"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "中金公开insights显示新题名，但本轮所需策略/固收/有色完整正文未返回；读到的相关报告样本较旧，不以题名当报告结论。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "中金公开insights显示新题名，但本轮所需策略/固收/有色完整正文未返回；读到的相关报告样本较旧，不以题名当报告结论。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "中金公开insights显示新题名，但本轮所需策略/固收/有色完整正文未返回；读到的相关报告样本较旧，不以题名当报告结论。"
+        }
+      ]
+    },
+    {
+      "source_id": "M30",
+      "source_name": "华泰证券研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://cj.sina.com.cn/articles/view/5953189932/162d6782c06704yu7c",
+          "https://finance.sina.com.cn/stock/stockzmt/2026-09-14/doc-inirtwin4903159.shtml",
+          "https://finance.sina.com.cn/wm/2026-07-02/doc-inifmfcw2622509.shtml",
+          "https://www.htsc.com.cn/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "华泰研究入口动态壳，三个团队可追溯正文样本均早于窗口；不将华泰期货或金工文章冒充所需团队。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M30",
+        "host-e7ba8414f514",
+        "host-a5f85ce05da3",
+        "f45cb2c5eb71-M30",
+        "fc35788ca7f6-M30",
+        "1778e7bcef14-M30"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "华泰研究入口动态壳，三个团队可追溯正文样本均早于窗口；不将华泰期货或金工文章冒充所需团队。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "华泰研究入口动态壳，三个团队可追溯正文样本均早于窗口；不将华泰期货或金工文章冒充所需团队。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "华泰研究入口动态壳，三个团队可追溯正文样本均早于窗口；不将华泰期货或金工文章冒充所需团队。"
+        }
+      ]
+    },
+    {
+      "source_id": "M31",
+      "source_name": "国泰君安／国泰海通研究团队",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848998320168/index.phtml",
+          "https://m.hibor.com.cn/wap_detail.aspx?id=fbe01f328c78be305d167115dab06049",
+          "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/846990659791/index.phtml",
+          "https://www.gtht.com/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M31",
+        "host-a5f85ce05da3",
+        "1c1c7d87d1b6-M31",
+        "79d128e13ac4-M31",
+        "a23a4542c2a0-M31"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "11月26日国泰海通晨报公开摘要，原完整报告未得。"
+        },
+        {
+          "component": "固收",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "所检公开团队样本为窗口前材料，本轮未在该限定公开范围取得合格新增，不代表机构没有新报告。"
+        },
+        {
+          "component": "有色",
+          "status": "no_new_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "所检公开团队样本为窗口前材料，本轮未在该限定公开范围取得合格新增，不代表机构没有新报告。"
+        }
+      ]
+    },
+    {
+      "source_id": "M32",
+      "source_name": "招商证券研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://finance.sina.com.cn/stock/marketresearch/2026-11-22/doc-inizrpca1081611.shtml",
+          "https://m.hibor.com.cn/wap_detail.aspx?id=7e78d8483b452af66de2427a5bea82aa",
+          "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/lastest/rptid/845796882256/index.phtml",
+          "https://www.cmschina.com/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "招商研究入口技术错误；所读策略11月22日、固收8月及有色10月摘要均过期，当前研报流未取得。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M32",
+        "host-470ab788d362",
+        "49cde9ede589-M32",
+        "3c979864b813-M32",
+        "99a2dee48242-M32"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "招商研究入口技术错误；所读策略11月22日、固收8月及有色10月摘要均过期，当前研报流未取得。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "招商研究入口技术错误；所读策略11月22日、固收8月及有色10月摘要均过期，当前研报流未取得。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "招商研究入口技术错误；所读策略11月22日、固收8月及有色10月摘要均过期，当前研报流未取得。"
+        }
+      ]
+    },
+    {
+      "source_id": "M33",
+      "source_name": "广发证券研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://finance.sina.com.cn/wm/2026-04-30/doc-inhwftwn6267923.shtml",
+          "https://finance.sina.com.cn/stock/stockzmt/2026-09-28/doc-initirzi8821656.shtml",
+          "https://www.nxny.com/report/view_6180410.html",
+          "https://www.gf.com.cn/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "广发研究入口动态壳，策略4月、固收9月及有色既有摘要非本时窗；未取得当前完整研究流。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M33",
+        "host-470ab788d362",
+        "host-e753589a636d",
+        "4fde1aff9279-M33",
+        "e6c51834f031-M33",
+        "6ed3e12a405c-M33"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "广发研究入口动态壳，策略4月、固收9月及有色既有摘要非本时窗；未取得当前完整研究流。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "广发研究入口动态壳，策略4月、固收9月及有色既有摘要非本时窗；未取得当前完整研究流。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "广发研究入口动态壳，策略4月、固收9月及有色既有摘要非本时窗；未取得当前完整研究流。"
+        }
+      ]
+    },
+    {
+      "source_id": "M34",
+      "source_name": "天风证券研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://finance.sina.com.cn/wm/2026-06-25/doc-inieqnay1063764.shtml",
+          "https://finance.sina.com.cn/stock/stockzmt/2026-11-02/doc-inixhwzk3062156.shtml",
+          "https://finance.sina.com.cn/stock/stockzmt/2026-09-07/doc-iniqyeuh5729321.shtml",
+          "https://www.tfzq.com/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "天风公开网站与团队转载可读，但检索的策略11月2日、固收6月、有色9月均过期，当前三个团队报告未在已检查路径返回。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M34",
+        "host-e753589a636d",
+        "host-dfe586b2df5d",
+        "719e74d2ce07-M34",
+        "814116402090-M34",
+        "4941d43c0c42-M34"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "天风公开网站与团队转载可读，但检索的策略11月2日、固收6月、有色9月均过期，当前三个团队报告未在已检查路径返回。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "天风公开网站与团队转载可读，但检索的策略11月2日、固收6月、有色9月均过期，当前三个团队报告未在已检查路径返回。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "天风公开网站与团队转载可读，但检索的策略11月2日、固收6月、有色9月均过期，当前三个团队报告未在已检查路径返回。"
+        }
+      ]
+    },
+    {
+      "source_id": "M35",
+      "source_name": "兴业证券研究",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.xyzq.com.cn/xysec/info/article/83e92c29e334400ba88ae06515c9b1a6",
+          "https://finance.sina.com.cn/jjxw/2026-11-07/doc-inixxqmq7832404.shtml",
+          "https://finance.sina.com.cn/stock/stockzmt/2026-08-23/doc-iniphwyu6859546.shtml",
+          "https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-05-11/doc-inhxpatn2347838.shtml",
+          "https://www.xyzq.com.cn/"
+        ],
+        "required_components": [
+          "策略",
+          "固收",
+          "有色"
+        ]
+      },
+      "reason": "兴业当前JSON实际为保证金业务通知，排除非研究材料；三个团队的可读研报样本均过期，未以兴业研究冒充兴业证券。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "0636f2e7bc35-M35",
+        "host-dfe586b2df5d",
+        "c502b7c22ad7-M35",
+        "b3402eca431b-M35",
+        "4278af861d0d-M35",
+        "eaab032cdfbe-M35"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "策略",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "兴业当前JSON实际为保证金业务通知，排除非研究材料；三个团队的可读研报样本均过期，未以兴业研究冒充兴业证券。"
+        },
+        {
+          "component": "固收",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "兴业当前JSON实际为保证金业务通知，排除非研究材料；三个团队的可读研报样本均过期，未以兴业研究冒充兴业证券。"
+        },
+        {
+          "component": "有色",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "兴业当前JSON实际为保证金业务通知，排除非研究材料；三个团队的可读研报样本均过期，未以兴业研究冒充兴业证券。"
+        }
+      ]
+    },
+    {
+      "source_id": "M36",
+      "source_name": "经济数据一致预期与发布日历",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://tradingeconomics.com/world/calendar"
+        ],
+        "required_components": [
+          "一致预期/前值/实际值"
+        ]
+      },
+      "reason": "TradingEconomics World Calendar返回标题/空表；本轮未取得当前调查样本、一致预期/前值/实际值完整同口径表，不自行认定超预期。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "host-27cb50f53dc9",
+        "3b81dd7f568f-M36"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "一致预期/前值/实际值",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "TradingEconomics World Calendar返回标题/空表；本轮未取得当前调查样本、一致预期/前值/实际值完整同口径表，不自行认定超预期。"
+        }
+      ]
+    },
+    {
+      "source_id": "M37",
+      "source_name": "盈利预测与修正",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://finance.yahoo.com/quote/AAPL/analysis/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "host-27cb50f53dc9",
+        "15c1155fcb3d-M37"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M38",
+      "source_name": "利率期货与期权定价",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://finance.yahoo.com/quote/SPY/options/"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "host-27cb50f53dc9",
+        "1c091313b7af-M38"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "M39",
+      "source_name": "基金、指数与转债比较分析",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://fund.eastmoney.com/518880.html"
+        ],
+        "required_components": []
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-40f79ecca5",
+        "host-27cb50f53dc9",
+        "17239595bbd2-M39"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": []
+    },
+    {
+      "source_id": "S01",
+      "source_name": "X：美联储观察者",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://help.x.com/en/using-x/how-to-embed-a-post",
+          "https://help.x.com/en/resources/glossary",
+          "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FNickTimiraos%2Fstatus%2F2100283665842323753&omit_script=true",
+          "https://x.com/"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "X账号主页拒绝，官方oEmbed仅验证已知旧帖；检索返回帮助文档非帖子，未获得本时窗可核验账号/发帖时间/正文组合。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S01",
+        "host-70ff12a9c5b1",
+        "cb97915e985a-S01",
+        "f83a965e1795-S01",
+        "be302e279fbe-S01"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "X账号主页拒绝，官方oEmbed仅验证已知旧帖；检索返回帮助文档非帖子，未获得本时窗可核验账号/发帖时间/正文组合。"
+        }
+      ]
+    },
+    {
+      "source_id": "S02",
+      "source_name": "X：黄金／宏观分析师",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://help.x.com/en/using-x/how-to-embed-a-post",
+          "https://help.x.com/en/resources/glossary",
+          "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FJReade_WGC%2Fstatus%2F1702257696014057774&omit_script=true",
+          "https://x.com/"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "X主页拒绝，已知John Reade旧帖可由oEmbed读取但不在窗口；没有将旧帖或帮助页当新观点。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S02",
+        "host-70ff12a9c5b1",
+        "bace775054be-S02",
+        "16164d14237e-S02",
+        "95112283549b-S02"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "X主页拒绝，已知John Reade旧帖可由oEmbed读取但不在窗口；没有将旧帖或帮助页当新观点。"
+        }
+      ]
+    },
+    {
+      "source_id": "S03",
+      "source_name": "X：基金及ETF官方账号",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://help.x.com/en/using-x/how-to-embed-a-post",
+          "https://help.x.com/en/resources/glossary",
+          "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FGrayscale%2Fstatus%2F1969009120922755250&omit_script=true",
+          "https://x.com/"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "X主页拒绝，已知Grayscale旧帖oEmbed可读但不在窗口，未取得当前官方账号新帖子。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S03",
+        "host-70ff12a9c5b1",
+        "7482537381d3-S03",
+        "bc001e4ed7b2-S03",
+        "a860562d1b9d-S03"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "X主页拒绝，已知Grayscale旧帖oEmbed可读但不在窗口，未取得当前官方账号新帖子。"
+        }
+      ]
+    },
+    {
+      "source_id": "S04",
+      "source_name": "Reddit r/Gold",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "沿用此前已观察到的Reddit域级明确拒绝，本轮复核该政策证据后停止；r/Gold未另作本轮网络请求，不宣称已读新帖。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "host-dfa5475d46b2"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "沿用此前已观察到的Reddit域级明确拒绝，本轮复核该政策证据后停止；r/Gold未另作本轮网络请求，不宣称已读新帖。"
+        }
+      ]
+    },
+    {
+      "source_id": "S05",
+      "source_name": "Reddit r/investing",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "此前r/investing已明示拒绝未经授权agent；本轮复核既有阻断证据，不继续网络试探，未取得新帖。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "host-dfa5475d46b2"
+      ],
+      "previous_readable_sample": false,
+      "previous_sample_tier": "D",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "此前r/investing已明示拒绝未经授权agent；本轮复核既有阻断证据，不继续网络试探，未取得新帖。"
+        }
+      ]
+    },
+    {
+      "source_id": "S06",
+      "source_name": "Reddit r/stocks",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "沿用既有Reddit域级自动化拒绝，本轮仅复核政策证据，未逐版重试或获取新帖。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "host-dfa5475d46b2"
+      ],
+      "previous_readable_sample": false,
+      "previous_sample_tier": "D",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "沿用既有Reddit域级自动化拒绝，本轮仅复核政策证据，未逐版重试或获取新帖。"
+        }
+      ]
+    },
+    {
+      "source_id": "S07",
+      "source_name": "Reddit r/ChinaStocks",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "沿用既有Reddit域级自动化拒绝，本轮仅复核政策证据，未逐版重试或获取新帖。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "host-dfa5475d46b2"
+      ],
+      "previous_readable_sample": false,
+      "previous_sample_tier": "D",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "沿用既有Reddit域级自动化拒绝，本轮仅复核政策证据，未逐版重试或获取新帖。"
+        }
+      ]
+    },
+    {
+      "source_id": "S08",
+      "source_name": "雪球",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.xueqiu.com/2830037781/418735359",
+          "https://www.xueqiu.com/9105992305/418679726",
+          "https://xueqiu.com/"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S08",
+        "host-70ff12a9c5b1",
+        "499d2562f566-S08",
+        "a681e9766c46-S08",
+        "bad31e43a300-S08",
+        "host-9c6d0ae997ee"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。"
+        }
+      ]
+    },
+    {
+      "source_id": "S09",
+      "source_name": "微博财经",
+      "status": "out_of_scope",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "用户明确取消微博，未访问。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [],
+      "previous_readable_sample": false,
+      "previous_sample_tier": "D",
+      "components": []
+    },
+    {
+      "source_id": "S10",
+      "source_name": "知乎",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.zhihu.com/pin/special/1305953493132914688",
+          "https://www.zhihu.com/pin/special/1468267400945152000",
+          "https://zhuanlan.zhihu.com/p/2075285649159086381",
+          "https://www.zhihu.com/"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "知乎当前页面挑战/正文403，公开话题页为旧样本；未取得本时窗带账号、原始时间及可交叉验证内容的帖子。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S10",
+        "host-5f12b692abfb",
+        "5a245a15d907-S10",
+        "deaf918abf7f-S10",
+        "e91a37d4986e-S10"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "知乎当前页面挑战/正文403，公开话题页为旧样本；未取得本时窗带账号、原始时间及可交叉验证内容的帖子。"
+        }
+      ]
+    },
+    {
+      "source_id": "S11",
+      "source_name": "公众号热文",
+      "status": "access_limited_verified",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.laohu8.com/news/2665373467",
+          "https://mp.weixin.qq.com/"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "公众号原站路径被代理拒绝，公开转载样本缺本时窗原帖账号/时间证据；未将券商转载一概当公众号热度。",
+      "qualified_messages": 0,
+      "message_candidates": 0,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S11",
+        "host-5f12b692abfb",
+        "c874b98e76d0-S11"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "C",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "access_limited_verified",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "公众号原站路径被代理拒绝，公开转载样本缺本时窗原帖账号/时间证据；未将券商转载一概当公众号热度。"
+        }
+      ]
+    },
+    {
+      "source_id": "S12",
+      "source_name": "Polymarket 美联储决议合约",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://polymarket.com/event/fed-decisions-sepdec?via=marketwatch-edit",
+          "https://polymarket.com/event/fed-decision-in-december-20260729232808632?marketSlug=will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635&outcomeIndex=0",
+          "https://polymarket.com/esports/cs2/general/cs2-imp11-tl1-2026-11-26",
+          "https://gamma-api.polymarket.com/events?slug=fed-decision-in-december-20260729232808632",
+          "https://polymarket.com/",
+          "https://gamma-api.polymarket.com/events?slug=fed-decisions-sepdec"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S12",
+        "host-5f12b692abfb",
+        "50d9d5028334-S12",
+        "c91efc6c8376-S12",
+        "host-444efb128767",
+        "98e465d93662-S12",
+        "024927eb6209-S12",
+        "81b92371bb43-S12"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。"
+        }
+      ]
+    },
+    {
+      "source_id": "S13",
+      "source_name": "CNN Fear & Greed Index",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://www.cnn.com/2026/11/26/business/strauss-zelnick-gta-vi-the-program",
+          "https://www.cnn.com/2026/11/26/tech/artists-meta-ai-slop-instagram-facebook",
+          "https://www.cnn.com/markets/fear-and-greed"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "22c248c4ed62-S13",
+        "host-5f12b692abfb",
+        "firecrawl-1f06b22b07ea",
+        "firecrawl-5d7479d0d695",
+        "firecrawl-1913ff586b6f",
+        "firecrawl-7c76bb7fb1ee",
+        "a96220109862-S13",
+        "1d69115becc3-S13"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。"
+        }
+      ]
+    },
+    {
+      "source_id": "S14",
+      "source_name": "国内基金申赎热度",
+      "status": "content_collected",
+      "checked_at": "2026-11-26T14:22:45.055031+00:00",
+      "checked_scope": {
+        "window": [
+          "2026-11-25T13:14:32.249404+00:00",
+          "2026-11-26T13:14:32.249404+00:00"
+        ],
+        "mode": "所列公开栏目、定向检索与选定正文/数据/附件；动态类目仅样本",
+        "urls": [
+          "https://fund.eastmoney.com/fundhot8.html"
+        ],
+        "required_components": [
+          "账号/时间/内容/交叉核验"
+        ]
+      },
+      "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。",
+      "qualified_messages": 1,
+      "message_candidates": 1,
+      "full_current_window_coverage": false,
+      "evidence_call_ids": [
+        "collect-1ef5c4c827",
+        "host-cc6bfee50c16",
+        "e8c6a88aa5fa-S14",
+        "host-444efb128767"
+      ],
+      "previous_readable_sample": true,
+      "previous_sample_tier": "A",
+      "components": [
+        {
+          "component": "账号/时间/内容/交叉核验",
+          "status": "content_collected",
+          "checked_at": "2026-11-26T14:22:45.055031+00:00",
+          "reason": "已取得本时窗可输出的所选正文/数据/明确标注的公开摘录；精确范围和缺口见消息，不代表该源全量。"
+        }
+      ]
+    }
+  ]
+}

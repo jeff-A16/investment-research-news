@@ -1,0 +1,31 @@
+{
+  "run_id": "20261126T131112Z-full-restart",
+  "publication_gate": {
+    "passed": true,
+    "run_id": "20261126T131112Z-full-restart",
+    "completed_sources": 101,
+    "completed_components": 72,
+    "outcomes": {
+      "no_new_verified": 14,
+      "content_collected": 48,
+      "access_limited_verified": 39
+    }
+  },
+  "rss_items": 124,
+  "stored_records": 198,
+  "valuation_records": 76,
+  "valuation_days": 2,
+  "all_merged_source_links_present": true,
+  "xml_seven_fields_and_unique_guids": true,
+  "repeat_same_collection": {
+    "new_source_records": 0,
+    "updated_source_records": 0,
+    "duplicate_source_records": 201,
+    "new_feed_items": 0,
+    "updated_feed_items": 0
+  },
+  "same_input_byte_identical": true,
+  "old_incomplete_manifest_blocked": true,
+  "unit_test_result": "----------------------------------------------------------------------\nRan 27 tests in 0.025s\n\nOK",
+  "private_artifact_paths_excluded": true
+}

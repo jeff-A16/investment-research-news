@@ -1,5 +1,6 @@
 import importlib.util,json,tempfile,unittest
 from copy import deepcopy
+from unittest.mock import patch
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -9,6 +10,20 @@ def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
 class FeedTests(unittest.TestCase):
+ def test_successful_component_does_not_advance_failed_sibling_cursor(self):
+  prior={'source_cursors':{'P02':{'resume_from':'old','components':{'MLF':{'resume_from':'older'}}}}}
+  coverage=[{'coverage':{'sources':[{'source_id':'P02','status':'content_collected','checked_at':NOW,'components':[{'component':'OMO','status':'content_collected','checked_at':NOW},{'component':'MLF','status':'access_limited_verified','checked_at':NOW}]}]}}]
+  current=feed.advance_cursors(prior,coverage,NOW)['P02']
+  self.assertEqual(current['resume_from'],'old');self.assertEqual(current['components']['MLF']['resume_from'],'older');self.assertEqual(current['components']['OMO']['resume_from'],NOW)
+  self.assertNotIn('OMO',prior['source_cursors']['P02']['components'])
+ def test_unzoned_source_clock_preserves_date_overlap_and_current_rss_monthly_release(self):
+  start=feed.dt('2026-11-25T13:14:32Z');end=feed.dt('2026-11-26T13:14:32Z')
+  m=message(published_at='2026-11-26T09:20:30')
+  self.assertEqual(feed.window_status(m,start,end,{})[1],'date_window_overlap_timezone_unknown')
+  items,_=feed.merge([m],{},NOW)
+  self.assertIsNone(ET.fromstring(feed.rss(items,{'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'},NOW)).find('./channel/item/pubDate'))
+  m=message(published_at=None,data_period='2026-10',feed_published_at='2026-11-25T21:52:55+08:00')
+  self.assertEqual(feed.window_status(m,start,end,{})[1],'feed_published_at_not_first_publication')
  def test_canonical_tracking_keeps_material_parameters(self):
   self.assertEqual(feed.canonical_url('https://EXAMPLE.org/x?id=7&utm_source=a#part'),'https://example.org/x?id=7')
   self.assertNotEqual(feed.canonical_url('https://e.org/?id=1'),feed.canonical_url('https://e.org/?id=2'))
@@ -62,12 +77,13 @@ class FeedTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    p=Path(tmp);layers=[]
    for layer,sk in feed.DEPENDENCIES.items():
-    (p/f'{layer}.json').write_text('[]');(p/f'c{layer}.json').write_text('{}');layers.append({'layer':layer,'skill':sk,'messages':str(p/f'{layer}.json'),'coverage':str(p/f'c{layer}.json')})
+    (p/f'{layer}.json').write_text('[]');(p/f'c{layer}.json').write_text('{"sources":[]}');layers.append({'layer':layer,'skill':sk,'messages':str(p/f'{layer}.json'),'coverage':str(p/f'c{layer}.json')})
    manifest={'run_id':'r','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers};cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss','excluded_source_ids':['S09']}
    old,_=feed.merge([message(),message(id='weibo',layer=3,source_id='S09',original_url='https://weibo.com/x')],{},NOW)
-   out=feed.build(manifest,{'items':old},cfg);self.assertEqual(len(json.loads(out['data/items.json'])),1)
-   manifest['layers'].pop()
-   with self.assertRaises(ValueError):feed.build(manifest,{},cfg)
+   with patch.object(feed,'publication_gate',return_value={'passed':True}):
+    out=feed.build(manifest,{'items':old},cfg);self.assertEqual(len(json.loads(out['data/items.json'])),1)
+    manifest['layers'].pop()
+    with self.assertRaises(ValueError):feed.build(manifest,{},cfg)
  def test_refresh_deduplicates_same_source_in_attribution(self):
   a=message(retrieved_at='2026-11-26T10:00:00Z');first,_=feed.merge([a],{},NOW)
   again,_=feed.merge([message()],{'items':first},NOW);self.assertEqual(len(again[0]['provenance']),1)
@@ -122,4 +138,50 @@ class FeedTests(unittest.TestCase):
  def test_missing_original_is_not_relabelled_as_original_source(self):
   m=message(original_url=None,available_url='https://metadata.org/report');body=ET.fromstring('<root>'+feed.description(m)+'</root>');field=body.findall('./dl/dd')[1]
   self.assertIn('原始链接未取得',''.join(field.itertext()));self.assertIn('实际读取/转载',''.join(field.itertext()))
+ def test_publication_barrier_runs_before_any_merge(self):
+  with patch.object(feed,'publication_gate',side_effect=feed.PublicationBlocked('unfinished')),patch.object(feed,'merge') as merge:
+   with self.assertRaises(feed.PublicationBlocked):feed.build({}, {}, {})
+   merge.assert_not_called()
+ def test_incremental_fingerprint_ignores_fetch_times_but_detects_value_change(self):
+  a=message(fact_values={'pe':12.3});changes,records,counts=feed.incremental_records([a],{});self.assertEqual(counts['new_source_records'],1)
+  b=dict(a,retrieved_at='2026-11-26T15:00:00Z',observed_at='2026-11-26T15:00:00Z',updated_at='2026-11-26T15:00:00Z')
+  changes,records,counts=feed.incremental_records([b],{'source_records':records});self.assertEqual(changes,[]);self.assertEqual(counts['duplicate_source_records'],1)
+  c=dict(b,fact_values={'pe':12.4});changes,records,counts=feed.incremental_records([c],{'source_records':records});self.assertEqual(len(changes),1);self.assertEqual(counts['updated_source_records'],1)
+  first,_=feed.merge([a],{},NOW);second,_=feed.merge(changes,{'items':first},NOW);self.assertEqual(first[0]['guid'],second[0]['guid'])
+ def test_verified_update_can_publish_an_older_data_period_without_reviving_old_articles(self):
+  m=message(published_at=None,data_period='2026-11-24',updated_at='2026-11-25T21:16:00Z',material_update=True)
+  self.assertTrue(feed.window_status(m,feed.dt('2026-11-25T13:00:00Z'),feed.dt(NOW),{})[0])
+  m['material_update']=False;self.assertFalse(feed.window_status(m,feed.dt('2026-11-25T13:00:00Z'),feed.dt(NOW),{})[0])
+ def test_market_snapshot_update_during_run_is_not_future_article_publication(self):
+  start=feed.dt('2026-11-25T12:00:00Z');end=feed.dt(NOW);as_of=feed.dt('2026-11-26T13:00:00Z')
+  m=message(published_at=None,source_role='market-implied',updated_at='2026-11-26T12:30:00Z',observed_at='2026-11-26T12:31:00Z')
+  self.assertTrue(feed.window_status(m,start,end,{},as_of)[0]);m['source_role']='reporting';self.assertFalse(feed.window_status(m,start,end,{},as_of)[0])
+ def test_old_month_is_not_revived_by_observation_but_current_release_is_allowed(self):
+  start=feed.dt('2026-11-25T12:00:00Z');end=feed.dt(NOW);m=message(published_at=None,data_period='2026-10',observed_at=NOW)
+  self.assertFalse(feed.window_status(m,start,end,{})[0]);m['published_at']='2026-11-26';self.assertTrue(feed.window_status(m,start,end,{})[0])
+ def test_publication_gate_requires_closed_source_and_component_evidence(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp);layers=[];catalog={};events={}
+   for number,skill in feed.DEPENDENCIES.items():
+    run=p/str(number);(run/'outputs').mkdir(parents=True);(run/'artifacts').mkdir();(run/'artifacts/evidence.json').write_text('{}');sid='T'+str(number)
+    component=dict(source_id=sid,status='no_new_verified',checked_at=NOW,checked_scope='fixture listing',reason='fixture has no records',evidence_call_ids=['call'],evidence_paths=['artifacts/evidence.json'])
+    row=dict(component,components=[dict(component,component='detail')] if number==1 else [])
+    (run/'outputs/messages.json').write_text('[]');(run/'outputs/coverage.json').write_text(json.dumps({'run_id':'r','collection_complete':True,'sources':[row]}))
+    catalog[skill]={sid:['detail'] if number==1 else []};events[run]=[{'type':'tool_start','data':{'call_id':'call','source_ids':[sid]}},{'type':'tool_end','data':{'call_id':'call'}}]
+    layers.append({'layer':number,'skill':skill,'messages':str(run/'outputs/messages.json'),'coverage':str(run/'outputs/coverage.json')})
+   manifest={'run_id':'r','started_at':'2026-11-26T11:00:00Z','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers}
+   check={'integrity_ok':True,'status':'completed','pending_call_ids':[],'missing_outputs':[]}
+   with patch.object(feed,'required_sources',side_effect=lambda sk:catalog[sk]),patch.object(feed,'collection_log',side_effect=lambda run:(check,events[run])):
+    passed=feed.publication_gate(manifest,{});self.assertEqual(passed['completed_sources'],3);self.assertEqual(passed['completed_components'],1)
+    path=Path(layers[0]['coverage']);original=json.loads(path.read_text())
+    for mutation in ['entry_only','running','no_evidence','missing_component','not_sealed']:
+     coverage=deepcopy(original)
+     if mutation=='entry_only':coverage['sources'][0]['status']='entry_readable'
+     elif mutation=='running':coverage['collection_complete']=False
+     elif mutation=='no_evidence':coverage['sources'][0]['evidence_call_ids']=[]
+     elif mutation=='missing_component':coverage['sources'][0]['components']=[]
+     else:check['status']='running_or_interrupted'
+     path.write_text(json.dumps(coverage))
+     with self.assertRaises(feed.PublicationBlocked,msg=mutation):feed.publication_gate(manifest,{})
+     check['status']='completed'
 if __name__=='__main__':unittest.main()

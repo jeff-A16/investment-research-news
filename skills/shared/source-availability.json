@@ -1,0 +1,823 @@
+{
+  "as_of": "2026-11-26T11:44:53.385604+00:00",
+  "meaning": "Historical sample access only; never current content or proof of no updates.",
+  "readable_sample_count": 98,
+  "sources": [
+    {
+      "source_id": "M01",
+      "source_name": "财新",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://www.caixin.com/2026-06-11/102453057.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M02",
+      "source_name": "第一财经",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.yicai.com/news/103454523.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M03",
+      "source_name": "证券时报",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://www.stcn.com/article/detail/3615392.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M04",
+      "source_name": "中国证券报",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M05",
+      "source_name": "上海证券报",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.cnstock.com/commonDetail/832760",
+      "sample_only": true
+    },
+    {
+      "source_id": "M06",
+      "source_name": "21世纪经济报道",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://m.21jingji.com/article/20261126/herald/d3e5a6cd6285987d06bb5f78a9ac31be.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M07",
+      "source_name": "经济观察报",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M08",
+      "source_name": "华尔街见闻",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://wallstreetcn.com/articles/3786760",
+      "sample_only": true
+    },
+    {
+      "source_id": "M09",
+      "source_name": "金十数据",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://flash.jin10.com/detail/20261125033837958800",
+      "sample_only": true
+    },
+    {
+      "source_id": "M10",
+      "source_name": "格隆汇",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.gelonghui.com/news/5301998",
+      "sample_only": true
+    },
+    {
+      "source_id": "M11",
+      "source_name": "智通财经",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.zhitongcaijing.com/content/detail/1341404.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M12",
+      "source_name": "新浪财经",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M13",
+      "source_name": "界面新闻",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://www.jiemian.com/article/15108963.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M14",
+      "source_name": "路透",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.reuters.com/business/view-nasdaq-plunges-5-day-after-anthropic-debut-investors-still-believe-ai-2026-11-20/",
+      "sample_only": true
+    },
+    {
+      "source_id": "M15",
+      "source_name": "彭博",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.yahoo.com/markets/commodities/articles/gold-holds-decline-us-tariff-003358772.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "M16",
+      "source_name": "华尔街日报",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://www.wsj.com/finance/commodities-futures/gold-edges-lower-amid-rate-hike-bets-1d4057c0",
+      "sample_only": true
+    },
+    {
+      "source_id": "M17",
+      "source_name": "金融时报",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+      "sample_only": true
+    },
+    {
+      "source_id": "M18",
+      "source_name": "CNBC",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://live.tpehub.com/knowledge-and-research/news/gold-slips-on-stronger-dollar-us-inflation-data-in-focus",
+      "sample_only": true
+    },
+    {
+      "source_id": "M19",
+      "source_name": "MarketWatch",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+      "sample_only": true
+    },
+    {
+      "source_id": "M20",
+      "source_name": "Barron's",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://www.barrons.com/articles/gold-price-dollar-bond-yields-midterm-elections-25a81dad",
+      "sample_only": true
+    },
+    {
+      "source_id": "M21",
+      "source_name": "日经亚洲",
+      "enabled": true,
+      "previous_sample_tier": "B",
+      "previous_sample_url": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+      "sample_only": true
+    },
+    {
+      "source_id": "M22",
+      "source_name": "天天基金／东方财富",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://reportapi.eastmoney.com/report/jg?qType=2",
+      "sample_only": true
+    },
+    {
+      "source_id": "M23",
+      "source_name": "晨星",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/bltc2c16850a0481bfe/Not_All_That_Glitters_is_Gold.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "M24",
+      "source_name": "同花顺",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://news.10jqka.com.cn/20261111/c681717329.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M25",
+      "source_name": "集思录",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.jisilu.cn/web/data/cb/list",
+      "sample_only": true
+    },
+    {
+      "source_id": "M26",
+      "source_name": "蛋卷基金",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://danjuanfunds.com/djapi/index_eva/dj",
+      "sample_only": true
+    },
+    {
+      "source_id": "M27",
+      "source_name": "韭圈儿",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://ai2.jiucaishuo.com/api/index-valuation?category=jx",
+      "sample_only": true
+    },
+    {
+      "source_id": "M28",
+      "source_name": "中信证券研究",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.sina.com.cn/stock/marketresearch/2026-11-01/doc-inixfrfw7821527.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M29",
+      "source_name": "中金公司研究",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.cicc.com/upload/file/2026/06/08/9dfc8394-74f3-484c-8bd1-d1ccddc1805a.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "M30",
+      "source_name": "华泰证券研究",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://cj.sina.com.cn/articles/view/5953189932/162d6782c06704yu7c",
+      "sample_only": true
+    },
+    {
+      "source_id": "M31",
+      "source_name": "国泰君安／国泰海通研究团队",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848998320168/index.phtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M32",
+      "source_name": "招商证券研究",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.sina.com.cn/stock/marketresearch/2026-11-22/doc-inizrpca1081611.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M33",
+      "source_name": "广发证券研究",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.sina.com.cn/wm/2026-04-30/doc-inhwftwn6267923.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M34",
+      "source_name": "天风证券研究",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.sina.com.cn/wm/2026-06-25/doc-inieqnay1063764.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M35",
+      "source_name": "兴业证券研究",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.sina.com.cn/jjxw/2026-11-07/doc-inixxqmq7832404.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "M36",
+      "source_name": "经济数据一致预期与发布日历",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://tradingeconomics.com/world/calendar",
+      "sample_only": true
+    },
+    {
+      "source_id": "M37",
+      "source_name": "盈利预测与修正",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://finance.yahoo.com/quote/AAPL/analysis/",
+      "sample_only": true
+    },
+    {
+      "source_id": "M38",
+      "source_name": "利率期货与期权定价",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://finance.yahoo.com/quote/SPY/options/",
+      "sample_only": true
+    },
+    {
+      "source_id": "M39",
+      "source_name": "基金、指数与转债比较分析",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://fund.eastmoney.com/518880.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P01",
+      "source_name": "中国证监会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.csrc.gov.cn/csrc/c100028/c7658236/content.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "P02",
+      "source_name": "中国人民银行",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125431/125475/2026112608535053011/index.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P03",
+      "source_name": "国家统计局",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.stats.gov.cn/sj/zxfb/202610/t20261019_1965618.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P04",
+      "source_name": "财政部",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://gks.mof.gov.cn/tongjishuju/202611/t20261119_4004986.htm",
+      "sample_only": true
+    },
+    {
+      "source_id": "P05",
+      "source_name": "国家发展和改革委员会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.ndrc.gov.cn/fggz/fzzlgh/gjjzxgh/202609/t20260928_1407864_ext.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P06",
+      "source_name": "国家外汇管理局",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.safe.gov.cn/safe/2026/0814/27784.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P07",
+      "source_name": "中国证券投资基金业协会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.amac.org.cn/sjtj/tjbg/gmjj/202606/P020260617606470583907.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P08",
+      "source_name": "海关总署",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://fec.mofcom.gov.cn/article/xwdt/xwdtqtzx/xwfwydyl/202611/9296.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P09",
+      "source_name": "上海证券交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://static.sse.com.cn/disclosure/bond/announcement/company/c/new/2026-09-07/246011_20260907_YY7Y.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P10",
+      "source_name": "深圳证券交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-09-30/560e23c8-9d0f-43e5-b510-9a9b76831fbc.PDF",
+      "sample_only": true
+    },
+    {
+      "source_id": "P11",
+      "source_name": "北京证券交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.bse.cn/disclosure/2026/2026-06-05/1780649773_009528.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P12",
+      "source_name": "中国金融期货交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "http://www.cffex.com.cn/cn/jystz/20261120/48842.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P13",
+      "source_name": "中证指数有限公司",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://oss-ch.csindex.com.cn/static/html/csindex/public/uploads/indices/detail/files/zh_CN/931078factsheet.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P14",
+      "source_name": "中央国债登记结算有限责任公司／中国债券信息网",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://yield.chinabond.com.cn/cbweb-pbc-web/pbc/more?locale=cn_zh",
+      "sample_only": true
+    },
+    {
+      "source_id": "P15",
+      "source_name": "上海黄金交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.sge.com.cn/upload/file/202611/16/4899b5bcea5447fa83dfd2799112d0bf.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P16",
+      "source_name": "中国黄金协会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://cngold.org.cn/news/show-9624.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P17",
+      "source_name": "巨潮资讯网",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://static.cninfo.com.cn/finalpage/2026-11-25/1225685897.PDF",
+      "sample_only": true
+    },
+    {
+      "source_id": "P18",
+      "source_name": "华夏基金",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://fund.chinaamc.com/front/front/file/preview/ad6364260958bc46e5ae200921e071b2/%E5%8D%8E%E5%A4%8F%E9%BB%84%E9%87%91%E4%BA%A4%E6%98%93%E5%9E%8B%E5%BC%80%E6%94%BE%E5%BC%8F%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912026%E5%B9%B4%E7%AC%AC3%E5%AD%A3%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P19",
+      "source_name": "广发基金",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.gffunds.com.cn/jjgg/dqgg/202610/P020261027328487587149.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P20",
+      "source_name": "华安基金",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.huaan.com.cn/upload2010/2026/10/27/005643953_0caec1a4-85b5-3bad-aee1-2445af3c1ffc.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P21",
+      "source_name": "其他相关基金公司与ETF发行人",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://cdn.efunds.com.cn/owch/data/bulletin/20261123/%E5%85%B3%E4%BA%8E%E6%97%97%E4%B8%8B%E9%83%A8%E5%88%86%E5%9F%BA%E9%87%912026%E5%B9%B411%E6%9C%8826%E6%97%A5%E6%9A%82%E5%81%9C%E7%94%B3%E8%B4%AD%E3%80%81%E8%B5%8E%E5%9B%9E%E3%80%81%E8%BD%AC%E6%8D%A2%E3%80%81%E5%AE%9A%E6%9C%9F%E5%AE%9A%E9%A2%9D%E6%8A%95%E8%B5%84%E4%B8%9A%E5%8A%A1%E7%9A%84%E6%8F%90%E7%A4%BA%E6%80%A7%E5%85%AC%E5%91%8A.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P22",
+      "source_name": "上市公司与债券发行人投资者关系网站",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.apple.com/newsroom/pdfs/fy2026q4/FY26_Q4_Consolidated_Financial_Statements.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P23",
+      "source_name": "美国证券交易委员会 EDGAR",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+      "sample_only": true
+    },
+    {
+      "source_id": "P24",
+      "source_name": "香港交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.hkex.com.hk/-/media/HKEX-Market/News/News-Release/2026/261106news/261106news_c.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P25",
+      "source_name": "港交所披露易",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/1103/2026110300014_c.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P26",
+      "source_name": "中国外汇交易中心／中国货币网",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.chinamoney.com.cn/chinese/rdgz/20261120/3453464.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P27",
+      "source_name": "上海清算所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.shclearing.com.cn/wcm/shch/pages/client/download/download.jsp?DownName=1.pdf&FileName=P020250424337842287153.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P28",
+      "source_name": "中国银行间市场交易商协会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.nafmii.org.cn/zlgl/pjytb/pjyw/tb/202606/P020260612565269843181.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P29",
+      "source_name": "上海期货交易所",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.shfe.com.cn/upload/20180718/1531907108928.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P30",
+      "source_name": "大连商品交易所",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://chinaexchangecirculars.com/zh/notices/dce-19b6445371b172bb726b/",
+      "sample_only": true
+    },
+    {
+      "source_id": "P31",
+      "source_name": "郑州商品交易所",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://finance.sina.com.cn/money/future/roll/2026-11-24/doc-inizvuzi4784832.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "P32",
+      "source_name": "广州期货交易所",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://www.gfex.com.cn/gfex/mtjj/202611/4ac9202ed8c34f38b7fd84f0d064c232.shtml",
+      "sample_only": true
+    },
+    {
+      "source_id": "P33",
+      "source_name": "相关行业协会与企业产销公告",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://static.cninfo.com.cn/finalpage/2026-11-02/1225651111.PDF",
+      "sample_only": true
+    },
+    {
+      "source_id": "P34",
+      "source_name": "美联储",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20261028.htm",
+      "sample_only": true
+    },
+    {
+      "source_id": "P35",
+      "source_name": "美国劳工统计局",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.bls.gov/news.release/eci.htm",
+      "sample_only": true
+    },
+    {
+      "source_id": "P36",
+      "source_name": "美国经济分析局",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://bea.gov/sites/default/files/2026-11/pi1026.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P37",
+      "source_name": "美国财政部",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026",
+      "sample_only": true
+    },
+    {
+      "source_id": "P38",
+      "source_name": "美国财政部 FiscalData",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?sort=-record_date&page[size]=5",
+      "sample_only": true
+    },
+    {
+      "source_id": "P39",
+      "source_name": "欧洲中央银行",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.ecb.europa.eu/pub/pdf/ecbu/eb202607.en.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P40",
+      "source_name": "世界黄金协会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/11",
+      "sample_only": true
+    },
+    {
+      "source_id": "P41",
+      "source_name": "伦敦金银市场协会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.lbma.org.uk/articles/lbma-precious-metals-market-report-q3-2026",
+      "sample_only": true
+    },
+    {
+      "source_id": "P42",
+      "source_name": "美国商品期货交易委员会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.cftc.gov/dea/futures/other_lf.htm",
+      "sample_only": true
+    },
+    {
+      "source_id": "P43",
+      "source_name": "CME FedWatch及利率期货",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.cmegroup.com/videos/2026/11/17/why-bond-yields-keep-climbing-despite-falling-oil.html",
+      "sample_only": true
+    },
+    {
+      "source_id": "P44",
+      "source_name": "纽约联邦储备银行",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
+      "sample_only": true
+    },
+    {
+      "source_id": "P45",
+      "source_name": "美国投资公司协会",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.ici.org/research/stats/flows",
+      "sample_only": true
+    },
+    {
+      "source_id": "P46",
+      "source_name": "美国能源信息署",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.eia.gov/petroleum/supply/weekly/pdf/table14.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P47",
+      "source_name": "美国农业部",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://esmis.nal.usda.gov/sites/default/release-files/796142/wasde1126.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "P48",
+      "source_name": "FRED／ALFRED",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://fred.stlouisfed.org/series/dgS10",
+      "sample_only": true
+    },
+    {
+      "source_id": "P49",
+      "source_name": "指数编制方案、历史成分与调整公告",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://oss-ch.csindex.com.cn/static/html/csindex/public/uploads/indices/detail/files/zh_CN/931236_Index_Methodology_cn.pdf",
+      "sample_only": true
+    },
+    {
+      "source_id": "S01",
+      "source_name": "X：美联储观察者",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FNickTimiraos%2Fstatus%2F2100283665842323753&omit_script=true",
+      "sample_only": true
+    },
+    {
+      "source_id": "S02",
+      "source_name": "X：黄金／宏观分析师",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FJReade_WGC%2Fstatus%2F1702257696014057774&omit_script=true",
+      "sample_only": true
+    },
+    {
+      "source_id": "S03",
+      "source_name": "X：基金及ETF官方账号",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FGrayscale%2Fstatus%2F1969009120922755250&omit_script=true",
+      "sample_only": true
+    },
+    {
+      "source_id": "S04",
+      "source_name": "Reddit r/Gold",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/",
+      "sample_only": true
+    },
+    {
+      "source_id": "S05",
+      "source_name": "Reddit r/investing",
+      "enabled": true,
+      "previous_sample_tier": "D",
+      "previous_sample_url": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/",
+      "sample_only": true
+    },
+    {
+      "source_id": "S06",
+      "source_name": "Reddit r/stocks",
+      "enabled": true,
+      "previous_sample_tier": "D",
+      "previous_sample_url": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/",
+      "sample_only": true
+    },
+    {
+      "source_id": "S07",
+      "source_name": "Reddit r/ChinaStocks",
+      "enabled": true,
+      "previous_sample_tier": "D",
+      "previous_sample_url": "https://www.reddit.com/r/ChinaStocks/comments/1y0zd1c/why_is_baidu_chinas_google_already_seen_as_the/",
+      "sample_only": true
+    },
+    {
+      "source_id": "S08",
+      "source_name": "雪球",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://www.xueqiu.com/9105992305/418679726",
+      "sample_only": true
+    },
+    {
+      "source_id": "S09",
+      "source_name": "微博财经",
+      "enabled": false,
+      "previous_sample_tier": "D",
+      "previous_sample_url": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141",
+      "sample_only": true
+    },
+    {
+      "source_id": "S10",
+      "source_name": "知乎",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://zhuanlan.zhihu.com/p/2075285649159086381",
+      "sample_only": true
+    },
+    {
+      "source_id": "S11",
+      "source_name": "公众号热文",
+      "enabled": true,
+      "previous_sample_tier": "C",
+      "previous_sample_url": "https://www.laohu8.com/news/2665373467",
+      "sample_only": true
+    },
+    {
+      "source_id": "S12",
+      "source_name": "Polymarket 美联储决议合约",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632?marketSlug=will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635&outcomeIndex=0",
+      "sample_only": true
+    },
+    {
+      "source_id": "S13",
+      "source_name": "CNN Fear & Greed Index",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": null,
+      "sample_only": true
+    },
+    {
+      "source_id": "S14",
+      "source_name": "国内基金申赎热度",
+      "enabled": true,
+      "previous_sample_tier": "A",
+      "previous_sample_url": "https://fund.eastmoney.com/fundhot8.html",
+      "sample_only": true
+    }
+  ]
+}

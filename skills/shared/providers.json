@@ -1,0 +1,106 @@
+{
+  "alphavantage": {
+    "docs": "https://www.alphavantage.co/documentation/",
+    "signup": "https://www.alphavantage.co/support/",
+    "env": "ALPHAVANTAGE_API_KEY",
+    "free_limit_verified": "25 requests/day for most datasets",
+    "scope": "free daily-price data verified; news access not granted; not all publishers/social posts",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "marketaux": {
+    "docs": "https://www.marketaux.com/documentation",
+    "pricing": "https://www.marketaux.com/pricing",
+    "env": "MARKETAUX_API_TOKEN",
+    "free_limit_verified": "100 requests/day; 3 articles/request",
+    "scope": "publisher coverage must be verified via news/sources; headlines/extracts are not original full text",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "finnhub": {
+    "docs": "https://finnhub.io/docs/api",
+    "env": "FINNHUB_API_KEY",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "gdelt": {
+    "docs": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+    "test_status": "503 repeated once in continuation run; still no successful data sample",
+    "scope": "seendate is observation/ingestion time, not first publication",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "nyfed_sofr": {
+    "docs": "https://markets.newyorkfed.org/static/docs/markets-api.html",
+    "endpoint": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/1.json",
+    "test_status": "live JSON retrieved",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "treasury_cash": {
+    "docs": "https://fiscaldata.treasury.gov/api-documentation/",
+    "endpoint": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance",
+    "test_status": "live JSON retrieved",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "eastmoney_research": {
+    "docs": "https://data.eastmoney.com/report/",
+    "route_evidence": "https://data.eastmoney.com/newstatic/js/report/index.js",
+    "test_status": "report/jg qType=2 returned 50 records; report/org returned 63 institutions",
+    "scope": "metadata and traceable report links only; the eight requested brokers are not all in this list; anonymous route has no SLA",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "x_oembed": {
+    "docs": "https://docs.x.com/x-for-websites/oembed-api",
+    "endpoint": "https://publish.x.com/oembed",
+    "test_status": "three actual post samples with author/date; timeline-only response rejected as post",
+    "scope": "known posts only; not latest-feed/search entitlement",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "wallstreetcn_rss": {
+    "endpoint": "https://dedicated.wallstreetcn.com/rss.xml",
+    "test_status": "63 public feed entries retrieved in continuation run",
+    "scope": "feed titles/links/pubDate/descriptions; filter promotions and verify article timestamps separately",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "danjuan_valuation": {
+    "endpoint": "https://danjuanfunds.com/djapi/index_eva/dj",
+    "test_status": "63 valuation records returned; data timestamp corresponds to 2026-11-25, not a real-time quote",
+    "fields": "pe_percentile/pb_percentile are 0..1; ts/created_at/updated_at use milliseconds; pe=0 not evidence of cheapness; date is only MM-DD",
+    "scope": "vendor valuation estimates, not official index close or formal NAV",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "funddb_valuation": {
+    "endpoint": "https://ai2.jiucaishuo.com/api/index-valuation?category=jx",
+    "route_evidence": "https://www.funddb.cn/assets/index-CGU4Pt31.js",
+    "test_status": "13 selected indices, new_update_time=2026-11-25",
+    "fields": "pe_pct/pb_pct are 0..100; honor insufficient/stale/not_applicable; HTML demo 52 excluded",
+    "scope": "jx subset only; other categories/indices must be requested and checked separately",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "reddit": {
+    "policy_reference": "https://support.reddithelp.com/hc/en-us/articles/55472297340308-Changelog-November-10-2026",
+    "status": "Official RSS support ended 2026-11-13; anonymous JSON denied and direct HTML returns shell in this workspace",
+    "scope": "Indexed public historical posts may be readable; exact author/date/cross-checks required; no live feed entitlement verified",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "fed_monetary_rss": {
+    "docs": "https://www.federalreserve.gov/feeds/feeds.htm",
+    "endpoint": "https://www.federalreserve.gov/feeds/press_monetary.xml",
+    "test_status": "15 entries returned in continuation run",
+    "evidence_call": "api-a75b1267dd2c",
+    "scope": "feed publication date distinct from meeting date; open linked full text; discount-rate Board minutes are not FOMC minutes",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "fed_speeches_rss": {
+    "docs": "https://www.federalreserve.gov/feeds/feeds.htm",
+    "endpoint": "https://www.federalreserve.gov/feeds/speeches.xml",
+    "test_status": "15 entries returned in continuation run",
+    "evidence_call": "api-200f2af15830",
+    "scope": "feed publication date distinct from meeting date; open linked full text; discount-rate Board minutes are not FOMC minutes",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  },
+  "firecrawl": {
+    "docs": "https://www.firecrawl.dev/agent-onboarding/SKILL.md",
+    "endpoint": "https://mcp.firecrawl.dev/v2/mcp",
+    "env": "FIRECRAWL_API_KEY (optional)",
+    "test_status": "Keyless search/scrape verified; hosted tools/list exposes search, scrape, parse; no anonymous interact in tested session",
+    "scope": "Public-page fallback only; retain cache vs data timestamp and publisher time; Reddit unsupported_site; no publisher license inferred",
+    "credential_handling": "Only named environment variables or an authorized connector; no credentials included."
+  }
+}

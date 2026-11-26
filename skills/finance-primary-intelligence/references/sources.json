@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "layer": 1,
+  "purpose": "最低来源目录；真实样本、路径及缺口见routes.json，每轮按任务重新检查。",
+  "sources": [
+    {
+      "id": "P01",
+      "name": "中国证监会",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.csrc.gov.cn/",
+      "topics": "监管规则、基金、资本市场",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P02",
+      "name": "中国人民银行",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.pbc.gov.cn/",
+      "topics": "公开市场操作、MLF、政策利率、货币信贷、金融统计、货币政策报告",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "公开市场操作",
+        "MLF",
+        "LPR"
+      ]
+    },
+    {
+      "id": "P03",
+      "name": "国家统计局",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.stats.gov.cn/",
+      "topics": "GDP、CPI、PPI、PMI、工业、消费、投资、房地产、统计修订",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P04",
+      "name": "财政部",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.mof.gov.cn/",
+      "topics": "财政收支、国债、地方债、财政政策",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P05",
+      "name": "国家发展和改革委员会",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.ndrc.gov.cn/",
+      "topics": "产业政策、投资、价格、能源政策",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P06",
+      "name": "国家外汇管理局",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.safe.gov.cn/",
+      "topics": "跨境资金、外汇储备、国际收支",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P07",
+      "name": "中国证券投资基金业协会",
+      "group": "自律组织",
+      "entrypoint": "https://www.amac.org.cn/",
+      "topics": "公募与私募基金统计、基金行业数据",
+      "content_role": "fact",
+      "search_aliases": "基金业协会 AMAC",
+      "access_note": "行业自律组织，与行政监管机构分列。",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P08",
+      "name": "海关总署",
+      "group": "国内监管与统计",
+      "entrypoint": "https://www.customs.gov.cn/",
+      "topics": "进出口、黄金与商品贸易、产业链供需",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P09",
+      "name": "上海证券交易所",
+      "group": "交易所与披露",
+      "entrypoint": "https://www.sse.com.cn/",
+      "topics": "公告、ETF、融资融券、股票、债券、交易规则",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "ETF申赎清单"
+      ]
+    },
+    {
+      "id": "P10",
+      "name": "深圳证券交易所",
+      "group": "交易所与披露",
+      "entrypoint": "https://www.szse.cn/",
+      "topics": "公告、ETF、融资融券、股票、债券、交易规则",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P11",
+      "name": "北京证券交易所",
+      "group": "交易所与披露",
+      "entrypoint": "https://www.bse.cn/",
+      "topics": "公告、股票、市场统计、交易规则",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P12",
+      "name": "中国金融期货交易所",
+      "group": "交易所与披露",
+      "entrypoint": "https://www.cffex.com.cn/",
+      "topics": "国债期货、股指期货、基差、持仓",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P13",
+      "name": "中证指数有限公司",
+      "group": "指数与基准",
+      "entrypoint": "https://www.csindex.com.cn/",
+      "topics": "股票指数、债券指数、转债指数、编制方案、估值、调样",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "中证转债指数"
+      ]
+    },
+    {
+      "id": "P14",
+      "name": "中央国债登记结算有限责任公司／中国债券信息网",
+      "group": "利率信用与指数",
+      "entrypoint": "https://www.chinabond.com.cn/",
+      "topics": "中债指数、收益率曲线、信用利差、债券托管统计",
+      "content_role": "fact",
+      "search_aliases": "中债登 中债 CCDC ChinaBond",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "中债收益率曲线",
+        "中债指数"
+      ]
+    },
+    {
+      "id": "P15",
+      "name": "上海黄金交易所",
+      "group": "黄金与商品",
+      "entrypoint": "https://www.sge.com.cn/",
+      "topics": "黄金价格、成交、交割、交易规则、国内外价差",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P16",
+      "name": "中国黄金协会",
+      "group": "行业一手",
+      "entrypoint": "https://www.cngold.org.cn/",
+      "topics": "黄金产量、消费、产业供需",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "行业协会，区分调查统计、估算与观点。",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P17",
+      "name": "巨潮资讯网",
+      "group": "交易所与披露",
+      "entrypoint": "https://www.cninfo.com.cn/",
+      "topics": "上市公司公告、年报季报、基金公告、投资者关系记录",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P18",
+      "name": "华夏基金",
+      "group": "基金公司",
+      "entrypoint": "https://www.chinaamc.com/",
+      "topics": "公告、定期报告、ETF份额与持仓、基金经理观点",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "临时公告",
+        "定期报告",
+        "基金经理/管理人观点"
+      ]
+    },
+    {
+      "id": "P19",
+      "name": "广发基金",
+      "group": "基金公司",
+      "entrypoint": "https://www.gffunds.com.cn/",
+      "topics": "公告、定期报告、ETF份额与持仓、基金经理观点",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "临时公告",
+        "定期报告",
+        "基金经理/管理人观点"
+      ]
+    },
+    {
+      "id": "P20",
+      "name": "华安基金",
+      "group": "基金公司",
+      "entrypoint": "https://www.huaan.com.cn/",
+      "topics": "公告、定期报告、ETF份额与持仓、基金经理观点",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "临时公告",
+        "定期报告",
+        "基金经理/管理人观点"
+      ]
+    },
+    {
+      "id": "P21",
+      "name": "其他相关基金公司与ETF发行人",
+      "group": "基金公司",
+      "entrypoint": "",
+      "topics": "目标基金的公告、费率、基金经理、规模、持仓、申赎、跟踪误差、分红",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "按用户基金名称和代码，从基金法律文件核实管理人及官方网站；未指定基金时只报类目，不能宣称穷尽全行业。",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P22",
+      "name": "上市公司与债券发行人投资者关系网站",
+      "group": "公司与发行人",
+      "entrypoint": "",
+      "topics": "年报、季报、招股书、业绩说明会、债券募集说明书、现金流、债务到期",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "按公司名称、股票/债券代码核实官方IR入口；区分历史披露、管理层指引与预测。",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P23",
+      "name": "美国证券交易委员会 EDGAR",
+      "group": "公司与发行人",
+      "entrypoint": "https://www.sec.gov/edgar/search/",
+      "topics": "10-K、10-Q、8-K、20-F、招股书、13F、公司基本面与机构持仓",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "13F有滞后，仅覆盖规则要求的部分头寸，不能还原实时完整仓位。",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P24",
+      "name": "香港交易所",
+      "group": "交易所与披露",
+      "entrypoint": "https://www.hkex.com.hk/",
+      "topics": "港股、ETF、互联互通、市场统计",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "记录互联互通数据披露制度、频率和口径变化，不能假设始终有实时净流入。",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P25",
+      "name": "港交所披露易",
+      "group": "公司与发行人",
+      "entrypoint": "https://www.hkexnews.hk/",
+      "topics": "港股公告、财报、发行文件、权益披露",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P26",
+      "name": "中国外汇交易中心／中国货币网",
+      "group": "利率信用与指数",
+      "entrypoint": "https://www.chinamoney.com.cn/",
+      "topics": "LPR授权发布、Shibor、回购利率、货币市场、人民币汇率、债券市场",
+      "content_role": "fact",
+      "search_aliases": "CFETS 全国银行间同业拆借中心",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P27",
+      "name": "上海清算所",
+      "group": "利率信用与指数",
+      "entrypoint": "https://www.shclearing.com.cn/",
+      "topics": "债券发行与存续披露、托管、清算、信用风险",
+      "content_role": "fact",
+      "search_aliases": "上清所",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P28",
+      "name": "中国银行间市场交易商协会",
+      "group": "自律组织",
+      "entrypoint": "https://www.nafmii.org.cn/",
+      "topics": "信用债、自律规则、注册发行、违约处置",
+      "content_role": "fact",
+      "search_aliases": "交易商协会 NAFMII",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P29",
+      "name": "上海期货交易所",
+      "group": "黄金与商品",
+      "entrypoint": "https://www.shfe.com.cn/",
+      "topics": "黄金白银期货、成交持仓、仓单、库存、基差",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P30",
+      "name": "大连商品交易所",
+      "group": "黄金与商品",
+      "entrypoint": "https://www.dce.com.cn/",
+      "topics": "商品期货、库存、仓单、持仓、规则",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P31",
+      "name": "郑州商品交易所",
+      "group": "黄金与商品",
+      "entrypoint": "https://www.czce.com.cn/",
+      "topics": "商品期货、库存、仓单、持仓、规则",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "P32",
+      "name": "广州期货交易所",
+      "group": "黄金与商品",
+      "entrypoint": "https://www.gfex.com.cn/",
+      "topics": "商品期货、产业供需、持仓、规则",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P33",
+      "name": "相关行业协会与企业产销公告",
+      "group": "行业一手",
+      "entrypoint": "",
+      "topics": "订单、产能、开工率、产量、销量、库存、进出口",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "按产业选择协会，披露抽样范围和估算方法；企业产销优先交易所公告。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "行业协会统计",
+        "企业产销"
+      ]
+    },
+    {
+      "id": "P34",
+      "name": "美联储",
+      "group": "海外官方",
+      "entrypoint": "https://www.federalreserve.gov/",
+      "topics": "FOMC声明、会议纪要、官员讲话、经济预测、资产负债表",
+      "content_role": "fact",
+      "search_aliases": "Federal Reserve FOMC SEP H.4.1",
+      "access_note": "主席讲话与委员会决议分列，区分纪要所属会议和公布日期。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "FOMC声明",
+        "FOMC完整会议纪要",
+        "官员讲话"
+      ]
+    },
+    {
+      "id": "P35",
+      "name": "美国劳工统计局",
+      "group": "海外官方",
+      "entrypoint": "https://www.bls.gov/",
+      "topics": "CPI、非农、失业率、工资、修订",
+      "content_role": "fact",
+      "search_aliases": "BLS",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P36",
+      "name": "美国经济分析局",
+      "group": "海外官方",
+      "entrypoint": "https://www.bea.gov/",
+      "topics": "GDP、PCE、收入支出、修订",
+      "content_role": "fact",
+      "search_aliases": "BEA",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P37",
+      "name": "美国财政部",
+      "group": "海外官方",
+      "entrypoint": "https://home.treasury.gov/",
+      "topics": "国债发行、名义与实际收益率、TIPS、财政融资、国际资本流动",
+      "content_role": "fact",
+      "search_aliases": "U.S. Treasury TIC",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P38",
+      "name": "美国财政部 FiscalData",
+      "group": "海外官方",
+      "entrypoint": "https://fiscaldata.treasury.gov/",
+      "topics": "财政收支、国债、财政现金与TGA相关数据、债务到期",
+      "content_role": "fact",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P39",
+      "name": "欧洲中央银行",
+      "group": "海外官方",
+      "entrypoint": "https://www.ecb.europa.eu/",
+      "topics": "利率决议、会议记录、官员讲话、宏观与货币统计",
+      "content_role": "fact",
+      "search_aliases": "ECB 欧央行",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P40",
+      "name": "世界黄金协会",
+      "group": "行业一手",
+      "entrypoint": "https://www.gold.org/",
+      "topics": "黄金ETF持仓与流量、央行购金、黄金供需、研究观点",
+      "content_role": "mixed",
+      "search_aliases": "WGC",
+      "access_note": "行业组织，非政府统计机构；记录估算、样本与修订。",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P41",
+      "name": "伦敦金银市场协会",
+      "group": "行业基准",
+      "entrypoint": "https://www.lbma.org.uk/",
+      "topics": "贵金属基准、库存、市场调查",
+      "content_role": "mixed",
+      "search_aliases": "LBMA",
+      "access_note": "区分协会统计、基准管理人发布及分析师预测，记录基准时点和授权范围。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "LBMA市场报告",
+        "LBMA许可基准序列"
+      ]
+    },
+    {
+      "id": "P42",
+      "name": "美国商品期货交易委员会",
+      "group": "海外官方",
+      "entrypoint": "https://www.cftc.gov/",
+      "topics": "COT持仓报告、交易者类别、黄金等期货仓位",
+      "content_role": "fact",
+      "search_aliases": "CFTC COT",
+      "access_note": "持仓统计日与报告公布日分开；不可混用legacy/disaggregated及futures-only/combined。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "CFTC黄金COT"
+      ]
+    },
+    {
+      "id": "P43",
+      "name": "CME FedWatch及利率期货",
+      "group": "市场隐含预期",
+      "entrypoint": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+      "topics": "FOMC会议目标利率概率、联邦基金期货、定价变化",
+      "content_role": "market-implied",
+      "search_aliases": "",
+      "access_note": "期货价格和模型假设推算的隐含概率，不是美联储承诺或客观决策概率。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "当前FedWatch概率矩阵"
+      ]
+    },
+    {
+      "id": "P44",
+      "name": "纽约联邦储备银行",
+      "group": "海外官方",
+      "entrypoint": "https://www.newyorkfed.org/",
+      "topics": "SOFR、回购、逆回购、公开市场操作、SOMA",
+      "content_role": "fact",
+      "search_aliases": "New York Fed SOFR ON RRP",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P45",
+      "name": "美国投资公司协会",
+      "group": "行业一手",
+      "entrypoint": "https://www.ici.org/",
+      "topics": "共同基金、ETF、货币市场基金资产与资金流",
+      "content_role": "fact",
+      "search_aliases": "ICI",
+      "access_note": "行业协会；区分资产规模变化与净申赎，注明周度/月度频率。",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P46",
+      "name": "美国能源信息署",
+      "group": "海外官方",
+      "entrypoint": "https://www.eia.gov/",
+      "topics": "能源、原油、天然气、库存、产量、需求",
+      "content_role": "fact",
+      "search_aliases": "EIA",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P47",
+      "name": "美国农业部",
+      "group": "海外官方",
+      "entrypoint": "https://www.usda.gov/",
+      "topics": "农产品供需、库存、产量、WASDE",
+      "content_role": "fact",
+      "search_aliases": "USDA",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "P48",
+      "name": "FRED／ALFRED",
+      "group": "历史数据与修订",
+      "entrypoint": "https://fred.stlouisfed.org/",
+      "topics": "宏观历史序列、数据源、历史版本、可得日期",
+      "content_role": "aggregator",
+      "search_aliases": "ALFRED https://alfred.stlouisfed.org/",
+      "access_note": "圣路易斯联储数据平台；追溯原始发布机构。用ALFRED等还原当时已知版本，禁止回测未来数据泄漏。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "FRED当前序列",
+        "ALFRED历史版本"
+      ]
+    },
+    {
+      "id": "P49",
+      "name": "指数编制方案、历史成分与调整公告",
+      "group": "历史数据与修订",
+      "entrypoint": "",
+      "topics": "估值口径、历史成分、指数调样、分红、全收益与价格指数",
+      "content_role": "methodology",
+      "search_aliases": "",
+      "access_note": "中证/中债/交易所/相应指数管理人原文；注意生存者偏差和指数方法变更。",
+      "entrypoint_http_readable_at_prior_check": false
+    }
+  ],
+  "entrypoint_checks_are_transport_only": true
+}

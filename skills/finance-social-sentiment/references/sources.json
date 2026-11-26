@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "layer": 3,
+  "purpose": "最低来源目录；真实样本、路径及缺口见routes.json，每轮按任务重新检查。",
+  "sources": [
+    {
+      "id": "S01",
+      "name": "X：美联储观察者",
+      "group": "X",
+      "entrypoint": "https://x.com/",
+      "topics": "美联储、利率、宏观叙事",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "运行时核实账号ID、履历/机构关联、原帖和首次发布时间；不预设任何账号天然权威。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S02",
+      "name": "X：黄金／宏观分析师",
+      "group": "X",
+      "entrypoint": "https://x.com/",
+      "topics": "黄金、美元、实际利率、仓位叙事",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "注明身份、潜在利益关联；分析师观点不等于官方事实。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S03",
+      "name": "X：基金及ETF官方账号",
+      "group": "X",
+      "entrypoint": "https://x.com/",
+      "topics": "基金与ETF传播、官方表态、互动情绪",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "用管理人官网反向核实账号；正式披露归第一层，营销和互动归本层。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S04",
+      "name": "Reddit r/Gold",
+      "group": "Reddit",
+      "entrypoint": "https://www.reddit.com/r/Gold/",
+      "topics": "黄金买卖倾向、实物溢价讨论",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S05",
+      "name": "Reddit r/investing",
+      "group": "Reddit",
+      "entrypoint": "https://www.reddit.com/r/investing/",
+      "topics": "投资叙事、资产配置、风险偏好",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "当前云浏览器明确拒绝未经授权agent；Firecrawl抓取不支持该站点。避免同路径重复试探。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S06",
+      "name": "Reddit r/stocks",
+      "group": "Reddit",
+      "entrypoint": "https://www.reddit.com/r/stocks/",
+      "topics": "股票、公司、风险偏好",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "当前云浏览器明确拒绝未经授权agent；Firecrawl抓取不支持该站点。避免同路径重复试探。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S07",
+      "name": "Reddit r/ChinaStocks",
+      "group": "Reddit",
+      "entrypoint": "https://www.reddit.com/r/ChinaStocks/",
+      "topics": "中国股票、海外参与者情绪",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "当前云浏览器明确拒绝未经授权agent；Firecrawl抓取不支持该站点。避免同路径重复试探。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "雪球",
+      "group": "国内社交",
+      "entrypoint": "https://xueqiu.com/",
+      "topics": "股票、基金、黄金、转债、配置情绪",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S09",
+      "name": "微博财经",
+      "group": "国内社交",
+      "entrypoint": "https://weibo.com/",
+      "topics": "财经热点、讨论热度、风险偏好",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "用户已停止微博采集；默认范围外。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "S10",
+      "name": "知乎",
+      "group": "国内社交",
+      "entrypoint": "https://www.zhihu.com/",
+      "topics": "财经问题、投资叙事、情绪",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S11",
+      "name": "公众号热文",
+      "group": "国内社交",
+      "entrypoint": "https://mp.weixin.qq.com/",
+      "topics": "宏观、基金、黄金、市场叙事",
+      "content_role": "sentiment",
+      "search_aliases": "",
+      "access_note": "记录公众号名、可见账号标识、作者、发布时间和原文；区分媒体/机构官方账号与个人号；阅读/点赞不可见则未知。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S12",
+      "name": "Polymarket 美联储决议合约",
+      "group": "预测市场",
+      "entrypoint": "https://polymarket.com/",
+      "topics": "FOMC决议赔率、预期变化",
+      "content_role": "market-implied",
+      "search_aliases": "",
+      "access_note": "记录具体合约及各结果、成交量/流动性、结算规则、价格时点；赔率不是客观概率，不混同FedWatch。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S13",
+      "name": "CNN Fear & Greed Index",
+      "group": "复合情绪指标",
+      "entrypoint": "https://www.cnn.com/markets/fear-and-greed",
+      "topics": "美股风险偏好、分项指标、情绪变化",
+      "content_role": "sentiment-index",
+      "search_aliases": "CNN 恐惧贪婪指数",
+      "access_note": "主要对应美股相关情绪；标注指数更新时间、量表和方法，不外推A股或黄金。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    },
+    {
+      "id": "S14",
+      "name": "国内基金申赎热度",
+      "group": "资金与热度代理",
+      "entrypoint": "",
+      "topics": "基金讨论、搜索、榜单、申购赎回热度",
+      "content_role": "proxy",
+      "search_aliases": "天天基金 蛋卷 韭圈儿 基金申购赎回 热度",
+      "access_note": "实际净申赎须有管理人/发行人/交易所等数据支持；讨论、搜索、销量榜是代理变量，不能转换成资金净流入金额。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "账号/时间/内容/交叉核验"
+      ]
+    }
+  ],
+  "entrypoint_checks_are_transport_only": true
+}

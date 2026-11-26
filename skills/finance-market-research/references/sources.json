@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "layer": 2,
+  "purpose": "最低来源目录；真实样本、路径及缺口见routes.json，每轮按任务重新检查。",
+  "sources": [
+    {
+      "id": "M01",
+      "name": "财新",
+      "group": "国内媒体",
+      "entrypoint": "https://www.caixin.com/",
+      "topics": "政策、宏观、公司",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M02",
+      "name": "第一财经",
+      "group": "国内媒体",
+      "entrypoint": "https://www.yicai.com/",
+      "topics": "宏观、市场、公司",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M03",
+      "name": "证券时报",
+      "group": "国内媒体",
+      "entrypoint": "https://www.stcn.com/",
+      "topics": "证券、基金、政策、公司",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M04",
+      "name": "中国证券报",
+      "group": "国内媒体",
+      "entrypoint": "https://www.cs.com.cn/",
+      "topics": "证券、基金、政策",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M05",
+      "name": "上海证券报",
+      "group": "国内媒体",
+      "entrypoint": "https://www.cnstock.com/",
+      "topics": "证券、基金、政策",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M06",
+      "name": "21世纪经济报道",
+      "group": "国内媒体",
+      "entrypoint": "https://www.21jingji.com/",
+      "topics": "宏观、金融、产业",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M07",
+      "name": "经济观察报",
+      "group": "国内媒体",
+      "entrypoint": "https://www.eeo.com.cn/",
+      "topics": "宏观、产业、公司",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M08",
+      "name": "华尔街见闻",
+      "group": "国内媒体",
+      "entrypoint": "https://wallstreetcn.com/",
+      "topics": "宏观、全球市场、快讯",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M09",
+      "name": "金十数据",
+      "group": "国内媒体",
+      "entrypoint": "https://www.jin10.com/",
+      "topics": "宏观日历、预期、快讯、商品",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M10",
+      "name": "格隆汇",
+      "group": "国内媒体",
+      "entrypoint": "https://www.gelonghui.com/",
+      "topics": "港股、公司、基金、市场观点",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M11",
+      "name": "智通财经",
+      "group": "国内媒体",
+      "entrypoint": "https://www.zhitongcaijing.com/",
+      "topics": "港美股、公司、市场观点",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M12",
+      "name": "新浪财经",
+      "group": "国内媒体",
+      "entrypoint": "https://finance.sina.com.cn/",
+      "topics": "市场、基金、宏观、转载",
+      "content_role": "mixed",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M13",
+      "name": "界面新闻",
+      "group": "国内媒体",
+      "entrypoint": "https://www.jiemian.com/",
+      "topics": "财经、公司、产业",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M14",
+      "name": "路透",
+      "group": "海外媒体",
+      "entrypoint": "https://www.reuters.com/",
+      "topics": "全球宏观、政策、公司、商品",
+      "content_role": "reporting",
+      "search_aliases": "Reuters",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M15",
+      "name": "彭博",
+      "group": "海外媒体",
+      "entrypoint": "https://www.bloomberg.com/",
+      "topics": "全球宏观、政策、公司、市场",
+      "content_role": "reporting",
+      "search_aliases": "Bloomberg",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M16",
+      "name": "华尔街日报",
+      "group": "海外媒体",
+      "entrypoint": "https://www.wsj.com/",
+      "topics": "宏观、公司、政策、市场",
+      "content_role": "reporting",
+      "search_aliases": "The Wall Street Journal WSJ",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M17",
+      "name": "金融时报",
+      "group": "海外媒体",
+      "entrypoint": "https://www.ft.com/",
+      "topics": "全球金融、宏观、公司",
+      "content_role": "reporting",
+      "search_aliases": "Financial Times FT",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M18",
+      "name": "CNBC",
+      "group": "海外媒体",
+      "entrypoint": "https://www.cnbc.com/",
+      "topics": "美国市场、宏观、公司",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M19",
+      "name": "MarketWatch",
+      "group": "海外媒体",
+      "entrypoint": "https://www.marketwatch.com/",
+      "topics": "市场、宏观、投资",
+      "content_role": "reporting",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M20",
+      "name": "Barron's",
+      "group": "海外媒体",
+      "entrypoint": "https://www.barrons.com/",
+      "topics": "公司、基金、投资观点",
+      "content_role": "mixed",
+      "search_aliases": "巴伦周刊 Barrons",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M21",
+      "name": "日经亚洲",
+      "group": "海外媒体",
+      "entrypoint": "https://asia.nikkei.com/",
+      "topics": "亚洲宏观、产业、公司",
+      "content_role": "reporting",
+      "search_aliases": "Nikkei Asia",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true
+    },
+    {
+      "id": "M22",
+      "name": "天天基金／东方财富",
+      "group": "数据平台",
+      "entrypoint": "https://fund.eastmoney.com/",
+      "topics": "净值、费率、持仓、基金公告、估值、基金与市场数据",
+      "content_role": "aggregator",
+      "search_aliases": "https://www.eastmoney.com/",
+      "access_note": "基金正式净值与盘中估算分列；公告回溯管理人/交易所。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "研报元数据",
+        "基金净值/公告/持仓"
+      ]
+    },
+    {
+      "id": "M23",
+      "name": "晨星",
+      "group": "数据平台",
+      "entrypoint": "https://www.morningstar.com/",
+      "topics": "基金分类、评级、持仓、风险与收益比较",
+      "content_role": "aggregator",
+      "search_aliases": "Morningstar",
+      "access_note": "核实地区版本、覆盖范围和评级方法，不将评级视为未来收益保证。",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M24",
+      "name": "同花顺",
+      "group": "数据平台",
+      "entrypoint": "https://www.10jqka.com.cn/",
+      "topics": "公司、基金、估值、预期、市场数据",
+      "content_role": "aggregator",
+      "search_aliases": "",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "财经报道",
+        "估值/盈利预测数据"
+      ]
+    },
+    {
+      "id": "M25",
+      "name": "集思录",
+      "group": "数据平台",
+      "entrypoint": "https://www.jisilu.cn/",
+      "topics": "转债中位价、转股溢价率、纯债价值、下修、赎回、回售",
+      "content_role": "aggregator",
+      "search_aliases": "",
+      "access_note": "记录样本、筛选、停牌与退市处理；条款事件回查发行人公告。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "当前转债中位价/溢价率"
+      ]
+    },
+    {
+      "id": "M26",
+      "name": "蛋卷基金",
+      "group": "数据平台",
+      "entrypoint": "https://danjuanfunds.com/",
+      "topics": "基金、指数估值分位、配置",
+      "content_role": "aggregator",
+      "search_aliases": "蛋卷基金 雪球基金",
+      "access_note": "实测原入口跳转/展示雪球基金；保留旧名检索。动态估值和基金数据需单独核验。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "估值分位"
+      ]
+    },
+    {
+      "id": "M27",
+      "name": "韭圈儿",
+      "group": "数据平台",
+      "entrypoint": "https://www.funddb.cn/",
+      "topics": "基金、指数估值分位、情绪与热度",
+      "content_role": "aggregator",
+      "search_aliases": "韭圈儿 官方 估值",
+      "access_note": "由App Store发行人说明核实入口；本轮HTTP 200但静态读取为JS外壳，未证明估值分位数据可得。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "估值分位"
+      ]
+    },
+    {
+      "id": "M28",
+      "name": "中信证券研究",
+      "group": "券商研报",
+      "entrypoint": "https://research.citics.com/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "中信证券研究部",
+      "access_note": "公开搜索发现专用研究入口；此前公司官网债券偿还公告不能作为研报获取成功，研究全文权限另查。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M29",
+      "name": "中金公司研究",
+      "group": "券商研报",
+      "entrypoint": "https://www.cicc.com/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "中金研究 CICC",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M30",
+      "name": "华泰证券研究",
+      "group": "券商研报",
+      "entrypoint": "https://www.htsc.com.cn/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "华泰研究",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M31",
+      "name": "国泰君安／国泰海通研究团队",
+      "group": "券商研报",
+      "entrypoint": "https://www.gtht.com/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "国泰君安研究 国泰海通研究",
+      "access_note": "实测核实当前国泰海通入口，保留国泰君安检索历史；首页为JS外壳，不代表原始研报可读。",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M32",
+      "name": "招商证券研究",
+      "group": "券商研报",
+      "entrypoint": "https://www.cmschina.com/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "招商证券研究发展中心",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M33",
+      "name": "广发证券研究",
+      "group": "券商研报",
+      "entrypoint": "https://www.gf.com.cn/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "广发证券发展研究中心",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M34",
+      "name": "天风证券研究",
+      "group": "券商研报",
+      "entrypoint": "https://www.tfzq.com/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "天风研究",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M35",
+      "name": "兴业证券研究",
+      "group": "券商研报",
+      "entrypoint": "https://www.xyzq.com.cn/",
+      "topics": "策略、固收、有色",
+      "content_role": "opinion",
+      "search_aliases": "兴证研究 兴业证券经济与金融研究院",
+      "access_note": "",
+      "entrypoint_http_readable_at_prior_check": true,
+      "required_components": [
+        "策略",
+        "固收",
+        "有色"
+      ]
+    },
+    {
+      "id": "M36",
+      "name": "经济数据一致预期与发布日历",
+      "group": "预期与定价",
+      "entrypoint": "",
+      "topics": "CPI、非农、PCE、GDP等实际值、预期、前值及修正值",
+      "content_role": "consensus",
+      "search_aliases": "Reuters Bloomberg economic calendar consensus",
+      "access_note": "优先可访问的原始调查/授权数据；注明调查机构、样本和截止时间。不同预期来源不可混算。",
+      "entrypoint_http_readable_at_prior_check": false,
+      "required_components": [
+        "一致预期/前值/实际值"
+      ]
+    },
+    {
+      "id": "M37",
+      "name": "盈利预测与修正",
+      "group": "预期与定价",
+      "entrypoint": "",
+      "topics": "EPS、收入、盈利预测上调/下调、目标价分歧",
+      "content_role": "consensus",
+      "search_aliases": "",
+      "access_note": "区分单家研报和多家一致预期；记录预测年度、覆盖样本、更新时点。",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M38",
+      "name": "利率期货与期权定价",
+      "group": "预期与定价",
+      "entrypoint": "",
+      "topics": "利率路径、隐含波动率、偏斜、期限结构",
+      "content_role": "market-implied",
+      "search_aliases": "",
+      "access_note": "优先交易所、发行人或有授权数据平台；注明合约、期限、标的、报价时点及模型。FedWatch原始读数归第一层。",
+      "entrypoint_http_readable_at_prior_check": false
+    },
+    {
+      "id": "M39",
+      "name": "基金、指数与转债比较分析",
+      "group": "数据方法",
+      "entrypoint": "",
+      "topics": "收益归因、风格漂移、风险暴露、基准、跟踪误差、转债估值分布",
+      "content_role": "analysis",
+      "search_aliases": "",
+      "access_note": "净值/公告追溯第一层；匹配价格/全收益基准，统一分红、费用和币种；区分价格上涨与申赎。",
+      "entrypoint_http_readable_at_prior_check": false
+    }
+  ],
+  "entrypoint_checks_are_transport_only": true
+}

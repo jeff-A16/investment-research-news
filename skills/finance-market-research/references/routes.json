@@ -1,0 +1,1827 @@
+{
+  "protocol": "finance-research-v3",
+  "scope": "tested discovery/routes and samples; discover current content for each run",
+  "sources": [
+    {
+      "source_id": "M01",
+      "last_content_tier": "B",
+      "evidence_status": "reviewed_excerpt",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "财新原站公开摘录可读，陈博、6月11日15:13:54；全文订阅权限未取得。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.caixin.com/2026-06-11/102453057.html",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "80261948ef4c-M01",
+          "actual_reading_link": "https://www.caixin.com/2026-06-11/102453057.html",
+          "original_link": "https://www.caixin.com/2026-06-11/102453057.html",
+          "sample_assessment": "财新原站公开摘录可读，陈博、6月11日15:13:54；全文订阅权限未取得。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.caixin.com 政策 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.caixin.com/2026-06-11/102453057.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-0227351e434b",
+          "actual_reading_link": "https://www.caixin.com/2026-06-11/102453057.html",
+          "original_link": "https://www.caixin.com/2026-06-11/102453057.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.caixin.com/2026-11-25/102508627.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "97da105b9258-M01",
+          "actual_reading_link": "https://finance.caixin.com/2026-11-25/102508627.html",
+          "original_link": "https://finance.caixin.com/2026-11-25/102508627.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.caixin.com/2026-07-03/102460167.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-0227351e434b",
+          "actual_reading_link": "https://www.caixin.com/2026-07-03/102460167.html",
+          "original_link": "https://www.caixin.com/2026-07-03/102460167.html"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M02",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:yicai.com 第一财经",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.yicai.com/news/103454523.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "2dc7d39a6d70-M02",
+          "actual_reading_link": "https://www.yicai.com/news/103454523.html",
+          "original_link": "https://www.yicai.com/news/103454523.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.yicai.com/news/102062384.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "1a1f96449871-M02",
+          "actual_reading_link": "https://www.yicai.com/news/102062384.html",
+          "original_link": "https://www.yicai.com/news/102062384.html"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M03",
+      "last_content_tier": "B",
+      "evidence_status": "reviewed_excerpt",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "证券时报白银报道有原站索引摘录；直读503，准确首发时刻和全文未核实，不能称直读成功。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.stcn.com/article/detail/3615392.html",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-a6f0f0a71bb5",
+          "actual_reading_link": "https://www.stcn.com/article/detail/3615392.html",
+          "original_link": "https://www.stcn.com/article/detail/3615392.html",
+          "sample_assessment": "证券时报白银报道有原站索引摘录；直读503，准确首发时刻和全文未核实，不能称直读成功。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.stcn.com 证券 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.stcn.com/article/detail/3626581.html",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-2ef5492c6ccd",
+          "actual_reading_link": "https://www.stcn.com/article/detail/3626581.html",
+          "original_link": "https://www.stcn.com/article/detail/3626581.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://epaper.stcn.com/att/202611/25/ZQ25B025-QQ-ZN_eBook.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-ce265800dfe3",
+          "actual_reading_link": "https://epaper.stcn.com/att/202611/25/ZQ25B025-QQ-ZN_eBook.pdf",
+          "original_link": "https://epaper.stcn.com/att/202611/25/ZQ25B025-QQ-ZN_eBook.pdf"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M04",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "中国证券报券商半年报报道原文、作者刘英杰、9月8日08:30可读。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "d137d695991a-M04",
+          "actual_reading_link": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+          "original_link": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+          "sample_assessment": "中国证券报券商半年报报道原文、作者刘英杰、9月8日08:30可读。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.cs.com.cn 证券 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-0227351e434b",
+          "actual_reading_link": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html",
+          "original_link": "https://www.cs.com.cn/qs/2026/09/08/detail_2026090810037496.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cs.com.cn/ssgs/cj2020/2026/11/26/detail_2026112610054885.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "a1519a099adf-M04",
+          "actual_reading_link": "https://www.cs.com.cn/ssgs/cj2020/2026/11/26/detail_2026112610054885.html",
+          "original_link": "https://www.cs.com.cn/ssgs/cj2020/2026/11/26/detail_2026112610054885.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cs.com.cn/qs/2026/10/09/detail_2026100910043500.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-0227351e434b",
+          "actual_reading_link": "https://www.cs.com.cn/qs/2026/10/09/detail_2026100910043500.html",
+          "original_link": "https://www.cs.com.cn/qs/2026/10/09/detail_2026100910043500.html"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M05",
+      "last_content_tier": "D",
+      "evidence_status": "metadata_only",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "上证报候选仅标题/作者/时间元数据，无目标正文；HTTP503，不能算公开摘录成功。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cnstock.com/commonDetail/832760",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-0ecff79ef0e4",
+          "actual_reading_link": "https://www.cnstock.com/commonDetail/832760",
+          "original_link": "https://www.cnstock.com/commonDetail/832760",
+          "sample_assessment": "上证报候选仅标题/作者/时间元数据，无目标正文；HTTP503，不能算公开摘录成功。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.cnstock.com 证券 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cnstock.com/commonDetail/832760",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-10cdf895ac44",
+          "actual_reading_link": "https://www.cnstock.com/commonDetail/832760",
+          "original_link": "https://www.cnstock.com/commonDetail/832760"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://paper.cnstock.com/html/2026-11/02/content_2286139.htm",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-ce265800dfe3",
+          "actual_reading_link": "https://paper.cnstock.com/html/2026-11/02/content_2286139.htm",
+          "original_link": "https://paper.cnstock.com/html/2026-11/02/content_2286139.htm"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M06",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "读到21财经页面、2026-11-26 15:35及正文；页面标来源财联社，按转载处理，未冒充21世纪独家原稿。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:www.21jingji.com 宏观 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://m.21jingji.com/article/20261126/herald/d3e5a6cd6285987d06bb5f78a9ac31be.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "6244a2c11c0b-M06",
+          "actual_reading_link": "https://m.21jingji.com/article/20261126/herald/d3e5a6cd6285987d06bb5f78a9ac31be.html",
+          "original_link": "https://m.21jingji.com/article/20261126/herald/d3e5a6cd6285987d06bb5f78a9ac31be.html"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M07",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "经济观察报未名宏观贸易分析全文可读；10月19日历史评论，不能当官方贸易统计。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "c83264b90ffd-M07",
+          "actual_reading_link": "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+          "original_link": "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+          "sample_assessment": "经济观察报未名宏观贸易分析全文可读；10月19日历史评论，不能当官方贸易统计。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.eeo.com.cn 宏观 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-a1b816fa6bcf",
+          "actual_reading_link": "https://www.eeo.com.cn/2026/1019/1069506.shtml",
+          "original_link": "https://www.eeo.com.cn/2026/1019/1069506.shtml"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "http://www.eeo.com.cn/2026/1125/1101746.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "6498a3fda387-M07",
+          "actual_reading_link": "http://www.eeo.com.cn/2026/1125/1101746.shtml",
+          "original_link": "http://www.eeo.com.cn/2026/1125/1101746.shtml"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.eeo.com.cn/2026/0929/1051205.shtml",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-a1b816fa6bcf",
+          "actual_reading_link": "https://www.eeo.com.cn/2026/0929/1051205.shtml",
+          "original_link": "https://www.eeo.com.cn/2026/0929/1051205.shtml"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M08",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "华尔街见闻RSS63条及单篇全文可读；过滤推广条目，feed pubDate与文章首次发布时间分开。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://wallstreetcn.com/articles/3786760",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "6756fa7f82e9-M08",
+          "actual_reading_link": "https://wallstreetcn.com/articles/3786760",
+          "original_link": "https://wallstreetcn.com/articles/3786760",
+          "sample_assessment": "华尔街见闻RSS63条及单篇全文可读；过滤推广条目，feed pubDate与文章首次发布时间分开。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:wallstreetcn.com 宏观 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://wdl.wallstreetcn.com/Trade%20report%20-%20CHN%20A4%202M.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-068e21541d59",
+          "actual_reading_link": "https://wdl.wallstreetcn.com/Trade%20report%20-%20CHN%20A4%202M.pdf",
+          "original_link": "https://wdl.wallstreetcn.com/Trade%20report%20-%20CHN%20A4%202M.pdf"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://wallstreetcn.com/master-course-chat",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-068e21541d59",
+          "actual_reading_link": "https://wallstreetcn.com/master-course-chat",
+          "original_link": "https://wallstreetcn.com/master-course-chat"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M09",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:jin10.com 金十数据",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://flash.jin10.com/detail/20261125033837958800",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "2c56d254c1c7-M09",
+          "actual_reading_link": "https://flash.jin10.com/detail/20261125033837958800",
+          "original_link": "https://flash.jin10.com/detail/20261125033837958800"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://flash.jin10.com/detail/20261123081114102800",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-00ee84b42bd0",
+          "actual_reading_link": "https://flash.jin10.com/detail/20261123081114102800",
+          "original_link": "https://flash.jin10.com/detail/20261123081114102800"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M10",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "格隆汇港股收评正文可读；可见08-31 16:48缺年份，不能归入当前24小时。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.gelonghui.com/news/5301998",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "8465bef2e220-M10",
+          "actual_reading_link": "https://www.gelonghui.com/news/5301998",
+          "original_link": "https://www.gelonghui.com/news/5301998",
+          "sample_assessment": "格隆汇港股收评正文可读；可见08-31 16:48缺年份，不能归入当前24小时。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.gelonghui.com 港股 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.gelonghui.com/news/5301998",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-068e21541d59",
+          "actual_reading_link": "https://www.gelonghui.com/news/5301998",
+          "original_link": "https://www.gelonghui.com/news/5301998"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.gelonghui.com/news/5349521",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-068e21541d59",
+          "actual_reading_link": "https://www.gelonghui.com/news/5349521",
+          "original_link": "https://www.gelonghui.com/news/5349521"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M11",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "智通财经原文、作者及2025年9月4日时间可读；历史研报转述，不能误作2026新文。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.zhitongcaijing.com/content/detail/1341404.html",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "fb035b603f2c-M11",
+          "actual_reading_link": "https://www.zhitongcaijing.com/content/detail/1341404.html",
+          "original_link": "https://www.zhitongcaijing.com/content/detail/1341404.html",
+          "sample_assessment": "智通财经原文、作者及2025年9月4日时间可读；历史研报转述，不能误作2026新文。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.zhitongcaijing.com 港美股 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.zhitongcaijing.com/content/detail/1341404.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-068e21541d59",
+          "actual_reading_link": "https://www.zhitongcaijing.com/content/detail/1341404.html",
+          "original_link": "https://www.zhitongcaijing.com/content/detail/1341404.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.zhitongcaijing.com/content/detail/1348406.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-068e21541d59",
+          "actual_reading_link": "https://www.zhitongcaijing.com/content/detail/1348406.html",
+          "original_link": "https://www.zhitongcaijing.com/content/detail/1348406.html"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M12",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "新浪公开英大证券策略摘要，机构、作者、报告日期可读；原机构报告URL未取得，非新浪原创。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "d371c341f0c8-M12",
+          "actual_reading_link": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml",
+          "original_link": null,
+          "sample_assessment": "新浪公开英大证券策略摘要，机构、作者、报告日期可读；原机构报告URL未取得，非新浪原创。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:finance.sina.com.cn 市场 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-29bf92f71a92",
+          "actual_reading_link": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml",
+          "original_link": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/strategy/rptid/847713171125/index.phtml"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.sina.com.cn/stock/hkstock/hkstocknews/2026-11-23/doc-iniztfna2226615.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "3d1cfb5a3202-M12",
+          "actual_reading_link": "https://finance.sina.com.cn/stock/hkstock/hkstocknews/2026-11-23/doc-iniztfna2226615.shtml",
+          "original_link": "https://finance.sina.com.cn/stock/hkstock/hkstocknews/2026-11-23/doc-iniztfna2226615.shtml"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848228007978/index.phtml",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-29bf92f71a92",
+          "actual_reading_link": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848228007978/index.phtml",
+          "original_link": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848228007978/index.phtml"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M13",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "界面JMedia明确转载WEMONEY研究室林见微、编辑刘双霞文章；原作者可追溯，原站首发URL及时间未取得。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jiemian.com/article/15108963.html",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "1f5f6aea1241-M13",
+          "actual_reading_link": "https://www.jiemian.com/article/15108963.html",
+          "original_link": null,
+          "sample_assessment": "界面JMedia明确转载WEMONEY研究室林见微、编辑刘双霞文章；原作者可追溯，原站首发URL及时间未取得。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.jiemian.com 财经 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jiemian.com/article/15108963.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-29bf92f71a92",
+          "actual_reading_link": "https://www.jiemian.com/article/15108963.html",
+          "original_link": "https://www.jiemian.com/article/15108963.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jiemian.com/article/15377503.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "ee5348173c9f-M13",
+          "actual_reading_link": "https://www.jiemian.com/article/15377503.html",
+          "original_link": "https://www.jiemian.com/article/15377503.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jiemian.com/videoLive/AGICNghkB24%3D.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-29bf92f71a92",
+          "actual_reading_link": "https://www.jiemian.com/videoLive/AGICNghkB24%3D.html",
+          "original_link": "https://www.jiemian.com/videoLive/AGICNghkB24%3D.html"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M14",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "宿主读取工具读到路透11月20日原稿及By Reuters、21:17 UTC；其他路透URL仍可能401，非全站权限。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reuters.com/business/view-nasdaq-plunges-5-day-after-anthropic-debut-investors-still-believe-ai-2026-11-20/",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-b10f265a2da1",
+          "actual_reading_link": "https://www.reuters.com/business/view-nasdaq-plunges-5-day-after-anthropic-debut-investors-still-believe-ai-2026-11-20/",
+          "original_link": "https://www.reuters.com/business/view-nasdaq-plunges-5-day-after-anthropic-debut-investors-still-believe-ai-2026-11-20/",
+          "sample_assessment": "宿主读取工具读到路透11月20日原稿及By Reuters、21:17 UTC；其他路透URL仍可能401，非全站权限。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.reuters.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reuters.com/",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-48ee55b2ae61",
+          "actual_reading_link": "https://www.reuters.com/",
+          "original_link": "https://www.reuters.com/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reuters.com/world/india/gold-steadies-after-hitting-over-1-year-low-fed-outlook-focus-2026-11-26/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-7b83ab77e511",
+          "actual_reading_link": "https://www.reuters.com/world/india/gold-steadies-after-hitting-over-1-year-low-fed-outlook-focus-2026-11-26/",
+          "original_link": "https://www.reuters.com/world/india/gold-steadies-after-hitting-over-1-year-low-fed-outlook-focus-2026-11-26/"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M15",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "Yahoo公开彭博供稿全文，作者Wendy Wells、11月25日00:33:58Z；彭博原稿URL未取得。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/markets/commodities/articles/gold-holds-decline-us-tariff-003358772.html",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "bbaf5e355abd-M15",
+          "actual_reading_link": "https://finance.yahoo.com/markets/commodities/articles/gold-holds-decline-us-tariff-003358772.html",
+          "original_link": null,
+          "sample_assessment": "Yahoo公开彭博供稿全文，作者Wendy Wells、11月25日00:33:58Z；彭博原稿URL未取得。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.bloomberg.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://bloomberg.com/news/articles/2026-11-16/goldman-forecasts-gold-to-take-two-years-to-recapture-all-time-highs",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-7b83ab77e511",
+          "actual_reading_link": "https://bloomberg.com/news/articles/2026-11-16/goldman-forecasts-gold-to-take-two-years-to-recapture-all-time-highs",
+          "original_link": "https://bloomberg.com/news/articles/2026-11-16/goldman-forecasts-gold-to-take-two-years-to-recapture-all-time-highs"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://bloomberg.com/news/articles/2026-11-12/gold-holds-below-4-000-as-market-looks-ahead-to-fed-rate-hike",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-7b83ab77e511",
+          "actual_reading_link": "https://bloomberg.com/news/articles/2026-11-12/gold-holds-below-4-000-as-market-looks-ahead-to-fed-rate-hike",
+          "original_link": "https://bloomberg.com/news/articles/2026-11-12/gold-holds-below-4-000-as-market-looks-ahead-to-fed-rate-hike"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M16",
+      "last_content_tier": "B",
+      "evidence_status": "reviewed_excerpt",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "WSJ官方索引摘要可读；更新11月26日08:40 UTC，首次时间不明，未获全文订阅。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.wsj.com/finance/commodities-futures/gold-edges-lower-amid-rate-hike-bets-1d4057c0",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-93a593d86ba7",
+          "actual_reading_link": "https://www.wsj.com/finance/commodities-futures/gold-edges-lower-amid-rate-hike-bets-1d4057c0",
+          "original_link": "https://www.wsj.com/finance/commodities-futures/gold-edges-lower-amid-rate-hike-bets-1d4057c0",
+          "sample_assessment": "WSJ官方索引摘要可读；更新11月26日08:40 UTC，首次时间不明，未获全文订阅。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.wsj.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.wsj.com/public/resources/documents/GqF7D5JzRw3xpQ4mBoPa-WSJNewsPaper-3-28-2026.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-1627e5b4c203",
+          "actual_reading_link": "https://www.wsj.com/public/resources/documents/GqF7D5JzRw3xpQ4mBoPa-WSJNewsPaper-3-28-2026.pdf",
+          "original_link": "https://www.wsj.com/public/resources/documents/GqF7D5JzRw3xpQ4mBoPa-WSJNewsPaper-3-28-2026.pdf"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.wsj.com/public/resources/documents/k702r7pmnJVZujXilR4C-WSJNewsPaper-3-20-2026.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-1627e5b4c203",
+          "actual_reading_link": "https://www.wsj.com/public/resources/documents/k702r7pmnJVZujXilR4C-WSJNewsPaper-3-20-2026.pdf",
+          "original_link": "https://www.wsj.com/public/resources/documents/k702r7pmnJVZujXilR4C-WSJNewsPaper-3-20-2026.pdf"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M17",
+      "last_content_tier": "B",
+      "evidence_status": "reviewed_excerpt",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "FT官方索引摘录可读，10月15日；原页面403验证墙，未获全文，不继续重试验证墙。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-dda43beefdfb",
+          "actual_reading_link": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+          "original_link": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+          "sample_assessment": "FT官方索引摘录可读，10月15日；原页面403验证墙，未获全文，不继续重试验证墙。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.ft.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-7b83ab77e511",
+          "actual_reading_link": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642",
+          "original_link": "https://www.ft.com/content/7761de04-7fac-4f7b-bddb-8457e425b642"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.ft.com/content/38a2ce31-d7f5-48d0-a8b6-2b4f3ed45df6",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-7b83ab77e511",
+          "actual_reading_link": "https://www.ft.com/content/38a2ce31-d7f5-48d0-a8b6-2b4f3ed45df6",
+          "original_link": "https://www.ft.com/content/38a2ce31-d7f5-48d0-a8b6-2b4f3ed45df6"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M18",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "TPEHub公开转载正文标CNBC并链接原稿；11月25日18:00未标时区，CNBC原站访问受限。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://live.tpehub.com/knowledge-and-research/news/gold-slips-on-stronger-dollar-us-inflation-data-in-focus",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "b956d07828ee-M18",
+          "actual_reading_link": "https://live.tpehub.com/knowledge-and-research/news/gold-slips-on-stronger-dollar-us-inflation-data-in-focus",
+          "original_link": "https://www.cnbc.com/2026/11/25/gold-metals-federal-reserve-inflation.html",
+          "sample_assessment": "TPEHub公开转载正文标CNBC并链接原稿；11月25日18:00未标时区，CNBC原站访问受限。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.cnbc.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cnbc.com/select/best-places-to-buy-physical-gold/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-65c5bd29c24a",
+          "actual_reading_link": "https://www.cnbc.com/select/best-places-to-buy-physical-gold/",
+          "original_link": "https://www.cnbc.com/select/best-places-to-buy-physical-gold/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cnbc.com/select/the-price-of-gold-today-september-4-2026-and-the-best-places-to-buy/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-65c5bd29c24a",
+          "actual_reading_link": "https://www.cnbc.com/select/the-price-of-gold-today-september-4-2026-and-the-best-places-to-buy/",
+          "original_link": "https://www.cnbc.com/select/the-price-of-gold-today-september-4-2026-and-the-best-places-to-buy/"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M19",
+      "last_content_tier": "B",
+      "evidence_status": "reviewed_excerpt",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "MarketWatch公开导语可读；首发11月6日12:47Z、元数据更新13:19Z与JSON-LD不一致并保留，全文未获。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "d286f772a668-M19",
+          "actual_reading_link": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+          "original_link": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+          "sample_assessment": "MarketWatch公开导语可读；首发11月6日12:47Z、元数据更新13:19Z与JSON-LD不一致并保留，全文未获。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.marketwatch.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-65c5bd29c24a",
+          "actual_reading_link": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0",
+          "original_link": "https://www.marketwatch.com/story/goldmans-new-gold-target-why-the-wall-street-bank-is-saying-its-early-to-buy-the-yellow-metal-d8ae35e0"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.marketwatch.com/story/gold-is-starting-to-move-on-something-a-lot-bigger-than-inflation-39509ac5",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-65c5bd29c24a",
+          "actual_reading_link": "https://www.marketwatch.com/story/gold-is-starting-to-move-on-something-a-lot-bigger-than-inflation-39509ac5",
+          "original_link": "https://www.marketwatch.com/story/gold-is-starting-to-move-on-something-a-lot-bigger-than-inflation-39509ac5"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M20",
+      "last_content_tier": "B",
+      "evidence_status": "reviewed_excerpt",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "Barron’s原站公开导语和作者Paul R. La Monica可读；11月4日历史稿，全文未获。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.barrons.com/articles/gold-price-dollar-bond-yields-midterm-elections-25a81dad",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-de04d5d47b7f",
+          "actual_reading_link": "https://www.barrons.com/articles/gold-price-dollar-bond-yields-midterm-elections-25a81dad",
+          "original_link": "https://www.barrons.com/articles/gold-price-dollar-bond-yields-midterm-elections-25a81dad",
+          "sample_assessment": "Barron’s原站公开导语和作者Paul R. La Monica可读；11月4日历史稿，全文未获。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.barrons.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.barrons.com/articles/gold-price-445b5410",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-bc4929ca27f4",
+          "actual_reading_link": "https://www.barrons.com/articles/gold-price-445b5410",
+          "original_link": "https://www.barrons.com/articles/gold-price-445b5410"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.barrons.com/",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-10cdf895ac44",
+          "actual_reading_link": "https://www.barrons.com/",
+          "original_link": "https://www.barrons.com/"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M21",
+      "last_content_tier": "D",
+      "evidence_status": "target_unavailable",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "只能读到2025年11月13日活动宣传页，未取得目标财经报道；实际新闻URL受robots限制，停止重试。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "dbc5e058b699-M21",
+          "actual_reading_link": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+          "original_link": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+          "sample_assessment": "只能读到2025年11月13日活动宣传页，未取得目标财经报道；实际新闻URL受robots限制，停止重试。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:asia.nikkei.com gold markets data {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-04a437535d2d",
+          "actual_reading_link": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026",
+          "original_link": "https://asia.nikkei.com/announcements/nikkei-asia-live-our-editors-predictions-for-2026"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://asia.nikkei.com/announcements",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-39f4d2c906c0",
+          "actual_reading_link": "https://asia.nikkei.com/announcements",
+          "original_link": "https://asia.nikkei.com/announcements"
+        },
+        {
+          "adapter": "marketaux",
+          "credential_env": "MARKETAUX_API_TOKEN",
+          "status": "registration_pending",
+          "publisher_mapping": "unverified; query sources endpoint after account creation"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M22",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "公开研报接口上轮返回50条元数据和63家机构；仅研报元数据已验证，基金净值/持仓等不能据此宣称全覆盖。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://reportapi.eastmoney.com/report/jg?qType=2",
+          "example_only": true,
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": null,
+          "actual_reading_link": "https://reportapi.eastmoney.com/report/jg?qType=2",
+          "original_link": "https://reportapi.eastmoney.com/report/jg?qType=2",
+          "sample_assessment": "公开研报接口上轮返回50条元数据和63家机构；仅研报元数据已验证，基金净值/持仓等不能据此宣称全覆盖。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:fund.eastmoney.com 净值 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://fund.eastmoney.com/gonggao/968030%2CAN202611251832036169.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-39f4d2c906c0",
+          "actual_reading_link": "https://fund.eastmoney.com/gonggao/968030%2CAN202611251832036169.html",
+          "original_link": "https://fund.eastmoney.com/gonggao/968030%2CAN202611251832036169.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://fund.eastmoney.com/a/202611263939936037.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "6577f18b7811-M22",
+          "actual_reading_link": "https://fund.eastmoney.com/a/202611263939936037.html",
+          "original_link": "https://fund.eastmoney.com/a/202611263939936037.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://fund.eastmoney.com/gonggao/968207%2CAN202611251832036164.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-39f4d2c906c0",
+          "actual_reading_link": "https://fund.eastmoney.com/gonggao/968207%2CAN202611251832036164.html",
+          "original_link": "https://fund.eastmoney.com/gonggao/968207%2CAN202611251832036164.html"
+        },
+        {
+          "adapter": "eastmoney_research",
+          "endpoint": "report/jg",
+          "params": {
+            "qType": 2,
+            "pageSize": 50,
+            "pageNo": 1,
+            "fields": ""
+          },
+          "status": "50 strategy metadata records retrieved; public front-end route",
+          "limitation": "not all named brokers in current report/org list; metadata is not original report text"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M23",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:morningstar.com 晨星",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/bltc2c16850a0481bfe/Not_All_That_Glitters_is_Gold.pdf",
+          "example_only": true,
+          "last_transport_status": "pdf_response",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "990ddbf8db54-M23",
+          "actual_reading_link": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/bltc2c16850a0481bfe/Not_All_That_Glitters_is_Gold.pdf",
+          "original_link": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/bltc2c16850a0481bfe/Not_All_That_Glitters_is_Gold.pdf"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/blte9be0dbf9d4ca790/6980caef60b267c7e4694b3f/Canadas_Golden_Year_2025.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-00ee84b42bd0",
+          "actual_reading_link": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/blte9be0dbf9d4ca790/6980caef60b267c7e4694b3f/Canadas_Golden_Year_2025.pdf",
+          "original_link": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/blte9be0dbf9d4ca790/6980caef60b267c7e4694b3f/Canadas_Golden_Year_2025.pdf"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M24",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "同花顺转载上证报中国证券网报道全文可读；属于报道分发，不证明估值/预测全量数据可得。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://news.10jqka.com.cn/20261111/c681717329.shtml",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "20f24ce91b2e-M24",
+          "actual_reading_link": "https://news.10jqka.com.cn/20261111/c681717329.shtml",
+          "original_link": null,
+          "sample_assessment": "同花顺转载上证报中国证券网报道全文可读；属于报道分发，不证明估值/预测全量数据可得。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.10jqka.com.cn 公司 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.10jqka.com.cn/?key=20%E6%94%AF%E5%85%AC%E5%8F%B8%E7%AE%80%E4%BB%8B",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-39f4d2c906c0",
+          "actual_reading_link": "https://www.10jqka.com.cn/?key=20%E6%94%AF%E5%85%AC%E5%8F%B8%E7%AE%80%E4%BB%8B",
+          "original_link": "https://www.10jqka.com.cn/?key=20%E6%94%AF%E5%85%AC%E5%8F%B8%E7%AE%80%E4%BB%8B"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://news.10jqka.com.cn/20261126/c682244457.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "f9054b4a71e4-M24",
+          "actual_reading_link": "https://news.10jqka.com.cn/20261126/c682244457.shtml",
+          "original_link": "https://news.10jqka.com.cn/20261126/c682244457.shtml"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.10jqka.com.cn/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-39f4d2c906c0",
+          "actual_reading_link": "https://www.10jqka.com.cn/",
+          "original_link": "https://www.10jqka.com.cn/"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M25",
+      "last_content_tier": "D",
+      "evidence_status": "target_unavailable",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "集思录当前转债中位价/溢价率未取得；匿名接口401、新列表是JS壳，过期索引缓存不当最新数值。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jisilu.cn/web/data/cb/list",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "781420aba7da-M25",
+          "actual_reading_link": "https://www.jisilu.cn/web/data/cb/list",
+          "original_link": "https://www.jisilu.cn/web/data/cb/list",
+          "sample_assessment": "集思录当前转债中位价/溢价率未取得；匿名接口401、新列表是JS壳，过期索引缓存不当最新数值。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.jisilu.cn 转债中位价 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jisilu.cn/question/516915",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-47cc9c768b97",
+          "actual_reading_link": "https://www.jisilu.cn/question/516915",
+          "original_link": "https://www.jisilu.cn/question/516915"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jisilu.cn/question/516915?gopage-true__page-1__item_id=5512768",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-47cc9c768b97",
+          "actual_reading_link": "https://www.jisilu.cn/question/516915?gopage-true__page-1__item_id=5512768",
+          "original_link": "https://www.jisilu.cn/question/516915?gopage-true__page-1__item_id=5512768"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M26",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "蛋卷/雪球基金匿名接口返回63条估值，数据期11月25日；分位0—1、时间戳毫秒，非实时行情。",
+      "routes": [
+        {
+          "adapter": "public_api",
+          "example_url": "https://danjuanfunds.com/djapi/index_eva/dj",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "api-3368b070f1ea",
+          "actual_reading_link": "https://danjuanfunds.com/djapi/index_eva/dj",
+          "original_link": "https://danjuanfunds.com/djapi/index_eva/dj",
+          "sample_assessment": "蛋卷/雪球基金匿名接口返回63条估值，数据期11月25日；分位0—1、时间戳毫秒，非实时行情。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:danjuanfunds.com 基金 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://disc.danjuanfunds.com/disc/CN_DISC/FUND_TIME/2022/01/21/102025259_ls_H2_AN202201211541680665_1.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-47cc9c768b97",
+          "actual_reading_link": "https://disc.danjuanfunds.com/disc/CN_DISC/FUND_TIME/2022/01/21/102025259_ls_H2_AN202201211541680665_1.pdf",
+          "original_link": "https://disc.danjuanfunds.com/disc/CN_DISC/FUND_TIME/2022/01/21/102025259_ls_H2_AN202201211541680665_1.pdf"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://danjuanfunds.com/funding/020018",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-47cc9c768b97",
+          "actual_reading_link": "https://danjuanfunds.com/funding/020018",
+          "original_link": "https://danjuanfunds.com/funding/020018"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M27",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "韭圈儿/估值表前端公开接口返回jx精选13条，更新11月25日；分位0—100并保留不足样本等标志，演示值已排除。",
+      "routes": [
+        {
+          "adapter": "public_api",
+          "example_url": "https://ai2.jiucaishuo.com/api/index-valuation?category=jx",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "api-b75c758d4cb0",
+          "actual_reading_link": "https://ai2.jiucaishuo.com/api/index-valuation?category=jx",
+          "original_link": "https://ai2.jiucaishuo.com/api/index-valuation?category=jx",
+          "sample_assessment": "韭圈儿/估值表前端公开接口返回jx精选13条，更新11月25日；分位0—100并保留不足样本等标志，演示值已排除。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:www.funddb.cn 基金 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.jiucaishuo.com/tools/song-list",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-2ef5492c6ccd",
+          "actual_reading_link": "https://www.jiucaishuo.com/tools/song-list",
+          "original_link": "https://www.jiucaishuo.com/tools/song-list"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://funddb.cn/tools/overseas-fund-quota",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-1f71eb4e2124",
+          "actual_reading_link": "https://funddb.cn/tools/overseas-fund-quota",
+          "original_link": "https://funddb.cn/tools/overseas-fund-quota"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M28",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "发现署名来源中信证券研究的公开策略转载；原始完整研报/团队全文权限未验证。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "中信证券研究 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.sina.com.cn/stock/marketresearch/2026-11-01/doc-inixfrfw7821527.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "8681d30112b5-M28",
+          "actual_reading_link": "https://finance.sina.com.cn/stock/marketresearch/2026-11-01/doc-inixfrfw7821527.shtml",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M29",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:cicc.com 中金公司研究",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.cicc.com/upload/file/2026/06/08/9dfc8394-74f3-484c-8bd1-d1ccddc1805a.pdf",
+          "example_only": true,
+          "last_transport_status": "pdf_response",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "f230ac4c7bc0-M29",
+          "actual_reading_link": "https://www.cicc.com/upload/file/2026/06/08/9dfc8394-74f3-484c-8bd1-d1ccddc1805a.pdf",
+          "original_link": "https://www.cicc.com/upload/file/2026/06/08/9dfc8394-74f3-484c-8bd1-d1ccddc1805a.pdf"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M30",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读2026-09-21署名华泰证券研究所的固收研究转载；历史样本，非全团队/完整研报权限。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "华泰证券研究 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://cj.sina.com.cn/articles/view/5953189932/162d6782c06704yu7c",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "6b11446b52f3-M30",
+          "actual_reading_link": "https://cj.sina.com.cn/articles/view/5953189932/162d6782c06704yu7c",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M31",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "发现2026-11-26国泰海通晨报，机构/研究员可追溯；不把其他券商分析国泰海通股票的报告算本机构研报。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "国泰君安／国泰海通研究团队 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848998320168/index.phtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "fed1afe9be5c-M31",
+          "actual_reading_link": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/848998320168/index.phtml",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M32",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "发现署名招商证券策略研究的公开策略转载；不把公司ESG声明或他人分析招商证券股票当本机构研报。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "招商证券研究 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.sina.com.cn/stock/marketresearch/2026-11-22/doc-inizrpca1081611.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "7328f56c8314-M32",
+          "actual_reading_link": "https://finance.sina.com.cn/stock/marketresearch/2026-11-22/doc-inizrpca1081611.shtml",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M33",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读广发策略2026Q1固收+配置分析转载；区分报告期、转载时间和原始发布时间，非当日新增。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "广发证券研究 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.sina.com.cn/wm/2026-04-30/doc-inhwftwn6267923.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "ef670eaab123-M33",
+          "actual_reading_link": "https://finance.sina.com.cn/wm/2026-04-30/doc-inhwftwn6267923.shtml",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M34",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读天风研究2026中期固收公开节选，2026-06-25历史样本，不冒充完整版或全部团队。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "天风证券研究 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.sina.com.cn/wm/2026-06-25/doc-inieqnay1063764.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "6b6e67ba5dd7-M34",
+          "actual_reading_link": "https://finance.sina.com.cn/wm/2026-06-25/doc-inieqnay1063764.shtml",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M35",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "发现标明《兴证固收》报告名的流动性研究转载；原件、作者及三个团队全部覆盖仍需核验。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "兴业证券研究 策略 固收 有色 研报 {year}",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.sina.com.cn/jjxw/2026-11-07/doc-inixxqmq7832404.shtml",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "6c0833985488-M35",
+          "actual_reading_link": "https://finance.sina.com.cn/jjxw/2026-11-07/doc-inixxqmq7832404.shtml",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M36",
+      "last_content_tier": "D",
+      "evidence_status": "target_unavailable",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "Trading Economics日历页只有栏目说明，无实际/预期/前值目标行；API订阅未取得，不能算一致预期数据成功。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://tradingeconomics.com/world/calendar",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "41d03e4f78b0-M36",
+          "actual_reading_link": "https://tradingeconomics.com/world/calendar",
+          "original_link": "https://tradingeconomics.com/world/calendar",
+          "sample_assessment": "Trading Economics日历页只有栏目说明，无实际/预期/前值目标行；API订阅未取得，不能算一致预期数据成功。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "Trading Economics economic calendar actual consensus previous",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reuters.com/commentary/reuters-open-interest/us-cpi-where-significant-meets-silly-2026-09-10/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-fef71abd98b6",
+          "actual_reading_link": "https://www.reuters.com/commentary/reuters-open-interest/us-cpi-where-significant-meets-silly-2026-09-10/",
+          "original_link": "https://www.reuters.com/commentary/reuters-open-interest/us-cpi-where-significant-meets-silly-2026-09-10/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reuters.com/business/fed-policymakers-odds-over-causes-high-inflation-2026-11-25/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-fef71abd98b6",
+          "actual_reading_link": "https://www.reuters.com/business/fed-policymakers-odds-over-causes-high-inflation-2026-11-25/",
+          "original_link": "https://www.reuters.com/business/fed-policymakers-odds-over-causes-high-inflation-2026-11-25/"
+        },
+        {
+          "adapter": "alphavantage",
+          "credential_env": "ALPHAVANTAGE_API_KEY",
+          "status": "private_key_obtained_and_daily_prices_verified; NEWS_SENTIMENT premium denied",
+          "tested_functions": {
+            "TIME_SERIES_DAILY": "100 IBM records",
+            "NEWS_SENTIMENT": "premium endpoint; free access unavailable"
+          }
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M37",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "盈利预测与修正 官方 公告",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/quote/AAPL/analysis/",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "1047f360dd91-M37",
+          "actual_reading_link": "https://finance.yahoo.com/quote/AAPL/analysis/",
+          "original_link": "https://finance.yahoo.com/quote/AAPL/analysis/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/markets/options/articles/happens-stock-implied-volatility-outpaces-124208065.html?.tsrc=rss",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-fef71abd98b6",
+          "actual_reading_link": "https://finance.yahoo.com/markets/options/articles/happens-stock-implied-volatility-outpaces-124208065.html?.tsrc=rss",
+          "original_link": "https://finance.yahoo.com/markets/options/articles/happens-stock-implied-volatility-outpaces-124208065.html?.tsrc=rss"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/markets/options/articles/varying-vix-ranges-impact-returns-120006948.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-fef71abd98b6",
+          "actual_reading_link": "https://finance.yahoo.com/markets/options/articles/varying-vix-ranges-impact-returns-120006948.html",
+          "original_link": "https://finance.yahoo.com/markets/options/articles/varying-vix-ranges-impact-returns-120006948.html"
+        },
+        {
+          "adapter": "alphavantage",
+          "credential_env": "ALPHAVANTAGE_API_KEY",
+          "status": "private_key_obtained_and_daily_prices_verified; NEWS_SENTIMENT premium denied",
+          "tested_functions": {
+            "TIME_SERIES_DAILY": "100 IBM records",
+            "NEWS_SENTIMENT": "premium endpoint; free access unavailable"
+          }
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M38",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "利率期货与期权定价 官方 公告",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/quote/SPY/options/",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "d158e7541886-M38",
+          "actual_reading_link": "https://finance.yahoo.com/quote/SPY/options/",
+          "original_link": "https://finance.yahoo.com/quote/SPY/options/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/markets/options/articles/happens-stock-implied-volatility-outpaces-124208065.html?.tsrc=rss",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-fef71abd98b6",
+          "actual_reading_link": "https://finance.yahoo.com/markets/options/articles/happens-stock-implied-volatility-outpaces-124208065.html?.tsrc=rss",
+          "original_link": "https://finance.yahoo.com/markets/options/articles/happens-stock-implied-volatility-outpaces-124208065.html?.tsrc=rss"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://finance.yahoo.com/markets/options/articles/varying-vix-ranges-impact-returns-120006948.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-fef71abd98b6",
+          "actual_reading_link": "https://finance.yahoo.com/markets/options/articles/varying-vix-ranges-impact-returns-120006948.html",
+          "original_link": "https://finance.yahoo.com/markets/options/articles/varying-vix-ranges-impact-returns-120006948.html"
+        },
+        {
+          "adapter": "alphavantage",
+          "credential_env": "ALPHAVANTAGE_API_KEY",
+          "status": "private_key_obtained_and_daily_prices_verified; NEWS_SENTIMENT premium denied",
+          "tested_functions": {
+            "TIME_SERIES_DAILY": "100 IBM records",
+            "NEWS_SENTIMENT": "premium endpoint; free access unavailable"
+          }
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "M39",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "基金、指数与转债比较分析 官方 公告",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://fund.eastmoney.com/518880.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "603c1fd8feae-M39",
+          "actual_reading_link": "https://fund.eastmoney.com/518880.html",
+          "original_link": "https://fund.eastmoney.com/518880.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://qcloud.fund.eastmoney.com/gonggao/518880%2CAN202610261830936726.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-b5ff5bf77417",
+          "actual_reading_link": "https://qcloud.fund.eastmoney.com/gonggao/518880%2CAN202610261830936726.html",
+          "original_link": "https://qcloud.fund.eastmoney.com/gonggao/518880%2CAN202610261830936726.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://qcloud.fund.eastmoney.com/gonggao/011128%2CAN202611121831652794.html",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-b5ff5bf77417",
+          "actual_reading_link": "https://qcloud.fund.eastmoney.com/gonggao/011128%2CAN202611121831652794.html",
+          "original_link": "https://qcloud.fund.eastmoney.com/gonggao/011128%2CAN202611121831652794.html"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    }
+  ],
+  "verified_at": "2026-11-26T10:44:48.823017+00:00",
+  "evidence_run": "20261126T095546Z-verify-5d3b1e"
+}

@@ -1,0 +1,622 @@
+{
+  "protocol": "finance-research-v3",
+  "scope": "tested discovery/routes and samples; discover current content for each run",
+  "sources": [
+    {
+      "source_id": "S01",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:x.com X：美联储观察者",
+          "review_required": true
+        },
+        {
+          "adapter": "x_oembed",
+          "example_url": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FNickTimiraos%2Fstatus%2F2100283665842323753&omit_script=true",
+          "example_only": true,
+          "last_transport_status": "data_response",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "09aa0150e284-S01",
+          "actual_reading_link": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FNickTimiraos%2Fstatus%2F2100283665842323753&omit_script=true",
+          "original_link": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FNickTimiraos%2Fstatus%2F2100283665842323753&omit_script=true"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://x.com/Tyler_Neville_/status/2060343351438668117",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-4b40966cfcfa",
+          "actual_reading_link": "https://x.com/Tyler_Neville_/status/2060343351438668117",
+          "original_link": "https://x.com/Tyler_Neville_/status/2060343351438668117"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://x.com/MarketWatch/status/2063948492704305292",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-05a0546e6618",
+          "actual_reading_link": "https://x.com/MarketWatch/status/2063948492704305292",
+          "original_link": "https://x.com/MarketWatch/status/2063948492704305292"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S02",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:x.com X：黄金／宏观分析师",
+          "review_required": true
+        },
+        {
+          "adapter": "x_oembed",
+          "example_url": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FJReade_WGC%2Fstatus%2F1702257696014057774&omit_script=true",
+          "example_only": true,
+          "last_transport_status": "data_response",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "2cd2a790fe57-S02",
+          "actual_reading_link": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FJReade_WGC%2Fstatus%2F1702257696014057774&omit_script=true",
+          "original_link": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FJReade_WGC%2Fstatus%2F1702257696014057774&omit_script=true"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://x.com/Tyler_Neville_/status/2060343351438668117",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-4b40966cfcfa",
+          "actual_reading_link": "https://x.com/Tyler_Neville_/status/2060343351438668117",
+          "original_link": "https://x.com/Tyler_Neville_/status/2060343351438668117"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://x.com/MarketWatch/status/2063948492704305292",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-05a0546e6618",
+          "actual_reading_link": "https://x.com/MarketWatch/status/2063948492704305292",
+          "original_link": "https://x.com/MarketWatch/status/2063948492704305292"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S03",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "\"ETF\" \"official\" \"x.com\" \"status\"",
+          "review_required": true
+        },
+        {
+          "adapter": "x_oembed",
+          "example_url": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FGrayscale%2Fstatus%2F1969009120922755250&omit_script=true",
+          "example_only": true,
+          "last_transport_status": "data_response",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "4d5911e45ff1-S03",
+          "actual_reading_link": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FGrayscale%2Fstatus%2F1969009120922755250&omit_script=true",
+          "original_link": "https://publish.x.com/oembed?url=https%3A%2F%2Fx.com%2FGrayscale%2Fstatus%2F1969009120922755250&omit_script=true"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://x.com/Tyler_Neville_/status/2060343351438668117",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-4b40966cfcfa",
+          "actual_reading_link": "https://x.com/Tyler_Neville_/status/2060343351438668117",
+          "original_link": "https://x.com/Tyler_Neville_/status/2060343351438668117"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://x.com/MarketWatch/status/2063948492704305292",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-05a0546e6618",
+          "actual_reading_link": "https://x.com/MarketWatch/status/2063948492704305292",
+          "original_link": "https://x.com/MarketWatch/status/2063948492704305292"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S04",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "r/Gold已读原帖、u/THE_WHITE_LINE及索引2026-11-09日期；缓存历史样本，精确时区和独立交叉核验不足，不作当前投资信号。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-f726cd2504f7",
+          "actual_reading_link": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/",
+          "original_link": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/",
+          "sample_assessment": "r/Gold已读原帖、u/THE_WHITE_LINE及索引2026-11-09日期；缓存历史样本，精确时区和独立交叉核验不足，不作当前投资信号。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:reddit.com/r/Gold/comments/ gold",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-bb38b511a82e",
+          "actual_reading_link": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/",
+          "original_link": "https://www.reddit.com/r/Gold/comments/1xs2uqz/gold_is_holding_strong_4500_by_the_end_of_year/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/Gold/comments/1xcmm9q/whats_going_on_right_now_with_gold_prices/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-e02016f57a2c",
+          "actual_reading_link": "https://www.reddit.com/r/Gold/comments/1xcmm9q/whats_going_on_right_now_with_gold_prices/",
+          "original_link": "https://www.reddit.com/r/Gold/comments/1xcmm9q/whats_going_on_right_now_with_gold_prices/"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S05",
+      "last_content_tier": "D",
+      "evidence_status": "target_unavailable",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "11月19日u/AutoModerator讨论帖可读，但模板不是投资者情绪；尚无账号、时间齐全且经核对的人工情绪样本。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-c59e3f65e806",
+          "actual_reading_link": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/",
+          "original_link": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/",
+          "sample_assessment": "11月19日u/AutoModerator讨论帖可读，但模板不是投资者情绪；尚无账号、时间齐全且经核对的人工情绪样本。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:reddit.com/r/investing/comments/ markets",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-bb38b511a82e",
+          "actual_reading_link": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/",
+          "original_link": "https://www.reddit.com/r/investing/comments/1y04t5n/daily_general_discussion_and_advice_thread/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/investing/comments/1y1sky3/daily_general_discussion_and_advice_thread/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-60bd8e7f4c86",
+          "actual_reading_link": "https://www.reddit.com/r/investing/comments/1y1sky3/daily_general_discussion_and_advice_thread/",
+          "original_link": "https://www.reddit.com/r/investing/comments/1y1sky3/daily_general_discussion_and_advice_thread/"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S06",
+      "last_content_tier": "D",
+      "evidence_status": "target_unavailable",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "11月11日AutoModerator主题帖和评论可读；人工评论时间未核清，模板不能算情绪样本。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-f726cd2504f7",
+          "actual_reading_link": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/",
+          "original_link": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/",
+          "sample_assessment": "11月11日AutoModerator主题帖和评论可读；人工评论时间未核清，模板不能算情绪样本。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:reddit.com/r/stocks/comments/ markets",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-bb38b511a82e",
+          "actual_reading_link": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/",
+          "original_link": "https://www.reddit.com/r/stocks/comments/1xtc3hg/rstocks_daily_discussion_wednesday_nov_11_2026/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/stocks/comments/1y1tyue/rstocks_weekend_discussion_saturday_nov_21_2026/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-60bd8e7f4c86",
+          "actual_reading_link": "https://www.reddit.com/r/stocks/comments/1y1tyue/rstocks_weekend_discussion_saturday_nov_21_2026/",
+          "original_link": "https://www.reddit.com/r/stocks/comments/1y1tyue/rstocks_weekend_discussion_saturday_nov_21_2026/"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S07",
+      "last_content_tier": "D",
+      "evidence_status": "time_unresolved",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "r/ChinaStocks原帖和u/Artistic_Diver8781可读；缓存相对时间无锚，二手日期缺年且有冲突，不补造首发时间。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/ChinaStocks/comments/1y0zd1c/why_is_baidu_chinas_google_already_seen_as_the/",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-35e70ff6ca31",
+          "actual_reading_link": "https://www.reddit.com/r/ChinaStocks/comments/1y0zd1c/why_is_baidu_chinas_google_already_seen_as_the/",
+          "original_link": "https://www.reddit.com/r/ChinaStocks/comments/1y0zd1c/why_is_baidu_chinas_google_already_seen_as_the/",
+          "sample_assessment": "r/ChinaStocks原帖和u/Artistic_Diver8781可读；缓存相对时间无锚，二手日期缺年且有冲突，不补造首发时间。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:reddit.com/r/ChinaStocks/comments/ stocks",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/ChinaStocks/",
+          "example_only": true,
+          "last_transport_status": "web_extract",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-bb38b511a82e",
+          "actual_reading_link": "https://www.reddit.com/r/ChinaStocks/",
+          "original_link": "https://www.reddit.com/r/ChinaStocks/"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.reddit.com/r/ChinaStocks/comments/1jikvxy",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "web-af02162b11a4",
+          "actual_reading_link": "https://www.reddit.com/r/ChinaStocks/comments/1jikvxy",
+          "original_link": "https://www.reddit.com/r/ChinaStocks/comments/1jikvxy"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S08",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:xueqiu.com 雪球",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.xueqiu.com/9105992305/418679726",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "e261a743d0b2-S08",
+          "actual_reading_link": "https://www.xueqiu.com/9105992305/418679726",
+          "original_link": "https://www.xueqiu.com/9105992305/418679726"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://stockmc.xueqiu.com/202604/518880_20260422_U3EK.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-416007e5670b",
+          "actual_reading_link": "https://stockmc.xueqiu.com/202604/518880_20260422_U3EK.pdf",
+          "original_link": "https://stockmc.xueqiu.com/202604/518880_20260422_U3EK.pdf"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://stockmc.xueqiu.com/202604/518800_20260409_QXKL.pdf",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-416007e5670b",
+          "actual_reading_link": "https://stockmc.xueqiu.com/202604/518800_20260409_QXKL.pdf",
+          "original_link": "https://stockmc.xueqiu.com/202604/518800_20260409_QXKL.pdf"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S09",
+      "last_content_tier": "D",
+      "evidence_status": "time_unresolved",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "微博原文及账号就叫今晚吃基/u/5334895910可读；03-14 17:50缺年份，且属基金营销，不能计当前散户情绪样本。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "fd09a1402a7f-S09",
+          "actual_reading_link": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141",
+          "original_link": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141",
+          "sample_assessment": "微博原文及账号就叫今晚吃基/u/5334895910可读；03-14 17:50缺年份，且属基金营销，不能计当前散户情绪样本。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:weibo.com 财经 黄金 原文",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-416007e5670b",
+          "actual_reading_link": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141",
+          "original_link": "https://www.weibo.com/ttarticle/p/show?id=2309405276427552686141"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.weibo.com/ttarticle/p/show?id=2309405330975570919512",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-416007e5670b",
+          "actual_reading_link": "https://www.weibo.com/ttarticle/p/show?id=2309405330975570919512",
+          "original_link": "https://www.weibo.com/ttarticle/p/show?id=2309405330975570919512"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S10",
+      "last_content_tier": "D",
+      "evidence_status": "identity_unresolved",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "知乎公开索引有正文及8月24日18:20上海时间，作者稳定ID未核实；原站403，不能计合格社交样本。",
+      "routes": [
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://zhuanlan.zhihu.com/p/2075285649159086381",
+          "example_only": true,
+          "evidence_run": "20261126T095546Z-verify-5d3b1e",
+          "evidence_call": "web-cb190dbb9e21",
+          "actual_reading_link": "https://zhuanlan.zhihu.com/p/2075285649159086381",
+          "original_link": "https://zhuanlan.zhihu.com/p/2075285649159086381",
+          "sample_assessment": "知乎公开索引有正文及8月24日18:20上海时间，作者稳定ID未核实；原站403，不能计合格社交样本。"
+        },
+        {
+          "adapter": "search",
+          "query_template": "site:zhihu.com 黄金 投资",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://zhuanlan.zhihu.com/p/1967255957777131171",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-416007e5670b",
+          "actual_reading_link": "https://zhuanlan.zhihu.com/p/1967255957777131171",
+          "original_link": "https://zhuanlan.zhihu.com/p/1967255957777131171"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://zhuanlan.zhihu.com/p/2049875732130804596",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-416007e5670b",
+          "actual_reading_link": "https://zhuanlan.zhihu.com/p/2049875732130804596",
+          "original_link": "https://zhuanlan.zhihu.com/p/2049875732130804596"
+        }
+      ],
+      "last_review_run": "20261126T095546Z-verify-5d3b1e",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S11",
+      "last_content_tier": "C",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "取得天风研究公众号公开转载、原始微信链接、账号标识和北京时间；2026-09-08历史样本，转载授权范围未独立确认。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "\"公众号\" \"宏观\" \"原文\"",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.laohu8.com/news/2665373467",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "ed03932e409d-S11",
+          "actual_reading_link": "https://www.laohu8.com/news/2665373467",
+          "original_link": "http://mp.weixin.qq.com/s?__biz=MzAwMzIzNzcwMg==&mid=2649154487&idx=1&sn=9f9e8a5dbe2e4e67e77691d4dbcf3f34&chksm=82e8a34e78b2646ab68d5517ceb0b84d446a53dfbdfa081b00949f8b1594072c3161d2264949&scene=0#rd",
+          "claimed_account": "天风研究",
+          "published_at": "2026-09-08T15:02:00+08:00"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S12",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:polymarket.com Polymarket 美联储决议合约",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632?marketSlug=will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635&outcomeIndex=0",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "c6825b13844d-S12",
+          "actual_reading_link": "https://polymarket.com/event/fed-decision-in-december-20260729232808632?marketSlug=will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635&outcomeIndex=0",
+          "original_link": "https://polymarket.com/event/fed-decision-in-december-20260729232808632?marketSlug=will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635&outcomeIndex=0"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://polymarket.com/economy/fed",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-b720d3bc432d",
+          "actual_reading_link": "https://polymarket.com/economy/fed",
+          "original_link": "https://polymarket.com/economy/fed"
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S13",
+      "last_content_tier": "D",
+      "evidence_status": "target_unavailable",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "CNN官方API仍418，无官方数值/更新时刻；二手网站共同转引的15不能当独立核对或替代。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "site:cnn.com \"Fear and Greed\" \"November {year}\"",
+          "review_required": true
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    },
+    {
+      "source_id": "S14",
+      "last_content_tier": "A",
+      "evidence_status": "reviewed_sample",
+      "sample_only": true,
+      "current_window_coverage_verified": false,
+      "full_coverage_verified": false,
+      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "routes": [
+        {
+          "adapter": "search",
+          "query_template": "国内基金申赎热度 官方 公告",
+          "review_required": true
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://fund.eastmoney.com/fundhot8.html",
+          "example_only": true,
+          "last_transport_status": "entry_readable",
+          "evidence_run": "20261126T084613Z-routes-1d2b3a",
+          "evidence_call": "389f2c8aee00-S14",
+          "actual_reading_link": "https://fund.eastmoney.com/fundhot8.html",
+          "original_link": "https://fund.eastmoney.com/fundhot8.html"
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://funddb.cn/tools/overseas-fund-quota",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-b720d3bc432d",
+          "actual_reading_link": "https://funddb.cn/tools/overseas-fund-quota",
+          "original_link": null
+        },
+        {
+          "adapter": "http_or_host_reader",
+          "example_url": "https://www.funddb.cn/",
+          "example_only": true,
+          "last_transport_status": "indexed_excerpt",
+          "evidence_run": "20261126T082404Z-live-37879e",
+          "evidence_call": "web-b720d3bc432d",
+          "actual_reading_link": "https://www.funddb.cn/",
+          "original_link": null
+        }
+      ],
+      "last_review_run": "20261126T084613Z-routes-1d2b3a",
+      "fully_qualified_current_message_verified": false
+    }
+  ],
+  "verified_at": "2026-11-26T10:44:48.823017+00:00",
+  "evidence_run": "20261126T095546Z-verify-5d3b1e"
+}

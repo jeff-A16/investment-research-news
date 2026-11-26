@@ -1,0 +1,39 @@
+{
+  "repository": "jeff-A16/investment-research-news",
+  "branch": "main",
+  "feed_path": "feed.xml",
+  "feed_url": "https://raw.githubusercontent.com/jeff-A16/investment-research-news/main/feed.xml",
+  "channel_title": "金融投研 · 三层信息汇总",
+  "timezone": "Asia/Shanghai",
+  "lookback_hours": 24,
+  "excluded_source_ids": [
+    "S09"
+  ],
+  "schedule_hours": [
+    8,
+    14,
+    23
+  ],
+  "feed_max_items": 0,
+  "dependencies": [
+    {
+      "layer": 1,
+      "skill": "finance-primary-intelligence"
+    },
+    {
+      "layer": 2,
+      "skill": "finance-market-research"
+    },
+    {
+      "layer": 3,
+      "skill": "finance-social-sentiment"
+    }
+  ],
+  "public_outputs": [
+    "feed.xml",
+    "data/items.json",
+    "data/feed-state.json",
+    "runs/{run_id}/summary.json"
+  ],
+  "raw_logs_public": false
+}

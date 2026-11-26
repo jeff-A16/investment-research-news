@@ -1,0 +1,69 @@
+import importlib.util,json,tempfile,unittest
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+spec=importlib.util.spec_from_file_location('feed',Path(__file__).resolve().parents[1]/'scripts/build_feed.py');feed=importlib.util.module_from_spec(spec);spec.loader.exec_module(feed)
+NOW='2026-11-26T12:00:00+00:00'
+def message(**kw):
+ m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
+ m.update(kw);return m
+class FeedTests(unittest.TestCase):
+ def test_canonical_tracking_keeps_material_parameters(self):
+  self.assertEqual(feed.canonical_url('https://EXAMPLE.org/x?id=7&utm_source=a#part'),'https://example.org/x?id=7')
+  self.assertNotEqual(feed.canonical_url('https://e.org/?id=1'),feed.canonical_url('https://e.org/?id=2'))
+ def test_repost_and_primary_merge_keep_provenance_no_score_inflation(self):
+  a=message();b=message(id='b',layer=2,source_id='M01',source_name='媒体',confidence={'score':80,'reason':'转载','scope':'转载存在'})
+  items,mapping=feed.merge([a,b],{},NOW);self.assertEqual(len(items),1);self.assertEqual(len(items[0]['provenance']),2);self.assertEqual(items[0]['confidence']['score'],95)
+ def test_event_key_can_link_distinct_urls(self):
+  a=message(event_key='PBOC/OMO/2026-11-26');b=message(id='b',layer=2,source_id='M01',original_url='https://media.org/1',event_key='PBOC/OMO/2026-11-26')
+  self.assertEqual(len(feed.merge([a,b],{},NOW)[0]),1)
+ def test_distinct_periods_and_opinions_do_not_merge(self):
+  a=message();b=message(data_period='2026-11-25');self.assertEqual(len(feed.merge([a,b],{},NOW)[0]),2)
+  a=message(source_role='opinion',source_name='机构甲',event_key='gold');b=message(source_role='opinion',source_name='机构乙',event_key='gold');self.assertEqual(len(feed.merge([a,b],{},NOW)[0]),2)
+ def test_guid_survives_more_authoritative_source_later(self):
+  old=message(id='m',layer=2,source_id='M01',original_url='https://media.org/x',event_key='event')
+  first,_=feed.merge([old],{},NOW);new=message(original_url='https://official.org/x',event_key='event')
+  second,_=feed.merge([new],{'items':first},'2026-11-26T13:00:00+00:00');self.assertEqual(first[0]['guid'],second[0]['guid']);self.assertEqual(second[0]['layer'],1)
+ def test_corrected_owner_text_replaces_old_lower_confidence(self):
+  old=message(fact_summary='旧值',retrieved_at='2026-11-26T10:00:00Z');first,_=feed.merge([old],{},NOW)
+  new=message(fact_summary='修正值',confidence={'score':90,'reason':'修正','scope':'修正值'})
+  second,_=feed.merge([new],{'items':first},NOW);self.assertEqual(second[0]['fact_summary'],'修正值');self.assertEqual(second[0]['guid'],first[0]['guid'])
+ def test_unknown_time_not_forged_and_historical_rejected(self):
+  start=feed.dt('2026-11-25T12:00:00Z');end=feed.dt(NOW);cfg={}
+  self.assertFalse(feed.window_status(message(published_at='2023-01-01T00:00:00Z'),start,end,cfg)[0])
+  self.assertFalse(feed.window_status(message(published_at=None,data_period=None),start,end,cfg)[0])
+  self.assertTrue(feed.window_status(message(published_at=None,observed_at=NOW),start,end,cfg)[0])
+  items,_=feed.merge([message(published_at=None,observed_at=NOW)],{},NOW)
+  xml=feed.rss(items,{'channel_title':'x','repository':'a/b','feed_url':'https://e.org/feed.xml'},NOW)
+  self.assertIsNone(ET.fromstring(xml).find('./channel/item/pubDate'))
+ def test_xml_html_and_secrets(self):
+  m=message(title='<script>alert(1)</script> & \x00',fact_summary='<img src=x onerror=bad>');items,_=feed.merge([m],{},NOW);x=ET.fromstring(feed.rss(items,{'channel_title':'x','repository':'a/b','feed_url':'https://e.org/rss'},NOW));body=x.findtext('./channel/item/description')
+  self.assertNotIn('<script>',body);self.assertNotIn('<img src=x',body)
+  for url in ['javascript:alert(1)','https://u:p@example.org/a','https://e.org/?api_key=private']:
+   with self.assertRaises(ValueError):feed.safe_url(url)
+  self.assertNotIn('artifact_paths',feed.public_message(message())['audit_refs'])
+ def test_empty_layers_preserve_previous_and_disabled_source_is_excluded(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp);layers=[]
+   for layer,sk in feed.DEPENDENCIES.items():
+    (p/f'{layer}.json').write_text('[]');(p/f'c{layer}.json').write_text('{}');layers.append({'layer':layer,'skill':sk,'messages':str(p/f'{layer}.json'),'coverage':str(p/f'c{layer}.json')})
+   manifest={'run_id':'r','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers};cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss','excluded_source_ids':['S09']}
+   old,_=feed.merge([message(),message(id='weibo',layer=3,source_id='S09',original_url='https://weibo.com/x')],{},NOW)
+   out=feed.build(manifest,{'items':old},cfg);self.assertEqual(len(json.loads(out['data/items.json'])),1)
+   manifest['layers'].pop()
+   with self.assertRaises(ValueError):feed.build(manifest,{},cfg)
+ def test_refresh_deduplicates_same_source_in_attribution(self):
+  a=message(retrieved_at='2026-11-26T10:00:00Z');first,_=feed.merge([a],{},NOW)
+  again,_=feed.merge([message()],{'items':first},NOW);self.assertEqual(len(again[0]['provenance']),1)
+ def test_api_records_and_conflicting_claims_are_not_collapsed(self):
+  a=message(source_record_id='index-A');b=message(source_record_id='index-B')
+  self.assertEqual(len(feed.merge([a,b],{},NOW)[0]),2)
+ def test_collection_after_window_does_not_invent_publication_or_revive_old_article(self):
+  start=feed.dt('2026-11-25T12:00:00Z');end=feed.dt(NOW);later=feed.dt('2026-11-26T12:30:00Z')
+  m=message(published_at=None,observed_at='2026-11-26T12:20:00Z')
+  self.assertTrue(feed.window_status(m,start,end,{},later)[0])
+  m=message(published_at='2023-01-01T09:00:00',observed_at='2026-11-26T12:20:00Z')
+  self.assertFalse(feed.window_status(m,start,end,{},later)[0])
+  a=message(id='claim-A',event_key='event',dedup_keep_separate=True);b=message(id='claim-B',event_key='event',dedup_keep_separate=True)
+  self.assertEqual(len(feed.merge([a,b],{},NOW)[0]),2)
+if __name__=='__main__':unittest.main()

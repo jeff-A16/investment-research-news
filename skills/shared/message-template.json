@@ -1,0 +1,53 @@
+{
+  "id": "消息编号",
+  "layer": null,
+  "source_id": "Pxx/Mxx/Sxx",
+  "source_name": "发布者",
+  "source_role": "fact/opinion/reporting/market-implied/sentiment/proxy等",
+  "original_url": null,
+  "available_url": null,
+  "original_link_status": "verified/unresolved",
+  "title": "原题或标注为编者概括的标题",
+  "title_type": "original/editorial/translated",
+  "published_at": null,
+  "published_precision": "second/minute/date/unknown",
+  "source_timezone": null,
+  "updated_at": null,
+  "event_at": null,
+  "data_period": null,
+  "observed_at": null,
+  "retrieved_at": "ISO 8601",
+  "confidence": {
+    "score": null,
+    "level": "待评估",
+    "reason": "",
+    "scope": "该分数支持什么结论"
+  },
+  "verification_status": "verified/partial/unverified",
+  "fact_summary": "",
+  "analysis": "",
+  "investment_impact": {
+    "assets": [],
+    "direction": "不确定",
+    "mechanism": "",
+    "horizon": "",
+    "conditions": [],
+    "priced_in": "未知",
+    "invalidation": []
+  },
+  "impact_degree": {
+    "score": null,
+    "scale": "0-5",
+    "asset_horizon": "",
+    "reason": ""
+  },
+  "corroboration": [],
+  "gaps": [],
+  "is_background": false,
+  "audit_refs": {
+    "run_id": "本轮运行ID",
+    "call_ids": [],
+    "event_seqs": [],
+    "artifact_paths": []
+  }
+}

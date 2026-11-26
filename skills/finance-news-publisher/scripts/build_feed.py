@@ -153,7 +153,7 @@ def merge_members(members):
     # even when the corrected confidence is lower. Authority ranks different owners.
     latest={}
     for m in members:
-        key=(m.get('source_id'),canonical_url(m.get('original_url') or m.get('available_url')),period(m))
+        key=(m.get('source_id'),canonical_url(m.get('original_url') or m.get('available_url')),normalized(m.get('revision_id')),normalized(m.get('source_record_id')))
         freshness=dt(m.get('retrieved_at')) or dt(m.get('updated_at')) or datetime.min.replace(tzinfo=timezone.utc)
         old=latest.get(key)
         if old is None or freshness>(dt(old.get('retrieved_at')) or dt(old.get('updated_at')) or datetime.min.replace(tzinfo=timezone.utc)):latest[key]=m
@@ -177,7 +177,20 @@ def merge_members(members):
     return chosen
 
 def merge(candidates,previous,as_of):
-    existing=previous.get('items',[]);records=existing+candidates
+    existing=previous.get('items',[]);candidates=deepcopy(candidates)
+    # A verified event/date can enrich a prior article whose only date was its
+    # RSS timestamp. Bridge that one prior identity, retaining its GUID/aliases.
+    for m in candidates:
+        url=canonical_url(m.get('original_url'))
+        if not url or not m.get('event_key') or not m.get('data_period') or role_kind(m)!='fact' or m.get('dedup_keep_separate'):continue
+        prior=[p for p in existing if canonical_url(p.get('original_url'))==url
+               and role_kind(p)=='fact' and not p.get('data_period') and not p.get('event_key')
+               and not p.get('dedup_keep_separate')
+               and normalized(p.get('revision_id'))==normalized(m.get('revision_id'))
+               and normalized(p.get('source_record_id'))==normalized(m.get('source_record_id'))]
+        if len(prior)==1:
+            m['_aliases']=sorted(set(m.get('_aliases',[])+prior[0].get('_aliases',[])+identity_aliases(prior[0])))
+    records=existing+candidates
     parent=list(range(len(records)));owner={}
     def find(i):
         while parent[i]!=i:parent[i]=parent[parent[i]];i=parent[i]

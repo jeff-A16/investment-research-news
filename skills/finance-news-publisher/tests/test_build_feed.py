@@ -28,6 +28,21 @@ class FeedTests(unittest.TestCase):
   old=message(fact_summary='旧值',retrieved_at='2026-11-26T10:00:00Z');first,_=feed.merge([old],{},NOW)
   new=message(fact_summary='修正值',confidence={'score':90,'reason':'修正','scope':'修正值'})
   second,_=feed.merge([new],{'items':first},NOW);self.assertEqual(second[0]['fact_summary'],'修正值');self.assertEqual(second[0]['guid'],first[0]['guid'])
+ def test_verified_event_date_enrichment_preserves_legacy_rss_guid(self):
+  old=message(id='old',layer=2,source_id='M01',original_url='https://media.org/beige',data_period=None,published_at=None,feed_published_at='2026-11-26T01:00:00Z',retrieved_at='2026-11-26T10:00:00Z')
+  first,_=feed.merge([old],{},NOW)
+  enriched=dict(old,id='new',data_period='2026-11-25',event_key='BEIGE_2026-11-25',retrieved_at=NOW)
+  primary=message(original_url='https://official.org/beige',data_period='2026-11-25',event_key='BEIGE_2026-11-25')
+  second,_=feed.merge([enriched,primary],{'items':first},NOW)
+  self.assertEqual(len(second),1);self.assertEqual(second[0]['guid'],first[0]['guid']);self.assertEqual(second[0]['layer'],1)
+  self.assertTrue(set(first[0]['_aliases'])<=set(second[0]['_aliases']))
+  only_media,_=feed.merge([enriched],{'items':first},NOW);self.assertEqual(only_media[0]['data_period'],'2026-11-25')
+ def test_enrichment_does_not_override_explicit_period_or_conflict(self):
+  old=message(data_period='2026-11-24');first,_=feed.merge([old],{},NOW)
+  enriched=message(data_period='2026-11-25',event_key='event')
+  self.assertEqual(len(feed.merge([enriched],{'items':first},NOW)[0]),2)
+  old=message(data_period=None,dedup_keep_separate=True);first,_=feed.merge([old],{},NOW)
+  self.assertEqual(len(feed.merge([enriched],{'items':first},NOW)[0]),2)
  def test_unknown_time_not_forged_and_historical_rejected(self):
   start=feed.dt('2026-11-25T12:00:00Z');end=feed.dt(NOW);cfg={}
   self.assertFalse(feed.window_status(message(published_at='2023-01-01T00:00:00Z'),start,end,cfg)[0])

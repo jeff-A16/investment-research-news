@@ -1,0 +1,771 @@
+{
+  "run_id": "20261126T122547Z-rss-manual",
+  "as_of": "2026-11-26T12:32:45.955862+00:00",
+  "window_start": "2026-11-25T12:25:47+00:00",
+  "window_end": "2026-11-26T12:25:47+00:00",
+  "previous_items": 155,
+  "new_items": 2,
+  "updated_items": 2,
+  "published_items": 157,
+  "removed_items": 0,
+  "layer_candidates": [
+    5,
+    187,
+    1
+  ],
+  "accepted_candidates": 157,
+  "rejected_outside_window": 36,
+  "actual_current_content_sample_sources": 10,
+  "source_catalog_entries": 102,
+  "active_catalog_entries": 101,
+  "full_current_window_coverage": false,
+  "content_kinds": {
+    "公告/数据/官方摘要": 4,
+    "市场隐含预期": 1,
+    "美股情绪指标": 1,
+    "官方数据快照": 1,
+    "机构观点": 18,
+    "财经报道": 42,
+    "指数估值快照": 76,
+    "研报索引·未读正文": 14
+  },
+  "new_titles": [
+    "科技股抛售潮接近尾声？高盛：昨天的卖家或成明天的买家",
+    "谁在抛售黄金？俄罗斯连续10个月减持，沙特、Tether也被盯上"
+  ],
+  "updated_titles": [
+    "CME FedWatch · 2026-12-09会议概率快照",
+    "Beige Book - November 2026 · National Summary"
+  ],
+  "validation": {
+    "tests_passed": 14,
+    "unique_guids": 157,
+    "seven_fields_per_item": true,
+    "byte_identical_rebuild": true
+  },
+  "coverage_note": "Directory transport checks do not establish current content or full component coverage. Most sources remain content/window/entitlement gaps. Weibo disabled; three blocked Reddit paths skipped. Research indices are metadata only.",
+  "sources": [
+    {
+      "source_id": "P01",
+      "source_name": "中国证监会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P02",
+      "source_name": "中国人民银行",
+      "status": "content_sample_collected",
+      "message_candidates": 1,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P03",
+      "source_name": "国家统计局",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P04",
+      "source_name": "财政部",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P05",
+      "source_name": "国家发展和改革委员会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P06",
+      "source_name": "国家外汇管理局",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P07",
+      "source_name": "中国证券投资基金业协会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P08",
+      "source_name": "海关总署",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P09",
+      "source_name": "上海证券交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P10",
+      "source_name": "深圳证券交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P11",
+      "source_name": "北京证券交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P12",
+      "source_name": "中国金融期货交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P13",
+      "source_name": "中证指数有限公司",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P14",
+      "source_name": "中央国债登记结算有限责任公司／中国债券信息网",
+      "status": "content_sample_collected",
+      "message_candidates": 1,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P15",
+      "source_name": "上海黄金交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P16",
+      "source_name": "中国黄金协会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P17",
+      "source_name": "巨潮资讯网",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P18",
+      "source_name": "华夏基金",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P19",
+      "source_name": "广发基金",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P20",
+      "source_name": "华安基金",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P21",
+      "source_name": "其他相关基金公司与ETF发行人",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P22",
+      "source_name": "上市公司与债券发行人投资者关系网站",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P23",
+      "source_name": "美国证券交易委员会 EDGAR",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P24",
+      "source_name": "香港交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P25",
+      "source_name": "港交所披露易",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P26",
+      "source_name": "中国外汇交易中心／中国货币网",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P27",
+      "source_name": "上海清算所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P28",
+      "source_name": "中国银行间市场交易商协会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P29",
+      "source_name": "上海期货交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P30",
+      "source_name": "大连商品交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P31",
+      "source_name": "郑州商品交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P32",
+      "source_name": "广州期货交易所",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P33",
+      "source_name": "相关行业协会与企业产销公告",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P34",
+      "source_name": "美联储",
+      "status": "content_sample_collected",
+      "message_candidates": 1,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P35",
+      "source_name": "美国劳工统计局",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P36",
+      "source_name": "美国经济分析局",
+      "status": "content_sample_collected",
+      "message_candidates": 1,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P37",
+      "source_name": "美国财政部",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P38",
+      "source_name": "美国财政部 FiscalData",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P39",
+      "source_name": "欧洲中央银行",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P40",
+      "source_name": "世界黄金协会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P41",
+      "source_name": "伦敦金银市场协会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P42",
+      "source_name": "美国商品期货交易委员会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P43",
+      "source_name": "CME FedWatch及利率期货",
+      "status": "content_sample_collected",
+      "message_candidates": 1,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P44",
+      "source_name": "纽约联邦储备银行",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P45",
+      "source_name": "美国投资公司协会",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P46",
+      "source_name": "美国能源信息署",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P47",
+      "source_name": "美国农业部",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P48",
+      "source_name": "FRED／ALFRED",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "P49",
+      "source_name": "指数编制方案、历史成分与调整公告",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M01",
+      "source_name": "财新",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M02",
+      "source_name": "第一财经",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M03",
+      "source_name": "证券时报",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M04",
+      "source_name": "中国证券报",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M05",
+      "source_name": "上海证券报",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M06",
+      "source_name": "21世纪经济报道",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M07",
+      "source_name": "经济观察报",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M08",
+      "source_name": "华尔街见闻",
+      "status": "content_sample_collected",
+      "message_candidates": 61,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M09",
+      "source_name": "金十数据",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M10",
+      "source_name": "格隆汇",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M11",
+      "source_name": "智通财经",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M12",
+      "source_name": "新浪财经",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M13",
+      "source_name": "界面新闻",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M14",
+      "source_name": "路透",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M15",
+      "source_name": "彭博",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M16",
+      "source_name": "华尔街日报",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M17",
+      "source_name": "金融时报",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M18",
+      "source_name": "CNBC",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M19",
+      "source_name": "MarketWatch",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M20",
+      "source_name": "Barron's",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M21",
+      "source_name": "日经亚洲",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M22",
+      "source_name": "天天基金／东方财富",
+      "status": "content_sample_collected",
+      "message_candidates": 50,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M23",
+      "source_name": "晨星",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M24",
+      "source_name": "同花顺",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M25",
+      "source_name": "集思录",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M26",
+      "source_name": "蛋卷基金",
+      "status": "content_sample_collected",
+      "message_candidates": 63,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M27",
+      "source_name": "韭圈儿",
+      "status": "content_sample_collected",
+      "message_candidates": 13,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M28",
+      "source_name": "中信证券研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M29",
+      "source_name": "中金公司研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M30",
+      "source_name": "华泰证券研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M31",
+      "source_name": "国泰君安／国泰海通研究团队",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M32",
+      "source_name": "招商证券研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M33",
+      "source_name": "广发证券研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M34",
+      "source_name": "天风证券研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M35",
+      "source_name": "兴业证券研究",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M36",
+      "source_name": "经济数据一致预期与发布日历",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M37",
+      "source_name": "盈利预测与修正",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M38",
+      "source_name": "利率期货与期权定价",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "M39",
+      "source_name": "基金、指数与转债比较分析",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S01",
+      "source_name": "X：美联储观察者",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S02",
+      "source_name": "X：黄金／宏观分析师",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S03",
+      "source_name": "X：基金及ETF官方账号",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S04",
+      "source_name": "Reddit r/Gold",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S05",
+      "source_name": "Reddit r/investing",
+      "status": "known_blocked_path_skipped",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S06",
+      "source_name": "Reddit r/stocks",
+      "status": "known_blocked_path_skipped",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S07",
+      "source_name": "Reddit r/ChinaStocks",
+      "status": "known_blocked_path_skipped",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S08",
+      "source_name": "雪球",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S09",
+      "source_name": "微博财经",
+      "status": "out_of_scope",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S10",
+      "source_name": "知乎",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S11",
+      "source_name": "公众号热文",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S12",
+      "source_name": "Polymarket 美联储决议合约",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S13",
+      "source_name": "CNN Fear & Greed Index",
+      "status": "content_sample_collected",
+      "message_candidates": 1,
+      "full_current_window_coverage": false
+    },
+    {
+      "source_id": "S14",
+      "source_name": "国内基金申赎热度",
+      "status": "entry_checked_content_window_not_verified",
+      "message_candidates": 0,
+      "full_current_window_coverage": false
+    }
+  ],
+  "errors": [
+    {
+      "stage": "scheduled_run_now",
+      "status": 404,
+      "action": "Action not found; same workflow executed directly in this session. Existing schedule unchanged."
+    }
+  ],
+  "publication_status": "prepared"
+}

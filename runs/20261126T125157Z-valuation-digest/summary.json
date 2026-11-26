@@ -1,0 +1,20 @@
+{
+  "mode": "presentation_only",
+  "source_run_id": "20261126T122547Z-rss-manual",
+  "source_state_updated_at": "2026-11-26T12:32:45.955862+00:00",
+  "rendered_at": "2026-11-26T12:51:57.684585+00:00",
+  "stored_records": 157,
+  "published_items": 83,
+  "valuation_records": 76,
+  "valuation_digest_count": 2,
+  "new_collection": false,
+  "run_id": "20261126T125157Z-valuation-digest",
+  "source_commit": "2d94bfb3f8982b8f39e9e22b473d4a13c811283c",
+  "tests_passed": 19,
+  "unchanged_source_state_sha256": "86d636f7a1471d2872208c9fb65aa44f9bcf244b37dd8b974d45b90bbec5ac9f",
+  "all_valuation_records_represented_once": true,
+  "nonvaluation_guids_preserved": true,
+  "raw_state_and_items_modified": false,
+  "schedule_modified": false,
+  "all_merged_source_links_in_original_field": true
+}

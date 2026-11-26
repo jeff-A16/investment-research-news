@@ -224,31 +224,86 @@ def merge(candidates,previous,as_of):
 def escaped(value):return html.escape(clean_text(value),quote=True)
 def link(url,label):return '<a href="'+escaped(safe_url(url))+'">'+escaped(label)+'</a>' if url else escaped(label)
 
+def source_links(m):
+    """List all attributed URLs once, keeping missing originals explicit."""
+    links={}
+    def add(url,source,kind):
+        if not url:return
+        key=canonical_url(url);entry=links.setdefault(key,{'url':url,'labels':[],'original':False})
+        label=source+'（'+kind+'）'
+        if label not in entry['labels']:entry['labels'].append(label)
+        entry['original']=entry['original'] or kind=='原始出处'
+    records=[m,*m.get('provenance',[])]
+    for row in m.get('valuation_members',[]):records.extend([row,*row.get('provenance',[])])
+    for p in records:
+        source=p.get('source_name','来源');add(p.get('original_url'),source,'原始出处')
+        if p.get('available_url') and p['available_url']!=p.get('original_url'):
+            add(p['available_url'],source,'完整明细' if p.get('valuation_members') else '实际读取/转载')
+    for p in m.get('source_links',[]):add(p['url'],p['source'],'实际读取/转载' if p.get('kind')=='available' else '原始出处')
+    return list(links.values())
+
 def description(m):
     c=m['confidence'];degree=m['impact_degree'];impact=m['investment_impact']
     first=m.get('published_at') or '首次发布时间未知'
     times=[first]
     for key,label in [('source_timezone','原始时区'),('updated_at','更新'),('feed_published_at','来源RSS发布时间'),('event_at','事件'),('data_period','数据期'),('observed_at','观测'),('retrieved_at','获取')]:
         if m.get(key):times.append(label+'：'+str(m[key]))
-    url_html=link(m.get('original_url'),'原始链接') if m.get('original_url') else '原始链接未取得'
-    if m.get('available_url') and m.get('available_url')!=m.get('original_url'):url_html+='；'+link(m['available_url'],'实际读取/转载链接')
+    links=source_links(m)
+    url_html=('原始链接未取得；' if not any(x['original'] for x in links) else '')+'<ul>'+''.join('<li>'+link(x['url'],'；'.join(x['labels']))+'</li>' for x in links)+'</ul>'
     impact_text='；'.join(str(x) for x in [impact.get('direction'),impact.get('mechanism'),'期限：'+str(impact.get('horizon','未知')),'条件：'+'；'.join(impact.get('conditions',[])),'已计价：'+str(impact.get('priced_in','未知')),'失效条件：'+'；'.join(impact.get('invalidation',[]))] if x)
-    fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(m['title'])),('消息产生时间',escaped('；'.join(times))),('置信度',escaped(str(c.get('score'))+'/100；'+str(c.get('reason'))+'；支持范围：'+str(c.get('scope')))),('对投资的影响',escaped(impact_text)),('影响度',escaped(('待评估' if degree.get('score') is None else str(degree['score'])+'/5')+'；'+degree['reason']))]
+    confidence_text=('逐条见明细' if c.get('score') is None else str(c['score'])+'/100')+'；'+str(c.get('reason'))+'；支持范围：'+str(c.get('scope'))
+    fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(m['title'])),('消息产生时间',escaped('；'.join(times))),('置信度',escaped(confidence_text)),('对投资的影响',escaped(impact_text)),('影响度',escaped(('待评估' if degree.get('score') is None else str(degree['score'])+'/5')+'；'+degree['reason']))]
     result='<dl>'+''.join('<dt><strong>'+k+'</strong></dt><dd>'+v+'</dd>' for k,v in fields)+'</dl>'
     if m.get('fact_summary'):result+='<p>'+escaped(m['fact_summary'])+'</p>'
     if m.get('analysis'):result+='<p>'+escaped(m['analysis'])+'</p>'
     if m.get('gaps'):result+='<p><strong>核验缺口：</strong>'+escaped('；'.join(m['gaps']))+'</p>'
     result+='<p><strong>合并出处：</strong></p><ul>'
     for p in m.get('provenance',[]):
-        result+='<li>'+link(p.get('original_url') or p.get('available_url'),p.get('source_name','来源'))+'；'+escaped(p.get('title',''))+'；'+escaped(p.get('published_at') or '首发未知')+'</li>'
-    return result+'</ul>'
+        result+='<li>'+escaped(p.get('source_name','来源'))+'；'+escaped(p.get('title',''))+'；'+escaped(p.get('published_at') or '首发未知')+'</li>'
+    result+='</ul>'
+    if m.get('valuation_members'):
+        result+='<h3>逐指数明细（平台原值，分位单位各自保留）</h3><table><thead><tr>'+''.join('<th>'+s+'</th>' for s in ['指数/标题','来源及原始链接','估值/分位/质量标记','消息时间','置信度','对投资的影响','影响度'])+'</tr></thead><tbody>'
+        for row in m['valuation_members']:
+            c=row['confidence'];d=row['impact_degree'];impact=row['investment_impact']
+            times='；'.join(label+'：'+str(row[k]) for k,label in [('published_at','首发'),('data_period','数据期'),('updated_at','更新'),('observed_at','观测'),('retrieved_at','获取')] if row.get(k))
+            if not row.get('published_at'):times='首发未知；'+times
+            investment='；'.join([str(impact.get('direction','待评估')),impact['mechanism'],'期限：'+str(impact.get('horizon','未知')),'条件：'+'；'.join(impact.get('conditions',[])),'已计价：'+str(impact.get('priced_in','未知')),'失效条件：'+'；'.join(impact.get('invalidation',[]))])
+            cells=[escaped(row['title']),link(row.get('original_url') or row['available_url'],row['source_name']),escaped(row.get('fact_summary','')+'；'+'；'.join(row.get('gaps',[]))),escaped(times),escaped(str(c.get('score'))+'/100；'+c['reason']+'；支持范围：'+c['scope']),escaped(investment),escaped(('待评估' if d.get('score') is None else str(d['score'])+'/5')+'；'+d['reason'])]
+            result+='<tr>'+''.join('<td>'+cell+'</td>' for cell in cells)+'</tr>'
+        result+='</tbody></table>'
+    return result
+
+def rss_entries(items,cfg):
+    """Bundle valuation display only; underlying records and identities stay intact."""
+    groups={}
+    for m in items:
+        day=m.get('data_period')
+        if m.get('record_kind')=='指数估值快照' and isinstance(day,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',day):
+            try:datetime.fromisoformat(day)
+            except ValueError:continue
+            groups.setdefault(day,[]).append(m)
+    result=[];emitted=set()
+    for m in items:
+        day=m.get('data_period')
+        if m.get('record_kind')!='指数估值快照' or day not in groups:
+            result.append(m);continue
+        if day in emitted:continue
+        emitted.add(day);members=sorted(groups[day],key=lambda x:(x['source_id'],x.get('source_record_id',''),x['guid']))
+        sources=sorted({(x['source_name'],x.get('original_url') or x['available_url'],'original' if x.get('original_url') else 'available') for x in members})
+        degrees=[x['impact_degree']['score'] for x in members if x['impact_degree'].get('score') is not None]
+        digest={'guid':'urn:investment-research-news:valuation:'+day,'layer':2,'layers':[2],'source_name':'；'.join(sorted({x[0] for x in sources})),'source_role':'vendor_data','source_links':[{'source':name,'url':url,'kind':kind} for name,url,kind in sources],'original_url':None,'available_url':'https://github.com/'+cfg['repository']+'/blob/main/data/items.json','title':'指数估值汇总 · '+day+'（'+str(len(members))+'条平台记录）','published_at':None,'data_period':day,'record_kind':'指数估值汇总','confidence':{'score':None,'reason':'保留各原记录评分，不平均不同平台置信度。','scope':'平台显示值及质量标记，不是未来收益概率。'},'investment_impact':{'direction':'估值背景参考，方向待评估','mechanism':'按平台原口径比较，结合盈利与风险预算；异常、过期和不适用记录不解释为低估信号。','horizon':'中长期','conditions':['核对样本期、成分和亏损公司处理'],'priced_in':'未知'},'impact_degree':{'score':max(degrees) if degrees else None,'reason':'沿用明细中的最高已评估影响度，未评估项仍单列待评估；打包不增加影响。'},'gaps':['各平台分位单位不同，保留原值，不混合求平均。','逐指数首发、更新、观测与获取时刻见明细，不把汇总时刻当数据首发。'],'valuation_members':members}
+        result.append(digest)
+    return result
+
+def rss_group_map(entries):
+    return [{'guid':m['guid'],'data_period':m['data_period'],'member_guids':[x['guid'] for x in m['valuation_members']]} for m in entries if m.get('valuation_members')]
 
 def rss(items,cfg,as_of):
     root=ET.Element('rss',version='2.0');channel=ET.SubElement(root,'channel')
     for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','三层金融投研汇总。每条含来源、原始链接、标题、消息产生时间、置信度、投资影响和影响度；保留转载、未知时间与核验缺口。'),('language','zh-CN'),('generator','finance-news-publisher/1.0'),('ttl','60')]:ET.SubElement(channel,tag).text=text
     ET.SubElement(channel,'{http://www.w3.org/2005/Atom}link',href=cfg['feed_url'],rel='self',type='application/rss+xml')
     ET.SubElement(channel,'lastBuildDate').text=format_datetime(dt(as_of),usegmt=True)
-    for m in items:
+    for m in rss_entries(items,cfg):
         node=ET.SubElement(channel,'item');ET.SubElement(node,'title').text=clean_text(m['title']);ET.SubElement(node,'link').text=m.get('original_url') or m['available_url'];ET.SubElement(node,'guid',isPermaLink='false').text=m['guid']
         published=dt(m.get('published_at'))
         if published:ET.SubElement(node,'pubDate').text=format_datetime(published,usegmt=True)
@@ -287,17 +342,29 @@ def build(manifest,previous,cfg):
     items,mapping=merge(accepted,old,manifest['as_of'])
     state={'version':1,'run_id':manifest['run_id'],'updated_at':manifest['as_of'],'items':items}
     public=[{k:v for k,v in m.items() if not k.startswith('_')} for m in items]
-    summary={'run_id':manifest['run_id'],'as_of':manifest['as_of'],'window_start':manifest['window_start'],'window_end':manifest['window_end'],'layer_count':3,'input_messages':sum(x['candidate_count'] for x in coverage),'accepted_messages':len(accepted),'published_items':len(items),'rejected':rejected,'dedup_groups':len(mapping),'scope':'Current collected messages only; no exhaustive all-source/current-content claim. Source failures retained in coverage.','layers':coverage}
+    entries=rss_entries(items,cfg)
+    summary={'run_id':manifest['run_id'],'as_of':manifest['as_of'],'window_start':manifest['window_start'],'window_end':manifest['window_end'],'layer_count':3,'input_messages':sum(x['candidate_count'] for x in coverage),'accepted_messages':len(accepted),'published_items':len(entries),'stored_records':len(items),'rejected':rejected,'dedup_groups':len(mapping),'scope':'Current collected messages only; no exhaustive all-source/current-content claim. Source failures retained in coverage.','layers':coverage}
     xml=rss(items,cfg,manifest['as_of']);parsed=ET.fromstring(xml)
-    assert len(parsed.findall('./channel/item'))==len(items)
+    assert len(parsed.findall('./channel/item'))==len(entries)
     assert len({m['guid'] for m in items})==len(items)
-    return {'feed.xml':xml,'data/items.json':json.dumps(public,ensure_ascii=False,indent=2)+'\n','data/feed-state.json':json.dumps(state,ensure_ascii=False,indent=2)+'\n','summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','dedup-map.json':json.dumps(mapping,ensure_ascii=False,indent=2)+'\n'}
+    return {'feed.xml':xml,'data/items.json':json.dumps(public,ensure_ascii=False,indent=2)+'\n','data/feed-state.json':json.dumps(state,ensure_ascii=False,indent=2)+'\n','summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','dedup-map.json':json.dumps(mapping,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(rss_group_map(entries),ensure_ascii=False,indent=2)+'\n'}
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--manifest',required=True);p.add_argument('--previous',required=True);p.add_argument('--config',required=True);p.add_argument('--output',required=True);a=p.parse_args()
-    manifest=json.loads(Path(a.manifest).read_text());previous=json.loads(Path(a.previous).read_text()) if Path(a.previous).exists() else {'items':[]};cfg=json.loads(Path(a.config).read_text());outputs=build(manifest,previous,cfg);root=Path(a.output);root.mkdir(parents=True,exist_ok=True)
+    p=argparse.ArgumentParser(description=__doc__);mode=p.add_mutually_exclusive_group(required=True);mode.add_argument('--manifest');mode.add_argument('--render-state');p.add_argument('--previous');p.add_argument('--as-of');p.add_argument('--config',required=True);p.add_argument('--output',required=True);a=p.parse_args();cfg=json.loads(Path(a.config).read_text())
+    if a.render_state:
+        state=json.loads(Path(a.render_state).read_text());items=state['items'];as_of=a.as_of or datetime.now(timezone.utc).isoformat()
+        if not dt(as_of):p.error('--as-of must have a timezone')
+        for m in items:validate(m)
+        if len({m['guid'] for m in items})!=len(items):raise ValueError('Duplicate state GUID')
+        entries=rss_entries(items,cfg);groups=rss_group_map(entries)
+        summary={'mode':'presentation_only','source_run_id':state.get('run_id'),'source_state_updated_at':state.get('updated_at'),'rendered_at':as_of,'stored_records':len(items),'published_items':len(entries),'valuation_records':sum(len(g['member_guids']) for g in groups),'valuation_digest_count':len(groups),'new_collection':False}
+        outputs={'feed.xml':rss(items,cfg,as_of),'summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(groups,ensure_ascii=False,indent=2)+'\n'}
+    else:
+        if not a.previous:p.error('--previous is required with --manifest')
+        manifest=json.loads(Path(a.manifest).read_text());previous=json.loads(Path(a.previous).read_text()) if Path(a.previous).exists() else {'items':[]};outputs=build(manifest,previous,cfg)
+    root=Path(a.output);root.mkdir(parents=True,exist_ok=True)
     for relative,value in outputs.items():
         target=root/relative;target.parent.mkdir(parents=True,exist_ok=True);tmp=target.with_suffix(target.suffix+'.tmp');tmp.write_text(value);tmp.replace(target)
-    summary=json.loads(outputs['summary.json']);print(json.dumps({k:summary[k] for k in ('run_id','input_messages','accepted_messages','published_items','dedup_groups')},ensure_ascii=False))
+    summary=json.loads(outputs['summary.json']);print(json.dumps({k:summary[k] for k in ('run_id','mode','input_messages','accepted_messages','published_items','stored_records','dedup_groups','valuation_digest_count') if k in summary},ensure_ascii=False))
 
 if __name__=='__main__':main()

@@ -12,6 +12,10 @@ GitHub文件浏览地址不能直接作为RSS订阅地址。feed.xml为RSS 2.0�
 
 合并器使用原始URL、经核对的事件键、数据期及记录ID；不会仅凭标题相似合并。GUID在后续更新保持稳定，避免重复推送。置信度衡量证据，不是预测胜率；未取得依据的影响度保留待评估。
 
+指数估值在RSS中按数据日期汇总成一条，同日刷新复用GUID；明细保留平台原值、来源、时间、评分及异常标记。完整逐指数记录仍在data/items.json与data/feed-state.json，RSS条数与原始记录数分别统计。纯展示调整可用build_feed.py --render-state配合--config及--output重渲染，不作为新采集。
+
+所有合并条目的“原始链接”栏集中列出全部出处，按URL去重并标明来源名称；实际读取/转载链接与原件缺失情况分别标注。
+
 运行：读取总控Skill的pipeline.md；完成三个Skill输出后执行build_feed.py。Skill文档不是可执行函数，Python合并器不能代替研究采集。运行环境为Python 3.9+标准库；验证命令：`python -m unittest discover -s skills/finance-news-publisher/tests -v`。
 
 发布采用GitHub当前分支头校验和普通快进更新，保留已有状态，禁止强推。公开仓库只保存原创简述、引用链接、最终数据和脱敏运行摘要；完整可得原始返回/过程日志另行ZIP交付，凭据、验证码、私密会话与未授权原始日志不上传。

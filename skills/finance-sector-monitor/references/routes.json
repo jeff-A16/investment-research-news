@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "execution": "scripts/monitor.py",
+  "object_mapping": "references/universe.json",
+  "component_catalog": "references/sources.json",
+  "scope": "Templates select per-object paths; an HTTP response is not proof of usable historical valuations or prices.",
+  "routes": [
+    {
+      "adapter": "danjuan_valuation",
+      "url_template": "https://danjuanfunds.com/djapi/index_eva/dj"
+    },
+    {
+      "adapter": "funddb_valuation",
+      "url_template": "https://ai2.jiucaishuo.com/api/index-valuation?category=jx"
+    },
+    {
+      "adapter": "sina_index_daily",
+      "url_template": "https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol={symbol}&scale=240&ma=no&datalen=1970"
+    },
+    {
+      "adapter": "tencent_index_quote",
+      "url_template": "https://qt.gtimg.cn/q={symbols}"
+    },
+    {
+      "adapter": "yahoo_adjusted_etf",
+      "url_template": "https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?range=10y&interval=1d&events=div%2Csplits"
+    }
+  ]
+}

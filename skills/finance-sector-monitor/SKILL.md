@@ -1,0 +1,12 @@
+---
+name: finance-sector-monitor
+description: "监控A股和美股基金板块的历史低估分位、深回撤及低位反弹，以可追溯自分析消息交给投研总控发布。"
+---
+
+# 板块低位监控
+
+执行 references/contract.md 与 references/evolution.md；对象和阈值读 references/universe.json，口径见 references/methods.md。
+
+1. 同总控 run_id 初始化日志，运行 scripts/monitor.py；逐对象核验估值、价格和数据日，缺口保留。
+2. 估值历史分位≤10%触发低位观察；价格深回撤单列，不能冒充低估。低位后反弹区分盘中观察与收盘确认，不能宣称底部已确定。
+3. 按观察区间和信号阶段去重，输出七字段 messages、逐对象 coverage、分析报告及待提交监控状态；总控等全部任务结束后统一发布。状态随 feed 原子提交成功才生效。

@@ -3,7 +3,7 @@
   "branch": "main",
   "feed_path": "feed.xml",
   "feed_url": "https://raw.githubusercontent.com/jeff-A16/investment-research-news/main/feed.xml",
-  "channel_title": "金融投研 · 三层信息汇总",
+  "channel_title": "金融投研 · 三层消息与板块监控",
   "timezone": "Asia/Shanghai",
   "lookback_hours": 24,
   "excluded_source_ids": [
@@ -27,13 +27,19 @@
     {
       "layer": 3,
       "skill": "finance-social-sentiment"
+    },
+    {
+      "layer": 4,
+      "skill": "finance-sector-monitor"
     }
   ],
   "public_outputs": [
     "feed.xml",
     "data/items.json",
     "data/feed-state.json",
-    "runs/{run_id}/summary.json"
+    "runs/{run_id}/summary.json",
+    "data/sector-monitor-state.json",
+    "runs/{run_id}/sector-monitor.json"
   ],
   "raw_logs_public": false
 }

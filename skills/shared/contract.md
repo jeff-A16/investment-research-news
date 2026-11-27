@@ -34,7 +34,7 @@
 
 ## 全程日志
 
-每轮在可写项目research-logs/<run_id>/<skill>/独立归档，三层联动共享run_id。保存manifest（请求/修正/参数）、snapshots（实际规则/目录/脚本版本）、events.jsonl、inputs、artifacts、checkpoints、outputs。记录全部业务查询与参数、可得返回/原件及解析、分页、错误/重试、候选纳入/排除/去重、核验/修订、评分和影响的简要依据；消息以audit_refs关联call_id、事件序号与材料。
+每轮在可写项目research-logs/<run_id>/<skill>/独立归档，三层、板块监控及总控共享run_id。保存manifest（请求/修正/参数）、snapshots（实际规则/目录/脚本版本）、events.jsonl、inputs、artifacts、checkpoints、outputs。记录全部业务查询与参数、可得返回/原件及解析、分页、错误/重试、候选纳入/排除/去重、核验/修订、评分和影响的简要依据；消息以audit_refs关联call_id、事件序号与材料。
 
 工具前写tool_start，返回后写同call_id的tool_end（UTC时刻、耗时、状态、完整返回或文件引用、截断及缺口）；重试新ID关联旧调用，并发分别记。大返回写独立文件，不截短以节省日志；材料记字节数/SHA-256，事件顺序追加/哈希校验。日志只追加、不覆盖、不自动删除，压缩不删原件；修正追加版本，中断保留检查点，损坏不删行、另开关联恢复运行。
 
@@ -42,7 +42,7 @@
 
 ## 每轮复盘
 
-所有运行（含失败/无新增）按 `references/evolution.md` 留链路收据、对比历史成功、排查退化，并由总控执行四个 Skill 的 SkillOpt 验证与有门槛的自动进化；共享规则只在该文件维护，完整过程追加到同 run_id 日志。
+所有运行（含失败/无新增）按 `references/evolution.md` 留链路收据、对比历史成功、排查退化，并由总控执行五个 Skill 的 SkillOpt 验证与有门槛的自动进化；共享规则只在该文件维护，完整过程追加到同 run_id 日志。
 
 ## 交付
 

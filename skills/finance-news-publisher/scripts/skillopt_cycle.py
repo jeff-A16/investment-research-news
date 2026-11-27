@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run pinned upstream SkillOpt-Sleep against four explicit, reviewed skill tasks."""
+"""Run pinned upstream SkillOpt-Sleep against five explicit, reviewed skill tasks."""
 import argparse
 from contextlib import redirect_stdout, redirect_stderr
 import hashlib
@@ -10,7 +10,7 @@ import sys
 
 PIN = 'dc0b5e654cafa1073a2819086151c1e0d13012f0'
 SKILLS = ('finance-primary-intelligence', 'finance-market-research',
-          'finance-social-sentiment', 'finance-news-publisher')
+          'finance-social-sentiment', 'finance-news-publisher', 'finance-sector-monitor')
 
 
 def load_tasks(path):

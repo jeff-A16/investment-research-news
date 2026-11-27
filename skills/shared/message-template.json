@@ -1,7 +1,7 @@
 {
   "id": "消息编号",
   "layer": null,
-  "source_id": "Pxx/Mxx/Sxx",
+  "source_id": "Pxx/Mxx/Sxx/Axx",
   "source_name": "发布者",
   "source_role": "fact/opinion/reporting/market-implied/sentiment/proxy等",
   "original_url": null,

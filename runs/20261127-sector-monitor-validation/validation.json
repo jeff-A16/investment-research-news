@@ -1,0 +1,27 @@
+{
+  "rule_version": "sector-low-v1",
+  "objects": 38,
+  "china": 22,
+  "us": 16,
+  "live_alerts": 20,
+  "repeat_alerts": 0,
+  "publisher_tests": 41,
+  "monitor_tests": 14,
+  "rss_publication": "not performed; all four dependencies must complete together",
+  "preview_xml_valid": true,
+  "baseline_guard": true,
+  "live_source_run": "20261127-sector-monitor-validation",
+  "regression_replay": "20261127-sector-monitor-replay",
+  "repeat_replay": "20261127-sector-monitor-repeat",
+  "startup_fixes": [
+    "Use provider-local date for interface start timestamp.",
+    "Do not confirm cached midday quotes using a later system clock.",
+    "Require monitor state baseline hash and registered state/report artifacts.",
+    "Allow actual own-analysis generation/revision times up to collection as_of, without weakening external news publication windows."
+  ],
+  "limitations": [
+    "Platform valuation percentiles are vendor-reported, not recomputed from full history.",
+    "Fifteen monitor objects had valuation/history/data limitations; current access is listed per object.",
+    "Prototype probes and implementation shell steps are separate maintenance evidence; automated collector calls and their raw replies are retained."
+  ]
+}

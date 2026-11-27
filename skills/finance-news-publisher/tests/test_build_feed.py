@@ -91,10 +91,16 @@ class FeedTests(unittest.TestCase):
    p=Path(tmp);layers=[]
    for layer,sk in feed.DEPENDENCIES.items():
     (p/f'{layer}.json').write_text('[]');(p/f'c{layer}.json').write_text('{"sources":[]}');layers.append({'layer':layer,'skill':sk,'messages':str(p/f'{layer}.json'),'coverage':str(p/f'c{layer}.json')})
+   baseline=feed.hashlib.sha256(json.dumps({'version':1,'sectors':{}},ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+   monitor={'run_id':'r','base_state_sha256':baseline,'sectors':{}}
+   (p/'sector-monitor-state.next.json').write_text(json.dumps(monitor));(p/'sector-monitor.json').write_text('{"run_id":"r","messages":[]}')
    manifest={'run_id':'r','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers};cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss','excluded_source_ids':['S09']}
    old,_=feed.merge([message(),message(id='weibo',layer=3,source_id='S09',original_url='https://weibo.com/x')],{},NOW)
    with patch.object(feed,'publication_gate',return_value={'passed':True}):
     out=feed.build(manifest,{'items':old},cfg);self.assertEqual(len(json.loads(out['data/items.json'])),1)
+    self.assertEqual(json.loads(out['data/sector-monitor-state.json']),json.loads(out['data/feed-state.json'])['sector_monitor_state'])
+    monitor['base_state_sha256']='wrong';(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
+    with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)
     manifest['layers'].pop()
     with self.assertRaises(ValueError):feed.build(manifest,{},cfg)
  def test_refresh_deduplicates_same_source_in_attribution(self):
@@ -180,12 +186,19 @@ class FeedTests(unittest.TestCase):
     component=dict(source_id=sid,status='no_new_verified',checked_at=NOW,checked_scope='fixture listing',reason='fixture has no records',evidence_call_ids=['call'],evidence_paths=['artifacts/evidence.json'])
     row=dict(component,components=[dict(component,component='detail')] if number==1 else [])
     (run/'outputs/messages.json').write_text('[]');(run/'outputs/coverage.json').write_text(json.dumps({'run_id':'r','collection_complete':True,'sources':[row]}))
+    if number==4:
+     for name in ['sector-monitor-state.next.json','sector-monitor.json']:(run/'outputs'/name).write_text('{"run_id":"r"}')
     catalog[skill]={sid:['detail'] if number==1 else []};events[run]=[{'type':'tool_start','data':{'call_id':'call','source_ids':[sid]}},{'type':'tool_end','data':{'call_id':'call'}}]
+    if number==4:events[run]+=[{'type':'artifact_saved','data':{'path':'outputs/'+name}} for name in ['sector-monitor-state.next.json','sector-monitor.json']]
     layers.append({'layer':number,'skill':skill,'messages':str(run/'outputs/messages.json'),'coverage':str(run/'outputs/coverage.json')})
    manifest={'run_id':'r','started_at':'2026-11-26T11:00:00Z','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers}
    check={'integrity_ok':True,'status':'completed','pending_call_ids':[],'missing_outputs':[]}
    with patch.object(feed,'required_sources',side_effect=lambda sk:catalog[sk]),patch.object(feed,'collection_log',side_effect=lambda run:(check,events[run])):
-    passed=feed.publication_gate(manifest,{});self.assertEqual(passed['completed_sources'],3);self.assertEqual(passed['completed_components'],1)
+    passed=feed.publication_gate(manifest,{});self.assertEqual(passed['completed_sources'],len(feed.DEPENDENCIES));self.assertEqual(passed['completed_components'],1)
+    with self.assertRaises(feed.PublicationBlocked):feed.publication_gate(dict(manifest,layers=layers[:3]),{})
+    monitor_cov=Path(layers[3]['coverage']);monitor_orig=monitor_cov.read_text();changed=json.loads(monitor_orig);changed['validation_only']=True;monitor_cov.write_text(json.dumps(changed))
+    with self.assertRaises(feed.PublicationBlocked):feed.publication_gate(manifest,{})
+    monitor_cov.write_text(monitor_orig)
     path=Path(layers[0]['coverage']);original=json.loads(path.read_text())
     for mutation in ['entry_only','running','no_evidence','missing_component','not_sealed']:
      coverage=deepcopy(original)
@@ -197,4 +210,24 @@ class FeedTests(unittest.TestCase):
      path.write_text(json.dumps(coverage))
      with self.assertRaises(feed.PublicationBlocked,msg=mutation):feed.publication_gate(manifest,{})
      check['status']='completed'
+ def test_analysis_is_separate_from_valuation_evidence(self):
+  raw=message(layer=2,source_id='M26',source_role='vendor_data',event_key='same-event')
+  analysis=message(id='analysis',layer=4,source_id='A01',source_name='自分析',source_role='analysis',event_key='same-event',record_kind='板块低位自分析')
+  rows,_=feed.merge([raw,analysis],{},NOW);self.assertEqual(2,len(rows))
+  root=ET.fromstring(feed.rss(rows,{'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'},NOW))
+  self.assertIn('自分析·板块低位监控',[x.text for x in root.findall('.//category')])
+ def test_rebound_close_revision_preserves_analysis_guid(self):
+  a=message(layer=4,source_id='A01',source_role='analysis',source_record_id='CN/valuation/day/rebound',record_kind='板块低位自分析',fact_values={'confirmed':False})
+  first,_=feed.merge([a],{},NOW)
+  b=dict(a,fact_values={'confirmed':True},updated_at=NOW,material_update=True)
+  changed,_,_=feed.incremental_records([b],{'items':first});second,_=feed.merge(changed,{'items':first},NOW)
+  self.assertEqual(len(second),1);self.assertEqual(first[0]['guid'],second[0]['guid'])
+ def test_own_analysis_can_be_generated_after_fixed_news_window(self):
+  start=feed.dt('2026-11-25T12:00:00Z');end=feed.dt(NOW);asof=feed.dt('2026-11-26T14:00:00Z')
+  m=message(layer=4,source_id='A01',source_role='analysis',record_kind='板块低位自分析',published_at='2026-11-26T13:00:00Z')
+  self.assertEqual('generated_analysis_during_run',feed.window_status(m,start,end,{},asof)[1])
+  self.assertFalse(feed.window_status(dict(m,source_role='reporting'),start,end,{},asof)[0])
+  old=dict(m,published_at='2026-11-20T00:00:00Z',updated_at='2026-11-26T13:00:00Z',material_update=True)
+  self.assertEqual('material_analysis_revision',feed.window_status(old,start,end,{},asof)[1])
+  self.assertFalse(feed.window_status(dict(m,published_at='2026-11-26T15:00:00Z'),start,end,{},asof)[0])
 if __name__=='__main__':unittest.main()

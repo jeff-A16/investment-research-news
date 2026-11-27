@@ -7,9 +7,9 @@ from pathlib import Path
 
 
 READABLE = {'readable', 'no_new'}
-FAILURES = {'transport_error', 'blocked', 'empty_shell', 'parse_error', 'stale'}
+FAILURES = {'transport_error', 'blocked', 'empty_shell', 'parse_error', 'stale', 'data_unqualified'}
 CAUSES = {'network', 'rate_limit', 'endpoint_changed', 'authentication', 'subscription',
-          'site_policy', 'dynamic_rendering', 'parser', 'stale_cache', 'calendar', 'unknown'}
+          'site_policy', 'dynamic_rendering', 'parser', 'stale_cache', 'calendar', 'data_quality', 'history_unavailable', 'unknown'}
 
 
 def read(path):
@@ -116,7 +116,7 @@ def review(current, history, availability=None, observations=None, ledger=None):
             confirmed = cause != 'unknown'
             route_findings.append({'source_id': obs['source_id'], 'component': obs.get('component', ''),
                 'route_id': obs['route_id'], 'baseline': before, 'current': obs,
-                'classification': 'freshness_regression' if obs['outcome'] == 'stale' else 'route_regression',
+                'classification': 'freshness_regression' if obs['outcome'] == 'stale' else 'data_quality_regression' if obs['outcome']=='data_unqualified' else 'route_regression',
                 'root_cause': cause, 'cause_status': 'evidenced' if confirmed else 'unresolved'})
         if obs['outcome'] in READABLE:
             entry['last_readable'] = obs

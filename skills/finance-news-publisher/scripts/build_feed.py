@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge three executed research-skill outputs into a safe, stable RSS 2.0 feed."""
+"""Merge three research tiers and the sector monitor behind a completion gate."""
 import argparse
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
@@ -15,7 +15,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
 
-DEPENDENCIES = {1:'finance-primary-intelligence',2:'finance-market-research',3:'finance-social-sentiment'}
+DEPENDENCIES = {1:'finance-primary-intelligence',2:'finance-market-research',3:'finance-social-sentiment',4:'finance-sector-monitor'}
 PUBLIC_FIELDS = ('id','layer','source_id','source_name','source_role','original_url','available_url',
  'original_link_status','title','title_type','published_at','published_precision','source_timezone',
  'updated_at','event_at','data_period','observed_at','retrieved_at','feed_published_at',
@@ -58,6 +58,7 @@ def normalized(value):
 
 def role_kind(m):
     r=m.get('source_role','').lower()
+    if r=='analysis':return 'analysis'
     if 'sentiment' in r:return 'sentiment'
     if any(x in r for x in ('opinion','forecast','prediction')):return 'opinion'
     if 'implied' in r:return 'market-implied'
@@ -115,9 +116,11 @@ def window_status(m,start,end,cfg,as_of=None):
     if m.get('is_background') and not cfg.get('include_background',False):return False,'historical_background'
     published=dt(m.get('published_at'))
     if published:
-        if published>end+timedelta(minutes=5):return False,'future_publication'
-        if published<start and not (m.get('material_update') and dt(m.get('updated_at')) and start<=dt(m['updated_at'])<=end):return False,'outside_window'
-        return True,'first_publication'
+        generated=m.get('layer')==4 and role_kind(m)=='analysis' and m.get('record_kind')=='板块低位自分析'
+        limit=(as_of or end) if generated else end
+        if published>limit+timedelta(minutes=5):return False,'future_publication'
+        if published<start and not (m.get('material_update') and dt(m.get('updated_at')) and start<=dt(m['updated_at'])<=limit):return False,'outside_window'
+        return True,('generated_analysis_during_run' if published>=start else 'material_analysis_revision') if generated else 'first_publication'
     date_value=m.get('published_at') or m.get('data_period')
     updated=dt(m.get('updated_at'))
     if not m.get('published_at') and m.get('material_update') and updated and start<=updated<=(as_of or end):
@@ -365,14 +368,14 @@ def rss_group_map(entries):
 
 def rss(items,cfg,as_of):
     root=ET.Element('rss',version='2.0');channel=ET.SubElement(root,'channel')
-    for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','三层金融投研汇总。每条含来源、原始链接、标题、消息产生时间、置信度、投资影响和影响度；保留转载、未知时间与核验缺口。'),('language','zh-CN'),('generator','finance-news-publisher/1.0'),('ttl','60')]:ET.SubElement(channel,tag).text=text
+    for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','三层金融投研与板块低位自分析。每条含来源、原始链接、标题、消息产生时间、置信度、投资影响和影响度；保留转载、未知时间与核验缺口。'),('language','zh-CN'),('generator','finance-news-publisher/1.1'),('ttl','60')]:ET.SubElement(channel,tag).text=text
     ET.SubElement(channel,'{http://www.w3.org/2005/Atom}link',href=cfg['feed_url'],rel='self',type='application/rss+xml')
     ET.SubElement(channel,'lastBuildDate').text=format_datetime(dt(as_of),usegmt=True)
     for m in rss_entries(items,cfg):
         node=ET.SubElement(channel,'item');ET.SubElement(node,'title').text=clean_text(m['title']);ET.SubElement(node,'link').text=m.get('original_url') or m['available_url'];ET.SubElement(node,'guid',isPermaLink='false').text=m['guid']
         published=dt(m.get('published_at'))
         if published:ET.SubElement(node,'pubDate').text=format_datetime(published,usegmt=True)
-        for layer in m.get('layers',[m['layer']]):ET.SubElement(node,'category').text={1:'一层·权威与一手',2:'二层·媒体数据研报',3:'三层·社交与情绪'}[layer]
+        for layer in m.get('layers',[m['layer']]):ET.SubElement(node,'category').text={1:'一层·权威与一手',2:'二层·媒体数据研报',3:'三层·社交与情绪',4:'自分析·板块低位监控'}[layer]
         if not published:ET.SubElement(node,'category').text='首次时间待核实'
         if m.get('verification_status')=='unverified':ET.SubElement(node,'category').text='待核验线索'
         if m.get('record_kind'):ET.SubElement(node,'category').text=m['record_kind']
@@ -395,7 +398,7 @@ def publication_gate(manifest,cfg):
     """Fail closed before merging unless every collection task has finished."""
     issues=[];outcomes={};source_count=component_count=0
     layers=manifest.get('layers',[]);as_of=dt(manifest.get('as_of'));started=dt(manifest.get('started_at'))
-    if len(layers)!=3 or {l.get('layer') for l in layers}!=set(DEPENDENCIES):issues.append('Exactly three executed layers are required')
+    if len(layers)!=len(DEPENDENCIES) or {l.get('layer') for l in layers}!=set(DEPENDENCIES):issues.append('All three research tiers and the sector monitor must finish')
     if not started or not as_of or started>as_of:issues.append('Missing/invalid collection started_at/as_of')
     terminal={'content_collected','no_new_verified','access_limited_verified'};disabled=set(cfg.get('excluded_source_ids',[]))
     for layer in layers:
@@ -405,8 +408,16 @@ def publication_gate(manifest,cfg):
             messages_path=Path(layer['messages']);run=messages_path.parent.parent;coverage_path=Path(layer['coverage'])
             if messages_path.resolve()!=(run/'outputs/messages.json').resolve() or coverage_path.resolve()!=(run/'outputs/coverage.json').resolve():raise ValueError('Outputs must be in the finalized layer log')
             coverage=json.loads(coverage_path.read_text());messages=json.loads(messages_path.read_text());check,events=collection_log(run)
+            if layer.get('layer')==4:
+                recorded={e.get('data',{}).get('path') for e in events if e.get('type')=='artifact_saved'}
+                for name in ('sector-monitor-state.next.json','sector-monitor.json'):
+                    sidecar=json.loads((messages_path.parent/name).read_text())
+                    if sidecar.get('run_id')!=manifest.get('run_id'):issues.append(skill+': sidecar run_id mismatch')
+                    if sidecar.get('validation_only'):issues.append(skill+': validation sidecar cannot be published')
+                    if 'outputs/'+name not in recorded:issues.append(skill+': unregistered sidecar '+name)
             if not check['integrity_ok'] or check['status'] not in ('completed','partial') or check['pending_call_ids'] or check['missing_outputs']:issues.append(skill+': collection log not finalized/integral')
             if coverage.get('run_id')!=manifest.get('run_id') or coverage.get('collection_complete') is not True:issues.append(skill+': collection_complete is not true for this run')
+            if coverage.get('validation_only'):issues.append(skill+': validation replay is not publishable current collection')
             catalog=required_sources(skill);rows=coverage.get('sources',[]);ids=[r.get('source_id') for r in rows]
             if len(ids)!=len(set(ids)) or set(ids)!=set(catalog):issues.append(skill+': missing/duplicate/unexpected catalog entries')
             starts={e['data']['call_id']:e['data'] for e in events if e['type']=='tool_start'};ends={e['data']['call_id'] for e in events if e['type']=='tool_end'}
@@ -419,6 +430,8 @@ def publication_gate(manifest,cfg):
             qualified={}
             for m in messages:
                 try:
+                    if m.get('source_id') not in catalog:issues.append(skill+': out-of-catalog message')
+                    if layer.get('layer')==4 and (m.get('source_role')!='analysis' or m.get('audit_refs',{}).get('run_id')!=manifest.get('run_id')):issues.append(skill+': own-analysis role/run provenance mismatch')
                     validate(m);allowed,_=window_status(m,dt(manifest['window_start']),dt(manifest['window_end']),cfg,as_of)
                     if allowed:qualified[m['source_id']]=qualified.get(m['source_id'],0)+1
                 except (ValueError,KeyError,TypeError):pass
@@ -442,7 +455,7 @@ def build(manifest,previous,cfg):
     gate=publication_gate(manifest,cfg)
     end=dt(manifest['window_end']);start=dt(manifest['window_start']);as_of=dt(manifest['as_of'])
     if not end or not start or not as_of or start>end:raise ValueError('Window/as_of must be timezone-aware ISO times')
-    if set(x['layer'] for x in manifest['layers'])!=set(DEPENDENCIES) or len(manifest['layers'])!=3:raise ValueError('Manifest must contain exactly the three executed layers')
+    if set(x['layer'] for x in manifest['layers'])!=set(DEPENDENCIES) or len(manifest['layers'])!=len(DEPENDENCIES):raise ValueError('Manifest must contain three research tiers and the sector monitor')
     accepted=[];rejected=[];coverage=[]
     for layer in manifest['layers']:
         if layer['skill']!=DEPENDENCIES[layer['layer']]:raise ValueError('Layer/skill mismatch')
@@ -466,16 +479,24 @@ def build(manifest,previous,cfg):
     changes,source_records,incremental=incremental_records(accepted,old)
     items,mapping=merge(changes,old,manifest['as_of'])
     cursors=advance_cursors(old,coverage,manifest['window_end'])
-    state={'version':2,'run_id':manifest['run_id'],'updated_at':manifest['as_of'],'items':items,'source_records':source_records,'source_cursors':cursors,'publication_gate':gate}
+    monitor_layer=next(x for x in manifest['layers'] if x['layer']==4)
+    monitor_dir=Path(monitor_layer['messages']).parent
+    monitor_state=json.loads((monitor_dir/'sector-monitor-state.next.json').read_text())
+    prior_monitor=old.get('sector_monitor_state',{'version':1,'sectors':{}})
+    expected=hashlib.sha256(json.dumps(prior_monitor,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    if monitor_state.get('base_state_sha256')!=expected:raise PublicationBlocked('Monitor state was evaluated against a different committed baseline; replay against latest state before merging')
+    state={'version':2,'run_id':manifest['run_id'],'updated_at':manifest['as_of'],'items':items,'source_records':source_records,'source_cursors':cursors,'publication_gate':gate,'sector_monitor_state':monitor_state}
     public=[{k:v for k,v in m.items() if not k.startswith('_')} for m in items]
     entries=rss_entries(items,cfg)
     prior_entries={m['guid']:m for m in rss_entries(old.get('items',[]),cfg)}
     incremental.update(new_feed_items=sum(m['guid'] not in prior_entries for m in entries),updated_feed_items=sum(m['guid'] in prior_entries and content_fingerprint(m)!=content_fingerprint(prior_entries[m['guid']]) for m in entries))
-    summary={'run_id':manifest['run_id'],'as_of':manifest['as_of'],'window_start':manifest['window_start'],'window_end':manifest['window_end'],'layer_count':3,'publication_gate':gate,'incremental':incremental,'input_messages':sum(x['candidate_count'] for x in coverage),'accepted_messages':len(accepted),'published_items':len(entries),'stored_records':len(items),'rejected':rejected,'dedup_groups':len(mapping),'scope':'All configured tasks finalized in their stated checked scope; content/access limitations retained. No exhaustive whole-site claim.','layers':coverage}
+    summary={'run_id':manifest['run_id'],'as_of':manifest['as_of'],'window_start':manifest['window_start'],'window_end':manifest['window_end'],'layer_count':3,'executed_dependency_skills':len(DEPENDENCIES),'publication_gate':gate,'incremental':incremental,'input_messages':sum(x['candidate_count'] for x in coverage),'accepted_messages':len(accepted),'published_items':len(entries),'stored_records':len(items),'rejected':rejected,'dedup_groups':len(mapping),'scope':'All configured tasks finalized in their stated checked scope; content/access limitations retained. No exhaustive whole-site claim.','layers':coverage}
     xml=rss(items,cfg,manifest['as_of']);parsed=ET.fromstring(xml)
     assert len(parsed.findall('./channel/item'))==len(entries)
     assert len({m['guid'] for m in items})==len(items)
-    return {'feed.xml':xml,'data/items.json':json.dumps(public,ensure_ascii=False,indent=2)+'\n','data/feed-state.json':json.dumps(state,ensure_ascii=False,indent=2)+'\n','summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','dedup-map.json':json.dumps(mapping,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(rss_group_map(entries),ensure_ascii=False,indent=2)+'\n'}
+    analysis_report=json.loads((monitor_dir/'sector-monitor.json').read_text())
+    analysis_report['messages']=[public_message(m) for m in analysis_report.get('messages',[])]
+    return {'feed.xml':xml,'data/items.json':json.dumps(public,ensure_ascii=False,indent=2)+'\n','data/feed-state.json':json.dumps(state,ensure_ascii=False,indent=2)+'\n','data/sector-monitor-state.json':json.dumps(monitor_state,ensure_ascii=False,indent=2)+'\n','sector-monitor.json':json.dumps(analysis_report,ensure_ascii=False,indent=2)+'\n','summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','dedup-map.json':json.dumps(mapping,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(rss_group_map(entries),ensure_ascii=False,indent=2)+'\n'}
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);mode=p.add_mutually_exclusive_group(required=True);mode.add_argument('--manifest');mode.add_argument('--render-state');p.add_argument('--previous');p.add_argument('--as-of');p.add_argument('--completion-manifest');p.add_argument('--preview-only',action='store_true');p.add_argument('--config',required=True);p.add_argument('--output',required=True);a=p.parse_args();cfg=json.loads(Path(a.config).read_text())

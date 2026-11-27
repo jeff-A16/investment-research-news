@@ -1,0 +1,425 @@
+{
+  "schema_version": 1,
+  "layer": 4,
+  "purpose": "自分析监控对象；数据可得性逐对象、逐指标核验，估值与价格信号不能互相冒充。",
+  "sources": [
+    {
+      "id": "A01",
+      "name": "自分析·创业板",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A02",
+      "name": "自分析·科创50",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A03",
+      "name": "自分析·沪深300",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A04",
+      "name": "自分析·中证500",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A05",
+      "name": "自分析·中证1000",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A06",
+      "name": "自分析·全指医药",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A07",
+      "name": "自分析·中证医疗",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A08",
+      "name": "自分析·主要消费",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A09",
+      "name": "自分析·中证白酒",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A10",
+      "name": "自分析·国证新能源车",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A11",
+      "name": "自分析·科技龙头",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A12",
+      "name": "自分析·中证电子",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A13",
+      "name": "自分析·全指信息",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A14",
+      "name": "自分析·5G通讯",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A15",
+      "name": "自分析·中证传媒",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A16",
+      "name": "自分析·中证军工",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A17",
+      "name": "自分析·证券公司",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A18",
+      "name": "自分析·中证银行",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A19",
+      "name": "自分析·国证地产",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A20",
+      "name": "自分析·中证煤炭",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A21",
+      "name": "自分析·中证环保",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A22",
+      "name": "自分析·中证红利",
+      "group": "CN",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A23",
+      "name": "自分析·标普500",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A24",
+      "name": "自分析·纳斯达克100",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A25",
+      "name": "自分析·美国小盘",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A26",
+      "name": "自分析·美国科技",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A27",
+      "name": "自分析·美国金融",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A28",
+      "name": "自分析·美国可选消费",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A29",
+      "name": "自分析·美国必需消费",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A30",
+      "name": "自分析·美国医疗",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A31",
+      "name": "自分析·美国工业",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A32",
+      "name": "自分析·美国原材料",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A33",
+      "name": "自分析·美国能源",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A34",
+      "name": "自分析·美国公用事业",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A35",
+      "name": "自分析·美国房地产",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A36",
+      "name": "自分析·美国通信服务",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A37",
+      "name": "自分析·美国半导体",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    },
+    {
+      "id": "A38",
+      "name": "自分析·美国生物科技",
+      "group": "US",
+      "content_role": "analysis",
+      "entrypoint": "https://github.com/jeff-A16/investment-research-news/blob/main/skills/finance-sector-monitor/references/universe.json",
+      "required_components": [
+        "估值历史分位",
+        "价格历史与反弹"
+      ]
+    }
+  ]
+}

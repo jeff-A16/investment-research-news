@@ -12,7 +12,7 @@ import sys
 import uuid
 import zipfile
 
-SKILLS = ('finance-primary-intelligence', 'finance-market-research', 'finance-social-sentiment', 'finance-news-publisher')
+SKILLS = ('finance-primary-intelligence', 'finance-market-research', 'finance-social-sentiment', 'finance-news-publisher', 'finance-sector-monitor')
 EVENT_TYPES = ('plan', 'tool_start', 'tool_end', 'retry', 'error', 'candidate',
                'filter', 'dedup', 'verification', 'assessment', 'coverage',
                'checkpoint', 'gap', 'resume', 'note')

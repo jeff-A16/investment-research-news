@@ -7,7 +7,7 @@ import unittest
 
 spec=importlib.util.spec_from_file_location('sector_monitor',Path(__file__).parents[1]/'scripts/monitor.py')
 m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-CFG=json.loads((Path(__file__).parents[1]/'references/universe.json').read_text())
+CFG=m.load_config()
 SECTOR=CFG['watchlist'][0]
 NOW=datetime(2026,11,27,4,tzinfo=timezone.utc)
 
@@ -97,6 +97,23 @@ class MonitorTests(unittest.TestCase):
     def test_no_valuation_no_short_history_false_low(self):
         found,_,detail=run(snap={});self.assertFalse(found);self.assertIsNone(detail['valuation'])
         self.assertIsNone(detail['price']['drawdown_percentile'])
+
+    def test_deep_price_drawdown_cannot_replace_valuation_gate(self):
+        prices=[dict(date=(datetime(2020,1,1)+timedelta(days=i)).date().isoformat(),close=100,final=True,basis='index_points') for i in range(2521)]
+        prices[-1].update(date='2026-11-27',close=30,final=False)
+        for data in [{},snapshot(.4468),snapshot(.100001),snapshot(.05,stale=True)]:
+            found,_,detail=run(snap=data,prices=prices)
+            self.assertFalse(found)
+            self.assertTrue(detail['price']['history_qualified']);self.assertLessEqual(detail['price']['drawdown_percentile'],.10);self.assertLessEqual(detail['price']['drawdown'],-.20)
+        legacy={'channels':{'price_drawdown':{'active':True,'release_days':[],'alerts':{}}},'history':[]}
+        found,state,_=run(snap={},prices=prices,old=legacy)
+        self.assertFalse(found);self.assertFalse(state['channels']['price_drawdown']['active']);self.assertTrue(state['history'])
+
+    def test_rebound_does_not_bypass_current_valuation_threshold(self):
+        _,state,_=run(snapshot(.05))
+        self.assertFalse(run(snapshot(.11),prices=bars(True,False),old=state)[0])
+        self.assertFalse(run(snapshot(.11),prices=bars(True,True),old=state)[0])
+        self.assertFalse(run({},prices=bars(True,False),old=state)[0])
 
     def test_yahoo_requires_adjusted_prices_and_correct_instrument(self):
         data={'chart':{'result':[{'meta':{'symbol':'BAD','currency':'USD'},'timestamp':[1],'indicators':{}}],'error':None}}

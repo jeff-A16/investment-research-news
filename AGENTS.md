@@ -1,3 +1,5 @@
 # Financial research publisher
 
 Execute `skills/finance-news-publisher/SKILL.md`, its three research tiers and `finance-sector-monitor` for feed updates. The shared contract is authoritative; user instructions override it. Load the latest branch, feed state and sector monitor state before each run. Weibo (S09) is disabled. Preserve source/content/window/entitlement gaps and all available private run logs. Publish only feed/final data and sanitized summaries; never credentials or raw private logs. Wait for all four dependencies, then atomically commit monitor state with feed/state. Mark own analysis separately from external news and valuation signals separately from price drawdowns. Validate with existing meaningful tests and XML parser. Use non-force, expected-head updates and preserve prior items when sources fail. Never invent publication times or report complete coverage from transport checks.
+
+Only valuation-qualified alerts and valuation snapshot rows within skills/shared/valuation-policy.json may enter RSS. Price drawdowns/rebounds cannot replace this hard gate; retain excluded originals and withdrawal evidence.

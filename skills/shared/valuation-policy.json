@@ -1,0 +1,10 @@
+{
+  "version": "valuation-only-v2",
+  "max_percentile": 0.1,
+  "include_boundary": true,
+  "required_analysis_basis": "valuation",
+  "independent_price_alerts": false,
+  "filter_valuation_snapshots": true,
+  "minimum_history_years": 5,
+  "unknown_or_unqualified": "exclude"
+}

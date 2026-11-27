@@ -17,8 +17,17 @@ from urllib.request import Request, urlopen
 import uuid
 from zoneinfo import ZoneInfo
 
-RULE = 'sector-low-v1'
+RULE = 'sector-valuation-only-v2'
 REPO = 'https://github.com/jeff-A16/investment-research-news/blob/main/'
+_spec=importlib.util.spec_from_file_location('monitor_valuation_policy',Path(__file__).with_name('valuation_policy.py'))
+policy_rules=importlib.util.module_from_spec(_spec);_spec.loader.exec_module(policy_rules)
+
+
+def load_config(path=None):
+    path=Path(path or Path(__file__).parents[1]/'references/universe.json')
+    cfg=json.loads(path.read_text());policy=policy_rules.load_policy(path.with_name(cfg['valuation_policy_file']))
+    cfg['valuation_percentile_max']=policy['max_percentile'];cfg['valuation_policy_version']=policy['version']
+    return cfg
 
 
 def number(x):
@@ -142,12 +151,14 @@ def process(sector, snapshot, bars, as_of, cfg, old, run_id, links):
     p, pgaps = price_metrics(bars, as_of, sector, cfg)
     state = deepcopy(old or {'channels': {}, 'history': []})
     messages = []
-    # Prefer a qualified low valuation; keep the price-only channel explicitly separate.
+    # Price observations are context only; an old price channel cannot authorize output.
+    legacy=state['channels'].get('price_drawdown')
+    if legacy and not legacy.get('disabled_by_policy'):
+        state['history'].append(dict(deepcopy(legacy),basis='price_drawdown',disabled_by_policy=cfg['valuation_policy_version']))
+        legacy.update(active=False,disabled_by_policy=cfg['valuation_policy_version'])
     choices = []
     if v:
         choices.append(('valuation', v['percentile'], v['data_date'], v['percentile'] <= cfg['valuation_percentile_max']))
-    if p and p['history_qualified'] and not (v and v['percentile'] <= cfg['valuation_percentile_max']):
-        choices.append(('price_drawdown', p['drawdown_percentile'], p['data_date'], p['drawdown_percentile'] <= .10 and p['drawdown'] <= cfg['price_drawdown_max']))
     for basis, percentile, day, low in choices:
         ch = state['channels'].setdefault(basis, {'active': False, 'release_days': [], 'alerts': {}})
         # Older observations can never rewind committed episode state.
@@ -164,7 +175,7 @@ def process(sector, snapshot, bars, as_of, cfg, old, run_id, links):
             ch['release_days'] = []
         if low and not ch['active']:
             ch.update(active=True, episode_day=day, first_seen_at=as_of.isoformat(), release_days=[], alerts={})
-        if not ch['active']:
+        if not ch['active'] or not low:
             continue
         phases = ['entry'] if 'entry' not in ch['alerts'] else []
         previous_rebound = ch['alerts'].get('rebound')
@@ -177,9 +188,9 @@ def process(sector, snapshot, bars, as_of, cfg, old, run_id, links):
             aid = sector['key'] + '/' + basis + '/' + ch['episode_day'] + '/' + phase
             ch['alerts'][phase] = dict(published_at=first, confirmed=bool(p and p['final'] and p['rebound']), finalized=bool(p and p['final']), price_date=p['data_date'] if p else None, run_id=alert['run_id'] if alert else run_id)
             source_url = REPO + 'runs/' + ch['alerts'][phase]['run_id'] + '/sector-monitor.json#' + hashlib.sha256(aid.encode()).hexdigest()[:16]
-            label = '估值低位观察' if basis == 'valuation' else '价格深回撤观察（非估值信号）'
+            label = '估值低位观察'
             title = sector['name'] + '｜' + (('低位后反弹·收盘规则确认' if p['final'] and p['rebound'] else '盘中反弹·收盘未确认' if p['final'] else '低位后反弹·盘中待确认') if phase == 'rebound' else '首次纳入' + label + ('（盘中）' if basis=='price_drawdown' and not p['final'] else ''))
-            explanation = ('平台' + v['metric'] + '=%.4f，分位 %.2f%%，处于该平台样本最低10%%区间；数据日%s，接口给出的起点%s，未独立重算。' % (v['value'],v['percentile'] * 100,v['data_date'],v['interface_start_date'])) if basis == 'valuation' else '价格回撤 %.2f%%，回撤历史分位 %.2f%%；数据日%s，实际窗口%s—%s，%d个日样本。这是价格信号，未证实估值处于最低10%%。' % (p['drawdown'] * 100, p['drawdown_percentile'] * 100,p['data_date'],p['history_start'],p['history_end'],p['history_observations'])
+            explanation = '平台' + v['metric'] + '=%.4f，分位 %.2f%%，满足配置上限%.2f%%；数据日%s，接口给出的起点%s，未独立重算。' % (v['value'],v['percentile'] * 100,cfg['valuation_percentile_max'] * 100,v['data_date'],v['interface_start_date'])
             if p:explanation += '价格截至'+(p.get('quote_at') or p['data_date'])+'。'
             if phase == 'rebound':
                 explanation += '价格单日 %.2f%%，距近20日最低收盘回升 %.2f%%；%s。' % (p['one_day_return'] * 100, p['rebound_from_20day_low'] * 100, '按收盘数据符合全部反弹规则' if p['final'] and p['rebound'] else '收盘未符合全部反弹规则，撤回盘中确认预期' if p['final'] else '盘中结果，未收盘确认')
@@ -314,7 +325,7 @@ def main():
     parser.add_argument('--run',required=True);parser.add_argument('--previous',required=True)
     parser.add_argument('--universe',default=str(Path(__file__).resolve().parents[1]/'references/universe.json'))
     parser.add_argument('--replay-run',help='Offline validation only; its coverage is blocked from publication')
-    args=parser.parse_args();cfg=json.loads(Path(args.universe).read_text());audit=Audit(args.run,args.replay_run)
+    args=parser.parse_args();cfg=load_config(args.universe);audit=Audit(args.run,args.replay_run)
     meta=json.loads((Path(args.run)/'manifest.json').read_text());run_id=meta['run_id']
     previous=json.loads(Path(args.previous).read_text()) if Path(args.previous).exists() else {'version':1,'sectors':{}}
     audit.save('inputs/previous-monitor-state.json',previous);audit.save('inputs/universe.json',cfg)

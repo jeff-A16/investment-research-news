@@ -6,6 +6,8 @@ import xml.etree.ElementTree as ET
 
 spec=importlib.util.spec_from_file_location('feed',Path(__file__).resolve().parents[1]/'scripts/build_feed.py');feed=importlib.util.module_from_spec(spec);spec.loader.exec_module(feed)
 NOW='2026-11-26T12:00:00+00:00'
+def qualified_valuation(day='2026-11-26',pct=.05):
+ return dict(value=25,percentile=pct,data_date=day,window_ok=True,flags={})
 def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
@@ -92,13 +94,18 @@ class FeedTests(unittest.TestCase):
    for layer,sk in feed.DEPENDENCIES.items():
     (p/f'{layer}.json').write_text('[]');(p/f'c{layer}.json').write_text('{"sources":[]}');layers.append({'layer':layer,'skill':sk,'messages':str(p/f'{layer}.json'),'coverage':str(p/f'c{layer}.json')})
    baseline=feed.hashlib.sha256(json.dumps({'version':1,'sectors':{}},ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-   monitor={'run_id':'r','base_state_sha256':baseline,'sectors':{}}
+   monitor={'run_id':'r','rule_version':'sector-'+feed.VALUATION_POLICY['version'],'base_state_sha256':baseline,'sectors':{}}
    (p/'sector-monitor-state.next.json').write_text(json.dumps(monitor));(p/'sector-monitor.json').write_text('{"run_id":"r","messages":[]}')
    manifest={'run_id':'r','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers};cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss','excluded_source_ids':['S09']}
    old,_=feed.merge([message(),message(id='weibo',layer=3,source_id='S09',original_url='https://weibo.com/x')],{},NOW)
    with patch.object(feed,'publication_gate',return_value={'passed':True}):
     out=feed.build(manifest,{'items':old},cfg);self.assertEqual(len(json.loads(out['data/items.json'])),1)
     self.assertEqual(json.loads(out['data/sector-monitor-state.json']),json.loads(out['data/feed-state.json'])['sector_monitor_state'])
+    monitor['sectors']={'legacy':{'channels':{'price_drawdown':{'active':True}}}};(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
+    with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)
+    monitor['sectors']={};monitor['rule_version']='sector-low-v1';(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
+    with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)
+    monitor['rule_version']='sector-'+feed.VALUATION_POLICY['version']
     monitor['base_state_sha256']='wrong';(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
     with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)
     manifest['layers'].pop()
@@ -118,31 +125,31 @@ class FeedTests(unittest.TestCase):
   a=message(id='claim-A',event_key='event',dedup_keep_separate=True);b=message(id='claim-B',event_key='event',dedup_keep_separate=True)
   self.assertEqual(len(feed.merge([a,b],{},NOW)[0]),2)
  def test_valuation_digest_retains_platform_records_fields_and_unknown_times(self):
-  a=message(id='dj',layer=2,source_id='M26',source_name='蛋卷',original_url='https://dj.org/valuations',source_record_id='A',record_kind='指数估值快照',source_role='vendor_data',published_at=None,fact_summary='PE=0；分位0—1，零PE不作为低估信号')
-  b=message(id='jx',layer=2,source_id='M27',source_name='韭圈儿',original_url='https://jx.org/valuations',source_record_id='A',record_kind='指数估值快照',source_role='vendor_data',published_at=None,fact_summary='分位0—100；stale=true',impact_degree={'score':None,'reason':'过期，待评估'})
+  a=message(id='dj',layer=2,source_id='M26',source_name='蛋卷',original_url='https://dj.org/valuations',source_record_id='A',record_kind='指数估值快照',source_role='vendor_data',published_at=None,fact_summary='PE=25；分位0.05（0—1）',valuation_screen=qualified_valuation())
+  b=message(id='jx',layer=2,source_id='M27',source_name='韭圈儿',original_url='https://jx.org/valuations',source_record_id='A',record_kind='指数估值快照',source_role='vendor_data',published_at=None,fact_summary='分位5（0—100）；stale=false',valuation_screen=qualified_valuation(),impact_degree={'score':None,'reason':'影响待评估'})
   news=message(id='news',original_url='https://news.org/one')
   items,_=feed.merge([a,b,news],{},NOW);before=deepcopy(items);cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'}
   entries=feed.rss_entries(items,cfg);self.assertEqual(len(entries),2);self.assertEqual(items,before)
   digest=next(x for x in entries if x.get('valuation_members'));self.assertEqual(len(digest['valuation_members']),2);self.assertIsNone(digest['confidence']['score'])
   xml=ET.fromstring(feed.rss(items,cfg,NOW));bundle=next(n for n in xml.findall('./channel/item') if n.findtext('guid')==digest['guid']);self.assertIsNone(bundle.find('pubDate'))
   body=bundle.findtext('description')
-  for text in ['0—1','0—100','stale=true','待评估','蛋卷','韭圈儿']:self.assertIn(text,body)
+  for text in ['0—1','0—100','stale=false','待评估','蛋卷','韭圈儿']:self.assertIn(text,body)
   self.assertEqual(len(ET.fromstring('<root>'+body+'</root>').findall('.//tbody/tr')),2)
   for label in ['来源','原始链接','标题','消息产生时间','置信度','对投资的影响','影响度']:self.assertIn('<strong>'+label+'</strong>',body)
   self.assertIn(next(x['guid'] for x in items if x['id']=='news'),[n.findtext('guid') for n in xml.findall('./channel/item')])
  def test_valuation_digest_guid_is_stable_per_data_day(self):
-  a=message(layer=2,source_id='M26',source_record_id='A',record_kind='指数估值快照',source_role='vendor_data')
-  b=dict(a,id='b',source_record_id='B');c=dict(a,id='c',data_period='2026-11-25')
+  a=message(layer=2,source_id='M26',source_record_id='A',record_kind='指数估值快照',source_role='vendor_data',valuation_screen=qualified_valuation())
+  b=dict(a,id='b',source_record_id='B');c=dict(a,id='c',data_period='2026-11-25',valuation_screen=qualified_valuation('2026-11-25'))
   first,_=feed.merge([a],{},NOW);second,_=feed.merge([a,b,c],{},NOW);cfg={'repository':'a/b'}
   one=feed.rss_entries(first,cfg);two=feed.rss_entries(list(reversed(second)),cfg)
   self.assertEqual(len(two),2);self.assertEqual(one[0]['guid'],next(x['guid'] for x in two if x['data_period']=='2026-11-26'))
   self.assertEqual(sum(len(x['valuation_members']) for x in two),3)
  def test_valuation_without_reliable_day_stays_separate_and_html_is_escaped(self):
-  a=message(layer=2,record_kind='指数估值快照',source_role='vendor_data',data_period=None)
+  a=message(layer=2,record_kind='指数估值快照',source_role='vendor_data',data_period=None,valuation_screen=qualified_valuation())
   b=dict(a,id='b',data_period='2026-02-30',source_record_id='B')
   c=dict(a,id='c',data_period='2026-11-26',source_record_id='C',title='<script>bad</script>',fact_summary='<img src=x onerror=bad>')
   items,_=feed.merge([a,b,c],{},NOW);entries=feed.rss_entries(items,{'repository':'a/b'})
-  self.assertEqual(len(entries),3);self.assertEqual(len(feed.rss_group_map(entries)),1)
+  self.assertEqual(len(entries),1);self.assertEqual(len(feed.rss_group_map(entries)),1)
   body=feed.description(next(x for x in entries if x.get('valuation_members')))
   self.assertNotIn('<script>',body);self.assertNotIn('<img src=x',body)
  def test_original_link_field_contains_all_merged_sources_once(self):
@@ -151,7 +158,7 @@ class FeedTests(unittest.TestCase):
   items,_=feed.merge([a,b,b],{},NOW);body=ET.fromstring('<root>'+feed.description(items[0])+'</root>');links=body.findall('./dl/dd')[1].findall('.//a')
   self.assertEqual({a.attrib['href'] for a in links},{'https://official.org/one','https://media.org/one'});self.assertEqual(len(links),2)
   self.assertTrue(any('媒体' in a.text for a in links))
-  row=deepcopy(items[0]);row.update(layer=2,record_kind='指数估值快照',source_role='vendor_data');digest=feed.rss_entries([row],{'repository':'a/b'})[0]
+  row=deepcopy(items[0]);row.update(layer=2,record_kind='指数估值快照',source_role='vendor_data',valuation_screen=qualified_valuation());digest=feed.rss_entries([row],{'repository':'a/b'})[0]
   grouped=ET.fromstring('<root>'+feed.description(digest)+'</root>').findall('./dl/dd')[1].findall('.//a')
   self.assertTrue({'https://official.org/one','https://media.org/one'}<={a.attrib['href'] for a in grouped})
  def test_missing_original_is_not_relabelled_as_original_source(self):
@@ -212,7 +219,7 @@ class FeedTests(unittest.TestCase):
      check['status']='completed'
  def test_analysis_is_separate_from_valuation_evidence(self):
   raw=message(layer=2,source_id='M26',source_role='vendor_data',event_key='same-event')
-  analysis=message(id='analysis',layer=4,source_id='A01',source_name='自分析',source_role='analysis',event_key='same-event',record_kind='板块低位自分析')
+  analysis=message(id='analysis',layer=4,source_id='A01',source_name='自分析',source_role='analysis',event_key='same-event',record_kind='板块低位自分析',fact_values={'basis':'valuation','valuation':qualified_valuation()})
   rows,_=feed.merge([raw,analysis],{},NOW);self.assertEqual(2,len(rows))
   root=ET.fromstring(feed.rss(rows,{'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'},NOW))
   self.assertIn('自分析·板块低位监控',[x.text for x in root.findall('.//category')])

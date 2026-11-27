@@ -21,7 +21,27 @@ PUBLIC_FIELDS = ('id','layer','source_id','source_name','source_role','original_
  'updated_at','event_at','data_period','observed_at','retrieved_at','feed_published_at',
  'publication_time_note','fact_summary','analysis','confidence','investment_impact','impact_degree',
  'verification_status','gaps','is_background','event_key','revision_id','dedup_keep_separate','account_id',
- 'source_record_id','record_kind','window_basis','fact_values','source_content_sha256','material_update','source_links')
+ 'source_record_id','record_kind','window_basis','fact_values','source_content_sha256','material_update','source_links',
+ 'valuation_screen','publication_status','withdrawal')
+_policy_spec=importlib.util.spec_from_file_location('publisher_valuation_policy',Path(__file__).with_name('valuation_policy.py'))
+policy_rules=importlib.util.module_from_spec(_policy_spec);_policy_spec.loader.exec_module(policy_rules)
+VALUATION_POLICY=policy_rules.load_policy(Path(__file__).parents[1]/'references/valuation-policy.json')
+_api_evidence_cache={}
+
+
+def annotate_snapshot(message,run):
+    if message.get('record_kind')!='指数估值快照':return
+    packets=[]
+    for relative in message.get('audit_refs',{}).get('artifact_paths',[]):
+        path=(run/relative).resolve()
+        if not path.is_relative_to(run.resolve()) or path.suffix!='.json' or not path.is_file():continue
+        if path not in _api_evidence_cache:
+            try:_api_evidence_cache[path]=json.loads(path.read_text())
+            except (ValueError,UnicodeDecodeError):_api_evidence_cache[path]={}
+        value=_api_evidence_cache[path]
+        if isinstance(value,dict):packets.append(value)
+    source=dict(message);source.pop('valuation_screen',None)
+    message['valuation_screen']=policy_rules.snapshot_metadata(source,packets,VALUATION_POLICY)
 SECRET_PARAMS = re.compile(r'^(?:api[_-]?key|api[_-]?token|access_token|refresh_token|authorization|password|passwd|jsc_token|qsid)$', re.I)
 TRACKING = {'fbclid','gclid','msclkid','spm','utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id'}
 ET.register_namespace('atom','http://www.w3.org/2005/Atom')
@@ -336,13 +356,16 @@ def description(m):
             times='；'.join(label+'：'+str(row[k]) for k,label in [('published_at','首发'),('data_period','数据期'),('updated_at','更新'),('observed_at','观测'),('retrieved_at','获取')] if row.get(k))
             if not row.get('published_at'):times='首发未知；'+times
             investment='；'.join([str(impact.get('direction','待评估')),impact['mechanism'],'期限：'+str(impact.get('horizon','未知')),'条件：'+'；'.join(impact.get('conditions',[])),'已计价：'+str(impact.get('priced_in','未知')),'失效条件：'+'；'.join(impact.get('invalidation',[]))])
-            cells=[escaped(row['title']),link(row.get('original_url') or row['available_url'],row['source_name']),escaped(row.get('fact_summary','')+'；'+'；'.join(row.get('gaps',[]))),escaped(times),escaped(str(c.get('score'))+'/100；'+c['reason']+'；支持范围：'+c['scope']),escaped(investment),escaped(('待评估' if d.get('score') is None else str(d['score'])+'/5')+'；'+d['reason'])]
+            screening=row.get('valuation_screen') or {}
+            prefix=('筛选指标'+screening.get('metric','')+'：历史分位%.2f%%≤配置上限%.2f%%；'%(screening['percentile']*100,VALUATION_POLICY['max_percentile']*100)) if screening else ''
+            cells=[escaped(row['title']),link(row.get('original_url') or row['available_url'],row['source_name']),escaped(prefix+row.get('fact_summary','')+'；'+'；'.join(row.get('gaps',[]))),escaped(times),escaped(str(c.get('score'))+'/100；'+c['reason']+'；支持范围：'+c['scope']),escaped(investment),escaped(('待评估' if d.get('score') is None else str(d['score'])+'/5')+'；'+d['reason'])]
             result+='<tr>'+''.join('<td>'+cell+'</td>' for cell in cells)+'</tr>'
         result+='</tbody></table>'
     return result
 
 def rss_entries(items,cfg):
     """Bundle valuation display only; underlying records and identities stay intact."""
+    items=[m for m in items if policy_rules.eligible(m,VALUATION_POLICY)[0]]
     groups={}
     for m in items:
         day=m.get('data_period')
@@ -360,6 +383,8 @@ def rss_entries(items,cfg):
         sources=sorted({(x['source_name'],x.get('original_url') or x['available_url'],'original' if x.get('original_url') else 'available') for x in members})
         degrees=[x['impact_degree']['score'] for x in members if x['impact_degree'].get('score') is not None]
         digest={'guid':'urn:investment-research-news:valuation:'+day,'layer':2,'layers':[2],'source_name':'；'.join(sorted({x[0] for x in sources})),'source_role':'vendor_data','source_links':[{'source':name,'url':url,'kind':kind} for name,url,kind in sources],'original_url':None,'available_url':'https://github.com/'+cfg['repository']+'/blob/main/data/items.json','title':'指数估值汇总 · '+day+'（'+str(len(members))+'条平台记录）','published_at':None,'data_period':day,'record_kind':'指数估值汇总','confidence':{'score':None,'reason':'保留各原记录评分，不平均不同平台置信度。','scope':'平台显示值及质量标记，不是未来收益概率。'},'investment_impact':{'direction':'估值背景参考，方向待评估','mechanism':'按平台原口径比较，结合盈利与风险预算；异常、过期和不适用记录不解释为低估信号。','horizon':'中长期','conditions':['核对样本期、成分和亏损公司处理'],'priced_in':'未知'},'impact_degree':{'score':max(degrees) if degrees else None,'reason':'沿用明细中的最高已评估影响度，未评估项仍单列待评估；打包不增加影响。'},'gaps':['各平台分位单位不同，保留原值，不混合求平均。','逐指数首发、更新、观测与获取时刻见明细，不把汇总时刻当数据首发。'],'valuation_members':members}
+        digest['title']='估值分位≤'+str(VALUATION_POLICY['max_percentile']*100).rstrip('0').rstrip('.')+'%汇总 · '+day+'（'+str(len(members))+'条合格平台记录）'
+        digest['gaps'].append('仅显示配置阈值内且历史窗口/质量合格的记录；完整原始数据留在items/state，不把价格回撤当替代触发。')
         result.append(digest)
     return result
 
@@ -464,10 +489,12 @@ def build(manifest,previous,cfg):
         coverage.append({'layer':layer['layer'],'skill':layer['skill'],'status':layer.get('status','partial'),'candidate_count':len(messages),'coverage':cov})
         for source in messages:
             m=deepcopy(source);reason=None
+            annotate_snapshot(m,Path(layer['messages']).parent.parent)
             try:
                 validate(m)
                 if m.get('layer')!=layer['layer']:raise ValueError('Message/layer mismatch')
                 if m['source_id'] in cfg.get('excluded_source_ids',[]):reason='user_disabled_source'
+                elif m.get('layer')==4 and not policy_rules.eligible(m,VALUATION_POLICY)[0]:reason='valuation_policy: '+policy_rules.eligible(m,VALUATION_POLICY)[1]
                 else:
                     allowed,basis=window_status(m,start,end,cfg,as_of)
                     if not allowed:reason=basis
@@ -482,6 +509,10 @@ def build(manifest,previous,cfg):
     monitor_layer=next(x for x in manifest['layers'] if x['layer']==4)
     monitor_dir=Path(monitor_layer['messages']).parent
     monitor_state=json.loads((monitor_dir/'sector-monitor-state.next.json').read_text())
+    if monitor_state.get('rule_version')!='sector-'+VALUATION_POLICY['version']:
+        raise PublicationBlocked('Monitor used a stale valuation policy; rerun against the current policy')
+    if any(s.get('channels',{}).get('price_drawdown',{}).get('active') for s in monitor_state.get('sectors',{}).values()):
+        raise PublicationBlocked('Unauthorized active price trigger in monitor state')
     prior_monitor=old.get('sector_monitor_state',{'version':1,'sectors':{}})
     expected=hashlib.sha256(json.dumps(prior_monitor,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     if monitor_state.get('base_state_sha256')!=expected:raise PublicationBlocked('Monitor state was evaluated against a different committed baseline; replay against latest state before merging')
@@ -495,7 +526,9 @@ def build(manifest,previous,cfg):
     assert len(parsed.findall('./channel/item'))==len(entries)
     assert len({m['guid'] for m in items})==len(items)
     analysis_report=json.loads((monitor_dir/'sector-monitor.json').read_text())
-    analysis_report['messages']=[public_message(m) for m in analysis_report.get('messages',[])]
+    report_messages=analysis_report.get('messages',[])
+    analysis_report['policy_excluded_messages']=[{'id':m.get('id'),'source_id':m.get('source_id'),'reason':policy_rules.eligible(m,VALUATION_POLICY)[1]} for m in report_messages if not policy_rules.eligible(m,VALUATION_POLICY)[0]]
+    analysis_report['messages']=[public_message(m) for m in report_messages if policy_rules.eligible(m,VALUATION_POLICY)[0]]
     return {'feed.xml':xml,'data/items.json':json.dumps(public,ensure_ascii=False,indent=2)+'\n','data/feed-state.json':json.dumps(state,ensure_ascii=False,indent=2)+'\n','data/sector-monitor-state.json':json.dumps(monitor_state,ensure_ascii=False,indent=2)+'\n','sector-monitor.json':json.dumps(analysis_report,ensure_ascii=False,indent=2)+'\n','summary.json':json.dumps(summary,ensure_ascii=False,indent=2)+'\n','dedup-map.json':json.dumps(mapping,ensure_ascii=False,indent=2)+'\n','rss-groups.json':json.dumps(rss_group_map(entries),ensure_ascii=False,indent=2)+'\n'}
 
 def main():

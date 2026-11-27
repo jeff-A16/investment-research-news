@@ -1,12 +1,10 @@
 {
-  "rule_version": "sector-low-v1",
-  "valuation_percentile_max": 0.1,
+  "rule_version": "sector-valuation-only-v2",
   "rearm_percentile": 0.15,
   "rearm_sessions": 3,
   "minimum_history_years": 5,
   "minimum_price_observations": 1260,
   "max_data_age_days": 4,
-  "price_drawdown_max": -0.2,
   "rebound_day_return_min": 0.02,
   "rebound_from_20day_low_min": 0.03,
   "watchlist": [
@@ -428,5 +426,6 @@
       "fund_exposure": "IBB；境内QDII须另核对跟踪标的、额度、溢价及汇率",
       "currency": "USD"
     }
-  ]
+  ],
+  "valuation_policy_file": "valuation-policy.json"
 }

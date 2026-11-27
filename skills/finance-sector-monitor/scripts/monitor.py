@@ -274,9 +274,13 @@ def yahoo(body, sector, as_of):
         raise ValueError('adjusted price history missing')
     local=as_of.astimezone(ZoneInfo('America/New_York'));out=[]
     trade=datetime.fromtimestamp(result['meta']['regularMarketTime'],timezone.utc).astimezone(ZoneInfo('America/New_York')) if result['meta'].get('regularMarketTime') else None
+    if trade and trade>as_of+timedelta(minutes=5):raise ValueError('future quote timestamp')
+    end_stamp=result['meta'].get('currentTradingPeriod',{}).get('regular',{}).get('end')
+    session_end=datetime.fromtimestamp(end_stamp,timezone.utc).astimezone(ZoneInfo('America/New_York')) if end_stamp else None
     for i,(stamp,value) in enumerate(zip(result['timestamp'],values)):
         day=datetime.fromtimestamp(stamp,timezone.utc).astimezone(ZoneInfo('America/New_York')).date().isoformat()
-        final=i<len(values)-1 or bool(trade and (trade.date().isoformat()>day or trade.date().isoformat()==day and (trade.hour,trade.minute)>=(16,0)))
+        end=session_end if session_end and session_end.date().isoformat()==day else datetime.fromisoformat(day).replace(hour=16,tzinfo=ZoneInfo('America/New_York'))
+        final=i<len(values)-1 or bool(trade and trade>=end)
         if number(value) is not None:
             out.append(dict(date=day,close=value,final=final,basis='adjusted_close',quote_at=trade.isoformat() if i==len(values)-1 and trade else None))
     return out

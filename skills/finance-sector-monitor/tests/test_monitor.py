@@ -114,5 +114,14 @@ class MonitorTests(unittest.TestCase):
         v,_,_=m.valuations(SECTOR,row,NOW,CFG)
         self.assertEqual('2016-08-11',v['interface_start_date'])
 
+    def test_us_early_close_uses_source_session_end(self):
+        zone=m.ZoneInfo('America/New_York');end=datetime(2026,11,27,13,tzinfo=zone).timestamp()
+        data={'chart':{'result':[{'meta':{'symbol':'XLK','currency':'USD','regularMarketTime':end,'currentTradingPeriod':{'regular':{'end':end}}},'timestamp':[end-12600],'indicators':{'adjclose':[{'adjclose':[100]}]}}],'error':None}}
+        sector=next(s for s in CFG['watchlist'] if s['key']=='US-XLK')
+        self.assertTrue(m.yahoo(json.dumps(data).encode(),sector,NOW+timedelta(days=1))[0]['final'])
+        data['chart']['result'][0]['meta']['regularMarketTime']=end-3600
+        self.assertFalse(m.yahoo(json.dumps(data).encode(),sector,NOW+timedelta(days=1))[0]['final'])
+        with self.assertRaises(ValueError):m.yahoo(json.dumps(data).encode(),sector,NOW)
+
 
 if __name__=='__main__':unittest.main()

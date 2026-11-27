@@ -6,7 +6,7 @@
   "live_alerts": 20,
   "repeat_alerts": 0,
   "publisher_tests": 41,
-  "monitor_tests": 14,
+  "monitor_tests": 15,
   "rss_publication": "not performed; all four dependencies must complete together",
   "preview_xml_valid": true,
   "baseline_guard": true,
@@ -17,7 +17,8 @@
     "Use provider-local date for interface start timestamp.",
     "Do not confirm cached midday quotes using a later system clock.",
     "Require monitor state baseline hash and registered state/report artifacts.",
-    "Allow actual own-analysis generation/revision times up to collection as_of, without weakening external news publication windows."
+    "Allow actual own-analysis generation/revision times up to collection as_of, without weakening external news publication windows.",
+    "Use source regular-session end for US early closing days."
   ],
   "limitations": [
     "Platform valuation percentiles are vendor-reported, not recomputed from full history.",

@@ -12,6 +12,24 @@ def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
 class FeedTests(unittest.TestCase):
+ def test_rss_refresh_retains_verified_period_through_merged_source_alias(self):
+  original=message(source_id='P03',original_url='https://official.org/profits',event_key='profits',data_period='2026-10')
+  media=message(source_id='M08',layer=2,original_url='https://media.org/profits',event_key='profits',data_period='2026-10')
+  prior,_=feed.merge([original,media],{},NOW)
+  refresh=dict(media,data_period=None,published_at=None,feed_published_at=NOW)
+  feed.retain_article_period(refresh,{'items':prior})
+  self.assertEqual(refresh['data_period'],'2026-10')
+  merged,_=feed.merge([refresh],{'items':prior},NOW)
+  self.assertEqual(len(merged),1);self.assertEqual(merged[0]['guid'],prior[0]['guid'])
+  explicit=dict(refresh,data_period='2026-11');feed.retain_article_period(explicit,{'items':prior})
+  self.assertEqual(explicit['data_period'],'2026-11')
+ def test_reviewed_event_group_keeps_all_links_and_refuses_opinion(self):
+  a=message(original_url='https://one.org/result');b=message(id='b',layer=2,original_url='https://two.org/result')
+  group={'urls':[a['original_url'],b['original_url']],'event_key':'results-Q3','data_period':'2026-Q3'}
+  feed.annotate_events([a,b],[group]);rows,_=feed.merge([a,b],{},NOW)
+  self.assertEqual(len(rows),1);self.assertEqual(len(feed.source_links(rows[0])),3)
+  opinion=dict(a,source_role='opinion')
+  with self.assertRaises(ValueError):feed.annotate_events([opinion],[group])
  def test_rss_clock_change_migrates_legacy_state_and_reuses_article_guid(self):
   old=message(source_id='M08',layer=2,source_name='RSS',published_at=None,data_period=None,feed_published_at='2026-11-26T10:00:00+08:00')
   legacy=[a for a in feed.identity_aliases(old) if not a.startswith('rss-url:')]
@@ -99,7 +117,12 @@ class FeedTests(unittest.TestCase):
    manifest={'run_id':'r','as_of':NOW,'window_start':'2026-11-25T12:00:00Z','window_end':NOW,'layers':layers};cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss','excluded_source_ids':['S09']}
    old,_=feed.merge([message(),message(id='weibo',layer=3,source_id='S09',original_url='https://weibo.com/x')],{},NOW)
    with patch.object(feed,'publication_gate',return_value={'passed':True}):
-    out=feed.build(manifest,{'items':old},cfg);self.assertEqual(len(json.loads(out['data/items.json'])),1)
+    corrections=[{'reason':'User correction','guid':old[0]['guid']}]
+    previous={'items':old,'editorial_corrections':corrections}
+    out=feed.build(manifest,previous,cfg);self.assertEqual(len(json.loads(out['data/items.json'])),2)
+    self.assertEqual(len(ET.fromstring(out['feed.xml']).findall('./channel/item')),1)
+    self.assertEqual(json.loads(out['data/feed-state.json'])['editorial_corrections'],corrections)
+    self.assertEqual(previous['items'],old)
     self.assertEqual(json.loads(out['data/sector-monitor-state.json']),json.loads(out['data/feed-state.json'])['sector_monitor_state'])
     monitor['sectors']={'legacy':{'channels':{'price_drawdown':{'active':True}}}};(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
     with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)

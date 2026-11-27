@@ -114,6 +114,27 @@ def identity_aliases(m):
         aliases=[a+'|separate:'+normalized(m.get('id') or m['source_name']) for a in aliases]
     return sorted(set(aliases))
 
+def retain_article_period(message,previous):
+    """A refreshed RSS envelope must not erase a verified event's data period."""
+    if message.get('data_period') or not message.get('event_key') or role_kind(message)!='fact':return
+    url=canonical_url(message.get('original_url') or message.get('available_url'))
+    if not url:return
+    periods={p['data_period'] for p in previous.get('items',[])
+        if p.get('data_period') and role_kind(p)=='fact'
+        and normalized(p.get('event_key'))==normalized(message['event_key'])
+        and any(a.startswith('url:'+url+'|') for a in p.get('_aliases',identity_aliases(p)))}
+    if len(periods)==1:message['data_period']=periods.pop()
+
+def annotate_events(messages,groups):
+    """Apply the controller's reviewed, exact-URL event grouping after the gate."""
+    for group in groups:
+        urls={canonical_url(u) for u in group['urls']}
+        for message in messages:
+            if canonical_url(message.get('original_url') or message.get('available_url')) not in urls:continue
+            if role_kind(message)!='fact' or message.get('source_record_id'):
+                raise ValueError('Event grouping cannot absorb opinions or indexed data records')
+            message.update(event_key=group['event_key'],data_period=group['data_period'])
+
 def validate(m):
     for key in ('source_id','source_name','title','confidence','investment_impact','impact_degree','published_at'):
         if key not in m:raise ValueError('Missing seven-field property: '+key)
@@ -365,7 +386,7 @@ def description(m):
 
 def rss_entries(items,cfg):
     """Bundle valuation display only; underlying records and identities stay intact."""
-    items=[m for m in items if policy_rules.eligible(m,VALUATION_POLICY)[0]]
+    items=[m for m in items if m.get('source_id') not in cfg.get('excluded_source_ids',[]) and policy_rules.eligible(m,VALUATION_POLICY)[0]]
     groups={}
     for m in items:
         day=m.get('data_period')
@@ -490,6 +511,7 @@ def build(manifest,previous,cfg):
         for source in messages:
             m=deepcopy(source);reason=None
             annotate_snapshot(m,Path(layer['messages']).parent.parent)
+            retain_article_period(m,previous or {})
             try:
                 validate(m)
                 if m.get('layer')!=layer['layer']:raise ValueError('Message/layer mismatch')
@@ -502,9 +524,14 @@ def build(manifest,previous,cfg):
             except (ValueError,TypeError,KeyError) as exc:reason='invalid: '+str(exc)
             if reason:rejected.append({'id':m.get('id'),'source_id':m.get('source_id'),'reason':reason})
             else:accepted.append(public_message(m))
-    old=deepcopy(previous or {'items':[]});old['items']=[m for m in old.get('items',[]) if m.get('source_id') not in cfg.get('excluded_source_ids',[])]
+    annotate_events(accepted,manifest.get('event_groups',[]))
+    old=deepcopy(previous or {'items':[]})
     changes,source_records,incremental=incremental_records(accepted,old)
     items,mapping=merge(changes,old,manifest['as_of'])
+    for group in manifest.get('event_groups',[]):
+        for item in items:
+            if item.get('event_key')==group['event_key'] and item.get('data_period')==group['data_period']:
+                if group.get('summary'):item['fact_summary']=group['summary']
     cursors=advance_cursors(old,coverage,manifest['window_end'])
     monitor_layer=next(x for x in manifest['layers'] if x['layer']==4)
     monitor_dir=Path(monitor_layer['messages']).parent
@@ -516,7 +543,8 @@ def build(manifest,previous,cfg):
     prior_monitor=old.get('sector_monitor_state',{'version':1,'sectors':{}})
     expected=hashlib.sha256(json.dumps(prior_monitor,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     if monitor_state.get('base_state_sha256')!=expected:raise PublicationBlocked('Monitor state was evaluated against a different committed baseline; replay against latest state before merging')
-    state={'version':2,'run_id':manifest['run_id'],'updated_at':manifest['as_of'],'items':items,'source_records':source_records,'source_cursors':cursors,'publication_gate':gate,'sector_monitor_state':monitor_state}
+    state=deepcopy(old)
+    state.update(version=2,run_id=manifest['run_id'],updated_at=manifest['as_of'],items=items,source_records=source_records,source_cursors=cursors,publication_gate=gate,sector_monitor_state=monitor_state)
     public=[{k:v for k,v in m.items() if not k.startswith('_')} for m in items]
     entries=rss_entries(items,cfg)
     prior_entries={m['guid']:m for m in rss_entries(old.get('items',[]),cfg)}

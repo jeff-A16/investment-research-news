@@ -12,6 +12,23 @@ def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
 class FeedTests(unittest.TestCase):
+ def test_same_reprint_restores_saved_identity_without_claiming_original_read(self):
+  old=message(original_url='https://original.org/story',available_url='https://reprint.org/story')
+  prior,_=feed.merge([old],{},NOW)
+  current=message(original_url=None,available_url='https://reprint.org/story',original_link_status='unresolved')
+  feed.retain_reprint_identity(current,{'items':prior})
+  self.assertEqual(current['original_url'],old['original_url'])
+  self.assertEqual(current['original_link_status'],'unresolved')
+  rows,_=feed.merge([current],{'items':prior},NOW)
+  self.assertEqual(len(rows),1);self.assertEqual(rows[0]['guid'],prior[0]['guid'])
+ def test_reprint_identity_refuses_conflicting_original_or_other_period(self):
+  old=message(original_url='https://original.org/a',available_url='https://reprint.org/story')
+  other=dict(old,original_url='https://original.org/b')
+  current=message(original_url=None,available_url=old['available_url'])
+  feed.retain_reprint_identity(current,{'items':[old,other]});self.assertIsNone(current['original_url'])
+  current['data_period']='2026-11-27'
+  feed.retain_reprint_identity(current,{'items':[old]});self.assertIsNone(current['original_url'])
+
  def test_rss_refresh_retains_verified_period_through_merged_source_alias(self):
   original=message(source_id='P03',original_url='https://official.org/profits',event_key='profits',data_period='2026-10')
   media=message(source_id='M08',layer=2,original_url='https://media.org/profits',event_key='profits',data_period='2026-10')

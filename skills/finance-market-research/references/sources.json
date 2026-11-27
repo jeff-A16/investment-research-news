@@ -474,7 +474,7 @@
       "id": "M38",
       "name": "利率期货与期权定价",
       "group": "预期与定价",
-      "entrypoint": "",
+      "entrypoint": "https://www.cmegroup.com/markets/interest-rates/stirs/three-month-sofr/quotes",
       "topics": "利率路径、隐含波动率、偏斜、期限结构",
       "content_role": "market-implied",
       "search_aliases": "",

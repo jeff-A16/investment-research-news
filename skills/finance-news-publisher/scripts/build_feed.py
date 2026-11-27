@@ -114,6 +114,23 @@ def identity_aliases(m):
         aliases=[a+'|separate:'+normalized(m.get('id') or m['source_name']) for a in aliases]
     return sorted(set(aliases))
 
+def retain_reprint_identity(message,previous):
+    """Retain a uniquely known original identity when rereading its same reprint.
+
+    This restores a saved URL only, never original-body access or publication time.
+    """
+    if message.get('original_url') or role_kind(message)!='fact':return
+    url=canonical_url(message.get('available_url'))
+    if not url:return
+    originals={p['original_url'] for item in previous.get('items',[])
+        for p in [item,*item.get('provenance',[])]
+        if p.get('original_url') and p.get('source_id')==message.get('source_id')
+        and canonical_url(p.get('available_url'))==url
+        and role_kind(p)=='fact' and period(p)==period(message)
+        and normalized(p.get('revision_id'))==normalized(message.get('revision_id'))
+        and normalized(p.get('source_record_id'))==normalized(message.get('source_record_id'))}
+    if len(originals)==1:message['original_url']=originals.pop()
+
 def retain_article_period(message,previous):
     """A refreshed RSS envelope must not erase a verified event's data period."""
     if message.get('data_period') or not message.get('event_key') or role_kind(message)!='fact':return
@@ -511,6 +528,7 @@ def build(manifest,previous,cfg):
         for source in messages:
             m=deepcopy(source);reason=None
             annotate_snapshot(m,Path(layer['messages']).parent.parent)
+            retain_reprint_identity(m,previous or {})
             retain_article_period(m,previous or {})
             try:
                 validate(m)

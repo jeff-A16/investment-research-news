@@ -27,9 +27,13 @@ def load_tasks(path):
     return tasks
 
 
+def compact_limit(before):
+    return min(max(1200, len(before)), len(before) + min(160, max(40, len(before) // 5)))
+
+
 def candidate_ok(before, after):
     # The shared protocol is the single rule owner; keep the entry documents compact.
-    if len(after) > min(max(1200, len(before)), len(before) + min(160, max(40, len(before) // 5))):
+    if len(after) > compact_limit(before):
         raise ValueError('candidate exceeds compact skill budget')
     for prefix in ('name:', 'description:'):
         if [x for x in before.splitlines() if x.startswith(prefix)] != [x for x in after.splitlines() if x.startswith(prefix)]:
@@ -93,6 +97,7 @@ def main():
             continue
         target = repo / 'skills' / skill / 'SKILL.md'
         tasks = load_tasks(Path(a.tasks_dir) / (skill + '.json'))
+        before = target.read_text()
         cfg = SleepConfig(dict(DEFAULTS, invoked_project=str(work),
             state_dir=str(work / 'state'), target_skill_path=str(target),
             managed_skill_name=skill, skill_roots=[str(repo / 'skills')],
@@ -101,7 +106,7 @@ def main():
             multi_skill_fanout=False, gate_mode='on', gate_no_regression=True,
             gate_metric='mixed', edit_budget=1, max_tokens_per_night=80000,
             evidence_max_chars=1000000, redact_secrets=True,
-            preferences='Keep Chinese skills concise. Shared rules belong in skills/shared/evolution.md; reference, do not duplicate. Preserve source coverage, seven fields, full private logs, entitlements, completion gate and stable GUIDs. Propose at most one bounded edit; do not copy evaluator expressions.'))
+            preferences=f'Keep Chinese skills concise: the current entry has {len(before)} characters; the entire resulting entry must have at most {compact_limit(before)} characters. Preserve frontmatter identity and the shared contract reference. Shared rules belong in skills/shared/evolution.md; reference, do not duplicate. Preserve source coverage, seven fields, full private logs, entitlements, completion gate and stable GUIDs. Propose at most one bounded edit; do not copy evaluator expressions.'))
         backend = HandoffBackend(handoff_dir=str(work / 'handoff')) if a.backend == 'handoff' else build_backend(backend=a.backend)
         before = target.read_text()
         number = len(list(work.glob('engine-*.log'))) + 1

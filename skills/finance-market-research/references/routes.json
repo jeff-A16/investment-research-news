@@ -1723,7 +1723,7 @@
       "sample_only": true,
       "current_window_coverage_verified": false,
       "full_coverage_verified": false,
-      "assessment_note": "已读原始正文/数据样本；不等于全站、全量或当日窗口全部可得。",
+      "assessment_note": "资产类别纠错：历史SPY入口停用；官方SOFR报价路径本轮缺数值矩阵。",
       "routes": [
         {
           "adapter": "search",
@@ -1738,7 +1738,9 @@
           "evidence_run": "20261126T082404Z-live-37879e",
           "evidence_call": "d158e7541886-M38",
           "actual_reading_link": "https://finance.yahoo.com/quote/SPY/options/",
-          "original_link": "https://finance.yahoo.com/quote/SPY/options/"
+          "original_link": "https://finance.yahoo.com/quote/SPY/options/",
+          "eligible_for_source": false,
+          "retired_reason": "SPY is an equity ETF option chain, not interest-rate derivatives; retain actual historical receipt only."
         },
         {
           "adapter": "http_or_host_reader",
@@ -1768,6 +1770,15 @@
             "TIME_SERIES_DAILY": "100 IBM records",
             "NEWS_SENTIMENT": "premium endpoint; free access unavailable"
           }
+        },
+        {
+          "adapter": "http_or_firecrawl",
+          "example_url": "https://www.cmegroup.com/markets/interest-rates/stirs/three-month-sofr/quotes",
+          "example_only": true,
+          "evidence_run": "20261127T230256Z-scheduled-morning",
+          "evidence_call": "firecrawl-21baa823dd6e",
+          "current_window_coverage_verified": false,
+          "assessment_note": "Official SOFR futures quote page fetched by HTTP and maxAge=0 Firecrawl; numerical contract quote matrix absent. No claim of rate-pricing recovery."
         }
       ],
       "last_review_run": "20261126T084613Z-routes-1d2b3a",

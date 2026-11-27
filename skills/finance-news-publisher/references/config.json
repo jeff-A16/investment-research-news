@@ -10,9 +10,9 @@
     "S09"
   ],
   "schedule_hours": [
-    8,
-    14,
-    23
+    7,
+    13,
+    22
   ],
   "feed_max_items": 0,
   "dependencies": [

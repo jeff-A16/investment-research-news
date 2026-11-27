@@ -1,0 +1,116 @@
+{
+  "run_id": "20261126T235641Z-scheduled",
+  "review_id": "20261127-postrun",
+  "engine": "microsoft/SkillOpt",
+  "engine_sha": "dc0b5e654cafa1073a2819086151c1e0d13012f0",
+  "review_basis": "retrospective existing evidence; no new source collection in this maintenance change",
+  "route_review_counts": {
+    "candidates": 42,
+    "route_regressions": 2,
+    "verified_no_new": 41,
+    "route_receipts": 3
+  },
+  "route_review_limitations": [
+    "Only two route identities have manually curated comparable receipts in this first ledger. Other 42 source/component candidates require path-level review; they are not 42 proven outages."
+  ],
+  "findings": [
+    {
+      "source_id": "P43",
+      "route": "firecrawl:official-fedwatch",
+      "causes": [
+        "stale_cache",
+        "dynamic_rendering"
+      ],
+      "status": "not_restored",
+      "evidence_call_ids": [
+        "firecrawl-e773da39e8dd",
+        "firecrawl-41d106f96f80",
+        "firecrawl-627e31bc9467"
+      ]
+    },
+    {
+      "source_id": "S13",
+      "route": "firecrawl:cnn-dashboard",
+      "status": "readable_no_new",
+      "evidence_call_ids": [
+        "firecrawl-7c76bb7fb1ee",
+        "firecrawl-54fd25702c22"
+      ]
+    }
+  ],
+  "skillopt": [
+    {
+      "skill": "finance-market-research",
+      "backend": "handoff",
+      "tasks": 3,
+      "baseline": 1.0,
+      "candidate": 1.0,
+      "gate": "reject",
+      "accepted": false,
+      "holdout_leaked": false,
+      "adopted": [],
+      "final_test": {
+        "n_test": 1,
+        "hard": 1.0,
+        "soft": 1.0
+      }
+    },
+    {
+      "skill": "finance-news-publisher",
+      "backend": "handoff",
+      "tasks": 3,
+      "baseline": 1.0,
+      "candidate": 1.0,
+      "gate": "reject",
+      "accepted": false,
+      "holdout_leaked": false,
+      "adopted": [],
+      "final_test": {
+        "n_test": 1,
+        "hard": 1.0,
+        "soft": 1.0
+      }
+    },
+    {
+      "skill": "finance-primary-intelligence",
+      "backend": "handoff",
+      "tasks": 3,
+      "baseline": 1.0,
+      "candidate": 1.0,
+      "gate": "reject",
+      "accepted": false,
+      "holdout_leaked": false,
+      "adopted": [],
+      "final_test": {
+        "n_test": 1,
+        "hard": 1.0,
+        "soft": 1.0
+      }
+    },
+    {
+      "skill": "finance-social-sentiment",
+      "backend": "handoff",
+      "tasks": 3,
+      "baseline": 1.0,
+      "candidate": 1.0,
+      "gate": "reject",
+      "accepted": false,
+      "holdout_leaked": false,
+      "adopted": [],
+      "final_test": {
+        "n_test": 1,
+        "hard": 1.0,
+        "soft": 1.0
+      }
+    }
+  ],
+  "skillopt_limitations": [
+    "Twelve minimal real-run cases with basic rule judges validate integration, not network recovery or broad investment-research quality gains.",
+    "No skill text edit adopted because held-out scores stayed 1.0 to 1.0; shared workflow and tooling updated once for all four skills."
+  ],
+  "tests": {
+    "passed": 38
+  },
+  "rss_unchanged": true,
+  "raw_logs_public": false
+}

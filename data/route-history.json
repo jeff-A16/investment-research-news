@@ -1,0 +1,86 @@
+{
+  "format": "finance-route-history.v1",
+  "last_review_run": "20261126T235641Z-scheduled",
+  "routes": {
+    "[\"P43\",\"当前FedWatch概率矩阵\",\"firecrawl:official-fedwatch\"]": {
+      "last_readable": {
+        "run_id": "20261126T131112Z-full-restart",
+        "source_id": "P43",
+        "component": "当前FedWatch概率矩阵",
+        "route_id": "firecrawl:official-fedwatch",
+        "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+        "adapter": "Firecrawl.MCP",
+        "checked_at": "2026-11-26T13:21:46.674759+00:00",
+        "outcome": "readable",
+        "root_cause": "unknown",
+        "evidence_call_ids": [
+          "firecrawl-e773da39e8dd"
+        ],
+        "evidence_paths": [
+          "research-logs/20261126T131112Z-full-restart/finance-primary-intelligence/artifacts/firecrawl/firecrawl-e773da39e8dd.json"
+        ],
+        "artifact_sha256": "fbd5fdfe2de4e8de84c6b4c546101d1b01fa34cbe41eac18da91a794337b912c",
+        "assessment": "原矩阵07:00:37 CT；97.2%，仅代表该次读取。"
+      },
+      "last_observation": {
+        "run_id": "20261126T235641Z-scheduled",
+        "source_id": "P43",
+        "component": "当前FedWatch概率矩阵",
+        "route_id": "firecrawl:official-fedwatch",
+        "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+        "adapter": "Firecrawl.MCP",
+        "checked_at": "2026-11-27T00:04:16.853788+00:00",
+        "outcome": "empty_shell",
+        "root_cause": "dynamic_rendering",
+        "evidence_call_ids": [
+          "firecrawl-627e31bc9467"
+        ],
+        "evidence_paths": [
+          "research-logs/20261126T235641Z-scheduled/finance-primary-intelligence/artifacts/firecrawl/firecrawl-627e31bc9467.json"
+        ],
+        "artifact_sha256": "83003d65d551a94520c85e3158fdb694398be8ddf9755899ead421e888dfad4c",
+        "assessment": "maxAge=0重读未得概率矩阵；原链路尚未恢复。"
+      }
+    },
+    "[\"S13\",\"账号/时间/内容/交叉核验\",\"firecrawl:cnn-dashboard\"]": {
+      "last_readable": {
+        "run_id": "20261126T235641Z-scheduled",
+        "source_id": "S13",
+        "component": "账号/时间/内容/交叉核验",
+        "route_id": "firecrawl:cnn-dashboard",
+        "url": "https://www.cnn.com/markets/fear-and-greed",
+        "adapter": "Firecrawl.MCP",
+        "checked_at": "2026-11-27T00:01:29.151834+00:00",
+        "outcome": "no_new",
+        "root_cause": "unknown",
+        "evidence_call_ids": [
+          "firecrawl-54fd25702c22"
+        ],
+        "evidence_paths": [
+          "research-logs/20261126T235641Z-scheduled/finance-social-sentiment/artifacts/firecrawl/firecrawl-54fd25702c22.json"
+        ],
+        "artifact_sha256": "62ee35da32067c996a06f2044037cb8973aadf87aeb841dc1afc70f6cd640e6b",
+        "assessment": "总值15与原始更新时间均未变化，链路可读，无新增。"
+      },
+      "last_observation": {
+        "run_id": "20261126T235641Z-scheduled",
+        "source_id": "S13",
+        "component": "账号/时间/内容/交叉核验",
+        "route_id": "firecrawl:cnn-dashboard",
+        "url": "https://www.cnn.com/markets/fear-and-greed",
+        "adapter": "Firecrawl.MCP",
+        "checked_at": "2026-11-27T00:01:29.151834+00:00",
+        "outcome": "no_new",
+        "root_cause": "unknown",
+        "evidence_call_ids": [
+          "firecrawl-54fd25702c22"
+        ],
+        "evidence_paths": [
+          "research-logs/20261126T235641Z-scheduled/finance-social-sentiment/artifacts/firecrawl/firecrawl-54fd25702c22.json"
+        ],
+        "artifact_sha256": "62ee35da32067c996a06f2044037cb8973aadf87aeb841dc1afc70f6cd640e6b",
+        "assessment": "总值15与原始更新时间均未变化，链路可读，无新增。"
+      }
+    }
+  }
+}

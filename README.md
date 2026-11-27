@@ -6,7 +6,9 @@ GitHub文件浏览地址不能直接作为RSS订阅地址。feed.xml为RSS 2.0�
 
 总控Skill：[finance-news-publisher](skills/finance-news-publisher/SKILL.md)。它依次执行[一层](skills/finance-primary-intelligence/SKILL.md)、[二层](skills/finance-market-research/SKILL.md)、[三层](skills/finance-social-sentiment/SKILL.md)，合并重复事实并保留不同观点/数据期/修订和多源出处。共享协议只有skills/shared一份维护源。
 
-更新计划：北京时间每天 **08:00、14:00、23:00** 由ChatGPT定时任务启动执行。触发后需要采集、核验和发布时间；外站限制、任务失败或权限中断可能导致延迟，失败时保留上一次有效feed。
+更新计划：北京时间每天 **07:00、13:00、22:00** 由ChatGPT定时任务启动执行。触发后需要采集、核验和发布时间；外站限制、任务失败或权限中断可能导致延迟，失败时保留上一次有效feed。
+
+每轮成功、无新增或失败后都[复核历史链路并使用微软 SkillOpt-Sleep 进化四个 Skill](skills/shared/evolution.md)：逐来源、子项和实际路径保留旧/新证据，区分无新增、缓存/日历与访问/解析退化；没有证据不宣称恢复。每个 Skill 每轮至多一处短编辑，验证集严格改善且逐任务不退化后采用，失败回退。完整复盘、提示/答案、评分、修改及发布过程保留在同 run_id 私有日志；不把原始日志或凭据上传仓库。
 
 最近运行已完成101项启用来源及72个必检子项的证据收尾：34项取得可输出内容（含参与去重的重复样本及明确标注的公开摘要/索引），23项在所检公开范围无合格新增，44项有访问、时效或数据缺口；微博停用。本轮RSS新增25、更新3，累计149条、223条明细。逐源结果见[runs/20261126T235641Z-scheduled/source-audit.json](runs/20261126T235641Z-scheduled/source-audit.json)。任务收尾不表示所有来源都有新消息或全文授权。
 

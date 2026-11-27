@@ -11,4 +11,5 @@
 - 公开发布仅含原创简述、七字段、引用链接及脱敏覆盖摘要；完整原文/浏览器记录/日志ZIP保留在当前运行工作区并在任务回复中交付，禁止上传凭据、验证码、私密会话或未授权原始日志。持久公开items/state按GUID累积，不因无新增清空。默认RSS不截条数；归档保持完整。
 - 估值快照在RSS按data_period每日合成一条七字段汇总，同日更新复用GUID；逐指数保留平台原值、口径、来源链接、时间、评分与异常标记，不平均不同平台数据。items/state仍逐条存储，日期不明者单列。--render-state也须--completion-manifest通过门槛；--preview-only仅生成本地preview.xml，不能作为发布结果。
 - 先在本地验证、秘密扫描；GitHub空仓库用contents创建首个文件，之后基于最新tree新建commit，以expected_sha且force=false移动main。连接器不适合大文件时，用已认证gh api的--input文件上传blob并校验SHA；分支仍按上述CAS更新。遇并发冲突回读新头与state后重新合并，绝不强推。发布失败保留产物、错误与上轮feed，不报告成功。
-- 回读原始订阅URL解析RSS，并核对新GUID及提交；GitHub页面URL不是订阅URL。定时任务从仓库加载这些Skill，按北京时间08:00/14:00/23:00执行；计划触发时刻不等于采集与发布完成时刻。
+- 回读原始订阅URL解析RSS，并核对新GUID及提交；GitHub页面URL不是订阅URL。定时任务从仓库加载这些Skill，按北京时间07:00/13:00/22:00执行；计划触发时刻不等于采集与发布完成时刻。
+- 每次收尾（含失败/无新增）执行references/evolution.md：合并三层路径收据，复核历史成功而本轮未得的链路，依真实任务使用固定版SkillOpt-Sleep验证四个Skill。复盘、修复及优化追加同run_id日志；候选通过留出门槛和回归检查后采用，公共规则只维护一处。维护提交基于最新头，不覆盖已更新的feed/state；最后再导出包含复盘/优化的日志ZIP。

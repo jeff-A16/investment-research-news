@@ -10,6 +10,19 @@ def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
 class FeedTests(unittest.TestCase):
+ def test_rss_clock_change_migrates_legacy_state_and_reuses_article_guid(self):
+  old=message(source_id='M08',layer=2,source_name='RSS',published_at=None,data_period=None,feed_published_at='2026-11-26T10:00:00+08:00')
+  legacy=[a for a in feed.identity_aliases(old) if not a.startswith('rss-url:')]
+  previous={'items':[dict(old,guid='legacy-guid',_aliases=legacy)],'source_records':{'M08|'+a:{'source_id':'M08','fingerprint':feed.content_fingerprint(old)} for a in legacy}}
+  same=dict(old,feed_published_at='2026-11-27T06:33:10+08:00',retrieved_at='2026-11-27T00:00:00Z')
+  changes,records,stats=feed.incremental_records([same],previous)
+  self.assertFalse(changes);self.assertEqual(stats['duplicate_source_records'],1)
+  revised=dict(same,fact_summary='经原文核对的新收盘数据')
+  changes,records,stats=feed.incremental_records([revised],previous)
+  self.assertEqual(stats['updated_source_records'],1);self.assertEqual(stats['new_source_records'],0)
+  items,_=feed.merge(changes,previous,'2026-11-27T00:00:00Z')
+  self.assertEqual(len(items),1);self.assertEqual(items[0]['guid'],'legacy-guid')
+  self.assertEqual(items[0]['fact_summary'],revised['fact_summary'])
  def test_successful_component_does_not_advance_failed_sibling_cursor(self):
   prior={'source_cursors':{'P02':{'resume_from':'old','components':{'MLF':{'resume_from':'older'}}}}}
   coverage=[{'coverage':{'sources':[{'source_id':'P02','status':'content_collected','checked_at':NOW,'components':[{'component':'OMO','status':'content_collected','checked_at':NOW},{'component':'MLF','status':'access_limited_verified','checked_at':NOW}]}]}}]

@@ -79,7 +79,12 @@ def identity_aliases(m):
     aliases=[]
     # URL identity uses the actual content owner URL; a secondary reading URL is only a fallback.
     u=canonical_url(m.get('original_url') or m.get('available_url'))
-    if u:aliases.append('url:'+u+suffix)
+    if u:
+        aliases.append('url:'+u+suffix)
+        # RSS pubDate may be changed when the same article is edited. A feed
+        # clock is not a verified first-publication date or a new article ID.
+        if m.get('feed_published_at') and not any(m.get(k) for k in ('published_at','data_period','event_at')) and kind in ('fact','opinion'):
+            aliases.append('rss-url:'+u+'|undated|'+kind+discriminator+'|'+version+'|record:'+normalized(m.get('source_record_id')))
     if m.get('event_key'):
         aliases.append('event:'+normalized(m['event_key'])+suffix)
     if not aliases:
@@ -171,6 +176,15 @@ def content_fingerprint(m):
 
 def incremental_records(messages,previous):
     records=deepcopy(previous.get('source_records',{}));changed=[];stats={'new_source_records':0,'updated_source_records':0,'duplicate_source_records':0}
+    # Migrate stable article keys from old states without pretending that old
+    # content was freshly collected. Legacy URL/date keys remain for audit.
+    for item in previous.get('items',[]):
+        for prior in [item]+item.get('provenance',[]):
+            keys=[prior.get('source_id','')+'|'+a for a in identity_aliases(prior)]
+            known=next((records[k] for k in keys if k in records),None)
+            if known:
+                for key in keys:
+                    if '|rss-url:' in key and key not in records:records[key]=deepcopy(known)
     for m in messages:
         keys=[m['source_id']+'|'+a for a in identity_aliases(m)];fingerprint=content_fingerprint(m);seen=[records[k] for k in keys if k in records]
         if any(r.get('fingerprint')==fingerprint for r in seen):stats['duplicate_source_records']+=1

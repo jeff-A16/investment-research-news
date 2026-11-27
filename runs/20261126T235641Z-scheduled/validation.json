@@ -1,0 +1,36 @@
+{
+  "run_id": "20261126T235641Z-scheduled",
+  "publication_gate": {
+    "passed": true,
+    "run_id": "20261126T235641Z-scheduled",
+    "completed_sources": 101,
+    "completed_components": 72,
+    "outcomes": {
+      "no_new_verified": 23,
+      "content_collected": 34,
+      "access_limited_verified": 44
+    }
+  },
+  "all_prior_guids_preserved": true,
+  "unique_rss_guids": 149,
+  "all_seven_fields": true,
+  "all_merged_links_present": true,
+  "rss_clock_update": {
+    "original_url": "https://wallstreetcn.com/articles/3786746",
+    "old_guid": "urn:investment-research-news:5a3251e6f5b9dd8142ffa37e13c46b0e240a8daf8ab14a9e9d4eb6f008f5303e",
+    "new_guid": "urn:investment-research-news:5a3251e6f5b9dd8142ffa37e13c46b0e240a8daf8ab14a9e9d4eb6f008f5303e",
+    "single_article": true
+  },
+  "cme_out_of_order_quote_not_overwritten": true,
+  "failed_component_cursors_not_advanced": true,
+  "repeat_same_input": {
+    "new_source_records": 0,
+    "updated_source_records": 0,
+    "duplicate_source_records": 174,
+    "new_feed_items": 0,
+    "updated_feed_items": 0
+  },
+  "valuation_records": 76,
+  "valuation_digest_days": 2,
+  "tests": "----------------------------------------------------------------------\nRan 28 tests in 0.042s\n\nOK"
+}

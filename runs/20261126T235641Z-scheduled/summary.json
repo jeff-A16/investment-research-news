@@ -1,0 +1,77 @@
+{
+  "run_id": "20261126T235641Z-scheduled",
+  "as_of": "2026-11-27T00:23:34.346328+00:00",
+  "window_start": "2026-11-25T23:56:41.013239+00:00",
+  "window_end": "2026-11-26T23:56:41.013239+00:00",
+  "layer_count": 3,
+  "publication_gate": {
+    "passed": true,
+    "run_id": "20261126T235641Z-scheduled",
+    "completed_sources": 101,
+    "completed_components": 72,
+    "outcomes": {
+      "no_new_verified": 23,
+      "content_collected": 34,
+      "access_limited_verified": 44
+    }
+  },
+  "incremental": {
+    "new_source_records": 29,
+    "updated_source_records": 4,
+    "duplicate_source_records": 141,
+    "new_feed_items": 25,
+    "updated_feed_items": 3
+  },
+  "input_messages": 243,
+  "accepted_messages": 174,
+  "published_items": 149,
+  "stored_records": 223,
+  "scope": "All configured tasks finalized in their stated checked scope; content/access limitations retained. No exhaustive whole-site claim.",
+  "rejected_count": 69,
+  "rejected_reasons": {
+    "outside_date_window": 63,
+    "outside_window": 1,
+    "no_reliable_window_timestamp": 5
+  },
+  "all_tasks_finalized": true,
+  "full_current_window_coverage": false,
+  "all_sources_have_new_messages": false,
+  "validation": {
+    "run_id": "20261126T235641Z-scheduled",
+    "publication_gate": {
+      "passed": true,
+      "run_id": "20261126T235641Z-scheduled",
+      "completed_sources": 101,
+      "completed_components": 72,
+      "outcomes": {
+        "no_new_verified": 23,
+        "content_collected": 34,
+        "access_limited_verified": 44
+      }
+    },
+    "all_prior_guids_preserved": true,
+    "unique_rss_guids": 149,
+    "all_seven_fields": true,
+    "all_merged_links_present": true,
+    "rss_clock_update": {
+      "original_url": "https://wallstreetcn.com/articles/3786746",
+      "old_guid": "urn:investment-research-news:5a3251e6f5b9dd8142ffa37e13c46b0e240a8daf8ab14a9e9d4eb6f008f5303e",
+      "new_guid": "urn:investment-research-news:5a3251e6f5b9dd8142ffa37e13c46b0e240a8daf8ab14a9e9d4eb6f008f5303e",
+      "single_article": true
+    },
+    "cme_out_of_order_quote_not_overwritten": true,
+    "failed_component_cursors_not_advanced": true,
+    "repeat_same_input": {
+      "new_source_records": 0,
+      "updated_source_records": 0,
+      "duplicate_source_records": 174,
+      "new_feed_items": 0,
+      "updated_feed_items": 0
+    },
+    "valuation_records": 76,
+    "valuation_digest_days": 2,
+    "tests": "----------------------------------------------------------------------\nRan 28 tests in 0.042s\n\nOK"
+  },
+  "code_fix": "Stable article identity when an undated RSS article changes its feed pubDate; old source keys migrated and GUID retained.",
+  "log_completeness": "partial; all available business evidence retained, unavailable platform internals not claimed"
+}

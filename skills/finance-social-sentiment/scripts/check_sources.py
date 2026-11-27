@@ -23,6 +23,35 @@ import uuid
 sys.dont_write_bytecode = True
 
 
+def embedded_articles(text):
+    """Decode article metadata in inert, nested hydration strings; never run JS."""
+    pending=[(s,0) for s in re.findall(r'<script\b[^>]*>(.*?)</script\s*>',text,re.I|re.S)]
+    seen=set();found=[]
+    while pending and len(seen)<2000:
+        value,depth=pending.pop()
+        if depth>8:continue
+        if isinstance(value,dict):
+            types=value.get('@type',[])
+            if isinstance(types,str):types=[types]
+            if not isinstance(types,list):types=[]
+            if any(t in {'NewsArticle','Article','BlogPosting','Report','DiscussionForumPosting','SocialMediaPosting','VideoObject'} for t in types if isinstance(t,str)):
+                found.append({k:value[k] for k in ('@type','headline','name','url','datePublished','dateModified','author','publisher') if k in value})
+            pending.extend((v,depth+1) for v in value.values() if isinstance(v,(dict,list,str)))
+        elif isinstance(value,list):pending.extend((v,depth+1) for v in value)
+        elif isinstance(value,str):
+            if value in seen or len(value)>2_000_000:continue
+            seen.add(value)
+            if not any(k in value for k in ('datePublished','NewsArticle','ld+json')):continue
+            try:pending.append((json.loads(value),depth+1));continue
+            except (ValueError,TypeError,RecursionError):pass
+            for match in re.finditer(r'"(?:[^"\\]|\\.)*"',value):
+                token=match.group()
+                if any(k in token for k in ('datePublished','NewsArticle','ld+json')):
+                    try:pending.append((json.loads(token),depth+1))
+                    except (ValueError,TypeError,RecursionError):pass
+    return list({json.dumps(x,ensure_ascii=False,sort_keys=True):x for x in found}.values())
+
+
 class Page(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -90,6 +119,8 @@ def inspect(body,content_type,url):
     page=Page()
     try:page.feed(text)
     except Exception:pass
+    for item in embedded_articles(text):
+        if item not in page.jsonld:page.jsonld.append(item)
     visible=' '.join(' '.join(page.parts).split())
     title=' '.join(page.title_parts).strip()
     links=[]

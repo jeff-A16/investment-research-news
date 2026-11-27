@@ -37,6 +37,18 @@ class AdoptionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 m.test_measure(d, 2)
 
+    def test_budget_rejection_finishes_without_calling_upstream_adopt(self):
+        before = 'name: example\ndescription: Example\nreferences/contract.md\n'
+        with tempfile.TemporaryDirectory() as d:
+            proposed = Path(d) / 'proposed_SKILL.md'
+            proposed.write_text(before + 'x' * 2000)
+            def forbidden_adopt(*args, **kwargs):
+                self.fail('Budget-rejected proposal reached adoption')
+            adopted, reason = m.bounded_adopt(before, proposed, d, None, forbidden_adopt)
+            self.assertEqual([], adopted)
+            self.assertIn('budget', reason)
+            self.assertEqual(before + 'x' * 2000, proposed.read_text())
+
 
 if __name__ == '__main__':
     unittest.main()

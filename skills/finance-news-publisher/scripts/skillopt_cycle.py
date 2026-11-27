@@ -49,6 +49,15 @@ def test_measure(staging_dir, expected):
     return measured[-1]
 
 
+def bounded_adopt(before, proposed, staging_dir, cfg, adopt_fn):
+    """A project budget rejection is a completed review, not an engine crash."""
+    try:
+        candidate_ok(before, proposed.read_text())
+    except ValueError as exc:
+        return [], str(exc)
+    return adopt_fn(staging_dir, cfg=cfg), None
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--engine-root', required=True)
@@ -119,20 +128,21 @@ def main():
             measured = test_measure(outcome.staging_dir, sum(t.split == 'test' for t in tasks))
             # Persist reviewable report before adoption. No synthetic/mock gain is deployable.
             proposed = Path(outcome.staging_dir) / 'proposed_SKILL.md'
-            adopted = []
+            adopted, adoption_rejection = [], None
             if report.accepted and a.adopt and a.backend != 'mock':
                 if report.holdout_leaked or not report.candidate_score > report.baseline_score:
                     raise ValueError('candidate lacks a clean held-out gain')
                 if measured['hard'] != 1.0 or measured['soft'] != 1.0:
                     raise ValueError('candidate did not pass every final test check')
-                candidate_ok(before, proposed.read_text())
-                adopted = adopt(outcome.staging_dir, cfg=cfg)
+                adopted, adoption_rejection = bounded_adopt(
+                    before, proposed, outcome.staging_dir, cfg, adopt)
             result = {'skill': skill, 'status': 'completed', 'engine_sha': sha,
                 'backend': a.backend, 'tasks': len(tasks), 'baseline': report.baseline_score,
                 'candidate': report.candidate_score, 'gate': report.gate_action,
                 'accepted': report.accepted, 'holdout_leaked': report.holdout_leaked,
                 'report': str(report_path), 'staging_dir': outcome.staging_dir,
                 'adopted': adopted, 'final_test': measured,
+                'adoption_rejection': adoption_rejection,
                 'before_sha256': hashlib.sha256(before.encode()).hexdigest(),
                 'after_sha256': hashlib.sha256(target.read_bytes()).hexdigest()}
             done.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

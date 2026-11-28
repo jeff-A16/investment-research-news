@@ -3,11 +3,280 @@
   <channel>
     <title>金融投研 · 三层消息与板块监控</title>
     <link>https://github.com/jeff-A16/investment-research-news</link>
-    <description>三层金融投研与板块低位自分析。每条含来源、原始链接、标题、来源发表时间、置信度、投资影响和影响度。</description>
+    <description>金融投研消息与板块低位提醒。</description>
     <language>zh-CN</language>
     <generator>finance-news-publisher/1.1</generator>
     <ttl>60</ttl>
     <atom:link href="https://raw.githubusercontent.com/jeff-A16/investment-research-news/main/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 28 Nov 2026 02:49:35 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 14:41:57 GMT</lastBuildDate>
+    <item>
+      <title>央行完善贷款罚息规则：从“加收30%—50%”改为“协商确定”</title>
+      <link>https://finance.caixin.com/m/2026-11-28/102509472.html</link>
+      <guid isPermaLink="false">urn:investment-research-news:17de8a837fe0b66a4365cceacf5f8fd39665de177849f43da3cb1c6892e21d9e</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;财新（公开预览）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://finance.caixin.com/m/2026-11-28/102509472.html"&gt;财新（公开预览）（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;央行完善贷款罚息规则：从“加收30%—50%”改为“协商确定”&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T08:12&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响银行股、信用及存款相关资产。贷款罚息确定方式可能影响逾期借款成本和银行风险定价；执行仍取决于合同协商、监管要求与生效安排，不能将预览解读当作所有贷款即时降息。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;财新公开预览报道《人民币存贷款利率管理规定》修订与罚息规则调整，称规定自2027年3月21日起施行。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>月内两提资本市场 国常会释放多重鲜明信号</title>
+      <link>https://www.cnstock.com/commonDetail/835154</link>
+      <guid isPermaLink="false">urn:investment-research-news:2041a11afd69c6797280844d2544e005f3a799d67299a287dc2c85a69e64263d</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;上海证券报梁银妍&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.cnstock.com/commonDetail/835154"&gt;上海证券报梁银妍（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://epaper.stcn.com/con/202611/28/content_3000990.html"&gt;证券时报程丹（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;月内两提资本市场 国常会释放多重鲜明信号&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T07:57&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;89&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响A股宽基基金、券商及保险股。稳市工具和长期资金政策可能缓解流动性冲击、影响风险溢价，分红回购影响股东回报；实际效果取决于资金使用、实施细则和盈利兑现。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;上海证券报解读国家队及中央汇金类平准基金功能、分红回购、中长期资金入市和输入性风险应对；这是28日公开报道解读，不把27日会议重标为新政策。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>美国财政部11月27日收益率曲线：10年期4.94%</title>
+      <link>https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&amp;type=daily_treasury_yield_curve</link>
+      <guid isPermaLink="false">urn:investment-research-news:f414ee318b7abf4435b35480dcc556358e2cf3bf3a17c861a0a67b532702affe</guid>
+      <category>一层·权威与一手</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;美国财政部&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&amp;amp;type=daily_treasury_yield_curve"&gt;美国财政部（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;美国财政部11月27日收益率曲线：10年期4.94%&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;未知&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;98&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美债基金、黄金基金、美元资产。名义收益率上行可能压低存量债券价格并提高无息黄金的机会成本；债基实际敏感度取决于久期，判断黄金还需结合实际利率与汇率。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;财政部原表11月27日10年期名义平价收益率4.94%；11月25日为4.85%，上升9bp。这是官方曲线指标，不是特定债券可成交报价。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>美联储转鸽的催化剂：一家小型新云公司倒闭，引爆一场“小型金融危机”？</title>
+      <link>https://wallstreetcn.com/articles/3786914</link>
+      <guid isPermaLink="false">urn:investment-research-news:4a162cd75dbdd29f15cfbc8aba0738290258327e089d1d65d129d0d015bfc4d5</guid>
+      <pubDate>Sat, 28 Nov 2026 11:31:31 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786914"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;美联储转鸽的催化剂：一家小型新云公司倒闭，引爆一场“小型金融危机”？&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T19:31:31+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美股科技基金、美债基金。AI融资链条若收紧，可能压低科技股现金流估值并增加避险需求；政策转向只是分析师的条件情景，需观察实际信用事件与通胀。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;野村Naka Matsuzawa提出情景：小型新云公司或科技基金的信用冲击，可能促使美联储政策转向。不是已经发生的倒闭或美联储决定。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>伊朗反复袭船，美国武力拦截！霍尔木兹海峡遭美伊双向封锁，战前通航水平恐难恢复</title>
+      <link>https://wallstreetcn.com/articles/3786912</link>
+      <guid isPermaLink="false">urn:investment-research-news:7b7fcad6b2971852e9dcb49c4edacd78704737b9a06fd87358dbc2001add7f35</guid>
+      <pubDate>Sat, 28 Nov 2026 10:35:00 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786912"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;伊朗反复袭船，美国武力拦截！霍尔木兹海峡遭美伊双向封锁，战前通航水平恐难恢复&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T18:35:00+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响原油基金、航运股、航空股。通航受阻可能推高运费、保险和能源成本，支撑油价风险溢价并挤压运输与航空利润；影响取决于实际通行量及供给替代。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道霍尔木兹海峡袭船与美方拦截升级，通航恢复面临风险；各方声明与安全分析尚未全部获得独立一手核实。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>40%！美国家庭股票敞口创历史新高，AI暴跌之际仍在疯狂买入</title>
+      <link>https://wallstreetcn.com/articles/3786910</link>
+      <guid isPermaLink="false">urn:investment-research-news:4ac2d19f0901745e690a42d9ef13205a343b4dfdce5f99a931016e8a98c6d7d6</guid>
+      <pubDate>Sat, 28 Nov 2026 09:55:20 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786910"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;40%！美国家庭股票敞口创历史新高，AI暴跌之际仍在疯狂买入&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T17:55:20+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美股宽基基金、美国消费股。家庭资产对股票的依赖可能加强股市下跌向消费的财富效应传导，持续申购又可能缓冲卖压；需核对资金流的统计期和覆盖范围。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道引用机构测算称美国家庭股票敞口超过金融资产40%，股票基金资金流入仍强；样本、资金流截止和家庭持股比例分别保留，不能混作当前实时流量。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>花旗记错了“350亿美元”</title>
+      <link>https://wallstreetcn.com/articles/3786908</link>
+      <guid isPermaLink="false">urn:investment-research-news:89ec50eee2d4fbabaa1d403584419a3acb5aebf5f11bd883fb4f7eb0a6d1dcc9</guid>
+      <pubDate>Sat, 28 Nov 2026 08:33:58 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786908"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;花旗记错了“350亿美元”&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T16:33:58+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响花旗股票及信用债、银行基金。风险模型和监管整改可能增加资本占用、内控成本与监管不确定性；对子公司与集团的影响应分开核对，不能将RWA差额当投资亏损。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道花旗英国子公司风险加权资产曾低估约350亿美元，并获约30亿美元注资；花旗称集团资本及业绩未受影响。资产计量差错不等于同额损失。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>摩根大通驳斥“半导体周期见顶论”：四大指标均未发出预警  ，市场悲观过头了！</title>
+      <link>https://wallstreetcn.com/articles/3786896</link>
+      <guid isPermaLink="false">urn:investment-research-news:fcf63b2be5938e83e9d4d7daa0cc65ea9959a5e2a0a7bd9b05640f132a9d6764</guid>
+      <pubDate>Sat, 28 Nov 2026 06:44:11 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786896"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;摩根大通驳斥“半导体周期见顶论”：四大指标均未发出预警  ，市场悲观过头了！&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T14:44:11+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响半导体基金、存储及光通信产业链。若紧库存和订单持续，盈利下修可能低于股价所反映的程度；若需求、交付或长协出现转弱，该观点的支撑会减弱。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;摩根大通研究认为库存、产能、交货期和长协定价暂未显示半导体周期见顶；延续至2028年是机构预测。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>标普下调法国评级展望至负面：经济衰退、赤字高企、政局动荡三座大山压顶</title>
+      <link>https://wallstreetcn.com/articles/3786903</link>
+      <guid isPermaLink="false">urn:investment-research-news:11442f43e03babf51032043462da9609a9e794f9c0538af2eb8fdcbafe105063</guid>
+      <pubDate>Sat, 28 Nov 2026 06:36:00 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786903"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;标普下调法国评级展望至负面：经济衰退、赤字高企、政局动荡三座大山压顶&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T14:36:00+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响法国及欧元区债券基金、欧元。财政和增长压力可能提高法国融资风险溢价并扩大欧债利差；实际影响取决于预算执行、评级后续动作与欧洲政策支持。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道标普维持法国A+主权评级，但将展望从稳定调至负面；展望调整与评级下调是不同事件。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>赶在民主党州长上任前，得州紧急“解冻”1800多个数据中心项目，开发商争分夺秒抢许可</title>
+      <link>https://wallstreetcn.com/articles/3786900</link>
+      <guid isPermaLink="false">urn:investment-research-news:6ae195ee59ae611ca4a808cdd595a5eec8a1d8283d5668e010c3072e1da6e78e</guid>
+      <pubDate>Sat, 28 Nov 2026 05:52:15 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786900"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;赶在民主党州长上任前，得州紧急“解冻”1800多个数据中心项目，开发商争分夺秒抢许可&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T13:52:15+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响数据中心基金、电力及设备产业链。审批节奏可能影响数据中心建设、用电需求和设备订单的兑现时间；政策交接、电网和环保条件仍可能改变投资落地。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道得州恢复部分数据中心许可审批，开发商试图赶在新州政府上任前推进项目；许可不等于项目已经投产。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>职业生涯最大清仓之一后，高盛对冲基金主管警告：AI最赚钱的时代或已结束！</title>
+      <link>https://wallstreetcn.com/articles/3786895</link>
+      <guid isPermaLink="false">urn:investment-research-news:e7f698ad5ec8c1981f0653ab96bfd9b47d0004d33fa9ed8e29a8349b5d667f63</guid>
+      <pubDate>Sat, 28 Nov 2026 03:55:29 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786895"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;职业生涯最大清仓之一后，高盛对冲基金主管警告：AI最赚钱的时代或已结束！&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T11:55:29+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美股科技基金、全球股票基金。发行供给和资本开支回报会影响股票估值及资金承接能力；这是机构对未来回报的判断，需用盈利和融资数据验证。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;高盛Tony Pasquariello判断仓位已较健康，但股票净供给和AI投资回报将约束2027年收益；他并未全面看空美股。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>铝市割裂一幕：期货价格下跌，现货却遭史诗级逼空，LME紧急出手</title>
+      <link>https://wallstreetcn.com/articles/3786875</link>
+      <guid isPermaLink="false">urn:investment-research-news:463e5840a732e00c92cd0118f8e701ab54430e6d05d4d3cfac99e6a4c896236d</guid>
+      <pubDate>Sat, 28 Nov 2026 02:02:42 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786875"&gt;华尔街见闻（原始出处）；华尔街见闻官方RSS（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;铝市割裂一幕：期货价格下跌，现货却遭史诗级逼空，LME紧急出手&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T10:02:42+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响有色金属基金、铝加工及贸易企业。近端供应紧张会影响现货采购与套保保证金，期现错配可能挤压加工商现金流；需区分持有实物和期货头寸的盈亏。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道LME铝现货相对三个月期货的升水剧烈波动，并提及交易所限制挤仓的措施。现货升水与铝价整体涨跌不能混同。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>信贷市场表里不一：7050亿美元AI债与CCC级“垃圾债”承压，优质企业独自坚挺</title>
+      <link>https://wallstreetcn.com/articles/3786882</link>
+      <guid isPermaLink="false">urn:investment-research-news:fbabad41af73f77d371bb5682ff921b1ad44c273dd91aeae04ffad742e8f62ff</guid>
+      <pubDate>Fri, 27 Nov 2026 23:25:44 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786882"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;信贷市场表里不一：7050亿美元AI债与CCC级“垃圾债”承压，优质企业独自坚挺&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T07:25:44+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响信用债基金、AI股票基金。信用利差走阔会抬高高杠杆企业再融资成本，并可能传导至AI资本开支与股票估值；投资级与低评级信用风险不宜混为一谈。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道AI相关融资与CCC级低评级债承压，优质企业表现相对稳定。股票反弹没有消除信用市场内部分化。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>美国10月贸易逆差创一年半新高：受AI基建推动，进口额刷新历史纪录</title>
+      <link>https://wallstreetcn.com/articles/3786881</link>
+      <guid isPermaLink="false">urn:investment-research-news:8667477257e799894ed1e44557fe97543ba1962ab4ad18b8064d444058566203</guid>
+      <pubDate>Fri, 27 Nov 2026 21:53:20 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786881"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;美国10月贸易逆差创一年半新高：受AI基建推动，进口额刷新历史纪录&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T05:53:20+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美债基金、美元、AI设备供应链。进口及逆差变化会影响GDP核算、关税预期和海外设备订单；增长修正仍取决于其他分项和后续正式数据。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道称美国10月商品贸易逆差1495亿美元、进口3653亿美元，并引述机构下调GDP预测；商品贸易数据与全部贸易及GDP贡献不能直接等同。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>陕建股份13亿元中期票据成功发行 票面利率2.90%</title>
+      <link>https://www.cs.com.cn/ssgs/01/2026/11/28/detail_2026112810055423.html</link>
+      <guid isPermaLink="false">urn:investment-research-news:106e58f20971831cae455c2a5274bd6d42bb42f3a9d3cdf3fff3a54224f5efa7</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;中国证券报&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.cs.com.cn/ssgs/01/2026/11/28/detail_2026112810055423.html"&gt;中国证券报（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;陕建股份13亿元中期票据成功发行 票面利率2.90%&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响陕建股份信用债、建筑行业债券基金。发行结果影响该公司融资结构和债务接续，利息成本需结合期限、用途和存量债比较；不能仅凭较低票息推断信用风险下降。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;中国证券报报道陕西建工集团股份有限公司11月26日完成13亿元、3年期中期票据发行，票息2.90%，由陕建控股及陕西延长石油联合提供全额连带责任担保；票息不等于当前到期收益率。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>高盛首次覆盖宇树给予“卖出”评级：股价已提前透支未来十年的增长预期</title>
+      <link>https://news.10jqka.com.cn/20261128/c682325891.shtml</link>
+      <guid isPermaLink="false">urn:investment-research-news:194aecab5f81234b7b110b7758e1e59eca6fca316b3dd38aa81fc92eaf876b5e</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;同花顺7x24快讯（转载新浪财经）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;原始链接未取得；&lt;ul&gt;&lt;li&gt;&lt;a href="https://news.10jqka.com.cn/20261128/c682325891.shtml"&gt;同花顺7x24快讯（转载新浪财经）（实际读取/转载）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;高盛首次覆盖宇树给予“卖出”评级：股价已提前透支未来十年的增长预期&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T14:31:29&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响机器人基金、宇树相关敞口。机器人长期增长与当前估值回报可以分化；若市场已经计入高销量份额与利润率，兑现不及假设可能带来估值压力，37%是预测而非已实现增长。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;同花顺转载新浪快讯，称高盛预计未来十年收入复合增长37%，但认为价格已计入乐观份额及利润假设；原报告未得。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>银价跌破40美元关口后反弹 上行弹性尚待工业需求驱动</title>
+      <link>https://www.cs.com.cn/zzqh2020/2026/11/28/detail_2026112810055353.html</link>
+      <guid isPermaLink="false">urn:investment-research-news:3aed916a075461f7768fe472622eb0c01de3346d088f03709d7517920a50ff26</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;中国证券报&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.cs.com.cn/zzqh2020/2026/11/28/detail_2026112810055353.html"&gt;中国证券报（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;银价跌破40美元关口后反弹 上行弹性尚待工业需求驱动&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响白银相关资产、有色金属基金。银价兼受利率、仓位和工业需求影响，上游利润与价格的传导还取决于成本和套保；短期反弹不足以确认工业需求改善。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道白银反弹及企业、期货机构对套保、成本和工业需求的看法；企业解释和远期判断分别保留。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>定存“不烧心”</title>
+      <link>https://www.eeo.com.cn/2026/1128/1106067.shtml</link>
+      <guid isPermaLink="false">urn:investment-research-news:85d55df824823137e0f83cd675d3b938a25e582adf554aac0bfb0ff90b135be9</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;经济观察报&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.eeo.com.cn/2026/1128/1106067.shtml"&gt;经济观察报（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;定存“不烧心”&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T11:07&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响银行股、货币及债券基金。居民对本金波动的容忍度变化可能影响存款与基金之间的配置，银行付息成本和息差也会随重定价变化；样本访谈不能直接推算净申赎金额。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;经济观察报报道存款产品需求和居民风险偏好变化，采访及阶段性收益比较不构成全市场资金流统计。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>多家公募点评A股反弹：政策支持与产业验证并重</title>
+      <link>https://fund.eastmoney.com/a/202611273941962015.html</link>
+      <guid isPermaLink="false">urn:investment-research-news:aba7d6b0b3c2d01f4e685fd535d953a6a9e2fc6643cb9c2e789c4bff0a341293</guid>
+      <category>一层·权威与一手</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;多家公募观点（实际读取天天基金转载中国基金报）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;原始链接未取得；&lt;ul&gt;&lt;li&gt;&lt;a href="https://fund.eastmoney.com/a/202611273941962015.html"&gt;多家公募观点（实际读取天天基金转载中国基金报）（实际读取/转载）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;多家公募点评A股反弹：政策支持与产业验证并重&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T00:59&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响A股股票基金、科技基金。政策连续性可能改善风险偏好，但持续回报仍需产业订单、盈利和资金落实验证；基金公司的观点不等同实际增仓或收益承诺。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;中国基金报转载文章汇集富国、华泰柏瑞、永赢、摩根、中欧等公募点评；这是选定机构观点，不能代表全行业仓位或确定上涨原因。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>大额存单认购门槛减半：个人10万元、机构500万元</title>
+      <link>https://finance.caixin.com/m/2026-11-27/102509400.html</link>
+      <guid isPermaLink="false">urn:investment-research-news:e3412e6514c0ff16379156121f7d12279a2f1077686a9f83d819cf7ab92e106d</guid>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;财新（公开预览）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://finance.caixin.com/m/2026-11-27/102509400.html"&gt;财新（公开预览）（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;大额存单认购门槛减半：个人10万元、机构500万元&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-27T22:29&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响银行股、家庭现金配置。认购门槛下调可能扩大大额存单可参与人群，并影响银行负债成本和居民资金配置；实际利率、额度及转让条件仍取决于发行银行。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;财新预览转述修订办法：个人和机构认购起点分别降至10万元、500万元；产品性质和风险应与银行理财分开。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Polymarket 12月美联储决议：加息25bp合约Yes指示价94.50%</title>
+      <link>https://polymarket.com/event/fed-decision-in-december-20260729232808632</link>
+      <guid isPermaLink="false">urn:investment-research-news:05e69091a6935c5a31deeb95a36973d304cecea67070ea2f1c797f638231037c</guid>
+      <category>三层·社交与情绪</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Polymarket（12月FOMC独立结果合约）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://polymarket.com/event/fed-decision-in-december-20260729232808632"&gt;Polymarket（12月FOMC独立结果合约）（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://gamma-api.polymarket.com/events?slug=fed-decision-in-december-20260729232808632"&gt;Polymarket（12月FOMC独立结果合约）（实际读取/转载）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Polymarket 12月美联储决议：加息25bp合约Yes指示价94.50%&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;未知&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;92&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美债基金、美元、黄金及美股基金。合约价格反映该市场参与者对利率路径的定价，可能影响利率敏感资产预期；流动性、价差和结算规则会造成偏离，不能视为官方概率或直接替代FedWatch。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;各独立合约Yes指示价：降50bp及以上0.15%、降25bp0.15%、不变3.70%、加25bp94.50%、加50bp及以上1.75%；合计不严格等于100%，未自行归一。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CNN恐惧贪婪指数升至25，仍显示极度恐惧</title>
+      <link>https://www.cnn.com/markets/fear-and-greed</link>
+      <guid isPermaLink="false">urn:investment-research-news:3b9f2284258b8560bc4e762a0ab508db9e9d76d977698a870015262ca49052fa</guid>
+      <category>三层·社交与情绪</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;CNN Fear &amp;amp; Greed Index&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.cnn.com/markets/fear-and-greed"&gt;CNN Fear &amp;amp; Greed Index（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;CNN恐惧贪婪指数升至25，仍显示极度恐惧&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;未知&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;94&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美股宽基及科技基金。情绪读数回升表明其所覆盖的美股相关市场指标改善，但极度恐惧不能独立构成买入信号；计算调整和复合指标结构也限制了直接比较。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;CNN仪表显示25，前收15；更新时间11月27日18:59:59 ET。页面提示广度分项计算有微调，跨期比较应留意可比性。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>对马斯克万亿美元薪酬“说不”，全球最大主权财富基金连续两年投下反对票</title>
+      <link>https://wallstreetcn.com/articles/3786916</link>
+      <guid isPermaLink="false">urn:investment-research-news:bb34522255a792d9bd28b616f1cbed86125f61f9161107d7c6554b9302c74d3c</guid>
+      <pubDate>Sat, 28 Nov 2026 11:53:08 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786916"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;对马斯克万亿美元薪酬“说不”，全球最大主权财富基金连续两年投下反对票&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T19:53:08+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响特斯拉股票及基金。薪酬安排会影响特斯拉股权稀释、治理和关键人物风险；基金投票仅是股东立场，最终约束力与表决结果决定实际影响。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道挪威主权财富基金拟反对马斯克薪酬咨询议案，同时支持其连任董事。咨询投票不具有约束力，不能当作薪酬方案已被否决。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>马斯克：算力租赁价格走向分化</title>
+      <link>https://wallstreetcn.com/articles/3786911</link>
+      <guid isPermaLink="false">urn:investment-research-news:c27f52d739bbe8aeb7d3e2ef2bfe4196a9a62de0a149c6d37277b270927eebc0</guid>
+      <pubDate>Sat, 28 Nov 2026 10:25:42 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786911"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;马斯克：算力租赁价格走向分化&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T18:25:42+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响算力及数据中心基金、GPU产业链。算力价格分化会使大型集群与小型运营商的利润、设备利用率和资本开支前景分化；口头需求需由合同和实际交付验证。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道马斯克称大型高带宽训练集群租金上涨，小规模算力租金下跌，并称谷歌有进一步租用意愿；意愿不等于新增合同。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>付费让Claude训练AI，结果研究越做越差？Anthropic被曝秘密限制模型能力，开发者怒了</title>
+      <link>https://wallstreetcn.com/articles/3786909</link>
+      <guid isPermaLink="false">urn:investment-research-news:796ac029b2acecefba2aee71c70558526eaff756cfbaa64652d16199e4497645</guid>
+      <pubDate>Sat, 28 Nov 2026 08:59:03 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786909"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;付费让Claude训练AI，结果研究越做越差？Anthropic被曝秘密限制模型能力，开发者怒了&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T16:59:03+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响AI软件及云服务基金。模型能力和服务限制若影响付费用户留存，可能改变平台定价权与竞争格局；投诉样本需由可重复测试和经营数据确认。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道开发者质疑Anthropic对研究任务的模型能力限制；用户测试和争议尚不能证明公司整体产品性能或收入已经恶化。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>“AI股神”高喊抄底：AI实验室2027年底年化收入或突破万亿美元，Anthropic被严重低估，机器人ChatGPT时刻明年到来！</title>
+      <link>https://wallstreetcn.com/articles/3786904</link>
+      <guid isPermaLink="false">urn:investment-research-news:1c7397bd316234bc50d0962fb51ea83ca22df3b961675c54d521cbd6814f89f6</guid>
+      <pubDate>Sat, 28 Nov 2026 07:18:48 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786904"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;“AI股神”高喊抄底：AI实验室2027年底年化收入或突破万亿美元，Anthropic被严重低估，机器人ChatGPT时刻明年到来！&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T15:18:48+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响AI股票基金、Anthropic相关敞口。极高收入假设会显著改变AI企业估值，但预测对商业化、竞争和资本成本敏感；持仓方观点需要用独立经营数据检验。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道Situational Awareness基金投资者信继续看多Anthropic并给出激进收入预测。基金存在持仓利益，远期ARR和估值判断并非已实现业绩。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>个人养老金四周年调查：账户缴存仍冷、外围通道渐开</title>
+      <link>https://wallstreetcn.com/articles/3786901</link>
+      <guid isPermaLink="false">urn:investment-research-news:f8647a756278ed29eaf364b939bbefcc76ece0141dfd50f58e6a2da216c7bcde</guid>
+      <pubDate>Sat, 28 Nov 2026 06:01:58 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786901"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;个人养老金四周年调查：账户缴存仍冷、外围通道渐开&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T14:01:58+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响养老目标基金、保险及银行股。缴存意愿和提取约束会影响养老产品资产规模、销售及长钱入市速度；账户数增加并不自动转化为持续资金流入。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;个人养老金调查呈现开户与缴存差异，并比较账户内外养老产品；采访和行业估算不能直接外推全体居民的配置选择。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>全球大救市，独缺美联储</title>
+      <link>https://wallstreetcn.com/articles/3786891</link>
+      <guid isPermaLink="false">urn:investment-research-news:4ba6adecec3e3ddde80d37531b86bfb8e9e0f225108c47172c3554b571e89176</guid>
+      <pubDate>Sat, 28 Nov 2026 03:06:36 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786891"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;全球大救市，独缺美联储&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T11:06:36+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响全球股票基金、利率及外汇资产。稳市安排可能缓解流动性冲击，但其持续效果仍取决于盈利与融资条件；不同国家的政策工具、执行进度和货币约束需要分别评估。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;文章比较中、美、韩稳市干预及美联储利率约束，讨论短期政策支持和持续趋势之间的区别。各国措施不能视为统一的全球政策承诺。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AI威胁日益加剧！大规模网络故障席卷西方，OpenAI视为比编程更大市场</title>
+      <link>https://wallstreetcn.com/articles/3786889</link>
+      <guid isPermaLink="false">urn:investment-research-news:208c3bcaab78c7de7fad7dbb0d7e314c47c50d3c7e3d35ff165f15cef88d3c3e</guid>
+      <pubDate>Sat, 28 Nov 2026 02:42:31 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786889"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;AI威胁日益加剧！大规模网络故障席卷西方，OpenAI视为比编程更大市场&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T10:42:31+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响网络安全基金、云服务产业链。若安全审查和防护需求上升，可能增加安全软件预算及云供应商合规成本；不能把所有故障统一归因为黑客或AI攻击。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道欧美公共部门和商业机构网络事件，同时讨论AI安全业务需求；不同系统中断的原因与关联尚未全部证实。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>特朗普拯救黄仁勋，也救了美股！高盛交易员感叹“全市场命运系于一人，这是好事还是坏事，管他呢！”</title>
+      <link>https://wallstreetcn.com/articles/3786888</link>
+      <guid isPermaLink="false">urn:investment-research-news:922976f05d6f443cfb1cb95949436509da70edd1b1962dcd5f85fac5b6a9e0df</guid>
+      <pubDate>Sat, 28 Nov 2026 02:03:35 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786888"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;特朗普拯救黄仁勋，也救了美股！高盛交易员感叹“全市场命运系于一人，这是好事还是坏事，管他呢！”&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T10:03:35+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响英伟达及美股科技基金。指数集中度较高时，单一龙头和政策预期可能放大整条AI产业链波动；经营回报和融资成本仍决定反弹能否持续。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;文章讨论美国政府介入英伟达管理层变化对本周AI股风险偏好的影响；所谓隐性托底是报道解释，不是有法律约束的政府担保。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>实际收益率曲线走平，预示美元见顶？</title>
+      <link>https://wallstreetcn.com/articles/3786886</link>
+      <guid isPermaLink="false">urn:investment-research-news:43e44cf617f505f6da33c3d8a87012d87aedb6bb4670596e809a17096a5720d6</guid>
+      <pubDate>Sat, 28 Nov 2026 01:06:03 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786886"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;实际收益率曲线走平，预示美元见顶？&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T09:06:03+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;82&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美元资产、黄金基金、跨境基金。实际利差变化会影响美元持有收益和黄金机会成本；若通胀预期或利率路径反转，曲线信号与汇率判断也可能失效。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;彭博策略师Simon White认为实际收益率曲线走平可能预示美元阶段性见顶；历史相关性不是确定汇率预测。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Anthropic周五收涨10.98%至91.88美元，重新站上发行价</title>
+      <link>https://wallstreetcn.com/articles/3786884</link>
+      <guid isPermaLink="false">urn:investment-research-news:d974980b0d4bf15405822ab44a2885584aaae974e4fdac275605e767a3e1ed85</guid>
+      <pubDate>Fri, 27 Nov 2026 23:05:13 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;华尔街见闻&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://wallstreetcn.com/articles/3786884"&gt;华尔街见闻（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Anthropic周五收涨10.98%至91.88美元，重新站上发行价&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-28T07:05:13+08:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;86&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响Anthropic及美股科技基金。IPO股票的高波动会影响持有它的科技组合和风险偏好，但重返发行价不代表盈利或现金流已改善。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;报道Anthropic周五收盘91.88美元、上涨10.98%，重新高于83美元发行价；这是单日价格表现，不构成估值低位结论。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>集思录转债价格中位数123.685、溢价率中位数66.20%</title>
+      <link>https://www.jisilu.cn/data/cbnew/</link>
+      <guid isPermaLink="false">urn:investment-research-news:2bb7ca4025a989d8d46c33841108173101e162590d936caaa94539bafdb52941</guid>
+      <category>二层·媒体数据研报</category>
+      <category>可转债市场快照</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;集思录&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.jisilu.cn/data/cbnew/"&gt;集思录（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://www.jisilu.cn/web/data/cb/list"&gt;集思录（实际读取/转载）；集思录（本轮实际读取）（实际读取/转载）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;集思录转债价格中位数123.685、溢价率中位数66.20%&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;未知&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响可转债基金。转债价格与转股溢价共同影响权益弹性和下跌保护；中位数不能替代信用、赎回条款及持仓分布核验，精确样本未知时不据此判断全市场便宜。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;1&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;本轮原始仪表显示价格中位数123.685、转股溢价率中位数66.20%。精确行情截至时刻和完整样本未知，不与异时旧值直接计算涨跌。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>估值分位≤10%汇总 · 2026-11-27（3条合格平台记录）</title>
+      <link>https://github.com/jeff-A16/investment-research-news/blob/main/data/items.json</link>
+      <guid isPermaLink="false">urn:investment-research-news:valuation:2026-11-27</guid>
+      <category>二层·媒体数据研报</category>
+      <category>指数估值汇总</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;蛋卷/雪球基金估值接口&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/jeff-A16/investment-research-news/blob/main/data/items.json"&gt;蛋卷/雪球基金估值接口（完整明细）&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://danjuanfunds.com/djapi/index_eva/dj"&gt;蛋卷/雪球基金估值接口（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;估值分位≤10%汇总 · 2026-11-27（3条合格平台记录）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;未知&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;按平台原口径比较，结合盈利与风险预算；异常、过期和不适用记录不解释为低估信号。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;1&lt;/dd&gt;&lt;/dl&gt;&lt;h3&gt;估值明细&lt;/h3&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;指数&lt;/th&gt;&lt;th&gt;来源及链接&lt;/th&gt;&lt;th&gt;估值&lt;/th&gt;&lt;th&gt;发表时间&lt;/th&gt;&lt;th&gt;置信度&lt;/th&gt;&lt;th&gt;对投资的影响&lt;/th&gt;&lt;th&gt;影响度&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;中国互联（CSIH11136）估值快照 · 2026-11-27&lt;/td&gt;&lt;td&gt;&lt;a href="https://danjuanfunds.com/djapi/index_eva/dj"&gt;蛋卷/雪球基金估值接口&lt;/a&gt;&lt;/td&gt;&lt;td&gt;PE 14.3518；历史分位0.20%&lt;/td&gt;&lt;td&gt;未知&lt;/td&gt;&lt;td&gt;88&lt;/td&gt;&lt;td&gt;影响中国互联相关指数基金。估值分位可辅助长期配置研究，但依赖样本起点、盈利处理及成分变化，不能单独决定买卖。&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;中概互联50（CSIH30533）估值快照 · 2026-11-27&lt;/td&gt;&lt;td&gt;&lt;a href="https://danjuanfunds.com/djapi/index_eva/dj"&gt;蛋卷/雪球基金估值接口&lt;/a&gt;&lt;/td&gt;&lt;td&gt;PE 12.9463；历史分位0.20%&lt;/td&gt;&lt;td&gt;未知&lt;/td&gt;&lt;td&gt;88&lt;/td&gt;&lt;td&gt;影响中概互联50相关指数基金。估值分位可辅助长期配置研究，但依赖样本起点、盈利处理及成分变化，不能单独决定买卖。&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;新经济（HKHSSCNE）估值快照 · 2026-11-27&lt;/td&gt;&lt;td&gt;&lt;a href="https://danjuanfunds.com/djapi/index_eva/dj"&gt;蛋卷/雪球基金估值接口&lt;/a&gt;&lt;/td&gt;&lt;td&gt;PE 17.663；历史分位1.44%&lt;/td&gt;&lt;td&gt;未知&lt;/td&gt;&lt;td&gt;88&lt;/td&gt;&lt;td&gt;影响新经济相关指数基金。估值分位可辅助长期配置研究，但依赖样本起点、盈利处理及成分变化，不能单独决定买卖。&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Amazon.com Inc., Caterpillar share gains lead Dow’s 538-point rally</title>
+      <link>https://www.marketwatch.com/data-news/amazon-com-inc-caterpillar-share-gains-lead-dow-s-538-point-rally-36dfd9c0-91bd8b12ea19</link>
+      <guid isPermaLink="false">urn:investment-research-news:23b44916c4d5958365df72137caf2932b932e45c224bbd79452b39d7e992d4e9</guid>
+      <pubDate>Fri, 27 Nov 2026 15:46:00 GMT</pubDate>
+      <category>二层·媒体数据研报</category>
+      <description>&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;来源&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;MarketWatch Automation（公开导语）&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;原始链接&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.marketwatch.com/data-news/amazon-com-inc-caterpillar-share-gains-lead-dow-s-538-point-rally-36dfd9c0-91bd8b12ea19"&gt;MarketWatch Automation（公开导语）（原始出处）&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;标题&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Amazon.com Inc., Caterpillar share gains lead Dow’s 538-point rally&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;消息产生时间&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;2026-11-27T10:46:00-05:00&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;置信度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;88&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;对投资的影响&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;影响美股宽基及工业基金。权重股盘中表现会影响价格加权的道指及相关基金，但盘中涨幅与整日收益不同，不能据贡献度推断企业基本面变化。&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;影响度&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;1&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;MarketWatch盘中自动化报道道指上涨538点、约1.1%，亚马逊和卡特彼勒对涨幅贡献较大；不是收盘数字。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

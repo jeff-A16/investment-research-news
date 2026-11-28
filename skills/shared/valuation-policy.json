@@ -6,5 +6,6 @@
   "independent_price_alerts": false,
   "filter_valuation_snapshots": true,
   "minimum_history_years": 5,
-  "unknown_or_unqualified": "exclude"
+  "unknown_or_unqualified": "exclude",
+  "alert_title_prefix": "🚨【板块低位提醒】"
 }

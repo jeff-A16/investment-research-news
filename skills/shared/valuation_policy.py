@@ -25,6 +25,14 @@ def load_policy(path):
     return policy
 
 
+def alert_title(title,policy):
+    """Apply the configured alert marker once, without changing event identity."""
+    prefix=policy.get('alert_title_prefix','')
+    title=str(title)
+    while prefix and title.startswith(prefix):title=title[len(prefix):].lstrip()
+    return prefix+title
+
+
 def qualified(reading,policy):
     if not isinstance(reading,dict):return False,'valuation_missing'
     value,pct=number(reading.get('value')),number(reading.get('percentile'))

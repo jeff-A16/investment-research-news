@@ -1,0 +1,28 @@
+{
+  "run_id": "20261128T030042Z-sector-prefix",
+  "mode": "sector_title_presentation_only",
+  "new_collection": false,
+  "prefix": "🚨【板块低位提醒】",
+  "examples_from_offline_validation": [
+    "🚨【板块低位提醒】创业板｜首次纳入估值低位观察",
+    "🚨【板块低位提醒】创业板｜低位后反弹·盘中待确认",
+    "🚨【板块低位提醒】创业板｜低位后反弹·收盘规则确认"
+  ],
+  "phases_checked": [
+    "entry",
+    "intraday_rebound",
+    "close_confirmation"
+  ],
+  "ordinary_news_unchanged": true,
+  "prefix_applied_once": true,
+  "rss_title_and_card_title_match": true,
+  "raw_history_unchanged": true,
+  "all_guids_and_original_times_preserved": true,
+  "valuation_threshold_unchanged": 0.1,
+  "policy_rule_version_unchanged": true,
+  "cleared_feed_stays_empty": true,
+  "source_monitor_cursors_unchanged": true,
+  "tests": 73,
+  "skill_entry_text_changes": 0,
+  "skillopt_run": false
+}

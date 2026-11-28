@@ -387,10 +387,16 @@ def public_summary(value):
     text=re.sub(r'^RSS公开摘录[：:]\s*','',str(value or ''))
     return text.replace('（仅核对RSS公开摘录，原件及全文缺口保留。）','').strip()
 
+def display_title(m):
+    title=m['title']
+    if m.get('layer')==4 or m.get('record_kind')=='板块低位自分析':
+        return policy_rules.alert_title(title,VALUATION_POLICY)
+    return title
+
 def description(m):
     links=source_links(m)
     url_html=('原始链接未取得；' if not any(x['original'] for x in links) else '')+'<ul>'+''.join('<li>'+link(x['url'],'；'.join(x['labels']))+'</li>' for x in links)+'</ul>'
-    fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(m['title'])),('消息产生时间',escaped(publication_time(m))),('置信度',escaped(public_score(m['confidence'].get('score')))),('对投资的影响',escaped(investment_paragraph(m))),('影响度',escaped(public_score(m['impact_degree'].get('score'))))]
+    fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(display_title(m))),('消息产生时间',escaped(publication_time(m))),('置信度',escaped(public_score(m['confidence'].get('score')))),('对投资的影响',escaped(investment_paragraph(m))),('影响度',escaped(public_score(m['impact_degree'].get('score'))))]
     result='<dl>'+''.join('<dt><strong>'+k+'</strong></dt><dd>'+v+'</dd>' for k,v in fields)+'</dl>'
     summary=public_summary(m.get('fact_summary'))
     if summary:result+='<p>'+escaped(summary)+'</p>'
@@ -445,7 +451,7 @@ def rss(items,cfg,as_of):
     ET.SubElement(channel,'{http://www.w3.org/2005/Atom}link',href=cfg['feed_url'],rel='self',type='application/rss+xml')
     ET.SubElement(channel,'lastBuildDate').text=format_datetime(dt(as_of),usegmt=True)
     for m in rss_entries(items,cfg):
-        node=ET.SubElement(channel,'item');ET.SubElement(node,'title').text=clean_text(m['title']);ET.SubElement(node,'link').text=m.get('original_url') or m['available_url'];ET.SubElement(node,'guid',isPermaLink='false').text=m['guid']
+        node=ET.SubElement(channel,'item');ET.SubElement(node,'title').text=clean_text(display_title(m));ET.SubElement(node,'link').text=m.get('original_url') or m['available_url'];ET.SubElement(node,'guid',isPermaLink='false').text=m['guid']
         published=dt(m.get('published_at'))
         if published:ET.SubElement(node,'pubDate').text=format_datetime(published,usegmt=True)
         for layer in m.get('layers',[m['layer']]):ET.SubElement(node,'category').text={1:'一层·权威与一手',2:'二层·媒体数据研报',3:'三层·社交与情绪',4:'自分析·板块低位监控'}[layer]

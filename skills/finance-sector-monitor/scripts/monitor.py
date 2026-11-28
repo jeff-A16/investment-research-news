@@ -26,7 +26,7 @@ policy_rules=importlib.util.module_from_spec(_spec);_spec.loader.exec_module(pol
 def load_config(path=None):
     path=Path(path or Path(__file__).parents[1]/'references/universe.json')
     cfg=json.loads(path.read_text());policy=policy_rules.load_policy(path.with_name(cfg['valuation_policy_file']))
-    cfg['valuation_percentile_max']=policy['max_percentile'];cfg['valuation_policy_version']=policy['version']
+    cfg['valuation_percentile_max']=policy['max_percentile'];cfg['valuation_policy_version']=policy['version'];cfg['alert_title_prefix']=policy.get('alert_title_prefix','')
     return cfg
 
 
@@ -190,6 +190,7 @@ def process(sector, snapshot, bars, as_of, cfg, old, run_id, links):
             source_url = REPO + 'runs/' + ch['alerts'][phase]['run_id'] + '/sector-monitor.json#' + hashlib.sha256(aid.encode()).hexdigest()[:16]
             label = '估值低位观察'
             title = sector['name'] + '｜' + (('低位后反弹·收盘规则确认' if p['final'] and p['rebound'] else '盘中反弹·收盘未确认' if p['final'] else '低位后反弹·盘中待确认') if phase == 'rebound' else '首次纳入' + label + ('（盘中）' if basis=='price_drawdown' and not p['final'] else ''))
+            title = policy_rules.alert_title(title,cfg)
             explanation = '平台' + v['metric'] + '=%.4f，分位 %.2f%%，满足配置上限%.2f%%；数据日%s，接口给出的起点%s，未独立重算。' % (v['value'],v['percentile'] * 100,cfg['valuation_percentile_max'] * 100,v['data_date'],v['interface_start_date'])
             if p:explanation += '价格截至'+(p.get('quote_at') or p['data_date'])+'。'
             if phase == 'rebound':

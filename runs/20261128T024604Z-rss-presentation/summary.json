@@ -1,0 +1,37 @@
+{
+  "run_id": "20261128T024604Z-rss-presentation",
+  "mode": "user_requested_presentation_maintenance",
+  "base_commit": "e3997f019244cfb9d180661c251c7bfda5c648b5",
+  "new_collection": false,
+  "previous_rss_items": 269,
+  "published_items": 0,
+  "stored_records": 427,
+  "raw_history_unchanged": true,
+  "raw_sha256": {
+    "data/feed-state.json": "bd15e37cdf57c7118dd09e73ab29930b9c1118e32f034cd38cf5e02c9ff5bcd1",
+    "data/items.json": "6e7ab391ad564e289e7bfef900769221327619239a694c45c4731c39ef066711",
+    "data/sector-monitor-state.json": "ca09e135d906b993ea0be2b39b87821f230be76500956c655514c55ba744084f"
+  },
+  "all_guids_preserved": true,
+  "source_and_monitor_cursors_unchanged": true,
+  "source_publication_only": true,
+  "numeric_scores_only": true,
+  "investment_impact_one_paragraph": true,
+  "merged_links_preserved": true,
+  "omitted_public_sections": [
+    "RSS公开摘录",
+    "核验缺口",
+    "合并出处"
+  ],
+  "rss_visible_since": "2026-11-28T02:46:04.092812+00:00",
+  "repeated_fetch_cannot_restore_history": true,
+  "real_material_update_may_reappear_with_same_guid": true,
+  "schedule_hours_beijing": [
+    7,
+    22
+  ],
+  "tests": 56,
+  "skill_entry_text_changes": 0,
+  "mandatory_user_rules_applied": true,
+  "skillopt_status": "User presentation feedback queued for the next actual collection cycle; this maintenance is not a SkillOpt run."
+}

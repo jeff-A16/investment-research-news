@@ -12,6 +12,30 @@ def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
 class FeedTests(unittest.TestCase):
+ def test_compact_card_keeps_only_source_publication_and_numeric_scores(self):
+  m=message(updated_at='2026-11-27T01:00:00Z',observed_at='2026-11-27T02:00:00Z',feed_published_at='2026-11-27T03:00:00Z',gaps=['内部缺口'],analysis='内部分析说明',fact_summary='RSS公开摘录：实际政策措施（仅核对RSS公开摘录，原件及全文缺口保留。）',investment_impact={'assets':['A股','券商板块'],'mechanism':'长期资金入市安排可能改善流动性预期，实际作用取决于资金落地。'})
+  before=deepcopy(m);body=feed.description(m);root=ET.fromstring('<root>'+body+'</root>');fields={d.findtext('strong'):''.join(v.itertext()) for d,v in zip(root.findall('./dl/dt'),root.findall('./dl/dd'))}
+  self.assertEqual(fields['消息产生时间'],m['published_at']);self.assertEqual(fields['置信度'],'95');self.assertEqual(fields['影响度'],'2')
+  self.assertIn('A股',fields['对投资的影响']);self.assertIn('流动性',fields['对投资的影响'])
+  for text in ['RSS公开摘录','核验缺口','合并出处','支持范围','失效条件','获取','内部分析说明']:self.assertNotIn(text,body)
+  self.assertIn('实际政策措施',body);self.assertEqual(m,before)
+ def test_unknown_source_publication_never_uses_other_clocks(self):
+  m=message(published_at=None,updated_at=NOW,feed_published_at=NOW,observed_at=NOW)
+  self.assertEqual(feed.publication_time(m),'未知')
+ def test_history_cutoff_ignores_fetches_but_allows_same_guid_material_update(self):
+  cfg={'repository':'a/b','rss_visible_since':'2026-11-27T00:00:00Z'}
+  a=message(fact_values={'value':1});old,_=feed.merge([a],{},NOW);_,records,_=feed.incremental_records([a],{})
+  state={'items':old,'source_records':records};snapshot=deepcopy(state)
+  duplicate=dict(a,retrieved_at='2026-11-28T00:00:00Z');changes,_,_=feed.incremental_records([duplicate],state);rows,_=feed.merge(changes,state,'2026-11-28T00:00:00Z')
+  self.assertFalse(feed.rss_entries(rows,cfg));self.assertEqual(state,snapshot)
+  revised=dict(duplicate,fact_values={'value':2});changes,_,_=feed.incremental_records([revised],state);rows,_=feed.merge(changes,state,'2026-11-28T00:00:00Z');visible=feed.rss_entries(rows,cfg)
+  self.assertEqual(len(visible),1);self.assertEqual(visible[0]['guid'],old[0]['guid'])
+ def test_cutoff_applies_before_snapshot_grouping_and_keeps_threshold(self):
+  day='2026-11-26';a=message(layer=2,source_id='M26',source_role='vendor_data',record_kind='指数估值快照',valuation_screen=qualified_valuation(day,.1),source_record_id='A')
+  old,_=feed.merge([a],{},NOW);b=dict(a,id='b',source_record_id='B');over=dict(a,id='over',source_record_id='C',valuation_screen=qualified_valuation(day,.11));new,_=feed.merge([b,over],{'items':old},'2026-11-28T00:00:00Z')
+  visible=feed.rss_entries(new,{'repository':'a/b','rss_visible_since':'2026-11-27T00:00:00Z'})
+  self.assertEqual(len(visible),1);self.assertEqual([m['source_record_id'] for m in visible[0]['valuation_members']],['B']);self.assertEqual(visible[0]['confidence']['score'],95)
+
  def test_same_reprint_restores_saved_identity_without_claiming_original_read(self):
   old=message(original_url='https://original.org/story',available_url='https://reprint.org/story')
   prior,_=feed.merge([old],{},NOW)
@@ -170,10 +194,11 @@ class FeedTests(unittest.TestCase):
   news=message(id='news',original_url='https://news.org/one')
   items,_=feed.merge([a,b,news],{},NOW);before=deepcopy(items);cfg={'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'}
   entries=feed.rss_entries(items,cfg);self.assertEqual(len(entries),2);self.assertEqual(items,before)
-  digest=next(x for x in entries if x.get('valuation_members'));self.assertEqual(len(digest['valuation_members']),2);self.assertIsNone(digest['confidence']['score'])
+  digest=next(x for x in entries if x.get('valuation_members'));self.assertEqual(len(digest['valuation_members']),2);self.assertEqual(digest['confidence']['score'],95)
   xml=ET.fromstring(feed.rss(items,cfg,NOW));bundle=next(n for n in xml.findall('./channel/item') if n.findtext('guid')==digest['guid']);self.assertIsNone(bundle.find('pubDate'))
   body=bundle.findtext('description')
-  for text in ['0—1','0—100','stale=false','待评估','蛋卷','韭圈儿']:self.assertIn(text,body)
+  for text in ['—','蛋卷','韭圈儿']:self.assertIn(text,body)
+  for text in ['0—1','0—100','stale=false']:self.assertIn(text,json.dumps(entries,ensure_ascii=False))
   self.assertEqual(len(ET.fromstring('<root>'+body+'</root>').findall('.//tbody/tr')),2)
   for label in ['来源','原始链接','标题','消息产生时间','置信度','对投资的影响','影响度']:self.assertIn('<strong>'+label+'</strong>',body)
   self.assertIn(next(x['guid'] for x in items if x['id']=='news'),[n.findtext('guid') for n in xml.findall('./channel/item')])

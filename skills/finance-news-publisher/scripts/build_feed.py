@@ -368,35 +368,38 @@ def source_links(m):
         for ref in p.get('source_links',[]):add(ref['url'],ref['source'],'实际读取/转载' if ref.get('kind')=='available' else '原始出处')
     return list(links.values())
 
+def public_score(value):
+    return str(value) if value is not None else '—'
+
+def publication_time(m):
+    # The source publication field only; do not substitute feed/update/fetch clocks.
+    return str(m.get('published_at') or '未知')
+
+def investment_paragraph(m):
+    impact=m['investment_impact']
+    mechanism=str(impact.get('mechanism') or '').strip()
+    assets=[str(a) for a in impact.get('assets',[]) if a and a not in ['标题所涉资产','后续研究索引']]
+    if assets and not any(a in mechanism for a in assets):
+        mechanism='影响'+'、'.join(assets)+'。'+mechanism
+    return mechanism
+
+def public_summary(value):
+    text=re.sub(r'^RSS公开摘录[：:]\s*','',str(value or ''))
+    return text.replace('（仅核对RSS公开摘录，原件及全文缺口保留。）','').strip()
+
 def description(m):
-    c=m['confidence'];degree=m['impact_degree'];impact=m['investment_impact']
-    first=m.get('published_at') or '首次发布时间未知'
-    times=[first]
-    for key,label in [('source_timezone','原始时区'),('updated_at','更新'),('feed_published_at','来源RSS发布时间'),('event_at','事件'),('data_period','数据期'),('observed_at','观测'),('retrieved_at','获取')]:
-        if m.get(key):times.append(label+'：'+str(m[key]))
     links=source_links(m)
     url_html=('原始链接未取得；' if not any(x['original'] for x in links) else '')+'<ul>'+''.join('<li>'+link(x['url'],'；'.join(x['labels']))+'</li>' for x in links)+'</ul>'
-    impact_text='；'.join(str(x) for x in [impact.get('direction'),impact.get('mechanism'),'期限：'+str(impact.get('horizon','未知')),'条件：'+'；'.join(impact.get('conditions',[])),'已计价：'+str(impact.get('priced_in','未知')),'失效条件：'+'；'.join(impact.get('invalidation',[]))] if x)
-    confidence_text=('逐条见明细' if c.get('score') is None else str(c['score'])+'/100')+'；'+str(c.get('reason'))+'；支持范围：'+str(c.get('scope'))
-    fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(m['title'])),('消息产生时间',escaped('；'.join(times))),('置信度',escaped(confidence_text)),('对投资的影响',escaped(impact_text)),('影响度',escaped(('待评估' if degree.get('score') is None else str(degree['score'])+'/5')+'；'+degree['reason']))]
+    fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(m['title'])),('消息产生时间',escaped(publication_time(m))),('置信度',escaped(public_score(m['confidence'].get('score')))),('对投资的影响',escaped(investment_paragraph(m))),('影响度',escaped(public_score(m['impact_degree'].get('score'))))]
     result='<dl>'+''.join('<dt><strong>'+k+'</strong></dt><dd>'+v+'</dd>' for k,v in fields)+'</dl>'
-    if m.get('fact_summary'):result+='<p>'+escaped(m['fact_summary'])+'</p>'
-    if m.get('analysis'):result+='<p>'+escaped(m['analysis'])+'</p>'
-    if m.get('gaps'):result+='<p><strong>核验缺口：</strong>'+escaped('；'.join(m['gaps']))+'</p>'
-    result+='<p><strong>合并出处：</strong></p><ul>'
-    for p in m.get('provenance',[]):
-        result+='<li>'+escaped(p.get('source_name','来源'))+'；'+escaped(p.get('title',''))+'；'+escaped(p.get('published_at') or '首发未知')+'</li>'
-    result+='</ul>'
+    summary=public_summary(m.get('fact_summary'))
+    if summary:result+='<p>'+escaped(summary)+'</p>'
     if m.get('valuation_members'):
-        result+='<h3>逐指数明细（平台原值，分位单位各自保留）</h3><table><thead><tr>'+''.join('<th>'+s+'</th>' for s in ['指数/标题','来源及原始链接','估值/分位/质量标记','消息时间','置信度','对投资的影响','影响度'])+'</tr></thead><tbody>'
+        result+='<h3>估值明细</h3><table><thead><tr>'+''.join('<th>'+s+'</th>' for s in ['指数','来源及链接','估值','发表时间','置信度','对投资的影响','影响度'])+'</tr></thead><tbody>'
         for row in m['valuation_members']:
-            c=row['confidence'];d=row['impact_degree'];impact=row['investment_impact']
-            times='；'.join(label+'：'+str(row[k]) for k,label in [('published_at','首发'),('data_period','数据期'),('updated_at','更新'),('observed_at','观测'),('retrieved_at','获取')] if row.get(k))
-            if not row.get('published_at'):times='首发未知；'+times
-            investment='；'.join([str(impact.get('direction','待评估')),impact['mechanism'],'期限：'+str(impact.get('horizon','未知')),'条件：'+'；'.join(impact.get('conditions',[])),'已计价：'+str(impact.get('priced_in','未知')),'失效条件：'+'；'.join(impact.get('invalidation',[]))])
             screening=row.get('valuation_screen') or {}
-            prefix=('筛选指标'+screening.get('metric','')+'：历史分位%.2f%%≤配置上限%.2f%%；'%(screening['percentile']*100,VALUATION_POLICY['max_percentile']*100)) if screening else ''
-            cells=[escaped(row['title']),link(row.get('original_url') or row['available_url'],row['source_name']),escaped(prefix+row.get('fact_summary','')+'；'+'；'.join(row.get('gaps',[]))),escaped(times),escaped(str(c.get('score'))+'/100；'+c['reason']+'；支持范围：'+c['scope']),escaped(investment),escaped(('待评估' if d.get('score') is None else str(d['score'])+'/5')+'；'+d['reason'])]
+            valuation=(str(screening.get('metric',''))+' '+str(screening.get('value',''))+'；历史分位%.2f%%'%(screening['percentile']*100)) if screening else public_summary(row.get('fact_summary'))
+            cells=[escaped(row['title']),link(row.get('original_url') or row['available_url'],row['source_name']),escaped(valuation),escaped(publication_time(row)),escaped(public_score(row['confidence'].get('score'))),escaped(investment_paragraph(row)),escaped(public_score(row['impact_degree'].get('score')))]
             result+='<tr>'+''.join('<td>'+cell+'</td>' for cell in cells)+'</tr>'
         result+='</tbody></table>'
     return result
@@ -404,6 +407,12 @@ def description(m):
 def rss_entries(items,cfg):
     """Bundle valuation display only; underlying records and identities stay intact."""
     items=[m for m in items if m.get('source_id') not in cfg.get('excluded_source_ids',[]) and policy_rules.eligible(m,VALUATION_POLICY)[0]]
+    cutoff=dt(cfg.get('rss_visible_since'))
+    if cfg.get('rss_visible_since') and not cutoff:raise ValueError('rss_visible_since must include a timezone')
+    if cutoff:
+        # merge() changes last_seen only for a real source-record change. A fetch
+        # or source data date cannot make cleared historical entries visible.
+        items=[m for m in items if (dt(m.get('last_seen')) or dt(m.get('first_seen')) or datetime.min.replace(tzinfo=timezone.utc))>=cutoff]
     groups={}
     for m in items:
         day=m.get('data_period')
@@ -420,7 +429,8 @@ def rss_entries(items,cfg):
         emitted.add(day);members=sorted(groups[day],key=lambda x:(x['source_id'],x.get('source_record_id',''),x['guid']))
         sources=sorted({(x['source_name'],x.get('original_url') or x['available_url'],'original' if x.get('original_url') else 'available') for x in members})
         degrees=[x['impact_degree']['score'] for x in members if x['impact_degree'].get('score') is not None]
-        digest={'guid':'urn:investment-research-news:valuation:'+day,'layer':2,'layers':[2],'source_name':'；'.join(sorted({x[0] for x in sources})),'source_role':'vendor_data','source_links':[{'source':name,'url':url,'kind':kind} for name,url,kind in sources],'original_url':None,'available_url':'https://github.com/'+cfg['repository']+'/blob/main/data/items.json','title':'指数估值汇总 · '+day+'（'+str(len(members))+'条平台记录）','published_at':None,'data_period':day,'record_kind':'指数估值汇总','confidence':{'score':None,'reason':'保留各原记录评分，不平均不同平台置信度。','scope':'平台显示值及质量标记，不是未来收益概率。'},'investment_impact':{'direction':'估值背景参考，方向待评估','mechanism':'按平台原口径比较，结合盈利与风险预算；异常、过期和不适用记录不解释为低估信号。','horizon':'中长期','conditions':['核对样本期、成分和亏损公司处理'],'priced_in':'未知'},'impact_degree':{'score':max(degrees) if degrees else None,'reason':'沿用明细中的最高已评估影响度，未评估项仍单列待评估；打包不增加影响。'},'gaps':['各平台分位单位不同，保留原值，不混合求平均。','逐指数首发、更新、观测与获取时刻见明细，不把汇总时刻当数据首发。'],'valuation_members':members}
+        confidences=[x['confidence']['score'] for x in members if x['confidence'].get('score') is not None]
+        digest={'guid':'urn:investment-research-news:valuation:'+day,'layer':2,'layers':[2],'source_name':'；'.join(sorted({x[0] for x in sources})),'source_role':'vendor_data','source_links':[{'source':name,'url':url,'kind':kind} for name,url,kind in sources],'original_url':None,'available_url':'https://github.com/'+cfg['repository']+'/blob/main/data/items.json','title':'指数估值汇总 · '+day+'（'+str(len(members))+'条平台记录）','published_at':None,'data_period':day,'record_kind':'指数估值汇总','confidence':{'score':min(confidences) if confidences else None,'reason':'汇总采用已评分明细的最低分，逐条原分保留，不平均不同平台。','scope':'平台显示值及质量标记，不是未来收益概率。'},'investment_impact':{'direction':'估值背景参考，方向待评估','mechanism':'按平台原口径比较，结合盈利与风险预算；异常、过期和不适用记录不解释为低估信号。','horizon':'中长期','conditions':['核对样本期、成分和亏损公司处理'],'priced_in':'未知'},'impact_degree':{'score':max(degrees) if degrees else None,'reason':'沿用明细中的最高已评估影响度，未评估项仍单列待评估；打包不增加影响。'},'gaps':['各平台分位单位不同，保留原值，不混合求平均。','逐指数首发、更新、观测与获取时刻见明细，不把汇总时刻当数据首发。'],'valuation_members':members}
         digest['title']='估值分位≤'+str(VALUATION_POLICY['max_percentile']*100).rstrip('0').rstrip('.')+'%汇总 · '+day+'（'+str(len(members))+'条合格平台记录）'
         digest['gaps'].append('仅显示配置阈值内且历史窗口/质量合格的记录；完整原始数据留在items/state，不把价格回撤当替代触发。')
         result.append(digest)
@@ -431,7 +441,7 @@ def rss_group_map(entries):
 
 def rss(items,cfg,as_of):
     root=ET.Element('rss',version='2.0');channel=ET.SubElement(root,'channel')
-    for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','三层金融投研与板块低位自分析。每条含来源、原始链接、标题、消息产生时间、置信度、投资影响和影响度；保留转载、未知时间与核验缺口。'),('language','zh-CN'),('generator','finance-news-publisher/1.1'),('ttl','60')]:ET.SubElement(channel,tag).text=text
+    for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','三层金融投研与板块低位自分析。每条含来源、原始链接、标题、来源发表时间、置信度、投资影响和影响度。'),('language','zh-CN'),('generator','finance-news-publisher/1.1'),('ttl','60')]:ET.SubElement(channel,tag).text=text
     ET.SubElement(channel,'{http://www.w3.org/2005/Atom}link',href=cfg['feed_url'],rel='self',type='application/rss+xml')
     ET.SubElement(channel,'lastBuildDate').text=format_datetime(dt(as_of),usegmt=True)
     for m in rss_entries(items,cfg):
@@ -439,8 +449,6 @@ def rss(items,cfg,as_of):
         published=dt(m.get('published_at'))
         if published:ET.SubElement(node,'pubDate').text=format_datetime(published,usegmt=True)
         for layer in m.get('layers',[m['layer']]):ET.SubElement(node,'category').text={1:'一层·权威与一手',2:'二层·媒体数据研报',3:'三层·社交与情绪',4:'自分析·板块低位监控'}[layer]
-        if not published:ET.SubElement(node,'category').text='首次时间待核实'
-        if m.get('verification_status')=='unverified':ET.SubElement(node,'category').text='待核验线索'
         if m.get('record_kind'):ET.SubElement(node,'category').text=m['record_kind']
         ET.SubElement(node,'description').text=description(m)
     ET.indent(root,space='  ')

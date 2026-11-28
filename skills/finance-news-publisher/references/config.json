@@ -11,7 +11,6 @@
   ],
   "schedule_hours": [
     7,
-    13,
     22
   ],
   "feed_max_items": 0,
@@ -41,5 +40,6 @@
     "data/sector-monitor-state.json",
     "runs/{run_id}/sector-monitor.json"
   ],
-  "raw_logs_public": false
+  "raw_logs_public": false,
+  "rss_visible_since": "2026-11-28T02:46:04.092812+00:00"
 }

@@ -26,6 +26,8 @@ PUBLIC_FIELDS = ('id','layer','source_id','source_name','source_role','original_
 _policy_spec=importlib.util.spec_from_file_location('publisher_valuation_policy',Path(__file__).with_name('valuation_policy.py'))
 policy_rules=importlib.util.module_from_spec(_policy_spec);_policy_spec.loader.exec_module(policy_rules)
 VALUATION_POLICY=policy_rules.load_policy(Path(__file__).parents[1]/'references/valuation-policy.json')
+_history_spec=importlib.util.spec_from_file_location('publisher_valuation_history',Path(__file__).with_name('valuation_history.py'))
+history_rules=importlib.util.module_from_spec(_history_spec);_history_spec.loader.exec_module(history_rules)
 _api_evidence_cache={}
 
 
@@ -42,6 +44,25 @@ def annotate_snapshot(message,run):
         if isinstance(value,dict):packets.append(value)
     source=dict(message);source.pop('valuation_screen',None)
     message['valuation_screen']=policy_rules.snapshot_metadata(source,packets,VALUATION_POLICY)
+def annotate_low_history(message,run):
+    if message.get('layer')!=4 and message.get('record_kind')!='板块低位自分析':return
+    facts=message.get('fact_values') or {};claimed=facts.get('valuation_history');reading=facts.get('valuation')
+    if not claimed or not reading:return
+    stamp=dt(message.get('retrieved_at')) or dt(message.get('published_at'))
+    for relative in message.get('audit_refs',{}).get('artifact_paths',[]):
+        path=(run/relative).resolve()
+        if not path.is_relative_to(run.resolve()) or path.suffix!='.json' or not path.is_file():continue
+        try:
+            packet=json.loads(path.read_text());history=packet.get('parsed') or {}
+            if packet.get('http_status')!=200 or packet.get('url')!='https://api.jiucaishuo.com/v2/guzhi/newtubiaolinedata' or not history.get('points'):continue
+            payload=packet.get('request_payload') or {}
+            if payload.get('gu_code')!=history.get('code') or payload.get('pe_category')!=reading['metric'].lower():continue
+            actual=history_rules.summarize(history,reading,stamp,VALUATION_POLICY['minimum_history_years'],VALUATION_POLICY['minimum_valuation_observations'])
+            if reading.get('method')=='computed_from_provider_full_series' and abs(reading['percentile']-actual['current_percentile'])>1e-12:continue
+            if actual==claimed:return
+        except (ValueError,TypeError,KeyError,AttributeError):continue
+    facts['valuation_history']=None
+
 SECRET_PARAMS = re.compile(r'^(?:api[_-]?key|api[_-]?token|access_token|refresh_token|authorization|password|passwd|jsc_token|qsid)$', re.I)
 TRACKING = {'fbclid','gclid','msclkid','spm','utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id'}
 ET.register_namespace('atom','http://www.w3.org/2005/Atom')
@@ -387,13 +408,23 @@ def public_summary(value):
     text=re.sub(r'^RSS公开摘录[：:]\s*','',str(value or ''))
     return text.replace('（仅核对RSS公开摘录，原件及全文缺口保留。）','').strip()
 
+def is_sector_alert(m):
+    return m.get('layer')==4 or m.get('record_kind')=='板块低位自分析'
+
 def display_title(m):
-    title=m['title']
-    if m.get('layer')==4 or m.get('record_kind')=='板块低位自分析':
-        return policy_rules.alert_title(title,VALUATION_POLICY)
-    return title
+    if is_sector_alert(m):
+        facts=m.get('fact_values') or {}
+        return policy_rules.alert_title(facts.get('sector_name') or m['title'],VALUATION_POLICY)
+    return m['title']
+
 
 def description(m):
+    if is_sector_alert(m):
+        details,error=policy_rules.sector_low_details(m,VALUATION_POLICY)
+        if not details:raise ValueError('Incomplete low alert: '+str(error))
+        metric=details['metric'];window=details['window_start']+'—'+details['window_end']
+        fields=[('板块',details['sector']+'（'+metric+'）'),('历史最低',format(details['minimum'],'.6g')+'倍（'+window+'）'),('当前',format(details['current'],'.6g')+'倍'),('当前/历史最低',format(details['ratio_percent'],'.2f')+'%'),('低位原因分析',details['cause'])]
+        return '<dl>'+''.join('<dt><strong>'+key+'</strong></dt><dd>'+escaped(value)+'</dd>' for key,value in fields)+'</dl>'
     links=source_links(m)
     url_html=('原始链接未取得；' if not any(x['original'] for x in links) else '')+'<ul>'+''.join('<li>'+link(x['url'],'；'.join(x['labels']))+'</li>' for x in links)+'</ul>'
     fields=[('来源',escaped(m['source_name'])),('原始链接',url_html),('标题',escaped(display_title(m))),('消息产生时间',escaped(publication_time(m))),('置信度',escaped(public_score(m['confidence'].get('score')))),('对投资的影响',escaped(investment_paragraph(m))),('影响度',escaped(public_score(m['impact_degree'].get('score'))))]
@@ -447,15 +478,15 @@ def rss_group_map(entries):
 
 def rss(items,cfg,as_of):
     root=ET.Element('rss',version='2.0');channel=ET.SubElement(root,'channel')
-    for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','三层金融投研与板块低位自分析。每条含来源、原始链接、标题、来源发表时间、置信度、投资影响和影响度。'),('language','zh-CN'),('generator','finance-news-publisher/1.1'),('ttl','60')]:ET.SubElement(channel,tag).text=text
+    for tag,text in [('title',cfg['channel_title']),('link','https://github.com/'+cfg['repository']),('description','金融投研消息与板块低位提醒。'),('language','zh-CN'),('generator','finance-news-publisher/1.1'),('ttl','60')]:ET.SubElement(channel,tag).text=text
     ET.SubElement(channel,'{http://www.w3.org/2005/Atom}link',href=cfg['feed_url'],rel='self',type='application/rss+xml')
     ET.SubElement(channel,'lastBuildDate').text=format_datetime(dt(as_of),usegmt=True)
     for m in rss_entries(items,cfg):
         node=ET.SubElement(channel,'item');ET.SubElement(node,'title').text=clean_text(display_title(m));ET.SubElement(node,'link').text=m.get('original_url') or m['available_url'];ET.SubElement(node,'guid',isPermaLink='false').text=m['guid']
         published=dt(m.get('published_at'))
         if published:ET.SubElement(node,'pubDate').text=format_datetime(published,usegmt=True)
-        for layer in m.get('layers',[m['layer']]):ET.SubElement(node,'category').text={1:'一层·权威与一手',2:'二层·媒体数据研报',3:'三层·社交与情绪',4:'自分析·板块低位监控'}[layer]
-        if m.get('record_kind'):ET.SubElement(node,'category').text=m['record_kind']
+        for layer in ([] if is_sector_alert(m) else m.get('layers',[m['layer']])):ET.SubElement(node,'category').text={1:'一层·权威与一手',2:'二层·媒体数据研报',3:'三层·社交与情绪',4:'自分析·板块低位监控'}[layer]
+        if m.get('record_kind') and not is_sector_alert(m):ET.SubElement(node,'category').text=m['record_kind']
         ET.SubElement(node,'description').text=description(m)
     ET.indent(root,space='  ')
     return ET.tostring(root,encoding='utf-8',xml_declaration=True).decode()+'\n'
@@ -542,6 +573,7 @@ def build(manifest,previous,cfg):
         for source in messages:
             m=deepcopy(source);reason=None
             annotate_snapshot(m,Path(layer['messages']).parent.parent)
+            annotate_low_history(m,Path(layer['messages']).parent.parent)
             retain_reprint_identity(m,previous or {})
             retain_article_period(m,previous or {})
             try:
@@ -568,6 +600,7 @@ def build(manifest,previous,cfg):
     monitor_layer=next(x for x in manifest['layers'] if x['layer']==4)
     monitor_dir=Path(monitor_layer['messages']).parent
     monitor_state=json.loads((monitor_dir/'sector-monitor-state.next.json').read_text())
+    if monitor_state.get('validation_only'):raise PublicationBlocked('Validation-only monitor state cannot be published')
     if monitor_state.get('rule_version')!='sector-'+VALUATION_POLICY['version']:
         raise PublicationBlocked('Monitor used a stale valuation policy; rerun against the current policy')
     if any(s.get('channels',{}).get('price_drawdown',{}).get('active') for s in monitor_state.get('sectors',{}).values()):

@@ -46,12 +46,34 @@ def qualified(reading,policy):
     return True,'valuation_threshold_matched'
 
 
+def sector_low_details(message,policy):
+    facts=message.get('fact_values') or {};v=facts.get('valuation') or {};h=facts.get('valuation_history') or {}
+    if facts.get('phase') not in policy.get('allowed_alert_phases',['entry']):return None,'non_low_alert_phase'
+    if not facts.get('sector_name') or not str(facts.get('low_cause') or '').strip():return None,'low_summary_or_cause_missing'
+    value,low,pct=number(h.get('current')),number(h.get('minimum')),number(h.get('current_percentile'))
+    if not h.get('verified_from_full_series') or value is None or low is None or not 0<low<=value:return None,'historical_minimum_unverified'
+    if pct is None or not 0<=pct<=policy['max_percentile']:return None,'full_history_percentile_above_threshold'
+    if h.get('metric')!=v.get('metric') or h.get('current_date')!=v.get('data_date') or h.get('window_end')!=v.get('data_date'):return None,'history_current_metric_or_day_mismatch'
+    current=number(v.get('value'))
+    if current is None or abs(value/current-1)>.005:return None,'history_current_value_conflict'
+    try:
+        years=(datetime.fromisoformat(h['window_end'])-datetime.fromisoformat(h['window_start'])).days/365.25
+        if years<policy['minimum_history_years'] or h['observations']<policy.get('minimum_valuation_observations',1000):return None,'history_minimum_window_insufficient'
+        if not h['window_start']<=h['minimum_date']<=h['window_end']:return None,'historical_minimum_date_invalid'
+    except (ValueError,TypeError,KeyError):return None,'history_minimum_window_invalid'
+    ratio=100*value/low
+    if abs((number(h.get('current_to_min_percent')) or -1)-ratio)>1e-7:return None,'minimum_ratio_mismatch'
+    return dict(sector=facts['sector_name'],metric=v['metric'],minimum=low,current=value,ratio_percent=ratio,window_start=h['window_start'],window_end=h['window_end'],cause=' '.join(str(facts['low_cause']).split())),None
+
 def eligible(message,policy):
     if message.get('publication_status')=='withdrawn':return False,'withdrawn_by_policy_correction'
     if message.get('layer')==4 or message.get('record_kind')=='板块低位自分析':
         facts=message.get('fact_values') or {}
         if facts.get('basis')!=policy['required_analysis_basis']:return False,'alternate_price_trigger_not_authorized'
-        return qualified(facts.get('valuation'),policy)
+        ok,why=qualified(facts.get('valuation'),policy)
+        if not ok:return False,why
+        details,error=sector_low_details(message,policy)
+        return bool(details),'low_summary_complete' if details else error
     if message.get('record_kind')=='指数估值快照' or (message.get('source_id') in ('M26','M27') and message.get('source_role')=='vendor_data'):
         reading=message.get('valuation_screen') or {}
         if reading.get('data_date')!=message.get('data_period'):return False,'snapshot_data_date_unqualified'

@@ -8,8 +8,9 @@ f=importlib.util.module_from_spec(spec);spec.loader.exec_module(f)
 
 
 def analysis(pct=.1,basis='valuation',**extra):
-    reading=dict(value=25,percentile=pct,data_date='2026-11-26',window_ok=True,flags={});reading.update(extra)
-    return dict(record_kind='板块低位自分析',fact_values={'basis':basis,'valuation':reading})
+    reading=dict(value=25,metric='PE',percentile=pct,data_date='2026-11-26',window_ok=True,flags={});reading.update(extra)
+    history=dict(provider='funddb',metric='PE',current=25,minimum=20,current_to_min_percent=125,current_percentile=.1,window_start='2016-01-01',window_end='2026-11-26',current_date='2026-11-26',minimum_date='2024-01-01',observations=2000,verified_from_full_series=True,series_sha256='a'*64)
+    return dict(record_kind='板块低位自分析',fact_values={'basis':basis,'phase':'entry','sector_name':'创业板','valuation':reading,'valuation_history':history,'low_cause':'同口径价格回落可能压低估值。'})
 
 
 class HardThresholdTests(unittest.TestCase):

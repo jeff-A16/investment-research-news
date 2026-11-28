@@ -121,6 +121,58 @@
         "require_distinct_real_holdout_events": true,
         "note": "本次是用户明确要求的展示/配置维护，不声称已进行新一轮采集或SkillOpt优化。"
       }
+    },
+    {
+      "id": "sector-low-minimum-cause-five-fields-20261128",
+      "kind": "user_requirement_change",
+      "reported_at": "2026-11-28T03:16:37.868459+00:00",
+      "repair_run": "20261128T031637Z-sector-low-only",
+      "scope": "sector_alert_only",
+      "expected_fields": [
+        "sector",
+        "historical_minimum",
+        "current",
+        "current_divided_by_minimum_percent",
+        "one_paragraph_low_cause"
+      ],
+      "forbidden_alert_phases": [
+        "rebound",
+        "intraday_confirmation",
+        "closing_confirmation"
+      ],
+      "mandatory_policy": "skills/shared/valuation-policy.json",
+      "max_percentile": 0.1,
+      "interpretation": "Existing configured PE/PB metrics retained. Comparison ratio is not percentile; normal news continues.",
+      "real_evidence_examples": [
+        {
+          "sector": "创业板",
+          "metric": "PE",
+          "history_points": 4005,
+          "minimum": 23.51,
+          "current": 27.45
+        },
+        {
+          "sector": "证券公司",
+          "metric": "PB",
+          "history_points": 3252,
+          "minimum": 1.03,
+          "current": 1.11
+        }
+      ],
+      "resolution": {
+        "mandatory_rules_applied": true,
+        "raw_items_state_unchanged": true,
+        "validation_only_samples_not_published": true,
+        "skillopt_gain_claimed": false
+      },
+      "skillopt": {
+        "status": "queued_for_next_actual_collection",
+        "affected_skills": [
+          "finance-news-publisher",
+          "finance-sector-monitor"
+        ],
+        "require_distinct_real_event_holdouts": true
+      }
     }
   ],
   "replay_history": [

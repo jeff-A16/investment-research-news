@@ -11,6 +11,11 @@ def qualified_valuation(day='2026-11-26',pct=.05):
 def message(**kw):
  m={'id':'a','layer':1,'source_id':'P02','source_name':'央行','source_role':'fact','original_url':'https://example.org/news?id=7&utm_source=foo','available_url':'https://example.org/news?id=7','title':'央行公告 & <观察>','published_at':'2026-11-26T01:00:00+00:00','data_period':'2026-11-26','retrieved_at':NOW,'verification_status':'verified','fact_summary':'数值需核对','confidence':{'score':95,'reason':'原表','scope':'公告内容'},'investment_impact':{'mechanism':'条件成立时影响资金面','conditions':['补齐到期量'],'invalidation':['数据修订']},'impact_degree':{'score':2,'reason':'局部影响'},'audit_refs':{'run_id':'r','call_ids':['call'],'artifact_paths':['/private/file']}}
  m.update(kw);return m
+def low_message():
+ v=qualified_valuation()
+ h=dict(provider='funddb',metric='PE',current=25,minimum=20,current_to_min_percent=125,current_percentile=.05,window_start='2016-01-01',window_end='2026-11-26',current_date='2026-11-26',minimum_date='2024-01-01',observations=2000,verified_from_full_series=True,series_sha256='a'*64)
+ return message(id='analysis',layer=4,source_id='A01',source_name='自分析',source_role='analysis',record_kind='板块低位自分析',event_key='same-event',fact_values={'sector_name':'创业板','basis':'valuation','phase':'entry','valuation':dict(v,metric='PE'),'valuation_history':h,'low_cause':'价格回落与盈利代理变化可能共同压低估值，成分调整也会影响该推算。'})
+
 class FeedTests(unittest.TestCase):
  def test_compact_card_keeps_only_source_publication_and_numeric_scores(self):
   m=message(updated_at='2026-11-27T01:00:00Z',observed_at='2026-11-27T02:00:00Z',feed_published_at='2026-11-27T03:00:00Z',gaps=['内部缺口'],analysis='内部分析说明',fact_summary='RSS公开摘录：实际政策措施（仅核对RSS公开摘录，原件及全文缺口保留。）',investment_impact={'assets':['A股','券商板块'],'mechanism':'长期资金入市安排可能改善流动性预期，实际作用取决于资金落地。'})
@@ -165,6 +170,9 @@ class FeedTests(unittest.TestCase):
     self.assertEqual(json.loads(out['data/feed-state.json'])['editorial_corrections'],corrections)
     self.assertEqual(previous['items'],old)
     self.assertEqual(json.loads(out['data/sector-monitor-state.json']),json.loads(out['data/feed-state.json'])['sector_monitor_state'])
+    monitor['validation_only']=True;(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
+    with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)
+    monitor.pop('validation_only')
     monitor['sectors']={'legacy':{'channels':{'price_drawdown':{'active':True}}}};(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
     with self.assertRaises(feed.PublicationBlocked):feed.build(manifest,{'items':old},cfg)
     monitor['sectors']={};monitor['rule_version']='sector-low-v1';(p/'sector-monitor-state.next.json').write_text(json.dumps(monitor))
@@ -284,10 +292,38 @@ class FeedTests(unittest.TestCase):
      check['status']='completed'
  def test_analysis_is_separate_from_valuation_evidence(self):
   raw=message(layer=2,source_id='M26',source_role='vendor_data',event_key='same-event')
-  analysis=message(id='analysis',layer=4,source_id='A01',source_name='自分析',source_role='analysis',event_key='same-event',record_kind='板块低位自分析',fact_values={'basis':'valuation','valuation':qualified_valuation()})
+  analysis=low_message()
   rows,_=feed.merge([raw,analysis],{},NOW);self.assertEqual(2,len(rows))
-  root=ET.fromstring(feed.rss(rows,{'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'},NOW))
-  self.assertIn('自分析·板块低位监控',[x.text for x in root.findall('.//category')])
+  xml=ET.fromstring(feed.rss(rows,{'repository':'a/b','channel_title':'x','feed_url':'https://e.org/rss'},NOW))
+  titles=[x.findtext('title') for x in xml.findall('./channel/item')]
+  self.assertTrue(any(x.startswith('🚨【板块低位提醒】') for x in titles))
+ def test_sector_minimum_cannot_self_certify_without_matching_full_http_series(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   run=Path(tmp);m=low_message();m['retrieved_at']=NOW
+   feed.annotate_low_history(m,run);self.assertIsNone(m['fact_values']['valuation_history'])
+   from datetime import datetime,timedelta
+   end=datetime(2026,11,26);points=[dict(date=(end-timedelta(days=2000-i)).date().isoformat(),value=100,price=100) for i in range(2001)]
+   points[-2]['value']=20;points[-1]['value']=25
+   hist=dict(provider='funddb',code='399006.SZ',metric='PE',points=points,series_sha256='a'*64)
+   m=low_message();m['retrieved_at']=NOW;m['fact_values']['valuation_history']=feed.history_rules.summarize(hist,m['fact_values']['valuation'],feed.dt(NOW))
+   packet={'http_status':200,'url':'https://api.jiucaishuo.com/v2/guzhi/newtubiaolinedata','request_payload':{'gu_code':'399006.SZ','pe_category':'pe'},'parsed':hist}
+   (run/'evidence.json').write_text(json.dumps(packet));m['audit_refs']['artifact_paths']=['evidence.json'];expected=deepcopy(m['fact_values']['valuation_history'])
+   feed.annotate_low_history(m,run);self.assertEqual(m['fact_values']['valuation_history'],expected)
+   m['fact_values']['valuation_history']['minimum']=1
+   feed.annotate_low_history(m,run);self.assertIsNone(m['fact_values']['valuation_history'])
+ def test_sector_card_has_only_five_fields_and_one_cause_paragraph(self):
+  m=low_message();before=deepcopy(m);root=ET.fromstring('<r>'+feed.description(m)+'</r>')
+  names=[x.findtext('strong') for x in root.findall('./dl/dt')]
+  self.assertEqual(names,['板块','历史最低','当前','当前/历史最低','低位原因分析'])
+  self.assertFalse(root.findall('./p'));self.assertIn('125.00%',feed.description(m));self.assertEqual(m,before)
+  for banned in ['来源','消息产生时间','置信度','影响度','合并出处','反弹']:self.assertNotIn('<strong>'+banned+'</strong>',feed.description(m))
+ def test_sector_missing_minimum_or_cause_and_legacy_rebound_are_excluded(self):
+  valid=low_message();self.assertTrue(feed.policy_rules.eligible(valid,feed.VALUATION_POLICY)[0])
+  for field in ['valuation_history','low_cause']:
+   bad=deepcopy(valid);bad['fact_values'].pop(field);self.assertFalse(feed.policy_rules.eligible(bad,feed.VALUATION_POLICY)[0])
+  bad=deepcopy(valid);bad['fact_values']['phase']='rebound';self.assertFalse(feed.policy_rules.eligible(bad,feed.VALUATION_POLICY)[0])
+  bad=deepcopy(valid);bad['fact_values']['valuation_history']['current_to_min_percent']=5;self.assertFalse(feed.policy_rules.eligible(bad,feed.VALUATION_POLICY)[0])
+  self.assertFalse(feed.rss_entries([bad],{'repository':'a/b'}))
  def test_rebound_close_revision_preserves_analysis_guid(self):
   a=message(layer=4,source_id='A01',source_role='analysis',source_record_id='CN/valuation/day/rebound',record_kind='板块低位自分析',fact_values={'confirmed':False})
   first,_=feed.merge([a],{},NOW)

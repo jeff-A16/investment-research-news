@@ -1,8 +1,6 @@
 {
-  "rule_version": "sector-valuation-only-v2",
   "rearm_percentile": 0.15,
   "rearm_sessions": 3,
-  "minimum_history_years": 5,
   "minimum_price_observations": 1260,
   "max_data_age_days": 4,
   "rebound_day_return_min": 0.02,

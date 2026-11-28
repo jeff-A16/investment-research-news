@@ -15,8 +15,10 @@
 - 每次收尾（含失败/无新增）执行references/evolution.md：合并三层及板块监控路径收据，复核历史成功而本轮未得的链路，依真实任务使用固定版SkillOpt-Sleep验证五个Skill。复盘、修复及优化追加同run_id日志；候选通过留出门槛和回归检查后采用，公共规则只维护一处。维护提交基于最新头，不覆盖已更新的feed/state；最后再导出包含复盘/优化的日志ZIP。
 
 - 板块监控按其methods/universe执行：读取data/sector-monitor-state.json（缺省空状态），仅输出符合共享估值硬门槛的低位/反弹自分析消息；不与平台估值快照合并，不把同一底层数据当独立佐证。build_feed同时校验监控状态基线指纹并生成data/sector-monitor-state.json及sector-monitor.json；后者发布至runs/<run_id>/sector-monitor.json。监控状态与feed、items、feed-state同一提交，提交失败不消费提醒。冲突后重读最新监控状态并重算信号；不得沿用基于旧状态的待发提醒。总控与四个依赖均纳入同轮日志、完整性门槛及SkillOpt复盘。
-- 自分析的published_at是实际首次计算产出的时间，数据日/报价时点另列；可在本轮started_at至as_of期间产生，不能伪填新闻窗口截止前的时间。盘中→收盘修订保留首次时间及GUID，updated_at为实际重算时间并标material_update。此规则仅用于已登记的第5个Skill，不放宽外部新闻时间核验。
+- 自分析的published_at是实际首次计算产出的时间，数据日/报价时点另列；可在本轮started_at至as_of期间产生，不能伪填新闻窗口截止前的时间。板块仅发布低位进入提醒，不再发送反弹、盘中或收盘确认修订。此规则仅用于已登记的第5个Skill，不放宽外部新闻时间核验。
 
 - 板块提醒与估值汇总的所有生成、历史状态渲染路径必须执行 references/valuation-policy.json；超阈值或估值未核合格均不得推送，价格不能替代。被排除的原始记录/历史GUID继续留档，撤回记录及原因公开脱敏；采集器与RSS出口双重校验。
 
 - RSS历史清理只改展示：依config.json的rss_visible_since按记录last_seen/first_seen筛选，再按日合并估值。重复获取不得刷新此时钟；新增/实质修订可重新显示，GUID不变。保留原始items/state、内容指纹和全部游标。展示维护复用已封存完整采集的门槛，不冒充新一轮采集。
+
+- 板块自分析公开严格只含五项，格式依共享contract及板块methods；普通新闻仍七字段。历史最低/当前/比例必须同源同指标同数据日核实，低位原因一段话且区分观察和推断。板块当前完整历史分位也须≤配置上限，不拿当前/最低比例替代分位。全出处/时间/评分继续内部留存，XML字段校验按消息类别区分。

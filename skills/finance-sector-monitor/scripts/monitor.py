@@ -17,16 +17,17 @@ from urllib.request import Request, urlopen
 import uuid
 from zoneinfo import ZoneInfo
 
-RULE = 'sector-valuation-only-v2'
 REPO = 'https://github.com/jeff-A16/investment-research-news/blob/main/'
 _spec=importlib.util.spec_from_file_location('monitor_valuation_policy',Path(__file__).with_name('valuation_policy.py'))
 policy_rules=importlib.util.module_from_spec(_spec);_spec.loader.exec_module(policy_rules)
+_hist_spec=importlib.util.spec_from_file_location('sector_valuation_history',Path(__file__).with_name('valuation_history.py'))
+history_rules=importlib.util.module_from_spec(_hist_spec);_hist_spec.loader.exec_module(history_rules)
 
 
 def load_config(path=None):
     path=Path(path or Path(__file__).parents[1]/'references/universe.json')
-    cfg=json.loads(path.read_text());policy=policy_rules.load_policy(path.with_name(cfg['valuation_policy_file']))
-    cfg['valuation_percentile_max']=policy['max_percentile'];cfg['valuation_policy_version']=policy['version'];cfg['alert_title_prefix']=policy.get('alert_title_prefix','')
+    cfg=json.loads(path.read_text());policy=policy_rules.load_policy(path.parent/cfg['valuation_policy_file'])
+    cfg['valuation_percentile_max']=policy['max_percentile'];cfg['valuation_policy_version']=policy['version'];cfg['rule_version']='sector-'+policy['version'];cfg['minimum_valuation_observations']=policy['minimum_valuation_observations'];cfg['minimum_history_years']=policy['minimum_history_years'];cfg['alert_title_prefix']=policy.get('alert_title_prefix','')
     return cfg
 
 
@@ -67,6 +68,7 @@ def valuations(sector, snapshots, as_of, cfg):
             if code.startswith(('SH', 'SZ')):
                 aliases.add(code[2:] + '.' + code[:2])
                 aliases.add(code[2:] + code[:2])
+            if code.startswith('CSI'):aliases.add(code[3:]+'CSI')
             if code == 'NDX':
                 aliases.add('NDXGI')
             if code == 'SP500':
@@ -91,14 +93,14 @@ def valuations(sector, snapshots, as_of, cfg):
             result.append(dict(provider=provider, metric=metric.upper(), value=value,
                 percentile=pct, raw_percentile=raw_pct, raw_unit='0—1' if provider == 'danjuan' else '0—100',
                 data_date=day, interface_start_date=start, window_ok=window_ok,
-                method='vendor_reported; not independently recomputed', flags=flags))
+                method='computed_from_provider_full_series' if row.get('_from_full_history') else 'vendor_reported; not independently recomputed', flags=flags))
     eligible = [x for x in result if x['window_ok']]
     if not eligible:
         return None, result, gaps + ['未核得五年及以上可用估值分位窗口。']
     chosen = sorted(eligible, key=lambda x: (x['data_date'], x['provider']), reverse=True)[0]
     if any((x['percentile'] <= cfg['valuation_percentile_max']) != (chosen['percentile'] <= cfg['valuation_percentile_max']) for x in result if x['data_date'] == chosen['data_date']):
         return None, result, gaps + ['同数据日跨平台阈值结论冲突，未确认低估状态。']
-    return chosen, result, gaps + ['使用平台报告分位和接口起点，未取得完整估值序列独立重算；实际样本数/成分处理待核。']
+    return chosen, result, gaps + (['分位及样本起止由已读取完整估值序列重算；指数成分和财务口径仍以提供方定义为准。'] if chosen.get('method')=='computed_from_provider_full_series' else ['使用平台报告分位和接口起点，未取得完整估值序列独立重算；实际样本数/成分处理待核。'])
 
 
 def price_metrics(bars, as_of, sector, cfg):
@@ -146,78 +148,46 @@ def price_metrics(bars, as_of, sector, cfg):
     return metrics, [] if enough else ['价格回撤历史不足五年/1260样本或复权不可比；仍可单独核验短期反弹。']
 
 
-def process(sector, snapshot, bars, as_of, cfg, old, run_id, links):
-    v, readings, vgaps = valuations(sector, snapshot, as_of, cfg)
-    p, pgaps = price_metrics(bars, as_of, sector, cfg)
-    state = deepcopy(old or {'channels': {}, 'history': []})
-    messages = []
-    # Price observations are context only; an old price channel cannot authorize output.
+def process(sector,snapshot,bars,as_of,cfg,old,run_id,links,history=None,cause=None):
+    v,readings,gaps=valuations(sector,snapshot,as_of,cfg)
+    state=deepcopy(old or {'channels':{},'history':[]});state.setdefault('channels',{});state.setdefault('history',[])
     legacy=state['channels'].get('price_drawdown')
     if legacy and not legacy.get('disabled_by_policy'):
         state['history'].append(dict(deepcopy(legacy),basis='price_drawdown',disabled_by_policy=cfg['valuation_policy_version']))
         legacy.update(active=False,disabled_by_policy=cfg['valuation_policy_version'])
-    choices = []
-    if v:
-        choices.append(('valuation', v['percentile'], v['data_date'], v['percentile'] <= cfg['valuation_percentile_max']))
-    for basis, percentile, day, low in choices:
-        ch = state['channels'].setdefault(basis, {'active': False, 'release_days': [], 'alerts': {}})
-        # Older observations can never rewind committed episode state.
-        if ch.get('last_data_date') and day < ch['last_data_date']:
-            continue
-        ch['last_data_date'] = day
-        if ch['active'] and percentile >= cfg['rearm_percentile'] and (not p or p['final'] or basis == 'valuation'):
-            if day not in ch['release_days']:
-                ch['release_days'].append(day)
-            if len(ch['release_days']) >= cfg['rearm_sessions']:
-                state['history'].append(deepcopy(ch))
-                ch.update(active=False, release_days=[], alerts={})
-        else:
-            ch['release_days'] = []
-        if low and not ch['active']:
-            ch.update(active=True, episode_day=day, first_seen_at=as_of.isoformat(), release_days=[], alerts={})
-        if not ch['active'] or not low:
-            continue
-        phases = ['entry'] if 'entry' not in ch['alerts'] else []
-        previous_rebound = ch['alerts'].get('rebound')
-        if p and p['data_date'] >= ch['episode_day']:
-            if (p['rebound'] and not previous_rebound) or (previous_rebound and p['final'] and not previous_rebound.get('finalized', previous_rebound['confirmed']) and p['data_date'] >= previous_rebound.get('price_date', ch['episode_day'])):
-                phases.append('rebound')
-        for phase in phases:
-            alert = ch['alerts'].get(phase)
-            first = alert['published_at'] if alert else as_of.isoformat()
-            aid = sector['key'] + '/' + basis + '/' + ch['episode_day'] + '/' + phase
-            ch['alerts'][phase] = dict(published_at=first, confirmed=bool(p and p['final'] and p['rebound']), finalized=bool(p and p['final']), price_date=p['data_date'] if p else None, run_id=alert['run_id'] if alert else run_id)
-            source_url = REPO + 'runs/' + ch['alerts'][phase]['run_id'] + '/sector-monitor.json#' + hashlib.sha256(aid.encode()).hexdigest()[:16]
-            label = '估值低位观察'
-            title = sector['name'] + '｜' + (('低位后反弹·收盘规则确认' if p['final'] and p['rebound'] else '盘中反弹·收盘未确认' if p['final'] else '低位后反弹·盘中待确认') if phase == 'rebound' else '首次纳入' + label + ('（盘中）' if basis=='price_drawdown' and not p['final'] else ''))
-            title = policy_rules.alert_title(title,cfg)
-            explanation = '平台' + v['metric'] + '=%.4f，分位 %.2f%%，满足配置上限%.2f%%；数据日%s，接口给出的起点%s，未独立重算。' % (v['value'],v['percentile'] * 100,cfg['valuation_percentile_max'] * 100,v['data_date'],v['interface_start_date'])
-            if p:explanation += '价格截至'+(p.get('quote_at') or p['data_date'])+'。'
-            if phase == 'rebound':
-                explanation += '价格单日 %.2f%%，距近20日最低收盘回升 %.2f%%；%s。' % (p['one_day_return'] * 100, p['rebound_from_20day_low'] * 100, '按收盘数据符合全部反弹规则' if p['final'] and p['rebound'] else '收盘未符合全部反弹规则，撤回盘中确认预期' if p['final'] else '盘中结果，未收盘确认')
-            gaps = list(dict.fromkeys(vgaps + pgaps + ['低分位和反弹均不能证明市场底部或未来收益；历史窗口不代表全部市场历史。']))
-            facts = dict(rule_version=cfg['rule_version'], sector_key=sector['key'], basis=basis, episode_day=ch['episode_day'], phase=phase, valuation=v, valuation_readings=readings, price=p, threshold=cfg['valuation_percentile_max'])
-            messages.append(dict(id=hashlib.sha256(aid.encode()).hexdigest()[:24], layer=4, source_id=sector['id'],
-                source_name='自分析·板块低位监控', source_role='analysis', original_url=source_url,
-                available_url=REPO+'skills/finance-sector-monitor/references/methods.md', original_link_status='published_with_feed',
-                source_links=[dict(source=n,url=u,kind='original') for n,u in sorted(set(links))],
-                title=title, title_type='editorial', published_at=first, published_precision='second', source_timezone='UTC',
-                updated_at=as_of.isoformat() if alert else None, data_period=ch['episode_day'],
-                material_update=bool(alert),
-                observed_at=as_of.isoformat(), retrieved_at=as_of.isoformat(), event_key='sector-low/'+aid,
-                source_record_id=aid, record_kind='板块低位自分析', fact_values=facts,
-                fact_summary=explanation, analysis='首次发现时间与数据日分别保留；未声称该信号首次在市场出现。',
-                confidence=dict(score=80 if basis=='valuation' else 85, level='主要证据可核验',
-                    reason='按所列平台原值/复权价格与固定规则筛查，缺失及口径限制另列。', scope='本次数据是否满足筛查规则；不是触底或上涨概率'),
-                investment_impact=dict(assets=[sector['name'],sector['fund_exposure']], direction='进入观察；短期持续性待核',
-                    mechanism='低估值可减轻估值约束，价格回撤/反弹可提示风险偏好变化；盈利下修、成分变化和流动性仍可能令低位持续或再创新低。',
-                    horizon='数周至数季', conditions=['核对盈利/净资产质量、持仓和交易成本','反弹需后续交易日检验'],
-                    priced_in='未知', invalidation=['历史口径或数据修订','盈利/净资产恶化','反弹失败并创新低']),
-                impact_degree=dict(score=3 if phase=='rebound' else 2, asset_horizon=sector['name']+'；数周至数季', reason='规则触发的板块研究线索，不代表系统性拐点'),
-                verification_status='partial' if basis=='valuation' or gaps else 'verified', gaps=gaps, is_background=False))
-    state['last_valuation'] = v if v else state.get('last_valuation')
-    state['last_price'] = p if p else state.get('last_price')
-    return messages, state, dict(valuation=v, valuation_readings=readings, price=p, gaps=list(dict.fromkeys(vgaps+pgaps)))
+    detail=dict(valuation=v,valuation_readings=readings,valuation_history=None,low_cause=None,history_status='not_required',gaps=gaps)
+    if v is None:
+        detail['history_status']='prerequisite_unqualified';return [],state,detail
+    ch=state['channels'].setdefault('valuation',dict(active=False,release_days=[],alerts={}))
+    ch.setdefault('release_days',[]);ch.setdefault('alerts',{});ch.setdefault('active',False)
+    ch['rebound_notifications_disabled_by']=cfg['valuation_policy_version']
+    low=v['percentile']<=cfg['valuation_percentile_max'];day=v['data_date']
+    if ch['active'] and v['percentile']>=cfg['rearm_percentile']:
+        if day not in ch['release_days']:ch['release_days'].append(day)
+        if len(ch['release_days'])>=cfg['rearm_sessions']:
+            state['history'].append(deepcopy(ch));ch.update(active=False,release_days=[],alerts={})
+    else:ch['release_days']=[]
+    state['last_valuation']=v
+    if not low:return [],state,detail
+    try:
+        summary=history_rules.summarize(history,v,as_of,cfg['minimum_history_years'],cfg['minimum_valuation_observations'])
+        detail.update(valuation_history=summary,history_status='verified')
+    except (ValueError,TypeError,KeyError) as exc:
+        detail['history_status']='unqualified';detail['gaps']=gaps+['历史最低值未核实：'+str(exc)];return [],state,detail
+    if summary['current_percentile']>cfg['valuation_percentile_max']:
+        detail['gaps']=gaps+['完整历史分位超过配置阈值；不以当前/最低比例替代分位门槛。'];return [],state,detail
+    if not ch['active']:ch.update(active=True,episode_day=day,first_seen_at=as_of.isoformat(),release_days=[],alerts={})
+    paragraph=history_rules.data_cause(summary);cause_refs=[]
+    if isinstance(cause,dict) and cause.get('metric')==v['metric'] and cause.get('data_date')==day and cause.get('analysis') and cause.get('evidence'):
+        paragraph=' '.join(str(cause['analysis']).split());cause_refs=cause['evidence']
+    detail['low_cause']=paragraph
+    if 'entry' in ch['alerts']:return [],state,detail
+    aid=sector['key']+'/valuation/'+ch['episode_day']+'/entry';first=as_of.isoformat()
+    ch['alerts']['entry']=dict(published_at=first,confirmed=False,finalized=True,price_date=None,run_id=run_id)
+    source_url=REPO+'runs/'+run_id+'/sector-monitor.json#'+hashlib.sha256(aid.encode()).hexdigest()[:16]
+    facts=dict(rule_version=cfg['rule_version'],sector_key=sector['key'],sector_name=sector['name'],basis='valuation',episode_day=ch['episode_day'],phase='entry',valuation=v,valuation_readings=readings,valuation_history=summary,low_cause=paragraph,cause_evidence=cause_refs,threshold=cfg['valuation_percentile_max'])
+    message=dict(id=hashlib.sha256(aid.encode()).hexdigest()[:24],layer=4,source_id=sector['id'],source_name='自分析·板块低位监控',source_role='analysis',original_url=source_url,available_url=REPO+'skills/finance-sector-monitor/references/methods.md',original_link_status='published_with_feed',source_links=[dict(source=n,url=u,kind='original') for n,u in sorted(set(links))],title=policy_rules.alert_title(sector['name'],cfg),title_type='editorial',published_at=first,published_precision='second',source_timezone='UTC',updated_at=None,data_period=ch['episode_day'],material_update=False,observed_at=first,retrieved_at=first,event_key='sector-low/'+aid,source_record_id=aid,record_kind='板块低位自分析',fact_values=facts,fact_summary='同口径历史最低%.4f、当前%.4f，为最低的%.2f%%。'%(summary['minimum'],summary['current'],summary['current_to_min_percent']),analysis=paragraph,confidence=dict(score=80,level='主要证据可核验',reason='估值分位及完整历史序列已核对；原因分析区分观察与推断。',scope='数据与筛选条件，不是触底或收益概率'),investment_impact=dict(assets=[sector['name']],direction='估值处低位，价格方向未知',mechanism=paragraph,horizon='中长期',conditions=['盈利和流动性变化可能改变低位状态'],priced_in='未知',invalidation=['数据、口径或成分修订']),impact_degree=dict(score=2,reason='低估值观察，不能确认市场底部。'),verification_status='partial',gaps=list(dict.fromkeys(gaps)),is_background=False)
+    return [message],state,detail
 
 
 class Audit:
@@ -227,7 +197,7 @@ class Audit:
         if replay:
             for p in (Path(replay)/'artifacts/http').glob('*.json'):
                 packet=json.loads(p.read_text())
-                if packet.get('url') and ('body_base64' in packet or 'body' in packet):self.replay[packet['url']] = (p,packet)
+                if packet.get('url') and ('body_base64' in packet or 'body' in packet):self.replay[packet.get('request_key') or packet['url']] = (p,packet)
         spec = importlib.util.spec_from_file_location('sector_audit',Path(__file__).with_name('run_logger.py'))
         self.log = importlib.util.module_from_spec(spec);spec.loader.exec_module(self.log)
 
@@ -242,18 +212,19 @@ class Audit:
             self.log.append_unlocked(self.run,'artifact_saved',dict(path=path,sha256=self.log.digest(body),bytes=len(body),metadata={'kind':'monitor evidence'},credential_review='public data / deterministic analysis'))
         return path
 
-    def fetch(self, url, ids, parser):
+    def fetch(self, url, ids, parser, payload=None):
+        key=url if payload is None else url+'?'+urlencode({k:payload[k] for k in ('gu_code','pe_category','year') if k in payload})
         cid='monitor-'+uuid.uuid4().hex[:12];start=time.monotonic()
-        self.event('tool_start',dict(call_id=cid,source_ids=ids,tool='sector_monitor.replay_evidence' if self.replay is not None else 'sector_monitor.public_GET',arguments=dict(url=url,timeout=20,request_sent=self.replay is None)))
+        self.event('tool_start',dict(call_id=cid,source_ids=ids,tool='sector_monitor.replay_evidence' if self.replay is not None else 'sector_monitor.public_GET',arguments=dict(url=url,method='GET' if payload is None else 'POST',json=payload,timeout=20,request_sent=self.replay is None)))
         body=b'';status=None;headers={};data=None;error=None
         try:
             if self.replay is not None:
-                origin,packet=self.replay[url];status=packet['http_status'];headers=packet.get('headers',{})
+                origin,packet=self.replay[key];status=packet['http_status'];headers=packet.get('headers',{})
                 body=base64.b64decode(packet['body_base64']) if 'body_base64' in packet else packet['body'].encode()
                 self.event('note',dict(kind='validation_only_replay',origin=str(origin),sha256=hashlib.sha256(origin.read_bytes()).hexdigest()))
             else:
                 try:
-                    response=urlopen(Request(url,headers={'User-Agent':'FinancialResearchMonitor/1.0 (public data research)','Accept':'application/json,text/plain'}),timeout=20)
+                    response=urlopen(Request(url,data=json.dumps(payload).encode() if payload is not None else None,headers={'User-Agent':'FinancialResearchMonitor/1.0 (public data research)','Accept':'application/json,text/plain','Content-Type':'application/json'}),timeout=20)
                 except HTTPError as e:
                     response=e
                 with response:
@@ -263,7 +234,7 @@ class Audit:
             data=parser(body)
         except Exception as e:
             error=type(e).__name__+': '+str(e)
-        path=self.save('artifacts/http/'+cid+'.json',dict(url=url,http_status=status,headers=headers,body_base64=base64.b64encode(body).decode(),body=body.decode('utf-8',errors='replace'),error=error,parsed=data))
+        path=self.save('artifacts/http/'+cid+'.json',dict(url=url,request_key=key,request_payload=payload,http_status=status,headers=headers,body_base64=base64.b64encode(body).decode(),body=body.decode('utf-8',errors='replace'),error=error,parsed=data))
         self.event('tool_end',dict(call_id=cid,status='error' if error else 'success',duration_ms=round((time.monotonic()-start)*1000),truncated=False,result_paths=[path]))
         return data,cid,path,error
 
@@ -321,77 +292,95 @@ def tencent(body, as_of):
     return out
 
 
+def load_causes(path,run,run_id):
+    if not path or not Path(path).is_file():return {}
+    supplied=json.loads(Path(path).read_text());messages={}
+    for skill in ('finance-primary-intelligence','finance-market-research','finance-social-sentiment'):
+        file=Path(run).parent/skill/'outputs/messages.json'
+        if file.is_file():
+            for row in json.loads(file.read_text()):
+                if row.get('audit_refs',{}).get('run_id')==run_id:messages[row['id']]=row
+    reviewed={}
+    for key,row in supplied.items():
+        evidence=row.get('evidence') or [];valid=[]
+        for ref in evidence:
+            msg=messages.get(ref.get('message_id'))
+            if not msg:continue
+            urls={msg.get('original_url'),msg.get('available_url')}|{r.get('url') for r in msg.get('source_links',[])}
+            if ref.get('url') in urls:valid.append(dict(message_id=msg['id'],source_id=msg['source_id'],url=ref['url'],audit_refs=msg['audit_refs']))
+        if valid and row.get('analysis') and row.get('metric') in ('PE','PB') and row.get('data_date'):
+            reviewed[key]=dict(row,evidence=valid,analysis=' '.join(str(row['analysis']).split()))
+    return reviewed
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run',required=True);parser.add_argument('--previous',required=True)
     parser.add_argument('--universe',default=str(Path(__file__).resolve().parents[1]/'references/universe.json'))
-    parser.add_argument('--replay-run',help='Offline validation only; its coverage is blocked from publication')
+    parser.add_argument('--causes-file',help="Optional sector-specific analysis grounded in this run's three-tier messages")
+    parser.add_argument('--replay-run',help='Offline validation only; blocked from production publication')
     args=parser.parse_args();cfg=load_config(args.universe);audit=Audit(args.run,args.replay_run)
     meta=json.loads((Path(args.run)/'manifest.json').read_text());run_id=meta['run_id']
     previous=json.loads(Path(args.previous).read_text()) if Path(args.previous).exists() else {'version':1,'sectors':{}}
     audit.save('inputs/previous-monitor-state.json',previous);audit.save('inputs/universe.json',cfg)
+    cause_path=args.causes_file or str(Path(args.run)/'inputs/low-causes.json')
+    causes=load_causes(cause_path,args.run,run_id);audit.save('inputs/low-causes-reviewed.json',causes)
     ids=[s['id'] for s in cfg['watchlist']];snapshots={};evidence=[];links=[]
     urls={'danjuan':'https://danjuanfunds.com/djapi/index_eva/dj','funddb':'https://ai2.jiucaishuo.com/api/index-valuation?category=jx'}
     for provider,url in urls.items():
         def parse(body,provider=provider):
-            value=json.loads(body)
-            rows=value.get('data',{}).get('items') if provider=='danjuan' else value.get('rows')
+            value=json.loads(body);rows=value.get('data',{}).get('items') if provider=='danjuan' else value.get('rows')
             if not isinstance(rows,list):raise ValueError('valuation schema unavailable')
             return rows
         rows,cid,path,error=audit.fetch(url,ids,parse);snapshots[provider]=rows or [];evidence.append((cid,path));links.append((provider,url))
-    cn=[s for s in cfg['watchlist'] if s['market']=='CN']
-    quote_url='https://qt.gtimg.cn/q='+','.join(s['price_symbol'] for s in cn)
-    quotes,qcid,qpath,qerror=audit.fetch(quote_url,[s['id'] for s in cn],lambda b:tencent(b,datetime.now(timezone.utc)))
-    messages=[];coverage=[];diagnostics=[];routes=[];next_state=deepcopy(previous);suspended={}
+    messages=[];coverage=[];diagnostics=[];routes=[];next_state=deepcopy(previous);suspended=None
+    history_url='https://api.jiucaishuo.com/v2/guzhi/newtubiaolinedata'
     for sector in cfg['watchlist']:
-        now=datetime.now(timezone.utc)
-        if sector['market']=='CN':
-            url='https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?'+urlencode(dict(symbol=sector['price_symbol'],scale=240,ma='no',datalen=1970))
-            parse=lambda body:sina(body,datetime.now(timezone.utc))
-        else:
-            url='https://query1.finance.yahoo.com/v8/finance/chart/'+sector['price_symbol']+'?'+urlencode(dict(range='10y',interval='1d',events='div,splits'))
-            parse=lambda body,sector=sector:yahoo(body,sector,datetime.now(timezone.utc))
-        provider='sina' if sector['market']=='CN' else 'yahoo'
-        bars,pcid,ppath,perror=audit.skipped(url,[sector['id']],suspended[provider]) if provider in suspended else audit.fetch(url,[sector['id']],parse)
-        if perror and any(text in perror.lower() for text in ('http 429','http 403','http 401','proxy','certificate verify failed')):
-            suspended[provider]='该提供方已限流/拒绝/共同网络失败，本轮停止扩大请求；原错误：'+perror
-        if bars and sector['market']=='CN' and quotes and sector['price_symbol'] in quotes:
-            quote=quotes[sector['price_symbol']]
-            prior=[b for b in bars if b['date']<quote['date']]
-            if quote['date']>=bars[-1]['date'] and not (quote['date']==bars[-1]['date'] and bars[-1].get('final') and not quote['final']) and prior and abs(float(prior[-1]['close'])/quote['previous_close']-1)<.005:
-                bars=[b for b in bars if b['date']<quote['date']]+[quote]
-        cid='calc-'+uuid.uuid4().hex[:12];start=time.monotonic()
-        audit.event('tool_start',dict(call_id=cid,source_ids=[sector['id']],tool='sector_monitor.compute',arguments=dict(rule_version=cfg['rule_version'],sector=sector,valuation_artifacts=[p for _,p in evidence],price_artifact=ppath,quote_artifact=qpath if sector['market']=='CN' else None,previous_state='inputs/previous-monitor-state.json')))
+        now=datetime.now(timezone.utc);v,_,_=valuations(sector,snapshots,now,cfg);history=None;hevidence=[];herror=None
+        code=history_rules.provider_code(sector.get('valuation_code'));requested=bool(code);local_snapshots=deepcopy(snapshots)
+        if requested and code:
+            if suspended:
+                _,hid,hpath,herror=audit.skipped(history_url,[sector['id']],suspended);hevidence.append((hid,hpath))
+            else:
+                payload=history_rules.request_payload(code,sector['metric'])
+                history,hid,hpath,herror=audit.fetch(history_url,[sector['id']],lambda b:history_rules.parse_history(b,code,sector['metric']),payload);hevidence.append((hid,hpath))
+                if herror and any(x in herror.lower() for x in ('http 429','http 403','http 401','proxy','certificate verify failed')):suspended='该历史提供方本轮已拒绝/限流/共同网络失败，停止扩大请求；'+herror
+                if herror and any(x in herror.lower() for x in ('登录','权限','订阅','unauthorized','forbidden')):suspended='该历史提供方存在认证/授权限制，本轮停止；'+herror
+                if herror and not suspended and 'requested valuation series missing' in herror:
+                    payload=history_rules.request_payload(code,sector['metric'],year=10)
+                    history,hid,hpath,herror=audit.fetch(history_url,[sector['id']],lambda b:history_rules.parse_history(b,code,sector['metric']),payload);hevidence.append((hid,hpath))
+        if history:
+            try:
+                prior_row=next((r for r in snapshots.get('funddb',[]) if str(r.get('code','')).upper()==code),{})
+                flags={key:prior_row.get(key) for key in ('stale','insufficient','not_applicable')}
+                derived=history_rules.snapshot_row(history,now,cfg['max_data_age_days'],cfg['minimum_history_years'],cfg['minimum_valuation_observations'],flags)
+                local_snapshots['funddb']=[r for r in snapshots.get('funddb',[]) if str(r.get('code','')).upper()!=code]+[derived]
+            except (ValueError,TypeError,KeyError) as exc:history=None;herror='history/current qualification: '+str(exc)
+        if herror and any(x in herror.lower() for x in ('http 429','http 403','http 401','登录','权限','订阅','unauthorized','forbidden')):suspended='该历史提供方存在拒绝/限流/权限限制，本轮停止；'+herror
+        cid='calc-'+uuid.uuid4().hex[:12];start=time.monotonic();audit.event('tool_start',dict(call_id=cid,source_ids=[sector['id']],tool='sector_monitor.compute',arguments=dict(rule_version=cfg['rule_version'],sector=sector,valuation_artifacts=[p for _,p in evidence],history_artifacts=[p for _,p in hevidence],cause_input='inputs/low-causes-reviewed.json',previous_state='inputs/previous-monitor-state.json')))
         observed=datetime.now(timezone.utc)
         try:
-            sector_links=links+[(('新浪指数日线' if sector['market']=='CN' else 'Yahoo复权ETF日线'),url)]
-            if sector['market']=='CN':sector_links.append(('腾讯指数报价',quote_url))
-            found,state,detail=process(sector,snapshots,bars or [],observed,cfg,previous.get('sectors',{}).get(sector['key']),run_id,sector_links)
-            if sector['market']=='CN' and (not quotes or sector['price_symbol'] not in quotes):
-                detail['gaps'].append('本对象本轮盘中报价未取得；反弹仅按实际日线截至日期判断。')
-            next_state.setdefault('sectors',{})[sector['key']]=state
-            error=None
-        except Exception as e:
-            found=[];detail={'valuation':None,'price':None,'gaps':['计算失败：'+str(e)]};error=str(e)
-        path=audit.save('artifacts/calculations/'+cid+'.json',dict(sector=sector,observed_at=observed.isoformat(),detail=detail,messages=found,error=error))
+            sector_links=links+([('韭圈儿同口径完整估值/价格历史 '+str(code)+' '+sector['metric'],history_url)] if hevidence else [])
+            found,state,detail=process(sector,local_snapshots,[],observed,cfg,previous.get('sectors',{}).get(sector['key']),run_id,sector_links,history,causes.get(sector['key']));next_state.setdefault('sectors',{})[sector['key']]=state;error=None
+        except Exception as exc:
+            found=[];detail={'valuation':v,'valuation_history':None,'low_cause':None,'history_status':'unqualified','gaps':['计算失败：'+str(exc)]};error=str(exc)
+        path=audit.save('artifacts/calculations/'+sector['id']+'.json',dict(sector=sector,detail=detail,messages=found,error=error))
         audit.event('tool_end',dict(call_id=cid,status='error' if error else 'success',duration_ms=round((time.monotonic()-start)*1000),truncated=False,result_paths=[path]))
-        all_calls=[x for x,_ in evidence]+[pcid,cid];all_paths=[x for _,x in evidence]+[ppath,path]
-        if sector['market']=='CN':all_calls.append(qcid);all_paths.append(qpath)
+        all_calls=[x for x,_ in evidence+hevidence]+[cid];all_paths=[x for _,x in evidence+hevidence]+[path]
         for m in found:m['audit_refs']=dict(run_id=run_id,call_ids=all_calls,artifact_paths=all_paths)
-        messages.extend(found);checked=observed.isoformat()
+        messages.extend(found);checked=observed.isoformat();has_v=detail.get('valuation') is not None;has_h=detail.get('history_status') in ('verified','not_required') and has_v
         components=[]
-        for name,ok in [('估值历史分位',detail.get('valuation') is not None),('价格历史与反弹',detail.get('price') is not None)]:
-            components.append(dict(component=name,status='content_collected' if found and ok else 'no_new_verified' if ok else 'access_limited_verified',checked_at=checked,checked_scope={'sector':sector['key'],'rule':cfg['rule_version']},reason='本轮规则、数据日与样本已核验；信号与缺口见计算证据。' if ok else '缺合格数据/历史窗口或计算失败；详见证据，不宣称未达低位。',evidence_call_ids=all_calls,evidence_paths=all_paths))
+        for name,ok in [('估值历史分位',has_v),('历史最低值与原因分析',has_h)]:
+            components.append(dict(component=name,status='content_collected' if found and ok else 'no_new_verified' if ok else 'access_limited_verified',checked_at=checked,checked_scope={'sector':sector['key'],'rule':cfg['rule_version'],'minimum_comparison_required':requested},reason='已核真实全历史估值及其独立分位；不足/冲突不发。低位时需最低值、同口径当前值与原因完整，持续低位不重复。' if ok else '缺合格当前估值、同口径完整历史或原因依据；保留实际错误/缺口，不称没有低位。',evidence_call_ids=all_calls,evidence_paths=all_paths))
         status='content_collected' if found else 'no_new_verified' if all(c['status']=='no_new_verified' for c in components) else 'access_limited_verified'
-        coverage.append(dict(source_id=sector['id'],source_name='自分析·'+sector['name'],status=status,checked_at=checked,checked_scope={'sector':sector['key'],'valuation_code':sector.get('valuation_code'),'price_symbol':sector['price_symbol']},reason='输出%d条规则触发；持续低位不重复；缺口保留。'%len(found),evidence_call_ids=all_calls,evidence_paths=all_paths,components=components))
+        coverage.append(dict(source_id=sector['id'],source_name='自分析·'+sector['name'],status=status,checked_at=checked,checked_scope={'sector':sector['key'],'valuation_code':sector.get('valuation_code')},reason='仅估值低位进入提醒；最低值/当前值/比例/原因完整才可发布，不发反弹或收盘阶段通知。',evidence_call_ids=all_calls,evidence_paths=all_paths,components=components))
         diagnostics.append(dict(source_id=sector['id'],sector=sector['name'],detail=detail,emitted=len(found)))
-        routes.append(dict(run_id=run_id,source_id=sector['id'],component='价格历史与反弹',route_id=('sina:index-daily' if sector['market']=='CN' else 'yahoo:adjusted-chart')+':'+sector['price_symbol'],checked_at=checked,outcome='readable' if detail.get('price') else 'parse_error' if not perror else 'transport_error',root_cause='unknown',evidence_call_ids=[pcid,cid],evidence_paths=[ppath,path]))
-        routes.append(dict(run_id=run_id,source_id=sector['id'],component='估值历史分位',route_id='valuation:platform-snapshots:'+str(sector.get('valuation_code')),checked_at=checked,outcome='readable' if detail.get('valuation') else 'data_unqualified',root_cause='unknown' if sector.get('valuation_code') else 'history_unavailable',evidence_call_ids=[x for x,_ in evidence]+[cid],evidence_paths=[x for _,x in evidence]+[path]))
-    finished=datetime.now(timezone.utc).isoformat();next_state.update(version=1,rule_version=cfg['rule_version'],run_id=run_id,updated_at=finished,base_state_sha256=hashlib.sha256(audit.log.canonical(previous)).hexdigest())
-    report='# 板块低位监控\n\n共核验%d个对象，输出%d条自分析消息。估值、价格、历史窗口与获取缺口逐项保留；这不是底部或收益预测。\n\n'%(len(coverage),len(messages))+'\n\n'.join(m['title']+'\n'+m['fact_summary'] for m in messages)
-    for filename,payload in [('messages.json',messages),('coverage.json',dict(run_id=run_id,collection_complete=True,validation_only=bool(args.replay_run),sources=coverage)),('sector-monitor.json',dict(run_id=run_id,rule_version=cfg['rule_version'],validation_only=bool(args.replay_run),as_of=finished,analysis=diagnostics,messages=messages)),('sector-monitor-state.next.json',next_state),('route-observations.json',routes)]:
-        audit.save('outputs/'+filename,payload)
-    for filename,text in [('report.md',report),('run-summary.md','run_id='+run_id+'；全部对象收尾，未知/受限不等于无低位；监控状态尚未提交。')]:
+        routes.append(dict(run_id=run_id,source_id=sector['id'],component='估值历史分位',route_id='valuation:platform-snapshots:'+str(sector.get('valuation_code')),checked_at=checked,outcome='readable' if has_v else 'data_unqualified',root_cause='unknown' if sector.get('valuation_code') else 'history_unavailable',evidence_call_ids=[x for x,_ in evidence]+[cid],evidence_paths=[x for _,x in evidence]+[path]))
+        routes.append(dict(run_id=run_id,source_id=sector['id'],component='历史最低值与原因分析',route_id='valuation:funddb-full-history:'+str(code)+':'+sector['metric'],url=history_url,adapter='public_anonymous_POST',checked_at=checked,outcome='no_new' if has_h and not requested else 'readable' if has_h else 'data_unqualified' if herror and herror.startswith('history/current qualification:') else 'transport_error' if herror else 'data_unqualified',root_cause='data_quality' if herror and herror.startswith('history/current qualification:') else 'unknown' if code else 'history_unavailable',evidence_call_ids=[x for x,_ in hevidence]+[cid],evidence_paths=[x for _,x in hevidence]+[path]))
+    finished=datetime.now(timezone.utc).isoformat();next_state.update(version=1,validation_only=bool(args.replay_run),rule_version=cfg['rule_version'],run_id=run_id,updated_at=finished,base_state_sha256=hashlib.sha256(audit.log.canonical(previous)).hexdigest())
+    report='# 板块低位监控\n\n共核验%d个对象，输出%d条低位自分析；不产生反弹阶段提醒。\n\n'%(len(coverage),len(messages))+'\n\n'.join(m['title']+'\n'+m['fact_summary']+'\n'+m['analysis'] for m in messages)
+    for filename,payload in [('messages.json',messages),('coverage.json',dict(run_id=run_id,collection_complete=True,validation_only=bool(args.replay_run),sources=coverage)),('sector-monitor.json',dict(run_id=run_id,rule_version=cfg['rule_version'],validation_only=bool(args.replay_run),as_of=finished,analysis=diagnostics,messages=messages)),('sector-monitor-state.next.json',next_state),('route-observations.json',routes)]:audit.save('outputs/'+filename,payload)
+    for filename,text in [('report.md',report),('run-summary.md','run_id='+run_id+'；全部对象收尾；最低值/当前值/比例/原因需完整；状态尚未提交。')]:
         body=text.encode();path='outputs/'+filename
         with audit.log.locked(audit.run):
             audit.log.save_new(audit.log.target(audit.run,path),body)
@@ -399,5 +388,4 @@ def main():
     print(json.dumps(dict(run_id=run_id,objects=len(coverage),alerts=len(messages),state_staged=True,run_dir=str(Path(args.run).resolve())),ensure_ascii=False))
 
 
-if __name__=='__main__':
-    main()
+if __name__=='__main__':main()

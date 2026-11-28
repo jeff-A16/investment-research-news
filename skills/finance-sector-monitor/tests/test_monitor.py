@@ -27,8 +27,19 @@ def bars(bounce=False,final=True):
     return result
 
 
-def run(snap=None,prices=None,old=None,now=NOW):
-    return m.process(SECTOR,snapshot() if snap is None else snap,bars() if prices is None else prices,now,CFG,old,'test-run',[('source','https://example.org/data')])
+def history(value=25,day='2026-11-26',metric='PE'):
+    end=datetime.fromisoformat(day)
+    points=[dict(date=(end-timedelta(days=2000-i)).date().isoformat(),value=value*4,price=100) for i in range(2001)]
+    points[-2].update(value=value*.8);points[-1].update(value=value,price=90)
+    return dict(provider='funddb',code='399006.SZ',metric=metric,points=points,series_sha256='a'*64)
+
+
+def run(snap=None,prices=None,old=None,now=NOW,hist='auto',cause=None):
+    snap=snapshot() if snap is None else snap
+    if hist=='auto':
+        row=(snap.get('danjuan') or [{}])[0];day=datetime.fromtimestamp(row.get('ts',NOW.timestamp()*1000)/1000,timezone.utc).astimezone(m.ZoneInfo('Asia/Shanghai')).date().isoformat()
+        value=row.get('pe');hist=history(value if value is not None and value>0 else 25,day)
+    return m.process(SECTOR,snap,bars() if prices is None else prices,now,CFG,old,'test-run',[('source','https://example.org/data')],hist,cause)
 
 
 class MonitorTests(unittest.TestCase):
@@ -51,7 +62,7 @@ class MonitorTests(unittest.TestCase):
 
     def test_financial_pb_does_not_treat_zero_pe_as_cheap(self):
         sector=dict(SECTOR,metric='PB')
-        found,_,_=m.process(sector,snapshot(pe=0),bars(),NOW,CFG,None,'r',[])
+        found,_,_=m.process(sector,snapshot(pe=0),bars(),NOW,CFG,None,'r',[],history(3,metric='PB'))
         self.assertEqual(1,len(found));self.assertEqual('PB',found[0]['fact_values']['valuation']['metric'])
         self.assertFalse(run(snapshot(pe=0))[0])
 
@@ -68,21 +79,17 @@ class MonitorTests(unittest.TestCase):
             _,state,_=run(snapshot(.2,day=day),old=state,now=NOW+timedelta(days=i+1))
         self.assertFalse(state['channels']['valuation']['active']);self.assertEqual(1,len(state['history']))
 
-    def test_intraday_confirmation_reuses_identity_and_first_time(self):
-        _,state,_=run()
-        found,state,_=run(prices=bars(True,False),old=state)
-        self.assertEqual(1,len(found));first=found[0]
-        final,state,_=run(prices=bars(True,True),old=state,now=NOW+timedelta(hours=4))
-        self.assertEqual(1,len(final));self.assertEqual(first['source_record_id'],final[0]['source_record_id'])
-        self.assertEqual(first['published_at'],final[0]['published_at']);self.assertTrue(final[0]['material_update'])
-        self.assertFalse(run(prices=bars(True,True),old=state)[0])
+    def test_low_entry_is_only_notification_even_during_rebound_or_close(self):
+        first,state,_=run();self.assertEqual(1,len(first));self.assertEqual('entry',first[0]['fact_values']['phase'])
+        self.assertNotIn('反弹',first[0]['title']);self.assertNotIn('首次',first[0]['title'])
+        for prices in [bars(True,False),bars(True,True),bars(False,True)]:
+            found,state,_=run(prices=prices,old=state,now=NOW+timedelta(hours=4));self.assertFalse(found)
 
-    def test_failed_close_revises_pending_rebound_once(self):
-        _,state,_=run()
-        _,state,_=run(prices=bars(True,False),old=state)
-        found,state,_=run(prices=bars(False,True),old=state)
-        self.assertEqual(1,len(found));self.assertIn('收盘未确认',found[0]['title'])
-        self.assertFalse(run(prices=bars(False,True),old=state)[0])
+    def test_legacy_rebound_record_is_retained_without_close_revision(self):
+        _,state,_=run();state['channels']['valuation']['alerts']['rebound']={'published_at':NOW.isoformat(),'confirmed':False,'run_id':'old'}
+        before=deepcopy(state['channels']['valuation']['alerts']['rebound'])
+        found,state,_=run(prices=bars(True,True),old=state)
+        self.assertFalse(found);self.assertEqual(state['channels']['valuation']['alerts']['rebound'],before)
 
     def test_future_price_is_ignored_and_duplicate_date_rejected(self):
         base=bars();future=base+[dict(date='2026-11-28',close=10000,final=False,basis='index_points')]
@@ -96,7 +103,7 @@ class MonitorTests(unittest.TestCase):
 
     def test_no_valuation_no_short_history_false_low(self):
         found,_,detail=run(snap={});self.assertFalse(found);self.assertIsNone(detail['valuation'])
-        self.assertIsNone(detail['price']['drawdown_percentile'])
+        self.assertIsNone(detail['valuation_history'])
 
     def test_deep_price_drawdown_cannot_replace_valuation_gate(self):
         prices=[dict(date=(datetime(2020,1,1)+timedelta(days=i)).date().isoformat(),close=100,final=True,basis='index_points') for i in range(2521)]
@@ -104,7 +111,7 @@ class MonitorTests(unittest.TestCase):
         for data in [{},snapshot(.4468),snapshot(.100001),snapshot(.05,stale=True)]:
             found,_,detail=run(snap=data,prices=prices)
             self.assertFalse(found)
-            self.assertTrue(detail['price']['history_qualified']);self.assertLessEqual(detail['price']['drawdown_percentile'],.10);self.assertLessEqual(detail['price']['drawdown'],-.20)
+            metrics,_=m.price_metrics(prices,NOW,SECTOR,CFG);self.assertTrue(metrics['history_qualified']);self.assertLessEqual(metrics['drawdown_percentile'],.10);self.assertLessEqual(metrics['drawdown'],-.20)
         legacy={'channels':{'price_drawdown':{'active':True,'release_days':[],'alerts':{}}},'history':[]}
         found,state,_=run(snap={},prices=prices,old=legacy)
         self.assertFalse(found);self.assertFalse(state['channels']['price_drawdown']['active']);self.assertTrue(state['history'])
@@ -114,6 +121,53 @@ class MonitorTests(unittest.TestCase):
         self.assertFalse(run(snapshot(.11),prices=bars(True,False),old=state)[0])
         self.assertFalse(run(snapshot(.11),prices=bars(True,True),old=state)[0])
         self.assertFalse(run({},prices=bars(True,False),old=state)[0])
+
+    def test_missing_short_conflicting_or_newer_history_does_not_consume_entry(self):
+        for hist in [None,dict(history(),metric='PB'),dict(history(),points=history()['points'][-20:]),history(40),history(day='2026-11-27')]:
+            found,state,detail=run(hist=hist);self.assertFalse(found);self.assertNotIn('entry',state['channels']['valuation']['alerts']);self.assertEqual('unqualified',detail['history_status'])
+        found,_,_=run();self.assertEqual(len(found),1)
+
+    def test_ratio_is_current_divided_by_real_minimum_not_percentile(self):
+        found,_,_=run();facts=found[0]['fact_values'];h=facts['valuation_history']
+        self.assertEqual(h['minimum'],20);self.assertEqual(h['current'],25);self.assertEqual(h['current_to_min_percent'],125)
+        self.assertLess(facts['valuation']['percentile'],.1);self.assertNotEqual(h['current_to_min_percent'],facts['valuation']['percentile']*100)
+        self.assertIn('代理',facts['low_cause']);self.assertNotIn('\n',facts['low_cause'])
+
+    def test_returned_full_history_also_must_match_valuation_threshold(self):
+        hist=history();hist['points']=[dict(x,value=20 if i<1900 else 25) for i,x in enumerate(hist['points'])]
+        self.assertFalse(run(hist=hist)[0])
+
+    def test_history_parser_uses_metric_series_instead_of_mean_or_percentile_band(self):
+        stamps=[datetime(2020,1,1,tzinfo=timezone.utc).timestamp()*1000,datetime(2026,11,26,tzinfo=timezone.utc).timestamp()*1000]
+        packet={'code':0,'data':{'new_pe':'25','tubiao':{'series':[{'name':'平均值','data':[[x,999] for x in stamps]},{'name':'最低10%','data':[[x,.1] for x in stamps]},{'name':'市盈率','data':[[stamps[0],20],[stamps[1],25]]}]}}}
+        parsed=m.history_rules.parse_history(json.dumps(packet).encode(),'399006.SZ','PE')
+        self.assertEqual([r['value'] for r in parsed['points']],[20,25])
+        with self.assertRaises(ValueError):m.history_rules.parse_history(json.dumps(packet).encode(),'399006.SZ','PB')
+
+    def test_full_series_cannot_override_explicit_provider_quality_flags(self):
+        for key in ['stale','insufficient','not_applicable']:
+            with self.assertRaises(ValueError):m.history_rules.snapshot_row(history(),NOW,flags={key:True})
+
+    def test_full_history_snapshot_does_not_mix_platform_current_values(self):
+        hist=history(25);row=m.history_rules.snapshot_row(hist,NOW)
+        self.assertEqual(row['pe'],25);self.assertLess(row['pe_pct'],10);self.assertTrue(row['_from_full_history'])
+        local={'danjuan':snapshot()['danjuan'],'funddb':[row]};v,_,_=m.valuations(SECTOR,local,NOW,CFG)
+        self.assertEqual(v['provider'],'funddb');self.assertEqual(v['method'],'computed_from_provider_full_series')
+        bad=dict(row,pe_pct=30);self.assertIsNone(m.valuations(SECTOR,{'danjuan':local['danjuan'],'funddb':[bad]},NOW,CFG)[0])
+
+    def test_rising_metric_is_not_explained_as_recent_compression(self):
+        summary=dict(metric='PE',one_year={'price_change':-.1,'metric_change':.125,'denominator_proxy_change':-.2})
+        text=m.history_rules.data_cause(summary);self.assertIn('未继续压缩',text)
+        self.assertNotIn('降幅超过',text)
+
+    def test_post_history_replay_keys_distinguish_index_and_metric(self):
+        with __import__('tempfile').TemporaryDirectory() as tmp:
+            run_path=Path(tmp);folder=run_path/'artifacts/http';folder.mkdir(parents=True)
+            for code,metric,value in [('399006.SZ','pe',25),('399975.SZ','pb',1)]:
+                url='https://example.org/history';key=url+'?gu_code='+code+'&pe_category='+metric+'&year=-1'
+                (folder/(code+'.json')).write_text(json.dumps(dict(url=url,request_key=key,http_status=200,body=json.dumps({'value':value}))))
+            audit=m.Audit(run_path,replay=run_path)
+            self.assertEqual(len(audit.replay),2)
 
     def test_yahoo_requires_adjusted_prices_and_correct_instrument(self):
         data={'chart':{'result':[{'meta':{'symbol':'BAD','currency':'USD'},'timestamp':[1],'indicators':{}}],'error':None}}

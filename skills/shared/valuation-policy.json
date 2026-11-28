@@ -1,5 +1,5 @@
 {
-  "version": "valuation-only-v2",
+  "version": "valuation-low-summary-v3",
   "max_percentile": 0.1,
   "include_boundary": true,
   "required_analysis_basis": "valuation",
@@ -7,5 +7,14 @@
   "filter_valuation_snapshots": true,
   "minimum_history_years": 5,
   "unknown_or_unqualified": "exclude",
-  "alert_title_prefix": "🚨【板块低位提醒】"
+  "alert_title_prefix": "🚨【板块低位提醒】",
+  "allowed_alert_phases": [
+    "entry"
+  ],
+  "minimum_valuation_observations": 1000,
+  "required_alert_fields": [
+    "sector_name",
+    "valuation_history",
+    "low_cause"
+  ]
 }
